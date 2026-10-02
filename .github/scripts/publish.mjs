@@ -199,7 +199,7 @@ for (const slug of slugs) {
   const entries = walk(dir)
     .filter((f) => !f.symlink && !f.rel.split("/").some((seg) => SHIP_EXCLUDE.has(seg)))
     .map((f) => ({ name: `${slug}/${f.rel}`, data: fs.readFileSync(f.abs) }));
-  entries.push({ name: `${slug}/skill-manifest.json`, data: Buffer.from(JSON.stringify({ slug, version: meta.version, source: SOURCE }, null, 2) + "\n") });
+  entries.push({ name: `${slug}/skill-manifest.json`, data: Buffer.from(JSON.stringify({ slug, version: meta.version, source: SOURCE, name: meta.name, youSay: meta.youSay, needs: meta.needs, byoKey: meta.byoKey ?? null }, null, 2) + "\n") });
   const archive = zip(entries);
   const sha256 = crypto.createHash("sha256").update(archive).digest("hex");
   const zipKey = `skills/${SOURCE}/${slug}/${meta.version}.zip`;
