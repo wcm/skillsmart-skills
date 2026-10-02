@@ -1,0 +1,32 @@
+{
+  "previews": [
+    {
+      "file": "01.webm",
+      "kind": "video",
+      "caption": "The full teaser",
+      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Word beat",
+      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Flash beat",
+      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
+      "sample": true
+    },
+    {
+      "file": "04.webp",
+      "kind": "image",
+      "caption": "Stack beat",
+      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
+      "sample": true
+    }
+  ]
+}

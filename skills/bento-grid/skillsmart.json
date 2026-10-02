@@ -1,0 +1,41 @@
+{
+  "slug": "bento-grid",
+  "name": "Bento Feature Grid",
+  "tagline": "Turn a dull feature list into a bento-box grid of tiles with tiny visuals and smooth hover motion.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "bento",
+    "features section",
+    "landing page",
+    "grid",
+    "ui"
+  ],
+  "youSay": "/bento-grid Redesign the features section of my landing page in index.html as a bento grid",
+  "whatYouGet": [
+    "A responsive bento feature section with 5–7 tiles sized by importance",
+    "CSS micro-visuals and hover motion that respect reduced-motion settings",
+    "A component in your framework (React, Vue, Svelte, Astro, Tailwind) or plain HTML/CSS"
+  ],
+  "goodFit": [
+    "SaaS and product landing pages",
+    "Portfolio 'services' sections"
+  ],
+  "notFor": [
+    "Long-form documentation or pricing tables"
+  ],
+  "youBring": [
+    "Your features (or your site/README)",
+    "Optional: product screenshots"
+  ],
+  "needs": [
+    "A modern browser",
+    "Optional: Node 18+ and Chrome for a PNG export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}

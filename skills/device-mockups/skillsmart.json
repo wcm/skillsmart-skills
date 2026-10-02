@@ -1,0 +1,42 @@
+{
+  "slug": "device-mockups",
+  "name": "Device Mockup Scenes",
+  "tagline": "Drop in your screenshots and get polished phone, laptop and browser scenes for launches and posts.",
+  "category": "social",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "mockup",
+    "device frame",
+    "screenshots",
+    "product shots",
+    "app store"
+  ],
+  "youSay": "/device-mockups Put these screenshots of my app into a hero scene and a 3-phone social post: ./shots",
+  "whatYouGet": [
+    "Scenes with phone, laptop and browser frames, gradient backgrounds, 3D tilt and soft shadows",
+    "Wide (1600×1000) and square (1080×1080) PNGs at 2×",
+    "Optional captions in your brand style"
+  ],
+  "goodFit": [
+    "Product Hunt and App Store galleries",
+    "Landing-page hero images and launch posts"
+  ],
+  "notFor": [
+    "Photorealistic 3D renders",
+    "Branded device models with logos"
+  ],
+  "youBring": [
+    "Screenshots of your app or site (or a live URL)",
+    "Optional: brand colours and a caption"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium) for export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}

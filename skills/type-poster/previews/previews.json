@@ -1,0 +1,25 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Swiss layout",
+      "prompt": "/type-poster Poster for our design meetup 'Grids & Grit' on 14 Nov, 7pm at Studio 9, Singapore",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Brutal layout",
+      "prompt": "/type-poster Poster for our design meetup 'Grids & Grit' on 14 Nov, 7pm at Studio 9, Singapore",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Orbit layout",
+      "prompt": "/type-poster Poster for our design meetup 'Grids & Grit' on 14 Nov, 7pm at Studio 9, Singapore",
+      "sample": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "kinetic-type-teaser",
+  "name": "Kinetic Type Teaser",
+  "tagline": "A 10–15 second kinetic typography teaser video for launches and announcements, no footage needed.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "kinetic typography",
+    "teaser",
+    "launch"
+  ],
+  "youSay": "/kinetic-type-teaser Make a 12-second vertical teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
+  "whatYouGet": [
+    "An HTML animation you can preview and tweak",
+    "A WebM video (and MP4 with ffmpeg) in 16:9 or 9:16",
+    "Six beats of big type on hard cuts with one accent colour"
+  ],
+  "goodFit": [
+    "Launch and event announcements",
+    "Social posts and story/reel teasers"
+  ],
+  "notFor": [
+    "Videos with footage, voice-over or music",
+    "Long explainer videos"
+  ],
+  "youBring": [
+    "What's happening, the brand, a date or URL"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium)",
+    "Optional: ffmpeg for MP4"
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-a: #ffd6a5; --bg-b: #ff8fab;   /* scene gradient */
+    --ink: #1b1b1f;
+    --frame: #0f0f12;                   /* device bezel */
+    --font: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #2a2a2e; display: grid; gap: 40px; padding: 40px; font-family: var(--font); }
+
+  .scene { position: relative; overflow: hidden; color: var(--ink);
+           background: radial-gradient(80% 90% at 20% 10%, var(--bg-a), transparent 70%), linear-gradient(135deg, var(--bg-a), var(--bg-b)); }
+  .scene--wide { width: 1600px; height: 1000px; }
+  .scene--square { width: 1080px; height: 1080px; }
+  .caption { position: absolute; left: 80px; top: 80px; max-width: 560px; }
+  .caption h1 { font-weight: 800; font-size: 72px; line-height: 0.98; letter-spacing: -0.035em; }
+  .caption p { font-weight: 500; font-size: 26px; line-height: 1.4; margin-top: 20px; opacity: 0.75; }
+  .shadow { filter: drop-shadow(0 50px 60px rgba(0,0,0,0.28)) drop-shadow(0 12px 18px rgba(0,0,0,0.18)); }
+
+  /* PHONE — 390×844 screen, 14 px bezel */
+  .phone { position: absolute; width: 418px; height: 872px; border-radius: 64px; background: var(--frame); padding: 14px; }
+  .phone::before { content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 122px; height: 34px; border-radius: 20px; background: #000; z-index: 2; }
+  .phone .screen { width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
+  .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+  /* LAPTOP — 1280×800 screen */
+  .laptop { position: absolute; width: 1040px; }
+  .laptop .lid { background: var(--frame); border-radius: 26px 26px 0 0; padding: 20px 20px 26px; }
+  .laptop .screen { aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #fff; }
+  .laptop .base { height: 30px; margin: 0 -60px; background: linear-gradient(#d4d4d8, #a1a1aa); border-radius: 0 0 22px 22px; position: relative; }
+  .laptop .base::before { content: ""; position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 160px; height: 10px; border-radius: 0 0 10px 10px; background: #8e8e96; }
+
+  /* BROWSER — window chrome for web screenshots */
+  .browser { position: absolute; width: 1100px; border-radius: 16px; overflow: hidden; background: #fff; }
+  .browser .bar { height: 46px; background: #f4f4f5; display: flex; align-items: center; gap: 8px; padding: 0 18px; border-bottom: 1px solid #e4e4e7; }
+  .browser .bar i { width: 13px; height: 13px; border-radius: 50%; background: #fca5a5; } .browser .bar i:nth-child(2){background:#fcd34d} .browser .bar i:nth-child(3){background:#86efac}
+  .browser .bar span { margin-left: 18px; flex: 1; max-width: 420px; height: 26px; border-radius: 8px; background: #fff; border: 1px solid #e4e4e7; font: 500 13px/26px var(--font); color: #71717a; padding: 0 12px; }
+  .browser .screen { aspect-ratio: 16 / 10; overflow: hidden; }
+
+  /* 3D tilt helper */
+  .tilt-l { transform: perspective(2400px) rotateY(18deg) rotateX(6deg) rotateZ(-2deg); }
+  .tilt-r { transform: perspective(2400px) rotateY(-18deg) rotateX(6deg) rotateZ(2deg); }
+
+  /* Placeholder screen when no screenshot is set */
+  .ph { width: 100%; height: 100%; display: grid; place-items: center; background: repeating-linear-gradient(45deg, #f4f4f5 0 18px, #ececef 18px 36px); font: 700 22px var(--font); color: #a1a1aa; }
+</style>
+</head>
+<body>
+
+<!-- SCENE 1 — Hero: laptop + phone, caption left (wide 1600×1000) -->
+<section class="scene scene--wide" data-export data-name="scene-hero">
+  <div class="caption"><h1>{{HEADLINE}}</h1><p>{{SUBLINE}}</p></div>
+  <div class="laptop shadow tilt-r" style="right:40px; top:250px;">
+    <div class="lid"><div class="screen"><img src="{{DESKTOP_SCREENSHOT}}" alt=""></div></div>
+    <div class="base"></div>
+  </div>
+  <div class="phone shadow" style="left:500px; top:360px; transform: rotate(-4deg);">
+    <div class="screen"><img src="{{MOBILE_SCREENSHOT}}" alt=""></div>
+  </div>
+</section>
+
+<!-- SCENE 2 — Three phones fanned (square 1080×1080, for social) -->
+<section class="scene scene--square" data-export data-name="scene-phones">
+  <div class="phone shadow" style="left:40px;  top:190px; transform: rotate(-10deg) scale(0.86);"><div class="screen"><img src="{{MOBILE_SCREENSHOT_2}}" alt=""></div></div>
+  <div class="phone shadow" style="left:331px; top:104px; z-index:2;"><div class="screen"><img src="{{MOBILE_SCREENSHOT}}" alt=""></div></div>
+  <div class="phone shadow" style="left:622px; top:190px; transform: rotate(10deg) scale(0.86);"><div class="screen"><img src="{{MOBILE_SCREENSHOT_3}}" alt=""></div></div>
+</section>
+
+<!-- SCENE 3 — Browser window, centred, with caption (wide) -->
+<section class="scene scene--wide" data-export data-name="scene-browser">
+  <div class="caption" style="left:auto; right:80px; text-align:right;"><h1>{{HEADLINE_2}}</h1></div>
+  <div class="browser shadow tilt-l" style="left:110px; top:250px;">
+    <div class="bar"><i></i><i></i><i></i><span>{{DOMAIN}}</span></div>
+    <div class="screen"><img src="{{DESKTOP_SCREENSHOT}}" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+  </div>
+</section>
+
+<script>
+  // Any image that fails to load (missing screenshot) becomes a neutral placeholder.
+  document.querySelectorAll(".screen img").forEach((img) => {
+    const fail = () => { img.replaceWith(Object.assign(document.createElement("div"), { className: "ph", textContent: "Screenshot" })); };
+    const src = img.getAttribute("src") || ""; if (!src || src.startsWith("{{") || !/\.(png|jpe?g|webp|gif|avif)$/i.test(src)) fail(); else img.addEventListener("error", fail);
+  });
+</script>
+</body>
+</html>

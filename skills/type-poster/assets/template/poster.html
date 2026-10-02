@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{EVENT}} — poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- FONTS: see references/type-systems.md -->
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* A3 portrait at 96 dpi = 1123 × 1587 px. Export PNG at --scale 3 for print quality. */
+  @page { size: 297mm 420mm; margin: 0; }
+  :root {
+    --paper: #f1ede4;   /* background */
+    --ink: #111111;     /* main type */
+    --accent: #ff3b1f;  /* one signal colour */
+    --display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --w: 1123px; --h: 1587px; --m: 56px; /* margin */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d9d6cf; }
+  body { display: flex; flex-wrap: wrap; gap: 40px; padding: 40px; font-family: var(--display); }
+  @media print { html, body { background: none; } body { padding: 0; gap: 0; } }
+
+  .poster {
+    position: relative; width: var(--w); height: var(--h); overflow: hidden;
+    background: var(--paper); color: var(--ink); padding: var(--m);
+    display: grid; grid-template-rows: auto 1fr auto; page-break-after: always;
+  }
+  .meta { display: flex; justify-content: space-between; font: 600 18px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.04em; }
+  .foot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; font: 400 17px/1.4 var(--mono); border-top: 3px solid var(--ink); padding-top: 20px; }
+  .foot b { display: block; font-weight: 600; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* LAYOUT A — Swiss grid: huge stacked words, hard left, one red rule */
+  .layout-swiss .title { align-self: end; font-weight: 900; font-size: 228px; line-height: 0.82; letter-spacing: -0.055em; text-transform: uppercase; }
+  .layout-swiss .title span { display: block; }
+  .layout-swiss .title span:nth-child(2) { color: var(--accent); }
+  .layout-swiss .rule { position: absolute; left: var(--m); right: var(--m); top: 46%; height: 14px; background: var(--accent); }
+  .layout-swiss .date { position: absolute; right: var(--m); top: 120px; font-weight: 800; font-size: 120px; line-height: 0.85; text-align: right; letter-spacing: -0.04em; }
+
+  /* LAYOUT B — Brutal stack: rotated giant word bleeding off the edge */
+  .layout-brutal { background: var(--ink); color: var(--paper); }
+  .layout-brutal .foot { border-color: var(--paper); }
+  .layout-brutal .giant { position: absolute; left: -40px; top: 220px; font-weight: 900; font-size: 520px; line-height: 0.8; letter-spacing: -0.06em; color: var(--accent); transform: rotate(-90deg) translateX(-100%); transform-origin: top left; white-space: nowrap; }
+  .layout-brutal .title { grid-row: 2; align-self: center; justify-self: end; max-width: 620px; font-weight: 800; font-size: 96px; line-height: 0.92; letter-spacing: -0.04em; text-align: right; position: relative; }
+
+  /* LAYOUT C — Circle type: words orbiting a solid disc */
+  .layout-orbit .disc { position: absolute; width: 760px; height: 760px; border-radius: 50%; background: var(--accent); left: 50%; top: 46%; transform: translate(-50%, -50%); }
+  .layout-orbit svg { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); width: 980px; height: 980px; overflow: visible; }
+  .layout-orbit text { font: 800 64px var(--display); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--ink); }
+  .layout-orbit .title { grid-row: 2; align-self: center; justify-self: center; text-align: center; max-width: 600px; font-weight: 900; font-size: 120px; line-height: 0.85; letter-spacing: -0.05em; color: var(--paper); position: relative; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- Keep the ONE layout you chose; delete the others. data-name sets the file name. -->
+
+<article class="poster layout-swiss" data-export data-name="poster-swiss">
+  <div class="meta"><span>{{ORGANISER}}</span><span>{{CITY}}</span></div>
+  <div class="date">{{DAY}}<br>{{MONTH}}</div>
+  <div class="rule"></div>
+  <h1 class="title"><span>{{WORD_1}}</span><span>{{WORD_2}}</span><span>{{WORD_3}}</span></h1>
+  <div class="foot">
+    <div><b>When</b>{{WHEN}}</div>
+    <div><b>Where</b>{{WHERE}}</div>
+    <div><b>Info</b>{{URL}}</div>
+  </div>
+</article>
+
+<article class="poster layout-brutal" data-export data-name="poster-brutal">
+  <div class="meta"><span>{{ORGANISER}}</span><span>{{DAY}} {{MONTH}}</span></div>
+  <div class="giant">{{GIANT_WORD}}</div>
+  <h1 class="title">{{TITLE_LINE}}</h1>
+  <div class="foot">
+    <div><b>When</b>{{WHEN}}</div>
+    <div><b>Where</b>{{WHERE}}</div>
+    <div><b>Info</b>{{URL}}</div>
+  </div>
+</article>
+
+<article class="poster layout-orbit" data-export data-name="poster-orbit">
+  <div class="meta"><span>{{ORGANISER}}</span><span>{{CITY}}</span></div>
+  <div class="disc"></div>
+  <svg viewBox="-490 -490 980 980" aria-hidden="true">
+    <defs><path id="orbit" d="M 0,-440 a 440,440 0 1,1 -0.1,0"/></defs>
+    <text><textPath href="#orbit">{{ORBIT_TEXT}}</textPath></text>
+  </svg>
+  <h1 class="title">{{TITLE_LINE}}</h1>
+  <div class="foot">
+    <div><b>When</b>{{WHEN}}</div>
+    <div><b>Where</b>{{WHERE}}</div>
+    <div><b>Info</b>{{URL}}</div>
+  </div>
+</article>
+
+</body>
+</html>

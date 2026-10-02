@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{BRAND}} — brand board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- FONTS: the chosen display + body pairing (references/brand-method.md) -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* PALETTE: 5 colours — primary, secondary, accent, dark, light */
+    --c-primary: #1f4d3a;
+    --c-secondary: #e9c46a;
+    --c-accent: #e76f51;
+    --c-dark: #1a1a1a;
+    --c-light: #f7f3ea;
+    --display: "Fraunces", Georgia, serif;
+    --body: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #d4d0c8; padding: 40px; font-family: var(--body); color: var(--c-dark); }
+  .board { width: 1600px; height: 1000px; background: var(--c-light); padding: 56px; display: grid; gap: 24px;
+           grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 1.25fr 1fr 0.9fr;
+           grid-template-areas: "logo logo palette" "type type palette" "voice usage usage"; }
+  .cell { border-radius: 20px; padding: 32px; position: relative; overflow: hidden; }
+  .label { font: 600 12px var(--body); letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; margin-bottom: 16px; }
+
+  .logo { grid-area: logo; background: var(--c-primary); color: var(--c-light); display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: center; }
+  .wordmark { font: 700 132px/0.9 var(--display); letter-spacing: -0.03em; }
+  .wordmark em { font-style: italic; font-weight: 400; color: var(--c-secondary); }
+  .marks { display: grid; grid-template-columns: repeat(2, 120px); gap: 16px; justify-content: end; }
+  .mark { width: 120px; height: 120px; border-radius: 18px; display: grid; place-items: center; font: 700 64px var(--display); }
+  .mark.a { background: var(--c-light); color: var(--c-primary); }
+  .mark.b { background: var(--c-secondary); color: var(--c-dark); }
+  .mark.c { background: var(--c-accent); color: var(--c-light); }
+  .mark.d { border: 2px solid var(--c-light); color: var(--c-light); }
+
+  .palette { grid-area: palette; background: #fff; display: grid; grid-template-rows: auto repeat(5, 1fr); gap: 10px; }
+  .swatch { border-radius: 14px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: flex-end; font: 500 14px var(--body); }
+  .swatch b { font-weight: 600; display: block; font-size: 16px; }
+  .swatch span { opacity: 0.8; font-variant-numeric: tabular-nums; text-align: right; }
+
+  .type { grid-area: type; background: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .specimen-display { font: 700 96px/1 var(--display); letter-spacing: -0.02em; }
+  .specimen-body { font: 400 17px/1.6 var(--body); }
+  .specimen-meta { font: 500 13px var(--body); opacity: 0.6; margin-top: 12px; }
+  .scale { display: flex; align-items: baseline; gap: 18px; margin-top: 20px; font-family: var(--display); }
+
+  .voice { grid-area: voice; background: var(--c-secondary); }
+  .voice ul { list-style: none; display: grid; gap: 10px; font: 500 20px/1.3 var(--body); }
+  .voice li::before { content: "— "; }
+  .usage { grid-area: usage; background: #fff; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .do, .dont { border-radius: 14px; padding: 18px; display: grid; place-items: center; height: 150px; font: 700 34px var(--display); position: relative; }
+  .tag { position: absolute; left: 12px; top: 10px; font: 600 11px var(--body); letter-spacing: 0.12em; text-transform: uppercase; }
+  .do .tag { color: #15803d; } .dont .tag { color: #b91c1c; }
+</style>
+</head>
+<body>
+<main class="board" data-export data-name="brand-board">
+  <section class="cell logo">
+    <div>
+      <div class="label">Wordmark</div>
+      <div class="wordmark">{{WORDMARK_HTML}}</div>
+    </div>
+    <div class="marks">
+      <div class="mark a">{{MONOGRAM}}</div><div class="mark b">{{MONOGRAM}}</div>
+      <div class="mark c">{{MONOGRAM}}</div><div class="mark d">{{MONOGRAM}}</div>
+    </div>
+  </section>
+
+  <section class="cell palette">
+    <div class="label">Palette</div>
+    <!-- Fill names, hex and contrast ratio vs text colour (see references/brand-method.md) -->
+    <div class="swatch" style="background:var(--c-primary);color:var(--c-light)"><div><b>{{NAME_1}}</b>Primary</div><span>{{HEX_1}}<br>{{AA_1}}</span></div>
+    <div class="swatch" style="background:var(--c-secondary);color:var(--c-dark)"><div><b>{{NAME_2}}</b>Secondary</div><span>{{HEX_2}}<br>{{AA_2}}</span></div>
+    <div class="swatch" style="background:var(--c-accent);color:var(--c-light)"><div><b>{{NAME_3}}</b>Accent</div><span>{{HEX_3}}<br>{{AA_3}}</span></div>
+    <div class="swatch" style="background:var(--c-dark);color:var(--c-light)"><div><b>{{NAME_4}}</b>Text</div><span>{{HEX_4}}<br>{{AA_4}}</span></div>
+    <div class="swatch" style="background:var(--c-light);color:var(--c-dark);border:1px solid #0001"><div><b>{{NAME_5}}</b>Background</div><span>{{HEX_5}}<br>{{AA_5}}</span></div>
+  </section>
+
+  <section class="cell type">
+    <div>
+      <div class="label">Display — {{DISPLAY_FONT}}</div>
+      <div class="specimen-display">Aa Gg</div>
+      <div class="scale"><span style="font-size:56px">H1</span><span style="font-size:40px">H2</span><span style="font-size:28px">H3</span><span style="font-size:20px">H4</span></div>
+    </div>
+    <div>
+      <div class="label">Body — {{BODY_FONT}}</div>
+      <p class="specimen-body">{{BODY_SAMPLE}}</p>
+      <p class="specimen-meta">Body 17/27 · Small 14/22 · Caption 12/18</p>
+    </div>
+  </section>
+
+  <section class="cell voice">
+    <div class="label">Voice</div>
+    <ul><li>{{VOICE_1}}</li><li>{{VOICE_2}}</li><li>{{VOICE_3}}</li></ul>
+  </section>
+
+  <section class="cell usage">
+    <div class="do" style="background:var(--c-primary);color:var(--c-light)"><span class="tag">Do</span>{{MONOGRAM}}</div>
+    <div class="do" style="background:var(--c-light);color:var(--c-primary);border:1px solid #0001"><span class="tag">Do</span>{{MONOGRAM}}</div>
+    <div class="dont" style="background:var(--c-accent);color:var(--c-secondary)"><span class="tag">Don't — low contrast</span>{{MONOGRAM}}</div>
+  </section>
+</main>
+</body>
+</html>

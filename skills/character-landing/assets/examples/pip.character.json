@@ -1,0 +1,115 @@
+{
+  "id": "pip",
+  "name": "Pip",
+  "scenes": [
+    {
+      "title": "This is <em>Pip</em>.",
+      "sub": "Curious about everything. Especially you.",
+      "colors": [
+        "#ffd9c7",
+        "#ffb8a8",
+        "#fff1e8",
+        "#d9c8ff"
+      ],
+      "ink": "#2b1d2a"
+    },
+    {
+      "title": "Big eyes, <em>bigger</em> questions.",
+      "sub": "Pip wonders out loud, so you don't have to.",
+      "colors": [
+        "#c8f0e4",
+        "#8fd9c6",
+        "#f0fbf6",
+        "#ffd6e8"
+      ],
+      "ink": "#16302a"
+    },
+    {
+      "title": "Learns what you <em>love</em>.",
+      "sub": "Your music, your jokes, your 11pm snack.",
+      "colors": [
+        "#ffe7a8",
+        "#ffc48a",
+        "#fff6e0",
+        "#cfe0ff"
+      ],
+      "ink": "#33240f"
+    },
+    {
+      "title": "Stays up <em>with</em> you.",
+      "sub": "For late ideas and later conversations.",
+      "colors": [
+        "#1e1a3d",
+        "#4b3a8f",
+        "#c77aa6",
+        "#2a2458"
+      ],
+      "ink": "#fbf2ff"
+    },
+    {
+      "title": "Small body, <em>big</em> heart.",
+      "sub": "A friend that grows up alongside you.",
+      "colors": [
+        "#ffd6ea",
+        "#e7c4ff",
+        "#fff3f8",
+        "#ffe0b8"
+      ],
+      "ink": "#2e1830"
+    }
+  ],
+  "eyes": [
+    {
+      "x": 0.4224,
+      "y": 0.4009,
+      "rx": 0.0448,
+      "ry": 0.0478,
+      "shift": 0.32,
+      "socket": {
+        "x": 0.4066,
+        "y": 0.392,
+        "rx": 0.0602,
+        "ry": 0.0594
+      }
+    },
+    {
+      "x": 0.5917,
+      "y": 0.4014,
+      "rx": 0.044,
+      "ry": 0.0472,
+      "shift": 0.32,
+      "socket": {
+        "x": 0.608,
+        "y": 0.3915,
+        "rx": 0.0567,
+        "ry": 0.06
+      }
+    }
+  ],
+  "blink": false,
+  "generate": {
+    "refs": [],
+    "key": {
+      "color": "#00B140"
+    },
+    "imagePrompt": "Pixar-style 3D animated-movie character render of an original creature called Pip: small round fluffy lavender body with soft short fur, huge expressive glossy eyes with large warm brown irises, big black pupils and white catchlights, tiny pink button nose, small rounded ears with peach inner ears, a single curly tuft of fur on top of the head, short stubby arms and little round feet. Warm, curious, slightly shy smile. Full body visible head to feet, standing upright, facing the camera, arms relaxed at its sides, centered with generous margin, figure about 65% of the frame height. Perfectly flat solid chroma-key green background {KEY}, no shadow on the background, no floor, soft even studio lighting, crisp fur edges.",
+    "poseNote": "Keep the exact same character identity: face, proportions, outfit, colours and materials. Change the pose and body angle as described — a dynamic, expressive, mid-action moment, turned partly away from the front, not a full side-on or back view unless stated. Same overall scale in the frame, centered, full body and any props fully visible with margin. Same perfectly flat solid chroma-key green background with no shadow and no floor. No props or elements in green tones.",
+    "poses": [
+      {
+        "name": "cookie",
+        "pose": "The fluffy creature turns three-quarters to its left, holding a big chocolate-chip cookie in both paws and taking a happy bite, cheeks puffed, crumbs falling, a few small pastel music notes floating around its head.",
+        "move": "The fluffy creature turns three-quarters to its left, a big chocolate-chip cookie appears in its paws, it takes a happy bite with puffed cheeks as little music notes float up around it."
+      },
+      {
+        "name": "moon",
+        "pose": "The fluffy creature turns three-quarters to its right wearing a tiny striped lavender and cream nightcap, holding a small glowing crescent-moon lantern in one paw and rubbing an eye with the other mid-yawn, sleepy and cozy, body tilted.",
+        "move": "The fluffy creature finishes the cookie, a tiny striped nightcap and a glowing crescent-moon lantern appear, and it turns to its right holding the lantern, rubbing one eye in a sleepy yawn."
+      },
+      {
+        "name": "leap",
+        "pose": "The fluffy creature leaps joyfully into the air, body tilted, arms thrown wide open toward the camera, feet off the ground, a big glossy red heart-shaped balloon tied to one wrist floating above, beaming open smile.",
+        "move": "The fluffy creature wakes up with a start, the nightcap and lantern vanish, a red heart balloon appears on its wrist and it leaps joyfully into the air with arms thrown wide open."
+      }
+    ]
+  }
+}

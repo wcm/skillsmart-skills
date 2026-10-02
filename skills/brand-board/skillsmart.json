@@ -1,0 +1,42 @@
+{
+  "slug": "brand-board",
+  "name": "Brand Board",
+  "tagline": "A one-page brand board from a name and three adjectives: wordmark, palette, type and voice.",
+  "category": "brand",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "brand identity",
+    "style guide",
+    "palette",
+    "typography",
+    "design tokens"
+  ],
+  "youSay": "/brand-board Make a brand board for 'Saltwater Bakery' — warm, crafted, coastal",
+  "whatYouGet": [
+    "A 1600×1000 brand board: wordmark and monogram, 5-colour palette, type pairing, voice, do/don't",
+    "Contrast ratios checked for accessibility",
+    "tokens.css with your colours and fonts as CSS variables"
+  ],
+  "goodFit": [
+    "New projects, side businesses and pitches",
+    "Designers who want a starting direction to react to"
+  ],
+  "notFor": [
+    "A finished logo mark or trademark search",
+    "Full brand guidelines books"
+  ],
+  "youBring": [
+    "Brand name, what it does, three adjectives",
+    "Optional: existing colours or logo"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium) for export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}

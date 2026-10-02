@@ -1,0 +1,42 @@
+{
+  "slug": "social-carousel",
+  "name": "Social Carousel",
+  "tagline": "Turn one idea into a swipeable Instagram or LinkedIn carousel with a hook, clear points and a call to action.",
+  "category": "social",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "carousel",
+    "instagram",
+    "linkedin",
+    "social media",
+    "slides"
+  ],
+  "youSay": "/social-carousel Turn my post about '5 mistakes in portfolio sites' into a LinkedIn carousel for @studio.lou",
+  "whatYouGet": [
+    "5–10 slides at 1080×1350 (4:5): hook, numbered points with examples, CTA",
+    "Consistent palette, fonts, progress dots and handle on every slide",
+    "A suggested caption and hashtags"
+  ],
+  "goodFit": [
+    "Educational tips, listicles and case-study summaries",
+    "Creators who post weekly and want a consistent look"
+  ],
+  "notFor": [
+    "Photo carousels",
+    "Animated or video posts"
+  ],
+  "youBring": [
+    "The topic, a draft or bullet points",
+    "Your handle and brand colours (optional)"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium) for export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}

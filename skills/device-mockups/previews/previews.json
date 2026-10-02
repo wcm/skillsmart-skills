@@ -1,0 +1,25 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Hero scene",
+      "prompt": "/device-mockups Put my app screenshots into a hero scene and a 3-phone social post",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Three phones (square)",
+      "prompt": "/device-mockups Put my app screenshots into a hero scene and a 3-phone social post",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Browser window",
+      "prompt": "/device-mockups Put my app screenshots into a hero scene and a 3-phone social post",
+      "sample": true
+    }
+  ]
+}

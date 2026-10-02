@@ -1,0 +1,11 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Hero with cursor-following eyes",
+      "prompt": "/character-landing Landing page for my plush fox mascot Miso",
+      "sample": true
+    }
+  ]
+}

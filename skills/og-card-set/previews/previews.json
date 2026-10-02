@@ -1,0 +1,25 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Split layout — home",
+      "prompt": "/og-card-set Make OG images for every page of my travel site Fernweh, orange accent",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Editorial layout — article",
+      "prompt": "/og-card-set Make OG images for every page of my travel site Fernweh, orange accent",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Gradient layout — pricing",
+      "prompt": "/og-card-set Make OG images for every page of my travel site Fernweh, orange accent",
+      "sample": true
+    }
+  ]
+}

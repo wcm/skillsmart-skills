@@ -1,0 +1,11 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Feature section for a finance app",
+      "prompt": "/bento-grid Redesign the features section of my landing page as a bento grid",
+      "sample": true
+    }
+  ]
+}

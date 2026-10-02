@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  /* 1200 × 630 — Open Graph / X / LinkedIn / Slack link previews. */
+  :root {
+    --bg: #0e0f13;
+    --ink: #f5f5f4;
+    --muted: #a1a1aa;
+    --accent: #f59e0b;
+    --display: "Inter", system-ui, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+    --style: "split"; /* informational; the layout class is set in cards.json "layout" */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #3f3f46; display: grid; grid-template-columns: repeat(auto-fill, 1200px); gap: 32px; padding: 32px; }
+  .card { position: relative; width: 1200px; height: 630px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--display); }
+  .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 28px; }
+  .brand i { width: 36px; height: 36px; border-radius: 10px; background: var(--accent); }
+  .eyebrow { font-weight: 700; font-size: 22px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .title { font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+  .url { font-weight: 500; font-size: 24px; color: var(--muted); }
+
+  /* split: text left, bold shape right */
+  .split { display: grid; grid-template-columns: 1.35fr 1fr; }
+  .split .text { padding: 64px; display: flex; flex-direction: column; justify-content: space-between; }
+  .split .title { font-size: 68px; }
+  .split .art { position: relative; background: var(--accent); }
+  .split .art::before { content: ""; position: absolute; left: 50%; top: 50%; width: 360px; height: 360px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--bg); }
+  .split .art::after { content: attr(data-glyph); position: absolute; inset: 0; display: grid; place-items: center; font: italic 220px var(--serif); color: var(--accent); }
+
+  /* editorial: serif headline over a thin grid */
+  .editorial { padding: 64px; display: flex; flex-direction: column; justify-content: space-between; background-image: linear-gradient(var(--ink) 1px, transparent 1px); background-size: 100% 105px; background-position: 0 40px; background-blend-mode: normal; }
+  .editorial::before { content: ""; position: absolute; inset: 0; background: var(--bg); opacity: 0.94; }
+  .editorial > * { position: relative; }
+  .editorial .title { font: 400 92px/0.98 var(--serif); letter-spacing: -0.01em; max-width: 1000px; }
+  .editorial .title em { color: var(--accent); }
+
+  /* gradient: soft mesh, centred title */
+  .gradient { display: grid; place-items: center; text-align: center; padding: 64px; background:
+      radial-gradient(60% 80% at 15% 20%, var(--accent), transparent 60%),
+      radial-gradient(50% 70% at 85% 80%, #6366f1, transparent 60%), var(--bg); }
+  .gradient .title { font-size: 76px; max-width: 980px; }
+  .gradient .brand { position: absolute; left: 56px; top: 48px; }
+  .gradient .url { position: absolute; right: 56px; bottom: 44px; }
+</style>
+</head>
+<body>
+<script type="module">
+  // cards.json: { "brand": "...", "url": "...", "cards": [ { "name": "home", "layout": "split|editorial|gradient", "eyebrow": "...", "title": "...", "glyph": "A" } ] }
+  const data = await (await fetch("cards.json")).json();
+  const esc = (s = "") => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+  // Titles may contain <em>…</em> for the editorial accent; everything else is escaped.
+  const rich = (s = "") => esc(s).replace(/&lt;em&gt;/g, "<em>").replace(/&lt;\/em&gt;/g, "</em>");
+  for (const c of data.cards) {
+    const el = document.createElement("article");
+    el.className = `card ${c.layout || "split"}`;
+    el.dataset.export = "";
+    el.dataset.name = c.name;
+    const brand = `<div class="brand"><i></i>${esc(data.brand)}</div>`;
+    const url = `<div class="url">${esc(c.url || data.url)}</div>`;
+    if ((c.layout || "split") === "split") {
+      el.innerHTML = `<div class="text">${brand}<div><p class="eyebrow">${esc(c.eyebrow)}</p><h1 class="title">${rich(c.title)}</h1></div>${url}</div><div class="art" data-glyph="${esc(c.glyph || data.brand[0])}"></div>`;
+    } else if (c.layout === "editorial") {
+      el.innerHTML = `${brand}<h1 class="title">${rich(c.title)}</h1><div style="display:flex;justify-content:space-between"><p class="eyebrow">${esc(c.eyebrow)}</p>${url}</div>`;
+    } else {
+      el.innerHTML = `${brand}<div><p class="eyebrow">${esc(c.eyebrow)}</p><h1 class="title">${rich(c.title)}</h1></div>${url}`;
+    }
+    document.body.append(el);
+  }
+  document.body.dataset.ready = "1";
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "slug": "character-landing",
+  "name": "Character Landing Page",
+  "tagline": "Turn one picture into a landing page with a character that watches your cursor and poses as you scroll.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "landing page",
+    "mascot",
+    "character",
+    "scroll animation",
+    "interactive"
+  ],
+  "youSay": "/character-landing Make a landing page for my plush fox mascot, Miso. Here's the picture: ~/Desktop/miso.png",
+  "whatYouGet": [
+    "A static website: a big hero character whose eyes follow the cursor, then four scenes where it strikes a new pose as you scroll",
+    "A colour palette, font pairing and copy chosen to suit the character",
+    "Plain HTML, CSS and JS you can host anywhere"
+  ],
+  "goodFit": [
+    "Mascots, plush toys, illustrated characters and stylised self-portraits",
+    "Product launches, portfolios and personal sites that need personality"
+  ],
+  "notFor": [
+    "Trademarked characters you don't own",
+    "Multi-page websites or online shops"
+  ],
+  "youBring": [
+    "One reference image (photo, drawing or illustration)",
+    "Optional: name, tone, colours"
+  ],
+  "needs": [
+    "fal.ai API key (about $2–5 per character)",
+    "Node 18+",
+    "ffmpeg",
+    "Python 3"
+  ],
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $2–5 per character",
+    "domains": [
+      "fal.ai",
+      "fal.run",
+      "fal.media",
+      "queue.fal.run",
+      "rest.alpha.fal.ai"
+    ]
+  },
+  "testedIn": [
+    "Claude Code"
+  ],
+  "credits": "Duplicated from github.com/wcm/character-landing-skill (MIT)"
+}

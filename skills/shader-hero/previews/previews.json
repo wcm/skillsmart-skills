@@ -1,0 +1,32 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Aurora preset — Nimbus",
+      "prompt": "/shader-hero Launch page for Nimbus: AI notes for people who think in fragments.",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Liquid Chrome preset — Forge",
+      "prompt": "/shader-hero Launch page for Forge: Precision tools machined from a single block.",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Glass preset — Prism",
+      "prompt": "/shader-hero Launch page for Prism: One lens on every project, person and deadline.",
+      "sample": true
+    },
+    {
+      "file": "04.webp",
+      "kind": "image",
+      "caption": "Particles preset — Vector",
+      "prompt": "/shader-hero Launch page for Vector: Deploy globally in seconds. Scale without thinking.",
+      "sample": true
+    }
+  ]
+}

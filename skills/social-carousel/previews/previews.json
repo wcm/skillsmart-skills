@@ -1,0 +1,32 @@
+{
+  "previews": [
+    {
+      "file": "01.webp",
+      "kind": "image",
+      "caption": "Hook slide",
+      "prompt": "/social-carousel Turn my post '5 mistakes in portfolio sites' into a LinkedIn carousel for @studio.lou",
+      "sample": true
+    },
+    {
+      "file": "02.webp",
+      "kind": "image",
+      "caption": "Point slide",
+      "prompt": "/social-carousel Turn my post '5 mistakes in portfolio sites' into a LinkedIn carousel for @studio.lou",
+      "sample": true
+    },
+    {
+      "file": "03.webp",
+      "kind": "image",
+      "caption": "Point slide",
+      "prompt": "/social-carousel Turn my post '5 mistakes in portfolio sites' into a LinkedIn carousel for @studio.lou",
+      "sample": true
+    },
+    {
+      "file": "04.webp",
+      "kind": "image",
+      "caption": "Call to action",
+      "prompt": "/social-carousel Turn my post '5 mistakes in portfolio sites' into a LinkedIn carousel for @studio.lou",
+      "sample": true
+    }
+  ]
+}

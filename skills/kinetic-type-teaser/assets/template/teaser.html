@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}} — teaser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0b0d; --ink: #f5f5f0; --accent: #d7ff3a;
+    --display: "Anton", "Impact", sans-serif; --body: "Inter", system-ui, sans-serif;
+    --w: 1920px; --h: 1080px;          /* 16:9. Vertical (Reels/TikTok): 1080px × 1920px */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: var(--w); height: var(--h); overflow: hidden; background: var(--bg); }
+  .stage { position: relative; width: var(--w); height: var(--h); overflow: hidden; color: var(--ink); font-family: var(--display); }
+  .shot { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; }
+  .shot.flash { background: var(--accent); color: var(--bg); }
+  .word { font-size: 300px; line-height: 0.85; letter-spacing: -0.01em; text-transform: uppercase; text-align: center; }
+  .stack .word { font-size: 210px; }
+  .small { font: 800 44px var(--body); letter-spacing: 0.2em; text-transform: uppercase; }
+  .accent { color: var(--accent); }
+  .marquee { position: absolute; left: 0; white-space: nowrap; font-size: 240px; }
+  .line { position: absolute; height: 16px; background: var(--accent); left: 0; }
+  .end { display: grid; gap: 28px; justify-items: center; }
+  .end .word { font-size: 220px; }
+  .end .small { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <!-- Each .shot is one beat. data-at / data-dur in seconds. Animations are defined in SHOTS below. -->
+  <div class="shot" id="s1"><div class="small">{{INTRO_SMALL}}</div></div>
+  <div class="shot" id="s2"><div class="word">{{WORD_1}}</div></div>
+  <div class="shot flash" id="s3"><div class="word">{{WORD_2}}</div></div>
+  <div class="shot stack" id="s4"><div><div class="word">{{LINE_A}}</div><div class="word accent">{{LINE_B}}</div><div class="word">{{LINE_C}}</div></div></div>
+  <div class="shot" id="s5"><div class="marquee" id="mq">{{MARQUEE}} · {{MARQUEE}} · {{MARQUEE}} ·</div><div class="line" id="ln" style="top:70%"></div></div>
+  <div class="shot" id="s6"><div class="end"><div class="word">{{BRAND}}</div><div class="small">{{DATE_OR_URL}}</div></div></div>
+</div>
+
+<script>
+  // TIMELINE — edit times (seconds) and motions. Total ≈ 12 s. Uses the Web Animations API (no libraries).
+  const E = { snap: "cubic-bezier(.2,.9,.1,1)", out: "cubic-bezier(.16,1,.3,1)", inOut: "cubic-bezier(.7,0,.3,1)" };
+  const SHOTS = [
+    { id: "s1", at: 0.0, dur: 1.4, in: [{ opacity: 0, letterSpacing: "0.6em" }, { opacity: 1, letterSpacing: "0.2em" }], ease: E.out },
+    { id: "s2", at: 1.4, dur: 1.6, in: [{ opacity: 1, transform: "scale(2.4)" }, { opacity: 1, transform: "scale(1)" }], ease: E.snap },
+    { id: "s3", at: 3.0, dur: 1.2, in: [{ opacity: 1, transform: "translateY(100%)" }, { opacity: 1, transform: "translateY(0)" }], ease: E.snap },
+    { id: "s4", at: 4.2, dur: 2.6, in: [{ opacity: 1, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0 0 0)" }], ease: E.inOut, inDur: 0.7 },
+    { id: "s5", at: 6.8, dur: 2.6, in: [{ opacity: 1 }, { opacity: 1 }], ease: "linear",
+      extra: () => {
+        document.getElementById("mq").animate([{ transform: "translateX(0)" }, { transform: "translateX(-45%)" }], { duration: 2600, easing: "linear", fill: "both" });
+        document.getElementById("ln").animate([{ width: "0%" }, { width: "100%" }], { duration: 1600, easing: E.out, fill: "both" });
+      } },
+    { id: "s6", at: 9.4, dur: 2.8, in: [{ opacity: 0, transform: "translateY(40px)" }, { opacity: 1, transform: "translateY(0)" }], ease: E.out },
+  ];
+
+  let timers = [];
+  function start() {
+    timers.forEach(clearTimeout); timers = [];
+    document.querySelectorAll(".shot").forEach((s) => { s.getAnimations().forEach((a) => a.cancel()); s.style.opacity = 0; });
+    for (const s of SHOTS) {
+      timers.push(setTimeout(() => {
+        const el = document.getElementById(s.id);
+        el.animate(s.in, { duration: (s.inDur ?? Math.min(0.8, s.dur)) * 1000, easing: s.ease, fill: "both" });
+        s.extra && s.extra();
+        // Hard cut out at the end of the shot (kinetic type lives on cuts).
+        timers.push(setTimeout(() => { el.getAnimations().forEach((a) => a.cancel()); el.style.opacity = 0; }, s.dur * 1000));
+      }, s.at * 1000));
+    }
+    const total = Math.max(...SHOTS.map((s) => s.at + s.dur));
+    timers.push(setTimeout(() => window.dispatchEvent(new Event("render:done")), total * 1000));
+  }
+  // Plays on open; render.mjs dispatches "render:start" to restart from 0 when recording.
+  window.addEventListener("render:start", start);
+  document.fonts.ready.then(start);
+  // Click to replay while previewing.
+  document.addEventListener("click", start);
+</script>
+</body>
+</html>

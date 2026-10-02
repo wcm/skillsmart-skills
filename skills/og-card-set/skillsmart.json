@@ -1,0 +1,41 @@
+{
+  "slug": "og-card-set",
+  "name": "OG Card Set",
+  "tagline": "A matching set of link-preview images for every page of your site, plus the meta tags to use them.",
+  "category": "social",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "open graph",
+    "og image",
+    "link preview",
+    "social card",
+    "seo"
+  ],
+  "youSay": "/og-card-set Make OG images for every page in my site folder ./site — brand Fernweh Travel, orange accent",
+  "whatYouGet": [
+    "One 1200×630 PNG per page in a consistent brand style",
+    "Three layouts: split, editorial and gradient",
+    "The meta tags for each page (added for you if the site code is in the project)"
+  ],
+  "goodFit": [
+    "Blogs, portfolios, product sites and launches",
+    "Anyone whose shared links look bare"
+  ],
+  "notFor": [
+    "Dynamic per-request OG images on a server"
+  ],
+  "youBring": [
+    "Your site folder or a list of pages",
+    "Brand name, domain and colours"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium) for export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}

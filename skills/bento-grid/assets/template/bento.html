@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{PRODUCT}} — features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* BENTO FEATURE GRID — paste the <section class="bento"> and the CSS below into any page. */
+  :root {
+    --bg: #fafaf9;
+    --tile: #ffffff;
+    --ink: #18181b;
+    --muted: #71717a;
+    --line: #e7e5e4;
+    --accent: #4f46e5;
+    --accent-soft: #eef2ff;
+    --radius: 24px;
+    --font: "Geist", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+
+  .bento { max-width: 1200px; margin: 0 auto; padding: 96px 24px; }
+  .bento__head { max-width: 640px; margin-bottom: 48px; }
+  .bento__eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .bento__title { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.03em; margin: 12px 0 16px; font-weight: 700; }
+  .bento__sub { color: var(--muted); font-size: 19px; line-height: 1.55; margin: 0; }
+
+  .bento__grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  .tile {
+    position: relative; overflow: hidden; background: var(--tile);
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 28px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;
+  }
+  .tile:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -24px rgba(24, 24, 27, 0.25); }
+  .tile h3 { margin: 0 0 6px; font-size: 20px; letter-spacing: -0.01em; }
+  .tile p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; max-width: 34ch; }
+  .tile .viz { position: absolute; inset: 0 0 auto 0; height: 62%; display: grid; place-items: center; }
+
+  /* Sizes (6-column grid): pick per tile */
+  .s-wide { grid-column: span 4; grid-row: span 2; }
+  .s-tall { grid-column: span 2; grid-row: span 2; }
+  .s-half { grid-column: span 3; grid-row: span 2; }
+  .s-third { grid-column: span 2; grid-row: span 2; }
+  .s-strip { grid-column: span 6; grid-row: span 1; flex-direction: row; align-items: center; justify-content: space-between; }
+  .accent { background: var(--accent); color: #fff; border-color: transparent; }
+  .accent p { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 900px) {
+    .bento__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .s-wide, .s-half, .s-strip { grid-column: span 2; }
+    .s-tall, .s-third { grid-column: span 1; }
+    .s-strip { flex-direction: column; align-items: flex-start; justify-content: flex-end; }
+  }
+
+  /* --- Micro-visuals (pure CSS/SVG). Reuse, recolour or replace with the user's screenshots. --- */
+  .viz-chart { display: flex; align-items: flex-end; gap: 10px; height: 120px; }
+  .viz-chart i { width: 26px; border-radius: 8px 8px 4px 4px; background: var(--accent-soft); transition: height 0.6s cubic-bezier(.2,.8,.2,1), background 0.3s; }
+  .viz-chart i:nth-child(1){height:40%} .viz-chart i:nth-child(2){height:62%} .viz-chart i:nth-child(3){height:48%}
+  .viz-chart i:nth-child(4){height:80%} .viz-chart i:nth-child(5){height:66%} .viz-chart i:nth-child(6){height:96%; background: var(--accent)}
+  .tile:hover .viz-chart i { background: var(--accent); }
+
+  .viz-orbit { position: relative; width: 150px; height: 150px; border-radius: 50%; border: 1px dashed var(--line); }
+  .viz-orbit::before { content: ""; position: absolute; inset: 45px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 12px var(--accent-soft); }
+  .viz-orbit b { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--ink); top: -8px; left: calc(50% - 8px); transform-origin: 8px 83px; animation: spin 6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .viz-stack { position: relative; width: 70%; height: 120px; }
+  .viz-stack span { position: absolute; left: 0; right: 0; height: 44px; border-radius: 12px; background: var(--tile); border: 1px solid var(--line); box-shadow: 0 8px 20px -12px rgba(0,0,0,.2); transition: transform 0.4s; }
+  .viz-stack span:nth-child(1){ top: 0; transform: scale(0.88); opacity: .6 }
+  .viz-stack span:nth-child(2){ top: 22px; transform: scale(0.94); opacity: .8 }
+  .viz-stack span:nth-child(3){ top: 44px; }
+  .tile:hover .viz-stack span:nth-child(1){ transform: translateY(-10px) scale(0.88) }
+  .tile:hover .viz-stack span:nth-child(3){ transform: translateY(8px) }
+
+  .viz-big { font-size: 96px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+  .accent .viz-big { color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) { .tile, .viz-chart i, .viz-stack span { transition: none; } .viz-orbit b { animation: none; } }
+</style>
+</head>
+<body>
+
+<section class="bento" data-export data-name="bento">
+  <header class="bento__head">
+    <div class="bento__eyebrow">{{EYEBROW}}</div>
+    <h2 class="bento__title">{{TITLE}}</h2>
+    <p class="bento__sub">{{SUB}}</p>
+  </header>
+
+  <div class="bento__grid">
+    <article class="tile s-wide">
+      <div class="viz"><div class="viz-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <h3>{{F1_TITLE}}</h3><p>{{F1_BODY}}</p>
+    </article>
+    <article class="tile s-tall accent">
+      <div class="viz"><div class="viz-big">{{STAT}}</div></div>
+      <h3>{{F2_TITLE}}</h3><p>{{F2_BODY}}</p>
+    </article>
+    <article class="tile s-third">
+      <div class="viz"><div class="viz-orbit"><b></b></div></div>
+      <h3>{{F3_TITLE}}</h3><p>{{F3_BODY}}</p>
+    </article>
+    <article class="tile s-third">
+      <div class="viz"><div class="viz-stack"><span></span><span></span><span></span></div></div>
+      <h3>{{F4_TITLE}}</h3><p>{{F4_BODY}}</p>
+    </article>
+    <article class="tile s-third">
+      <div class="viz"><div class="viz-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <h3>{{F5_TITLE}}</h3><p>{{F5_BODY}}</p>
+    </article>
+    <article class="tile s-strip">
+      <div><h3>{{F6_TITLE}}</h3><p>{{F6_BODY}}</p></div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>

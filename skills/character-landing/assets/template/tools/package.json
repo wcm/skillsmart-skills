@@ -1,0 +1,13 @@
+{
+  "name": "character-landing-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs",
+    "frames": "node generate.mjs --frames-only"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.0.0",
+    "sharp": "^0.34.0"
+  }
+}

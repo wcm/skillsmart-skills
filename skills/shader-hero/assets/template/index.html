@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BRAND}} — {{HEADLINE_PLAIN}}</title>
+  <meta name="description" content="{{SUBHEAD}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- FONTS: replace with the pairing chosen in references/art-direction.md -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="#">{{BRAND}}</a>
+    <nav class="nav__links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a class="btn btn--ghost" href="#cta">{{NAV_CTA}}</a>
+    </nav>
+  </header>
+
+  <!-- HERO: data-preset = aurora | liquid-chrome | ink | particles | glass | dunes | plasma
+       data-colors = background, main, highlight (hex) · data-speed / data-intensity / data-interaction = 0..2 -->
+  <section class="hero" data-shader-hero data-preset="aurora" data-colors="#060913,#3ee6b5,#7c5cff"
+           data-speed="1" data-intensity="1" data-interaction="1">
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="eyebrow">{{EYEBROW}}</p>
+      <h1 class="hero__title">{{HEADLINE_HTML}}</h1>
+      <p class="hero__sub">{{SUBHEAD}}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#cta">{{PRIMARY_CTA}}</a>
+        <a class="btn btn--ghost" href="#how">{{SECONDARY_CTA}}</a>
+      </div>
+    </div>
+    <p class="hero__hint" aria-hidden="true">Move your cursor</p>
+  </section>
+
+  <main>
+    <section id="features" class="section">
+      <h2 class="section__title">{{FEATURES_TITLE}}</h2>
+      <div class="grid">
+        <article class="card"><h3>{{F1_TITLE}}</h3><p>{{F1_BODY}}</p></article>
+        <article class="card"><h3>{{F2_TITLE}}</h3><p>{{F2_BODY}}</p></article>
+        <article class="card"><h3>{{F3_TITLE}}</h3><p>{{F3_BODY}}</p></article>
+      </div>
+    </section>
+
+    <section id="how" class="section section--split">
+      <h2 class="section__title">{{HOW_TITLE}}</h2>
+      <ol class="steps">
+        <li><strong>{{S1_TITLE}}</strong><span>{{S1_BODY}}</span></li>
+        <li><strong>{{S2_TITLE}}</strong><span>{{S2_BODY}}</span></li>
+        <li><strong>{{S3_TITLE}}</strong><span>{{S3_BODY}}</span></li>
+      </ol>
+    </section>
+
+    <section id="cta" class="cta">
+      <h2>{{CTA_TITLE}}</h2>
+      <a class="btn btn--primary" href="#">{{PRIMARY_CTA}}</a>
+    </section>
+  </main>
+
+  <footer class="footer">© {{YEAR}} {{BRAND}}</footer>
+
+  <script type="module" src="shader-hero.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "brand": "{{BRAND}}",
+  "url": "{{DOMAIN}}",
+  "cards": [
+    { "name": "home", "layout": "split", "eyebrow": "{{HOME_EYEBROW}}", "title": "{{HOME_TITLE}}", "glyph": "{{GLYPH}}" },
+    { "name": "blog", "layout": "editorial", "eyebrow": "Journal", "title": "{{BLOG_TITLE_WITH_<em>ACCENT</em>}}" },
+    { "name": "pricing", "layout": "gradient", "eyebrow": "Pricing", "title": "{{PRICING_TITLE}}" }
+  ]
+}

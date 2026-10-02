@@ -1,0 +1,42 @@
+{
+  "slug": "type-poster",
+  "name": "Type Poster",
+  "tagline": "Bold Swiss-style typographic posters for events, exported as print-ready PDF and high-res PNG.",
+  "category": "poster",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "poster",
+    "typography",
+    "event",
+    "print",
+    "swiss"
+  ],
+  "youSay": "/type-poster Make a poster for our design meetup 'Grids & Grit' on 14 Nov, 7pm at Studio 9, Singapore. Info: gridsandgrit.sg",
+  "whatYouGet": [
+    "An A3 poster in one of three layouts: Swiss grid, brutal stack or orbit",
+    "PNG at 3× resolution for screens and social",
+    "Print-ready A3 PDF"
+  ],
+  "goodFit": [
+    "Meetups, talks, gigs, exhibitions and workshops",
+    "Designers who want a strong typographic direction fast"
+  ],
+  "notFor": [
+    "Photo-led or illustrated posters",
+    "Large-format printing that needs CMYK colour management"
+  ],
+  "youBring": [
+    "Event name, date, time, place and link",
+    "Optional: brand colours"
+  ],
+  "needs": [
+    "Node 18+",
+    "Chrome or Edge (or Playwright's Chromium) for export"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
+}
