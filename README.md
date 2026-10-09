@@ -4,7 +4,6 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 
 | Skill | Makes |
 |---|---|
-| [character-landing](skills/character-landing) | A scroll-animated landing page starring a character from one picture |
 | [shader-hero](skills/shader-hero) | A landing page with a dramatic, interactive shader hero |
 | [type-poster](skills/type-poster) | Bold typographic event posters (PNG + print PDF) |
 | [social-carousel](skills/social-carousel) | Instagram / LinkedIn carousels |
@@ -16,7 +15,7 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 
 ## Install
 
-The easy way: open the skill on [skillsmart.io](https://skillsmart.io), click **Get it**, and paste the prompt into your AI agent.
+The easy way: open the skill on [skillsmart.io](https://skillsmart.io), click **Get skill**, and paste the prompt into your AI agent.
 
 Developers: `skillsmart add <skill>` with the [SkillsMart CLI](https://skillsmart.io/install.sh), or `npx skills add wcm/skillsmart-skills`.
 
@@ -31,6 +30,8 @@ skills/<slug>/
   CHANGELOG.md
 ```
 
+Adding or updating a skill: follow [docs/ADDING-SKILLS.md](https://github.com/wcm/skillsmart/blob/main/docs/ADDING-SKILLS.md) in `wcm/skillsmart`.
+
 Publishing: every push to `main` runs `.github/workflows/publish.yml`, which validates, security-scans, packages and uploads changed skills to skillsmart.io. Bump `version` in `skillsmart.json` and add a CHANGELOG entry to release a new version.
 
-Licensed under MIT (see [LICENSE](LICENSE)). `character-landing` is duplicated from [wcm/character-landing-skill](https://github.com/wcm/character-landing-skill).
+Licensed under MIT (see [LICENSE](LICENSE)).

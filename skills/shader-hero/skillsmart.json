@@ -5,16 +5,39 @@
   "category": "web",
   "tier": "free",
   "version": "1.0.0",
-  "tags": ["landing page", "webgl", "shader", "interactive", "hero", "animated background"],
+  "featured": 6,
+  "tags": [
+    "landing page",
+    "webgl",
+    "shader",
+    "interactive",
+    "hero",
+    "animated background"
+  ],
   "youSay": "/shader-hero Make a launch page for Nimbus, an AI note-taking app. Calm and premium, deep blue and mint.",
   "whatYouGet": [
     "A landing page folder with a full-screen interactive shader hero and features, steps and CTA sections",
     "7 tuned effects: liquid chrome, aurora, ink, particles, glass lens, dunes and plasma",
     "Built-in care for speed and accessibility: pauses off-screen, still frame for reduced motion, CSS fallback"
   ],
-  "goodFit": ["Product launches and waitlists", "Studios, portfolios and events that want a 'wow' first impression"],
-  "notFor": ["Content-heavy sites where the hero must stay quiet", "Pages that need to work in very old browsers"],
-  "youBring": ["Product name and one-line pitch", "Optional: brand colours, fonts, a page you like"],
-  "needs": ["A modern browser"],
-  "testedIn": ["Claude Code", "Cursor", "Codex"]
+  "goodFit": [
+    "Product launches and waitlists",
+    "Studios, portfolios and events that want a 'wow' first impression"
+  ],
+  "notFor": [
+    "Content-heavy sites where the hero must stay quiet",
+    "Pages that need to work in very old browsers"
+  ],
+  "youBring": [
+    "Product name and one-line pitch",
+    "Optional: brand colours, fonts, a page you like"
+  ],
+  "needs": [
+    "A modern browser"
+  ],
+  "testedIn": [
+    "Claude Code",
+    "Cursor",
+    "Codex"
+  ]
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SkillsMart publisher — validate, security-scan, package and (optionally) upload every skill in a content repo.
+// Skillsmart publisher — validate, security-scan, package and (optionally) upload every skill in a content repo.
 // Zero dependencies (Node 22+). The same file is copied into each content repo at .github/scripts/publish.mjs.
 //
 //   node publish.mjs --repo . --source free --out .skillsmart-build              # build only
@@ -31,7 +31,9 @@ const SHIP_EXCLUDE = new Set(["previews", "skillsmart.json", "node_modules", "ou
 const MEDIA = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".avif", ".mp4", ".webm", ".woff", ".woff2", ".ttf", ".otf"]);
 const TEXT = new Set([".md", ".txt", ".json", ".js", ".mjs", ".cjs", ".ts", ".py", ".sh", ".html", ".css", ".glsl", ".frag", ".vert", ".yml", ".yaml", ".toml", ".csv", ""]);
 const CODE = new Set([".js", ".mjs", ".cjs", ".ts", ".py", ".sh", ".html"]);
-const ALWAYS_ALLOWED_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "skillsmart.io", "localhost", "127.0.0.1", "x"];
+// www.w3.org appears in XML namespace URIs (SVG, XLink) that are never fetched.
+const ALWAYS_ALLOWED_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "skillsmart.io", "localhost", "127.0.0.1", "x", "www.w3.org"];
+const HOST = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/;
 const LIMITS = { files: 2000, totalBytes: 50 * 1024 * 1024, fileBytes: 20 * 1024 * 1024 };
 
 // ---------- helpers ----------
@@ -60,7 +62,7 @@ function validate(slug, dir) {
   if (!fs.existsSync(metaPath)) return { errors: ["missing skillsmart.json"] };
   let meta;
   try { meta = JSON.parse(fs.readFileSync(metaPath, "utf8")); } catch (e) { return { errors: [`skillsmart.json: ${e.message}`] }; }
-  const req = ["slug", "name", "tagline", "category", "tier", "version", "youSay", "whatYouGet", "goodFit", "notFor", "youBring", "needs", "testedIn"];
+  const req = ["slug", "name", "tagline", "category", "tier", "version", "tags", "youSay", "whatYouGet", "goodFit", "notFor", "youBring", "needs", "testedIn"];
   for (const k of req) if (meta[k] === undefined) errors.push(`skillsmart.json: missing "${k}"`);
   if (meta.slug !== slug) errors.push(`skillsmart.json: slug "${meta.slug}" must equal folder name "${slug}"`);
   if (!/^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/.test(slug)) errors.push("slug must be lowercase kebab-case, ≤ 64 chars");
@@ -70,6 +72,15 @@ function validate(slug, dir) {
   if (meta.tier === "paid" && !(meta.price && Number.isInteger(meta.price.amount) && meta.price.amount > 0)) errors.push("paid skills need price.amount (integer, cents)");
   if (SOURCE === "free" && meta.tier !== "free") errors.push("the free repo may only contain free skills");
   if ((meta.tagline || "").length > 140) errors.push("tagline must be ≤ 140 characters");
+  if (meta.featured !== undefined && !(Number.isInteger(meta.featured) && meta.featured > 0)) errors.push("featured must be a positive integer (1 = first)");
+  // Hosts the skill contacts without an API key (CDNs for fonts or libraries). Shown on the skill page.
+  if (meta.network !== undefined) {
+    if (!Array.isArray(meta.network)) errors.push("network must be a list of { host, purpose }");
+    else for (const n of meta.network) {
+      if (!n || !HOST.test(n.host || "")) errors.push(`network: "${n?.host}" is not a hostname`);
+      if (!n?.purpose || n.purpose.length > 80) errors.push(`network: ${n?.host} needs a short "purpose" (≤ 80 characters)`);
+    }
+  }
   const skillMd = path.join(dir, "SKILL.md");
   if (!fs.existsSync(skillMd)) errors.push("missing SKILL.md");
   else {
@@ -84,7 +95,9 @@ function validate(slug, dir) {
   let previews = [];
   if (fs.existsSync(prevJson)) {
     previews = JSON.parse(fs.readFileSync(prevJson, "utf8")).previews || [];
-    for (const p of previews) if (!fs.existsSync(path.join(dir, "previews", p.file))) errors.push(`previews.json references missing file ${p.file}`);
+    for (const p of previews) for (const f of [p.file, p.poster, p.thumb].filter(Boolean)) {
+      if (!fs.existsSync(path.join(dir, "previews", f))) errors.push(`previews.json references missing file ${f}`);
+    }
   } else errors.push("missing previews/previews.json");
   return { meta, previews, errors };
 }
@@ -106,7 +119,7 @@ const RULES = [
 function scan(dir, meta) {
   const findings = [];
   const files = walk(dir).filter((f) => !f.rel.startsWith("previews/"));
-  const allowedHosts = new Set([...ALWAYS_ALLOWED_HOSTS, ...((meta && meta.byoKey && meta.byoKey.domains) || [])]);
+  const allowedHosts = new Set([...ALWAYS_ALLOWED_HOSTS, ...((meta && meta.byoKey && meta.byoKey.domains) || []), ...((meta && Array.isArray(meta.network) && meta.network.map((n) => n.host)) || [])]);
   let total = 0;
   if (files.length > LIMITS.files) findings.push({ level: "block", rule: "too-many-files", file: ".", msg: `${files.length} files` });
   for (const f of files) {
@@ -130,7 +143,7 @@ function scan(dir, meta) {
       for (const m of text.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) {
         const host = m[1].toLowerCase();
         if (![...allowedHosts].some((h) => host === h || host.endsWith(`.${h}`))) {
-          findings.push({ level: "block", rule: "network", file: f.rel, msg: `contacts ${host} (not allow-listed; add it to byoKey.domains if intended)` });
+          findings.push({ level: "block", rule: "network", file: f.rel, msg: `contacts ${host} (not allow-listed; add it to byoKey.domains or network if intended)` });
         }
       }
     }
@@ -208,15 +221,22 @@ for (const slug of slugs) {
   fs.writeFileSync(zipPath, archive);
   uploads.push([zipKey, zipPath, "application/zip"]);
 
-  const prev = previews.map((p) => {
-    const key = `previews/${slug}/${meta.version}/${p.file}`;
+  const stage = (file) => {
+    const key = `previews/${slug}/${meta.version}/${file}`;
     const dst = path.join(OUT, key);
     fs.mkdirSync(path.dirname(dst), { recursive: true });
-    fs.copyFileSync(path.join(dir, "previews", p.file), dst);
-    const ct = { ".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".svg": "image/svg+xml", ".webm": "video/webm", ".mp4": "video/mp4", ".avif": "image/avif" }[path.extname(p.file).toLowerCase()] || "application/octet-stream";
+    fs.copyFileSync(path.join(dir, "previews", file), dst);
+    const ct = { ".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".svg": "image/svg+xml", ".webm": "video/webm", ".mp4": "video/mp4", ".avif": "image/avif" }[path.extname(file).toLowerCase()] || "application/octet-stream";
     uploads.push([key, dst, ct]);
-    return { ...p, key };
-  });
+    return key;
+  };
+  // A video preview may carry a poster frame and a small rendition for thumbnails.
+  const prev = previews.map((p) => ({
+    ...p,
+    key: stage(p.file),
+    ...(p.poster ? { posterKey: stage(p.poster) } : {}),
+    ...(p.thumb ? { thumbKey: stage(p.thumb) } : {}),
+  }));
 
   const changelog = fs.existsSync(path.join(dir, "CHANGELOG.md")) ? fs.readFileSync(path.join(dir, "CHANGELOG.md"), "utf8") : "";
   catalog.skills.push({
