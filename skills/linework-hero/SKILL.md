@@ -24,8 +24,13 @@ Node 18+ runs the scripts; a browser checks the result.
 
 And ask where it will live. A drawing is worth most as the hero of the page that explains it: a blog post that builds
 it as you scroll, a tracking page whose timeline moves it, a shop where you buy what's in it, a product page that takes
-it apart. `examples/pages/` has one of each; copy the nearest and change the words. Draw it large, on the page itself
-(`clear: true`, the look's ground as the page background, a fading grid or light behind it), never in a bordered box.
+it apart. `examples/pages/` has one of each; copy the nearest and change the words.
+
+**The drawing is the hero, as large as the screen allows.** Give its host all the space it may take, less room to
+breathe (in a hero: the height below the nav less about 48px top and bottom, and everything beside a narrow column of
+words) and mount with `{ clear: true, fill: true }`: the drawing and its labels fill that box, whatever its shape.
+Keep the words few (a title of a few words, one line, the controls) and put them where the drawing leaves room. The
+page's background is the look's ground, with a grid or light fading behind; never a bordered box.
 
 ## 1. Concept
 
@@ -63,8 +68,8 @@ ends, two cameras, ten looks), runs each to the end and writes `linework-<name>-
 first run installs playwright-core once into a cache folder, never into the project, and drives your installed Chrome.)
 
 Then look at the sheet and the page itself in a browser, at desktop and phone widths: can you name it from the
-thumbnail, does every label read, does every look hold, does the page's own interaction (scroll steps, buttons) do
-what the copy says. The console must be clean.
+thumbnail, does every label read, does every look hold, does the drawing fill its space with no words on it and none
+of it cut off, does the page's own interaction (scroll steps, buttons) do what the copy says. The console must be clean.
 
 If you can't open a browser yourself, serve the folder (`python3 -m http.server`), give the user the URL and the
 checklist above, ask them to look (a screenshot helps), and fix what they report before handing over.
@@ -90,6 +95,8 @@ Edit only the figure or system file and the page's words; check again. A new pal
 | links crossing nodes | move a node, or route with `via: "y"` or waypoints |
 | a system with fifteen nodes | it is two diagrams; or group them as layers of a `stack` |
 | a diagram in a bordered card | make it the hero: `clear: true`, the page's background is the look's ground |
+| a small drawing with empty space around it | size the host to all that space and mount with `fill: true` |
+| paragraphs beside the drawing | a few-word title, one line, the controls; the facts go in the labels |
 | labels far from what they name | `dy` about -14; `dx` only to point outward |
 | testing the pointer against what is drawn now | `input.hit`, `s.ground(...)`, or the targets you set |
 | a timer or `requestAnimationFrame` | `g.to(...)`, `s.loop(...)` for ambient motion, `ctx.trace(...)` for a packet |

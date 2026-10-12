@@ -4,176 +4,105 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How a tap becomes a chart · Tally Engineering</title>
-<meta name="description" content="Inside the event pipeline that turns a tap in an app into a chart in under a minute.">
+<meta name="description" content="Seven stops from a tap in an app to a line on a chart, drawn as you scroll.">
 <meta name="theme-color" content="#f7f9fe">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #f7f9fe; --ink: #13235e; --text: #2b355c; --muted: #6a7499; --line: #dfe5f6; --blue: #1d3fd8; --tint: #e9eefc; }
+  :root { --bg: #f7f9fe; --ink: #13235e; --text: #2b355c; --muted: #6a7499; --line: #dfe5f6; --blue: #1d3fd8; --head: 53px; --col: clamp(280px, 25vw, 380px); }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.62 "Newsreader", Georgia, serif; -webkit-font-smoothing: antialiased; }
-  a { color: var(--blue); }
-  .ui, nav, .kicker, .byline, .cap, .step .num, table, footer { font-family: "Inter", system-ui, sans-serif; }
-  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
-  header.site { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-  header.site .in { max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 24px; font: 500 14px/1 "Inter", sans-serif; }
-  .logo { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: -.01em; }
-  .logo i { width: 22px; height: 22px; border-radius: 6px; background: var(--blue); display: inline-block; position: relative; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.5 "Newsreader", Georgia, serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--blue); text-decoration: none; }
+  header, .kicker, .byline, .num, .stat, .outro a, footer { font-family: "Inter", system-ui, sans-serif; }
+  header.site { position: sticky; top: 0; z-index: 10; height: var(--head); display: flex; align-items: center; gap: 24px; padding: 0 40px; font: 500 14px/1 "Inter", sans-serif; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .logo { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); font-weight: 600; letter-spacing: -.01em; }
+  .logo i { width: 22px; height: 22px; border-radius: 6px; background: var(--blue); position: relative; }
   .logo i::after { content: ""; position: absolute; left: 5px; right: 5px; bottom: 5px; height: 9px; background: linear-gradient(90deg, #fff 0 3px, transparent 3px 5px, #fff 5px 8px, transparent 8px 10px, #fff 10px 12px); clip-path: polygon(0 60%, 25% 60%, 25% 0, 45% 0, 45% 30%, 70% 30%, 70% 10%, 100% 10%, 100% 100%, 0 100%); }
-  .logo small { color: var(--muted); font-weight: 400; }
+  .logo small { color: var(--muted); font-weight: 400; font-size: 14px; }
   header.site nav { margin-left: auto; display: flex; gap: 22px; }
-  header.site nav a { color: var(--muted); text-decoration: none; }
+  header.site nav a { color: var(--muted); }
   header.site nav a:hover { color: var(--ink); }
-  .hero { position: relative; isolation: isolate; overflow: hidden; min-height: calc(100vh - 53px); display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: center; gap: 0; max-width: 1440px; margin: 0 auto; padding: 24px 40px 40px; }
-  .hero::before, .scrolly::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22'%3E%3Cpath d='M0 11L22 0L44 11L22 22Z' fill='none' stroke='%233352d6' stroke-opacity='.11'/%3E%3C/svg%3E"); background-position: center; }
-  .hero::before { -webkit-mask-image: radial-gradient(ellipse 52% 62% at 66% 52%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse 52% 62% at 66% 52%, #000 25%, transparent 75%); }
-  .hero .intro { position: relative; z-index: 2; }
-  .hero .whole { margin: 0 -6% 0 -4%; }
-  .more { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; font: 500 14px "Inter", sans-serif; color: var(--blue); text-decoration: none; }
-  .more::after { content: "↓"; }
-  .kicker { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin: 0 0 18px; }
-  h1 { font: 500 clamp(40px, 5.2vw, 70px)/1.02 "Newsreader", serif; letter-spacing: -.025em; color: var(--ink); margin: 0 0 22px; text-wrap: balance; }
-  .dek { font-size: 23px; line-height: 1.45; color: var(--muted); margin: 0 0 28px; text-wrap: pretty; }
-  .byline { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+
+  /* the story: one drawing, held on screen as large as it fits, and the words scrolling past on its left. The
+     stage and the words share one grid cell, so the stage lets go where the story ends and scrolls away with it */
+  .story { display: grid; overflow-x: clip; }
+  .stage, .col { grid-area: 1 / 1; }
+  .stage { position: sticky; top: var(--head); align-self: start; height: calc(100vh - var(--head)); isolation: isolate; }
+  .stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22'%3E%3Cpath d='M0 11L22 0L44 11L22 22Z' fill='none' stroke='%233352d6' stroke-opacity='.11'/%3E%3C/svg%3E") center; -webkit-mask-image: radial-gradient(ellipse 46% 56% at 64% 50%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse 46% 56% at 64% 50%, #000 30%, transparent 78%); }
+  #fig { position: absolute; top: 48px; bottom: 48px; left: calc(var(--col) + 72px); right: 32px; aspect-ratio: auto; }
+  .col { position: relative; z-index: 1; width: var(--col); margin-left: 40px; padding-bottom: 28vh; }
+  .intro { min-height: calc(100vh - var(--head)); display: flex; flex-direction: column; justify-content: center; padding: 32px 0; }
+  .kicker { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin: 0 0 16px; }
+  h1 { font: 500 clamp(40px, 4.2vw, 60px)/1.02 "Newsreader", serif; letter-spacing: -.025em; color: var(--ink); margin: 0 0 18px; text-wrap: balance; }
+  .dek { font-size: 21px; line-height: 1.4; color: var(--muted); margin: 0 0 24px; text-wrap: pretty; }
+  .byline { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
   .byline b { color: var(--ink); font-weight: 600; }
   .faces { display: flex; }
-  .faces span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--bg); display: grid; place-items: center; font: 600 11px "Inter"; color: #fff; }
+  .faces span { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--bg); display: grid; place-items: center; font: 600 10px "Inter"; color: #fff; }
   .faces span + span { margin-left: -8px; }
-  .scrolly { position: relative; isolation: isolate; max-width: 1440px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 40px; }
-  .scrolly::before { -webkit-mask-image: linear-gradient(90deg, transparent 28%, #000 52%, #000 88%, transparent), linear-gradient(transparent, #000 12%, #000 88%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 28%, #000 52%, #000 88%, transparent), linear-gradient(transparent, #000 12%, #000 88%, transparent); mask-composite: intersect; }
-  .steps { padding: 4vh 0 30vh; }
-  .step { min-height: 78vh; padding: 12vh 0 0; opacity: .38; transition: opacity .4s; }
+  .more { display: inline-flex; gap: 8px; margin-top: 28px; font: 500 14px "Inter", sans-serif; }
+  .more::after { content: "↓"; }
+  .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; opacity: .28; transition: opacity .4s; }
   .step.on { opacity: 1; }
-  .step .num { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
-  .step .num::before { content: ""; width: 22px; height: 1px; background: currentColor; }
-  .step h2 { font: 500 34px/1.12 "Newsreader", serif; letter-spacing: -.015em; color: var(--ink); margin: 0 0 14px; }
-  .step p { margin: 0 0 14px; }
-  .stat { display: inline-flex; gap: 8px; align-items: baseline; margin-top: 6px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: 500 14px "Inter"; color: var(--muted); }
-  .stat b { font: 600 20px "Inter"; color: var(--ink); letter-spacing: -.01em; }
-  code { font: 15px "JetBrains Mono", monospace; background: var(--tint); color: var(--ink); padding: 1px 6px; border-radius: 5px; }
-  .figwrap { position: sticky; top: 53px; height: calc(100vh - 53px); display: flex; flex-direction: column; justify-content: center; }
-  .figure { width: min(100%, calc((100vh - 170px) * 1.25)); margin: 0 auto; }
-  .cap { width: min(100%, 620px); margin: 6px auto 0; min-height: 64px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; line-height: 1.45; color: var(--muted); }
-  .cap .k { font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--blue); padding-top: 4px; }
-  .cap b { color: var(--ink); font-weight: 600; }
-  .cap .hint { grid-column: 2; font-size: 12px; }
-  article.after { max-width: 680px; margin: 0 auto; padding: 40px 24px 80px; }
-  article.after h2 { font: 500 36px/1.15 "Newsreader", serif; color: var(--ink); letter-spacing: -.015em; margin: 48px 0 14px; }
-  table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 18px 0 8px; }
-  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
-  th { font-weight: 600; color: var(--muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
-  td.n { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 500; }
-  blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--blue); font-size: 24px; line-height: 1.4; color: var(--ink); font-style: italic; }
-  footer { border-top: 1px solid var(--line); padding: 28px 24px 40px; text-align: center; font-size: 13px; color: var(--muted); }
+  .num { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+  .num::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+  .step h2 { font: 500 34px/1.1 "Newsreader", serif; letter-spacing: -.015em; color: var(--ink); margin: 0 0 10px; text-wrap: balance; }
+  .step p { margin: 0; color: var(--text); }
+  .stat { align-self: flex-start; display: inline-flex; gap: 8px; align-items: baseline; margin-top: 16px; padding: 7px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-size: 13px; color: var(--muted); }
+  .stat b { font-size: 19px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  .outro { max-width: 760px; margin: 0 auto; padding: 96px 32px 104px; text-align: center; }
+  .outro blockquote { margin: 0 0 22px; font: italic 400 clamp(28px, 3.4vw, 42px)/1.2 "Newsreader", serif; letter-spacing: -.015em; color: var(--ink); }
+  .outro a { font-size: 15px; font-weight: 500; }
+  footer { border-top: 1px solid var(--line); padding: 26px 24px 36px; text-align: center; font-size: 13px; color: var(--muted); }
   @media (max-width: 900px) {
+    header.site { padding: 0 20px; }
     header.site nav { display: none; }
-    .scrolly { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; padding: 32px 20px; }
-    .hero .whole { order: -1; margin: 0 -10%; }
-    .scrolly { padding: 0 20px; }
-    .scrolly::before { display: none; }
-    .figcol { order: -1; position: sticky; top: 52px; z-index: 5; background: var(--bg); padding: 4px 0; }
-    .figwrap { position: static; height: auto; }
-    .figure { width: min(100%, 44vh * 1.25); }
-    .cap { display: none; }
-    .step { min-height: 64vh; padding-top: 6vh; }
+    .story { display: block; }
+    .stage { z-index: 2; height: min(46vh, 84vw); background: var(--bg); border-bottom: 1px solid var(--line); }
+    .stage::before { display: none; }
+    #fig { inset: 16px 8px; }
+    .col { width: auto; margin: 0 20px; padding-bottom: 20vh; }
+    .intro { min-height: 0; padding: 28px 0 12vh; }
+    .step { min-height: 56vh; }
+    .step h2 { font-size: 28px; }
     body { font-size: 18px; }
   }
 </style>
 </head>
 <body>
-<header class="site"><div class="in">
+<header class="site">
   <a class="logo" href="#"><i></i>Tally <small>Engineering</small></a>
   <nav><a href="#">Blog</a><a href="#">Open source</a><a href="#">Careers</a></nav>
-</div></header>
+</header>
 
-<section class="hero">
-  <div class="intro">
-    <p class="kicker">Data platform · 9 min read</p>
-    <h1>How a tap becomes a chart in under a minute</h1>
-    <p class="dek">Two billion events a day pass through the same seven stops. This is the path one of them takes, from a thumb on a screen to a line on a dashboard, and why each stop is there.</p>
-    <div class="byline">
-      <span class="faces"><span style="background:#1d3fd8">PR</span><span style="background:#7f93e0">TE</span></span>
-      <span><b>Priya Raman</b> and <b>Tom Ellery</b> · 14 October 2026</span>
+<section class="story">
+  <div class="stage"><div id="fig"></div></div>
+  <div class="col">
+    <div class="intro" data-step="">
+      <p class="kicker">Data platform · 3 min read</p>
+      <h1>How a tap becomes a chart</h1>
+      <p class="dek">Two billion events a day, seven stops each. Follow one.</p>
+      <div class="byline"><span class="faces"><span style="background:#1d3fd8">PR</span><span style="background:#7f93e0">TE</span></span><span><b>Priya Raman</b> &amp; <b>Tom Ellery</b></span></div>
+      <a class="more" href="#steps">Follow one event</a>
     </div>
-    <a class="more" href="#steps">Follow one event</a>
-  </div>
-  <div class="whole"><div id="whole"></div></div>
-</section>
-
-<section class="scrolly">
-  <div class="steps" id="steps">
-    <section class="step" data-step="0">
-      <div class="num">Stop 1 · Sources</div>
-      <h2>Every tap is an event</h2>
-      <p>Our SDKs don't send a request per tap. The mobile SDK batches events for up to five seconds or fifty events, whichever comes first, and the web app hands its batch to the browser's beacon API so it survives the tab closing.</p>
-      <p>Each event carries an ID minted on the device. That ID is what lets every later stop drop duplicates without coordinating.</p>
-      <span class="stat"><b>2.1 B</b> events a day</span>
-    </section>
-    <section class="step" data-step="1">
-      <div class="num">Stop 2 · Collector</div>
-      <h2>The collector takes them in</h2>
-      <p>The collector is deliberately dumb. It checks the schema version, stamps a server time and writes the batch to the stream. It never calls a database, so a slow warehouse can't make an app wait.</p>
-      <span class="stat"><b>12k</b> events per second at peak</span>
-    </section>
-    <section class="step" data-step="2">
-      <div class="num">Stop 3 · Stream</div>
-      <h2>The stream keeps them in order</h2>
-      <p>Events are partitioned by account, so everything one customer does stays in order. The stream holds seven days, which is our undo button: any consumer can rewind and replay.</p>
-      <span class="stat"><b>7 days</b> of replay</span>
-    </section>
-    <section class="step" data-step="3">
-      <div class="num">Stop 4 · Processors</div>
-      <h2>Processors clean, join and enrich</h2>
-      <p>Three jobs read the stream: one drops duplicates by event ID, one joins events to accounts and plans, and one turns IP addresses into countries before throwing the IPs away.</p>
-      <p>Each job commits its read position only after its writes land, so a crash replays a few seconds instead of losing them.</p>
-    </section>
-    <section class="step" data-step="4">
-      <div class="num">Stop 5 · Lake</div>
-      <h2>The raw events go to the lake, untouched</h2>
-      <p>A second consumer copies the stream, byte for byte, into cheap object storage, partitioned by hour. When a processor has a bug, we fix it and rebuild from the lake instead of asking customers to resend anything.</p>
-      <span class="stat"><b>0</b> backfills that needed a customer</span>
-    </section>
-    <section class="step" data-step="5">
-      <div class="num">Stop 6 · Warehouse</div>
-      <h2>Tables land in the warehouse</h2>
-      <p>Clean events are appended to wide, columnar tables every ten seconds. Click the warehouse in the diagram to open it: raw events at the bottom, sessions in the middle, and the daily rollups that most charts actually read at the top.</p>
-    </section>
-    <section class="step" data-step="6">
-      <div class="num">Stop 7 · Dashboard</div>
-      <h2>And the chart moves</h2>
-      <p>Dashboards query the rollups, so a chart over a year of data reads a few thousand rows, not a few billion. From the tap to the line moving, the 95th percentile is forty-eight seconds.</p>
-      <span class="stat"><b>48 s</b> tap to chart, p95</span>
-    </section>
-  </div>
-  <div class="figcol">
-    <div class="figwrap">
-      <div class="figure"><div id="fig"></div></div>
-      <div class="cap" id="cap" aria-live="polite"></div>
+    <div id="steps">
+      <section class="step" data-step="0"><div class="num">Stop 1 · Sources</div><h2>Every tap is an event</h2><p>Apps batch them and stamp each with an ID.</p><span class="stat"><b>2.1 B</b> a day</span></section>
+      <section class="step" data-step="1"><div class="num">Stop 2 · Collector</div><h2>The collector takes them in</h2><p>It checks, stamps and writes. Nothing else.</p><span class="stat"><b>12k</b> a second at peak</span></section>
+      <section class="step" data-step="2"><div class="num">Stop 3 · Stream</div><h2>The stream keeps them in order</h2><p>Seven days of replay for every reader.</p></section>
+      <section class="step" data-step="3"><div class="num">Stop 4 · Processors</div><h2>Processors clean them up</h2><p>Drop duplicates, join accounts, add places.</p></section>
+      <section class="step" data-step="4"><div class="num">Stop 5 · Lake</div><h2>The raw copy goes to the lake</h2><p>Byte for byte, so anything can be rebuilt.</p></section>
+      <section class="step" data-step="5"><div class="num">Stop 6 · Warehouse</div><h2>Tables land in the warehouse</h2><p>Click it to open its layers.</p></section>
+      <section class="step" data-step="6"><div class="num">Stop 7 · Dashboard</div><h2>And the chart moves</h2><span class="stat"><b>48 s</b> tap to chart, p95</span></section>
     </div>
   </div>
 </section>
 
-<article class="after">
-  <h2>What we'd do differently</h2>
-  <p>We would have built the lake first. For two years the stream was the only copy of raw events, and seven days of replay felt like plenty until the bug we found on day nine.</p>
+<section class="outro">
   <blockquote>The cheapest copy of your data is the one that lets you be wrong.</blockquote>
-  <p>Here is what each stop costs us per billion events today:</p>
-  <table>
-    <thead><tr><th>Stop</th><th>p95 latency</th><th>Cost per billion</th></tr></thead>
-    <tbody>
-      <tr><td>Collector</td><td class="n">38 ms</td><td class="n">$4.10</td></tr>
-      <tr><td>Stream</td><td class="n">120 ms</td><td class="n">$6.80</td></tr>
-      <tr><td>Processors</td><td class="n">9 s</td><td class="n">$11.40</td></tr>
-      <tr><td>Lake</td><td class="n">60 s</td><td class="n">$1.20</td></tr>
-      <tr><td>Warehouse</td><td class="n">22 s</td><td class="n">$18.90</td></tr>
-    </tbody>
-  </table>
-  <p>If you want to work on the next version of this, <a href="#">we're hiring</a>.</p>
-</article>
+  <a href="#">We're hiring →</a>
+</section>
 <footer>Tally is a fictional company. The diagram is drawn live with Linework, in the Cobalt look.</footer>
 
 <script src="../../engine/kernel.js"></script>
@@ -182,43 +111,20 @@
 <script src="../systems/pipeline.js"></script>
 <script>
 (() => {
-  const INFO = {
-    phone: ["Source", "Mobile app", "Batches up to 50 events or 5 s; IDs minted on the device."],
-    web: ["Source", "Web app", "Sends its batch with the beacon API, so it survives a closing tab."],
-    collector: ["Ingest", "Collector", "Checks the schema, stamps server time, writes to the stream. 38 ms p95."],
-    stream: ["Buffer", "Event stream", "Partitioned by account; 7 days of replay for every consumer."],
-    processor: ["Compute", "Processors", "Dedupe by event ID, join accounts and plans, geolocate then drop IPs."],
-    lake: ["Storage", "Raw lake", "Byte-for-byte copy, partitioned by hour. Rebuild anything from here."],
-    warehouse: ["Storage", "Warehouse", "Columnar tables appended every 10 s. Click it to open the layers."],
-    dashboard: ["Read", "Dashboard", "Reads daily rollups: thousands of rows instead of billions."],
-  };
-  const cap = document.getElementById("cap");
-  const say = (id, hint) => {
-    const i = INFO[id];
-    cap.innerHTML = i ? `<span class="k">${i[0]}</span><span><b>${i[1]}</b> · ${i[2]}</span>${hint ? `<span class="hint">${hint}</span>` : ""}` : "";
-  };
-  let step = 0, ids = Object.keys(INFO);
-  LW.mount(document.getElementById("whole"), LW.figures.pipeline, { clear: true });
-  const handle = LW.mount(document.getElementById("fig"), LW.figures.pipeline, {
-    clear: true,
-    onpick: (id) => say(id || current(), id ? "" : "Hover any stop for its numbers."),
-  });
-  const current = () => ({ 0: "phone", 1: "collector", 2: "stream", 3: "processor", 4: "lake", 5: "warehouse", 6: "dashboard" }[step]);
-  handle.send("step", 0);
-  say("phone", "Hover any stop for its numbers.");
+  // fill: the drawing takes all of #fig, however the screen is shaped
+  const handle = LW.mount(document.getElementById("fig"), LW.figures.pipeline, { clear: true, fill: true });
+  window.linework.figure = handle;
 
-  const steps = [...document.querySelectorAll(".step")];
+  // the intro shows the whole pipeline; each stop builds it up to there
+  const parts = [...document.querySelectorAll("[data-step]")];
   const io = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) {
-      step = Number(e.target.dataset.step);
-      steps.forEach((s) => s.classList.toggle("on", s === e.target));
-      handle.send("step", step);
-      say(current(), "Hover any stop for its numbers.");
+      const s = e.target.dataset.step;
+      parts.forEach((p) => p.classList.toggle("on", p === e.target));
+      handle.send("step", s === "" ? null : Number(s));
     }
   }, { rootMargin: "-45% 0px -45% 0px" });
-  steps.forEach((s) => io.observe(s));
-  steps[0].classList.add("on");
-  window.linework.figure = handle;
+  parts.forEach((p) => io.observe(p));
 })();
 </script>
 </body>

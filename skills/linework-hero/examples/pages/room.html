@@ -11,34 +11,35 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #eef0e8; --ink: #2c3327; --text: #454d3f; --muted: #6c7563; --line: #d7dccd; --clay: #cf6233; --card: #f7f8f2; }
+  :root { --bg: #eef0e8; --ink: #2c3327; --text: #454d3f; --muted: #6c7563; --line: #d7dccd; --clay: #cf6233; --card: #f7f8f2; --col: clamp(300px, 26vw, 420px); }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; }
-  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 30px; padding: 24px 40px; font-size: 14px; }
+  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 30px; padding: 24px 40px; font-size: 14px; pointer-events: none; }
+  nav.top > * { pointer-events: auto; }
   .mark { font: 400 28px/1 "Fraunces", serif; letter-spacing: -.02em; color: var(--ink); }
   nav.top .links { display: flex; gap: 24px; color: var(--muted); }
   nav.top .links a.on { color: var(--ink); }
   .bagbtn { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
   .bagbtn b { min-width: 20px; height: 20px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: 12px; display: grid; place-items: center; font-weight: 600; }
-  /* the hero: no frame; a soft pool of light behind the room and its shadow on the page */
-  .hero { position: relative; min-height: 100vh; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr); align-items: center; padding: 96px 40px 40px; }
-  .hero::before { content: ""; position: absolute; z-index: -1; right: -10%; top: 4%; width: 78%; aspect-ratio: 1.2; background: radial-gradient(closest-side, #fbfcf8 0%, rgba(251, 252, 248, .7) 45%, transparent 100%); }
-  .hero::after { content: ""; position: absolute; z-index: -1; right: 12%; bottom: 7%; width: 50%; height: 9%; background: radial-gradient(closest-side, rgba(44, 51, 39, .12), transparent); }
-  .copy { position: relative; z-index: 2; max-width: 440px; }
+  /* the hero: no frame; the room as large as the screen allows, a soft pool of light behind it and its shadow
+     on the page; the words in the column on its left */
+  .hero { position: relative; height: 100vh; min-height: 640px; overflow: clip; isolation: isolate; }
+  .hero::before { content: ""; position: absolute; z-index: -1; left: 36%; top: 6%; width: 64%; aspect-ratio: 1.2; background: radial-gradient(closest-side, #fbfcf8 0%, rgba(251, 252, 248, .7) 45%, transparent 100%); }
+  .hero::after { content: ""; position: absolute; z-index: -1; left: 42%; bottom: 1%; width: 46%; height: 8%; background: radial-gradient(closest-side, rgba(44, 51, 39, .12), transparent); }
+  #fig { position: absolute; top: 92px; bottom: 52px; left: calc(var(--col) + 72px); right: 32px; aspect-ratio: auto; }
+  .copy { position: absolute; z-index: 2; left: 40px; top: 50%; transform: translateY(-46%); width: var(--col); }
   .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-  h1 { font: 300 clamp(56px, 7.5vw, 104px)/.92 "Fraunces", serif; letter-spacing: -.035em; color: var(--ink); margin: 18px 0 22px; }
+  h1 { font: 300 clamp(52px, 5.8vw, 88px)/.92 "Fraunces", serif; letter-spacing: -.035em; color: var(--ink); margin: 16px 0 20px; }
   h1 em { font-style: italic; color: var(--clay); }
-  .copy p { font-size: 18px; margin: 0 0 26px; }
+  .copy p { font-size: 17px; margin: 0 0 24px; max-width: 30ch; }
   .seg { display: inline-flex; padding: 4px; border-radius: 999px; background: #e3e7da; margin-bottom: 22px; }
   .seg button { border: 0; background: transparent; padding: 9px 18px; border-radius: 999px; color: var(--muted); cursor: pointer; font-weight: 500; }
   .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(44, 51, 39, .15); }
   .cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .all { padding: 14px 22px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-weight: 500; cursor: pointer; }
   .cta span { color: var(--muted); font-size: 14px; }
-  .scene { position: relative; margin-right: -4%; }
-  .tip { position: absolute; left: 50%; bottom: 2%; transform: translateX(-50%); font-size: 12px; color: var(--muted); letter-spacing: .02em; white-space: nowrap; }
   section.shop { max-width: 1240px; margin: 0 auto; padding: 72px 40px 120px; }
   section.shop h2 { font: 300 48px/1 "Fraunces", serif; letter-spacing: -.03em; color: var(--ink); margin: 0 0 8px; }
   section.shop .sub { color: var(--muted); margin: 0 0 32px; }
@@ -57,10 +58,11 @@
   footer { border-top: 1px solid var(--line); padding: 28px 40px 48px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 980px) {
     nav.top { padding: 16px 20px; } nav.top .links { display: none; }
-    .hero { grid-template-columns: minmax(0, 1fr); padding: 80px 20px 24px; min-height: 0; }
-    .scene { order: -1; margin: 0 -8%; }
+    .hero { height: auto; min-height: 0; padding: 72px 20px 32px; display: flex; flex-direction: column; }
+    .hero::before { left: -10%; top: 40px; width: 120%; }
     .hero::after { display: none; }
-    .tip { display: none; }
+    #fig { position: relative; inset: auto; order: -1; width: 100%; aspect-ratio: 6 / 5; }
+    .copy { position: relative; left: auto; top: auto; transform: none; width: auto; margin-top: 20px; }
     section.shop { padding: 48px 20px 120px; }
     .grid { grid-template-columns: minmax(0, 1fr); }
   }
@@ -77,16 +79,16 @@
   <div class="copy">
     <span class="eyebrow">Rooms · No. 04</span>
     <h1>The Reading <em>Room</em></h1>
-    <p>Nine pieces in oak, linen and wool, chosen to work together. Point at anything to see what it is; click to add it.</p>
+    <p>Nine pieces in oak, linen and wool. Click any one to add it.</p>
     <div class="seg" role="group" aria-label="Layout"><button type="button" data-l="reading" aria-pressed="true">Reading</button><button type="button" data-l="hosting" aria-pressed="false">Hosting</button></div>
-    <div class="cta"><button class="all" id="all" type="button">Add the whole room</button><span>9 pieces · €4,680</span></div>
+    <div class="cta"><button class="all" id="all" type="button">Add the whole room</button><span>€4,680</span></div>
   </div>
-  <div class="scene"><div id="fig"></div><span class="tip">Hover a piece · click to add · switch to Hosting to move things around</span></div>
+  <div id="fig"></div>
 </section>
 
 <section class="shop">
   <h2>Everything in the room</h2>
-  <p class="sub">Delivered together, assembled in your home, free returns for 100 days.</p>
+  <p class="sub">Delivered together. Free returns for 100 days.</p>
   <div class="grid" id="grid"></div>
 </section>
 <div class="bag" id="bag"><span id="bagtext"></span><a href="#">Checkout</a></div>
@@ -108,7 +110,8 @@
   const eur = (n) => "€" + n.toLocaleString("en-GB");
   $("grid").innerHTML = ITEMS.map(([id, name, sub, p]) => `<div class="item" data-id="${id}"><b>${name}</b><small>${sub}</small><div class="p"><span>${eur(p)}</span><button class="add" type="button" aria-pressed="false">Add</button></div></div>`).join("");
 
-  const handle = LW.mount($("fig"), LW.figures.room, { clear: true });
+  // fill: the room takes all of #fig, against its right edge
+  const handle = LW.mount($("fig"), LW.figures.room, { clear: true, fill: [1, 0.5] });
   window.linework.figure = handle;
 
   function render() {

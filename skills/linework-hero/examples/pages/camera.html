@@ -11,28 +11,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #141312; --raise: #1c1b19; --line: #2b2926; --ink: #efe9df; --text: #c8c0b4; --muted: #8d857a; --brass: #e6b35a; color-scheme: dark; }
+  :root { --bg: #141312; --raise: #1c1b19; --line: #2b2926; --ink: #efe9df; --text: #c8c0b4; --muted: #8d857a; --brass: #e6b35a; --col: clamp(280px, 25vw, 360px); color-scheme: dark; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--text); font: 300 17px/1.6 "Inter Tight", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .04em; }
-  nav.top { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 18px 32px; font-size: 14px; font-weight: 400; background: linear-gradient(var(--bg) 40%, transparent); }
+  nav.top { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 28px; padding: 18px 32px; font-size: 14px; font-weight: 400; background: linear-gradient(var(--bg) 40%, transparent); pointer-events: none; }
+  nav.top > * { pointer-events: auto; }
   .mark { font-weight: 600; letter-spacing: .32em; color: var(--ink); font-size: 15px; }
   nav.top .links { display: flex; gap: 26px; color: var(--muted); }
   nav.top .links a.on, nav.top .links a:hover { color: var(--ink); }
   .buy { margin-left: auto; display: inline-flex; align-items: center; gap: 12px; }
   .buy .p { color: var(--muted); }
   .buy a { padding: 9px 18px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 500; }
-  .hero { min-height: 92vh; display: grid; place-items: center; text-align: center; padding: 120px 24px 40px; }
-  .hero .new { color: var(--brass); }
-  .hero h1 { margin: 18px 0 8px; font: 200 clamp(84px, 16vw, 220px)/.88 "Inter Tight", sans-serif; letter-spacing: -.055em; color: var(--ink); }
-  .hero h1 span { color: var(--brass); }
-  .hero p { margin: 18px auto 0; max-width: 520px; font-size: 21px; color: var(--text); }
-  .cue { margin-top: 56px; color: var(--muted); display: inline-flex; flex-direction: column; align-items: center; gap: 10px; }
-  .cue i { width: 1px; height: 44px; background: linear-gradient(var(--muted), transparent); }
-  .track { height: 460vh; position: relative; }
-  .sticky { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: minmax(260px, 360px) minmax(0, 1fr); align-items: center; gap: 24px; max-width: 1320px; margin: 0 auto; padding: 72px 40px 24px; }
+  /* one screen held while you scroll: the lens as large as it fits, coming apart; the words on its left */
+  .track { height: 520vh; position: relative; }
+  .sticky { position: sticky; top: 0; height: 100vh; overflow: clip; }
+  #fig { position: absolute; top: 96px; bottom: 60px; left: calc(var(--col) + 96px); right: 40px; aspect-ratio: auto; }
+  .caption { position: absolute; z-index: 2; left: 48px; top: 50%; transform: translateY(-50%); width: var(--col); }
   .caption .count { color: var(--brass); }
+  .caption h1 { margin: 16px 0 14px; font: 200 clamp(84px, 9vw, 132px)/.86 "Inter Tight", sans-serif; letter-spacing: -.055em; color: var(--ink); }
+  .caption h1 span { color: var(--brass); }
+  .cue { margin-top: 30px; color: var(--muted); display: flex; align-items: center; gap: 12px; }
+  .cue i { width: 44px; height: 1px; background: linear-gradient(90deg, var(--muted), transparent); }
   .caption h2 { margin: 12px 0 12px; font: 300 46px/1.02 "Inter Tight", sans-serif; letter-spacing: -.03em; color: var(--ink); }
   .caption p { margin: 0 0 18px; color: var(--text); }
   .caption .spec { display: inline-block; padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); }
@@ -41,7 +42,6 @@
   .bar { margin-top: 28px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
   .bar i { height: 2px; background: var(--line); transition: background .3s; }
   .bar i.on { background: var(--brass); }
-  .stage { width: min(100%, calc((100vh - 110px) * 1.25)); justify-self: center; }
   section.specs { max-width: 1120px; margin: 0 auto; padding: 120px 40px 60px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 60px; }
   section.specs h2 { font: 300 56px/1 "Inter Tight", sans-serif; letter-spacing: -.035em; color: var(--ink); margin: 0; }
   dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
@@ -56,8 +56,9 @@
   @media (max-width: 900px) {
     nav.top .links, .buy .p { display: none; }
     nav.top { padding: 14px 18px; }
-    .sticky { grid-template-columns: minmax(0, 1fr); align-content: start; padding: 64px 16px 16px; gap: 8px; }
-    .stage { order: -1; width: min(100%, 56vh * 1.25); }
+    #fig { top: 60px; bottom: auto; left: 12px; right: 12px; height: 54vh; }
+    .caption { top: auto; bottom: 28px; left: 20px; right: 20px; width: auto; transform: none; }
+    .caption h1 { font-size: 64px; margin: 8px 0; }
     .caption h2 { font-size: 32px; margin: 6px 0; }
     .caption p { font-size: 15px; margin-bottom: 10px; }
     section.specs { grid-template-columns: minmax(0, 1fr); padding: 80px 20px 40px; gap: 28px; }
@@ -73,19 +74,10 @@
   <div class="buy"><span class="p">from €1,290</span><a href="#">Buy</a></div>
 </nav>
 
-<section class="hero">
-  <div>
-    <span class="mono new">NEW · ORRA M MOUNT</span>
-    <h1>35 <span>f/1.4</span></h1>
-    <p>Twelve elements in seven parts, built around one aperture. Scroll, and we'll take it apart for you.</p>
-    <div class="cue mono">SCROLL<i></i></div>
-  </div>
-</section>
-
 <section class="track" id="track">
   <div class="sticky">
+    <div id="fig"></div>
     <div class="caption" id="caption"></div>
-    <div class="stage"><div id="fig"></div></div>
   </div>
 </section>
 
@@ -117,14 +109,18 @@
 <script>
 (() => {
   const PARTS = [
-    ["Bayonet mount", "Stainless steel, so it wears in, not out. A gasket at the flange keeps rain on the outside.", "4 locking tabs"],
-    ["Rear group", "Two elements of extra-low-dispersion glass bring every colour to the same focus at the edges.", "2 ED elements"],
-    ["Aperture", "Eleven rounded blades stay round even stopped down, so out-of-focus lights stay soft circles.", "f/1.4 – f/16"],
-    ["Floating group", "Moves separately from the rest as you focus close, so the corners hold up at 30 cm.", "0.30 m closest"],
-    ["Focus ring", "A linear motor, silent enough for video, and a ring with a real stop at each end.", "1/8 turn, end to end"],
-    ["Front group", "An aspherical element corrects what a sphere can't, under a coating that sheds water and flare.", "1 aspherical"],
-    ["Hood", "Bayonet-mounted, lined with flocking, and reversible over the lens for the bag.", "58 mm thread"],
+    ["Bayonet mount", "Stainless steel, sealed at the flange.", "4 locking tabs"],
+    ["Rear group", "Two ED elements keep every colour in focus.", "2 ED elements"],
+    ["Aperture", "Eleven rounded blades, round at every stop.", "f/1.4 – f/16"],
+    ["Floating group", "Moves on its own, so close-ups stay sharp.", "0.30 m closest"],
+    ["Focus ring", "A silent linear motor with real end stops.", "1/8 turn"],
+    ["Front group", "One aspherical element under a coat that sheds water.", "1 aspherical"],
+    ["Hood", "Bayonet-mounted, flocked, reversible.", "58 mm thread"],
   ];
+  // the boxes the zoom moves between, in viewBox units: the lens together, and apart with every callout
+  // (callouts keep their size in px, so a small screen needs more room around the parts for them)
+  const narrow = matchMedia("(max-width: 900px)");
+  const REST = [188, 60, 362, 206], open = () => (narrow.matches ? [56, 48, 354, 298] : [88, 64, 352, 282]);
   const cap = document.getElementById("caption");
   let shown = null;
   function render(key) {
@@ -137,17 +133,31 @@
         const [name, text, spec] = PARTS[i];
         cap.innerHTML = `<span class="mono count">${String(i + 1).padStart(2, "0")} / 07</span><h2>${name}</h2><p>${text}</p><span class="mono spec">${spec}</span>`;
       } else if (key === "exploded") {
-        cap.innerHTML = `<span class="mono count">SEVEN PARTS</span><h2>Taken apart</h2><p>Mount, glass, aperture, glass, focus, glass, hood. Keep scrolling to go through them one by one.</p>`;
+        cap.innerHTML = `<span class="mono count">SEVEN PARTS</span><h2>Taken apart</h2><p>Point at any part to lift it out.</p>`;
       } else {
-        cap.innerHTML = `<span class="mono count">ORRA 35 F/1.4</span><h2>One lens, seven parts</h2><p>Each part does one job. Scroll to separate them; point at any one to lift it out.</p>`;
+        cap.innerHTML = `<span class="mono count">NEW · ORRA M MOUNT</span><h1>35<br><span>f/1.4</span></h1><p>Twelve elements in seven parts. Scroll to take it apart.</p><div class="cue mono">SCROLL<i></i></div>`;
+        cap.classList.remove("swap");
+        return;
       }
       cap.insertAdjacentHTML("beforeend", `<div class="bar">${PARTS.map((_, k) => `<i class="${k <= i ? "on" : ""}"></i>`).join("")}</div>`);
       cap.classList.remove("swap");
     }, 180);
   }
-  const handle = LW.mount(document.getElementById("fig"), LW.figures.camera, { scroll: document.getElementById("track"), onread: render });
+  const track = document.getElementById("track");
+  const handle = LW.mount(document.getElementById("fig"), LW.figures.camera, { scroll: track, fill: true, crop: REST, onread: render });
   window.linework.figure = handle;
   render(handle.readout);
+
+  // the lens together fills the space; as it comes apart (the first 30% of the scroll) the view pulls back
+  const ease = (t) => t * t * (3 - 2 * t);
+  const zoom = () => {
+    const r = track.getBoundingClientRect(), span = r.height - innerHeight, to = open();
+    const e = ease(Math.min(1, Math.max(0, span > 0 ? -r.top / span / 0.3 : 0)));
+    handle.crop(REST.map((v, i) => v + (to[i] - v) * e));
+  };
+  addEventListener("scroll", zoom, { passive: true });
+  addEventListener("resize", zoom);
+  zoom();
 })();
 </script>
 </body>

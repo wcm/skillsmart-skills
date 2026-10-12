@@ -82,8 +82,9 @@ var LW = (() => {
   /* ---------------------------------------------------------- stylesheet */
   const EASE = "cubic-bezier(.5,0,.1,1)";
   const GRAIN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .27 0 0 0 0 .22 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
+  // the host's own defaults carry no weight (:where), so a page's sizing and position of its host always win
   const CSS = `
-[data-lw]{position:relative;display:block;aspect-ratio:5/4;container-type:inline-size;touch-action:pan-y;user-select:none;-webkit-user-select:none;overflow:hidden;background-color:var(--lw-ground);transition:background-color .4s ${EASE}}
+:where([data-lw]){position:relative;display:block;aspect-ratio:5/4;container-type:inline-size;touch-action:pan-y;user-select:none;-webkit-user-select:none;overflow:hidden;background-color:var(--lw-ground);transition:background-color .4s ${EASE}}
 [data-lw]>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 [data-lw] svg :is(path,ellipse,circle){vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round;transition:stroke .26s ${EASE},fill .26s ${EASE}}
 .lw-f{fill:var(--lw-plate);stroke:none}
@@ -110,6 +111,8 @@ var LW = (() => {
 .lw-offset{--lw-edge:var(--lw-ink2);--lw-accent:var(--lw-ink2);--lw-mid:var(--lw-ink2);--lw-crease:transparent;--lw-glow:transparent}
 [data-lw]:not([data-lw-fx~="offset"]) .lw-offset{display:none}
 [data-lw].lw-clear{background:none;overflow:visible}[data-lw].lw-clear::before,[data-lw].lw-clear::after{display:none}
+[data-lw].lw-fill>:is(svg,.lw-labels){inset:auto;left:var(--lw-cx,0);top:var(--lw-cy,0);width:var(--lw-cw,100%);height:var(--lw-ch,100%)}
+[data-lw].lw-fill>svg{pointer-events:none}[data-lw].lw-fill>.lw-labels{container-type:inline-size}
 [data-lw-fx~="wobble"] .lw-wrap{filter:var(--lw-wobble)}
 [data-lw-fx~="glow"] :is(.lw-o,.lw-tube,.lw-l.edge){filter:drop-shadow(0 0 2px var(--lw-glow))}
 [data-lw-fx~="glow"] .lit>.lw-part:not(.nl) :is(.lw-o,.lw-tube,.lw-l:not(.lo):not(.dash)){filter:drop-shadow(0 0 2.5px var(--lw-accent)) drop-shadow(0 0 7px var(--lw-accent))}
@@ -648,6 +651,7 @@ var LW = (() => {
       C.ox = 200 - (S * (a + b)) / 2;
       C.oy = 166 - (S * (c + d)) / 2;
       this.V = view(C);
+      this.fit = [200 - (S * (b - a)) / 2, 166 - (S * (d - c)) / 2, 200 + (S * (b - a)) / 2, 166 + (S * (d - c)) / 2];
       for (const g of this.groups) {
         const pts = g.draw();
         if (g._order == null) g._order = g.anchorDepth();
@@ -668,7 +672,7 @@ var LW = (() => {
     /** Pushes overlapping labels apart along their leaders, measured in the page as laid out. */
     declutter() {
       this.labelsDirty = false;
-      const k = this.host.clientWidth / 400;
+      const k = this.k || this.host.clientWidth / 400;
       if (!k) return;
       const all = [];
       for (const g of this.groups) for (const p of g.parts) if (p.style === "label") all.push({ p, g });
@@ -723,7 +727,9 @@ var LW = (() => {
   let uid = 0;
   /**
    * Mounts a figure into a host element. Options: look, camera, value, scroll (an element whose
-   * scroll progress is input.scroll), onread(text). Returns a handle.
+   * scroll progress is input.scroll), onread(text), clear (no stage of its own), fill (the drawing
+   * fills the host's box, whatever its shape: true centres it, [x, y] from 0 to 1 aligns it), crop
+   * (with fill: the box, in viewBox units, that fills the host). Returns a handle.
    */
   function mount(host, fig, o) {
     o = o || {};
@@ -734,6 +740,9 @@ var LW = (() => {
     host.setAttribute("aria-label", fig.means || fig.name);
     // clear: no stage of its own; the figure sits on the page (its ground should match the page's)
     host.classList.toggle("lw-clear", !!o.clear);
+    // fill: the page sizes the host to the space the drawing should take; the 400 × 320 canvas is
+    // scaled and placed so the drawing and its labels fill that space, as large as they fit
+    host.classList.toggle("lw-fill", !!o.fill);
     let look = applyLook(host, o.look || fig.look || "paper");
     const id = "lw" + ++uid;
     const svg = mk("svg", { viewBox: "0 0 400 320", "aria-hidden": "true" }, host);
@@ -784,9 +793,46 @@ var LW = (() => {
     const B = register(host, (dt, now) => s.tick(dt, now));
     s.wake = B.wake;
     const off = [B.unregister];
+
+    // fill: the box that fills the host is the crop, or the fit grown to hold the labels as laid out
+    let crop = o.crop || fig.crop || null;
+    const place = (b) => {
+      const hw = host.clientWidth, hh = host.clientHeight, w = b[2] - b[0], h = b[3] - b[1];
+      if (!hw || !hh) return false;
+      const k = Math.min(hw / w, hh / h), [ax, ay] = Array.isArray(o.fill) ? o.fill : [0.5, 0.5];
+      s.k = k;
+      host.style.setProperty("--lw-cw", 400 * k + "px");
+      host.style.setProperty("--lw-ch", 320 * k + "px");
+      host.style.setProperty("--lw-cx", (hw - w * k) * ax - b[0] * k + "px");
+      host.style.setProperty("--lw-cy", (hh - h * k) * ay - b[1] * k + "px");
+      return true;
+    };
+    const grown = () => {
+      const L = labels.getBoundingClientRect(), k = s.k, b = s.fit.slice();
+      for (const el of labels.children) {
+        const r = el.style.display === "none" ? null : el.getBoundingClientRect();
+        if (!r || !r.width) continue;
+        b[0] = Math.min(b[0], (r.left - L.left) / k); b[1] = Math.min(b[1], (r.top - L.top) / k);
+        b[2] = Math.max(b[2], (r.right - L.left) / k); b[3] = Math.max(b[3], (r.bottom - L.top) / k);
+      }
+      return b;
+    };
+    const fit = () => {
+      if (!o.fill) return;
+      if (crop) { place(crop); return; }
+      let b = s.fit;
+      for (let i = 0; i < 2; i++) { if (!place(b)) return; s.declutter(); b = grown(); }
+      place(b);
+    };
+    // with fill, the canvas is not the host's box: a real pointer is mapped through the canvas
+    const toCanvas = (p, e) => {
+      if (!o.fill || !e || e.clientX == null) return p;
+      const r = svg.getBoundingClientRect();
+      return [((e.clientX - r.left) / r.width) * 400, ((e.clientY - r.top) / r.height) * 320];
+    };
     off.push(pointer(host, {
-      move,
-      down: (p, e) => { move(p, e); input.clicked = input.hit ?? true; update(); },
+      move: (p, e) => move(toCanvas(p, e), e),
+      down: (p, e) => { move(toCanvas(p, e), e); input.clicked = input.hit ?? true; update(); },
       leave: () => { input.at = input.ground = input.hit = input.group = null; input.ghost = false; update(); },
     }));
     if (o.scroll) {
@@ -804,11 +850,17 @@ var LW = (() => {
     update();
     s.tick(0, performance.now());
     // labels are measured as laid out: again once the fonts arrive and whenever the stage resizes
+    fit();
     s.declutter();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => s.declutter());
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fit(); s.declutter(); });
     if (window.ResizeObserver) {
-      let w = host.clientWidth;
-      const ro = new ResizeObserver(() => { if (host.clientWidth !== w) { w = host.clientWidth; s.declutter(); } });
+      let w = host.clientWidth, h = host.clientHeight;
+      const ro = new ResizeObserver(() => {
+        if (host.clientWidth === w && (!o.fill || host.clientHeight === h)) return;
+        w = host.clientWidth; h = host.clientHeight;
+        fit();
+        s.declutter();
+      });
       ro.observe(host);
       off.push(() => ro.disconnect());
     }
@@ -828,6 +880,8 @@ var LW = (() => {
       hold(p) { move(p, { pointerType: "mouse" }); },
       /** Tell the figure something from the page that lasts: send("step", 2), send("focus", "gateway"). */
       send(key, v) { input[key] = v; update(); },
+      /** With fill: the box (viewBox units) that fills the host from now on, or null for the drawing's own. */
+      crop(b) { crop = b || null; fit(); s.declutter(); },
       /** Tell the figure something that happens once: act("verify"). The answer sees input.action. */
       act(name) { input.action = name; update(); },
       release() { input.at = input.ground = input.hit = input.group = null; update(); },

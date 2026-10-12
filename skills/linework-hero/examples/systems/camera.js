@@ -16,7 +16,7 @@
     { name: "Hood", sub: "bayonet · reversible", R: 24.5, len: 8, hole: 20.5 },
   ];
   // callout lanes: above or below the axis, near or far, so no two neighbours collide
-  const LANES = [[1, 38], [-1, 32], [1, 84], [-1, 96], [1, 38], [-1, 32], [1, 84]];
+  const LANES = [[1, 30], [-1, 26], [1, 58], [-1, 56], [1, 30], [-1, 26], [1, 58]];
   const REST_GAP = 4, GAP = 22;
   let at = Y0;
   for (const e of ELEMENTS) { e.base = at; at += e.len; }
