@@ -1,0 +1,94 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap");
+
+/* ========================================================================================================
+   01 AFTERHOURS
+   ======================================================================================================== */
+body[data-theme="afterhours"] {
+  --bg: #06060a; --ink: #f3f0fa; --muted: rgba(243, 240, 250, 0.56); --hair: rgba(243, 240, 250, 0.16);
+  --accent: #ff2e88; --cyan: #19e3ff; --dock: rgba(14, 12, 22, 0.5);
+}
+.ah-plate {
+  position: absolute; inset: -4%;
+  background: url(../img/afterhours-city.webp) center 40% / cover;
+  filter: blur(7px) brightness(0.48) saturate(1.3); transform: scale(1.05);
+  animation: ah-flicker 11s infinite steps(1);
+}
+@keyframes ah-flicker { 0%, 100% { opacity: 1; } 61% { opacity: 0.86; } 62% { opacity: 1; } 63.5% { opacity: 0.9; } 64.5% { opacity: 1; } }
+.ah-rain { position: absolute; inset: 0; mix-blend-mode: screen; opacity: 0.45; background-repeat: repeat; animation: ah-fall 0.55s linear infinite; }
+.ah-rain--far { opacity: 0.3; filter: blur(0.6px); animation-duration: 0.9s; }
+@keyframes ah-fall { to { background-position: var(--rx, 0) var(--ry, 420px); } }
+.ah-vignette { position: absolute; inset: 0; background: radial-gradient(120% 90% at 63% 50%, transparent 35%, rgba(3, 3, 8, 0.75) 100%), linear-gradient(to top, rgba(6, 6, 10, 0.8), transparent 40%); }
+.ah-scan { position: absolute; inset: 0; opacity: 0.22; mix-blend-mode: overlay; background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 0 1px, transparent 1px 3px); }
+
+.ah-ghost {
+  position: absolute; left: calc(var(--gutter) - 0.04em); top: 8.5vh;
+  font: 200 min(15vw, 19vh)/0.8 Unbounded, sans-serif; letter-spacing: -0.06em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1px rgba(243, 240, 250, 0.12); white-space: nowrap;
+  animation: rise 1.6s var(--ease) both;
+}
+
+[data-theme="afterhours"] .nav .brand { font: 700 14px/1 Unbounded, sans-serif; letter-spacing: 0.04em; }
+[data-theme="afterhours"] .nav .brand sup { font: 500 9.5px var(--mono); color: var(--cyan); margin-left: 6px; vertical-align: 7px; letter-spacing: 0.06em; }
+[data-theme="afterhours"] .nav .links { margin-left: auto; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+[data-theme="afterhours"] .nav .actions { display: flex; align-items: center; gap: 18px; font: 11.5px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+[data-theme="afterhours"] .pill { background: var(--ink); color: var(--bg); font-weight: 500; }
+[data-theme="afterhours"] .pill:hover { background: var(--accent); color: #fff; }
+
+[data-theme="afterhours"] .copy { position: absolute; left: var(--gutter); bottom: 14vh; width: min(520px, 32vw); }
+[data-theme="afterhours"] .kicker { font: 400 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+[data-theme="afterhours"] .kicker b { color: var(--cyan); font-weight: 500; margin-right: 10px; }
+[data-theme="afterhours"] h1 { margin: 18px 0 22px -0.04em; font: 600 clamp(44px, 6vw, 100px)/0.9 Unbounded, sans-serif; letter-spacing: -0.045em; }
+[data-theme="afterhours"] h1 span { display: block; }
+[data-theme="afterhours"] h1 .soft { font-weight: 200; color: transparent; -webkit-text-stroke: 1px rgba(243, 240, 250, 0.7); text-shadow: -2px 0 rgba(25, 227, 255, 0.35), 2px 0 rgba(255, 46, 136, 0.35); }
+[data-theme="afterhours"] .lede { max-width: 38ch; color: var(--muted); font-size: 14.5px; }
+[data-theme="afterhours"] .cta { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 26px; }
+[data-theme="afterhours"] .btn {
+  display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 22px; border-radius: 999px;
+  border: 1px solid rgba(243, 240, 250, 0.4); font-size: 14px; transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+[data-theme="afterhours"] .btn i { font-style: normal; transition: transform 0.4s var(--ease); }
+[data-theme="afterhours"] .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+[data-theme="afterhours"] .btn:hover i { transform: translateX(4px); }
+[data-theme="afterhours"] .price { font: 11px var(--mono); letter-spacing: 0.06em; color: var(--muted); }
+
+/* the HUD that frames the specimen */
+.ah-hud { position: absolute; pointer-events: none; font: 10px var(--mono); letter-spacing: 0.12em; color: rgba(25, 227, 255, 0.85); }
+.ah-hud i { position: absolute; width: 18px; height: 18px; border: 1px solid rgba(25, 227, 255, 0.7); transition: transform 0.5s var(--ease), border-color 0.3s; }
+.ah-hud i:nth-of-type(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.ah-hud i:nth-of-type(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.ah-hud i:nth-of-type(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.ah-hud i:nth-of-type(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.ah-hud .tl { position: absolute; left: 0; top: -20px; white-space: nowrap; }
+.ah-hud .br { position: absolute; right: 0; top: -20px; white-space: nowrap; color: var(--muted); } /* above the frame, clear of the footer */
+.ah-hud .br b { color: var(--ink); font-weight: 500; }
+.ah-hud.on i { border-color: var(--accent); }
+.ah-hud.on i:nth-of-type(1) { transform: translate(-6px, -6px); } .ah-hud.on i:nth-of-type(2) { transform: translate(6px, -6px); }
+.ah-hud.on i:nth-of-type(3) { transform: translate(-6px, 6px); } .ah-hud.on i:nth-of-type(4) { transform: translate(6px, 6px); }
+.ah-hud.on .br { color: var(--accent); }
+
+[data-theme="afterhours"] .side {
+  position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%);
+  display: flex; gap: 14px; writing-mode: vertical-rl; align-items: center;
+  font: 10.5px var(--mono); letter-spacing: 0.16em; color: var(--muted);
+}
+[data-theme="afterhours"] .side .code { color: var(--cyan); }
+
+@media (max-aspect-ratio: 21/20) {
+  [data-theme="afterhours"] .copy { width: min(560px, 80vw); bottom: 108px; }
+  [data-theme="afterhours"] .side { display: none; }
+}
+@media (max-width: 760px) {
+  .ah-ghost { top: 8vh; font-size: 27vw; }
+  [data-theme="afterhours"] .nav .actions .bag { display: none; }
+  [data-theme="afterhours"] .copy { left: var(--gutter); right: var(--gutter); width: auto; bottom: 108px; }
+  [data-theme="afterhours"] h1 { font-size: 40px; margin: 10px 0 12px; }
+  [data-theme="afterhours"] .lede, [data-theme="afterhours"] .price { display: none; }
+  [data-theme="afterhours"] .cta { margin-top: 14px; }
+  .ah-hud .tl, .ah-hud .br { display: none; }
+}
+
+/* the hint sits in the copy column, clear of the cloth */
+@media (min-width: 761px) {
+  [data-theme="afterhours"] .foot .hint { left: var(--gutter); bottom: 58px; transform: none; animation-name: hint-left; }
+}

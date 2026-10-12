@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track HW 4821 7703 · Hopway</title>
+<meta name="description" content="Where your parcel is, drawn: from the shelf in Leipzig to your door in Berlin.">
+<meta name="theme-color" content="#efeeea">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #efeeea; --ink: #1c1b17; --text: #3a3933; --muted: #6f6d64; --line: #dcdad2; --orange: #ff5b1f; --card: #fbfaf7; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 28px; padding: 22px 36px; font-size: 15px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
+  .logo i { width: 26px; height: 26px; border-radius: 7px; background: var(--orange); position: relative; }
+  .logo i::after { content: ""; position: absolute; inset: 7px 6px; border: 2px solid #fff; border-radius: 2px; border-top-width: 5px; }
+  nav.top .links { display: flex; gap: 24px; color: var(--muted); }
+  nav.top .links a.on { color: var(--ink); }
+  nav.top .right { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+  .pill { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--ink); font-weight: 500; font-size: 14px; }
+  /* the hero: the scene is drawn straight onto the page, over a dot grid that fades out */
+  .hero { position: relative; min-height: 100vh; overflow: hidden; isolation: isolate; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(circle, rgba(38, 37, 31, .16) 1.1px, transparent 1.4px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 62% 58% at 62% 54%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 62% 58% at 62% 54%, #000 30%, transparent 80%); }
+  .scene { position: absolute; top: 50%; left: 61%; width: min(1180px, calc(100vh * 1.32), 92vw); transform: translate(-50%, -47%); }
+  .track { position: absolute; z-index: 5; left: 36px; top: 112px; width: 360px; padding: 22px 22px 18px; border-radius: 20px; background: var(--card); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 30px 60px -36px rgba(28, 27, 23, .45), 0 0 0 1px var(--line); }
+  .track .id { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .track h1 { margin: 12px 0 2px; font-size: 34px; line-height: 1.05; letter-spacing: -.035em; color: var(--ink); font-weight: 600; }
+  .track .eta { margin: 0 0 16px; font-size: 15px; }
+  .track .eta b { color: var(--orange); font-weight: 600; }
+  .bar { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; margin-bottom: 14px; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--orange); border-radius: inherit; transition: width .6s cubic-bezier(.3, .7, 0, 1); }
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; }
+  ol.steps li button { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; padding: 8px 6px; border-radius: 10px; cursor: pointer; color: var(--muted); font-size: 14px; }
+  ol.steps li button:hover { background: #f1efe9; }
+  ol.steps li button:focus-visible { outline: 2px solid var(--orange); }
+  ol.steps .d { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--line); justify-self: center; background: var(--card); }
+  ol.steps li.done button { color: var(--text); }
+  ol.steps li.done .d { border-color: var(--ink); background: var(--ink); }
+  ol.steps li.now button { color: var(--ink); font-weight: 600; }
+  ol.steps li.now .d { border-color: var(--orange); background: var(--orange); box-shadow: 0 0 0 4px rgba(255, 91, 31, .18); }
+  ol.steps .t { font-family: "JetBrains Mono", monospace; font-size: 12px; }
+  .replay { margin-top: 10px; display: flex; gap: 8px; }
+  .btn { flex: 1; text-align: center; padding: 11px 14px; border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; border: 0; font-family: inherit; }
+  .btn.o { background: var(--orange); color: #fff; }
+  .btn.g { background: transparent; box-shadow: 0 0 0 1px var(--line) inset; color: var(--ink); }
+  .hint { position: absolute; z-index: 5; right: 36px; bottom: 28px; font-size: 12px; color: var(--muted); }
+  section.opts { max-width: 1180px; margin: 0 auto; padding: 72px 36px 40px; }
+  section.opts h2 { font-size: 40px; letter-spacing: -.035em; margin: 0 0 6px; color: var(--ink); font-weight: 600; }
+  section.opts p.sub { margin: 0 0 28px; color: var(--muted); font-size: 18px; }
+  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .cards a { padding: 20px; border-radius: 18px; background: var(--card); box-shadow: 0 0 0 1px var(--line); display: grid; gap: 6px; }
+  .cards a:hover { box-shadow: 0 0 0 1.5px var(--ink); }
+  .cards b { color: var(--ink); font-size: 17px; font-weight: 600; }
+  .cards span { color: var(--muted); font-size: 14px; }
+  .cards .k { font-size: 12px; color: var(--orange); font-family: "JetBrains Mono", monospace; }
+  footer { max-width: 1180px; margin: 0 auto; padding: 32px 36px 48px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  @media (max-width: 980px) {
+    nav.top .links { display: none; }
+    .hero { min-height: 0; display: flex; flex-direction: column; padding-top: 76px; }
+    .scene { position: relative; top: auto; left: auto; transform: none; width: 112%; margin: 0 -6%; order: -1; }
+    .track { position: relative; left: auto; top: auto; width: auto; margin: -20px 16px 24px; }
+    .hint { display: none; }
+    .cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    section.opts { padding: 48px 16px 24px; }
+    nav.top { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="logo" href="#"><i></i>Hopway</a>
+  <div class="links"><a href="#">Send</a><a class="on" href="#">Track</a><a href="#">Business</a><a href="#">Help</a></div>
+  <div class="right"><a class="pill" href="#">Sign in</a></div>
+</nav>
+
+<section class="hero">
+  <div class="scene"><div id="fig"></div></div>
+  <aside class="track" aria-label="Tracking">
+    <div class="id mono"><span>HW 4821 7703</span><span>from Linden &amp; Co.</span></div>
+    <h1 id="status">Picked</h1>
+    <p class="eta" id="eta">Packed and labelled in Leipzig.</p>
+    <div class="bar"><i id="bar"></i></div>
+    <ol class="steps" id="steps"></ol>
+    <div class="replay"><button class="btn o" id="replay" type="button">Replay the journey</button><button class="btn g" type="button">Delivery options</button></div>
+  </aside>
+  <span class="hint mono">Hover anything in the scene · pick a step to follow the parcel</span>
+</section>
+
+<section class="opts">
+  <h2>Not home next time?</h2>
+  <p class="sub">Choose where your parcels go until the van leaves the hub. Your driver sees it on their next stop.</p>
+  <div class="cards">
+    <a href="#"><span class="k">NEIGHBOUR</span><b>Leave it next door</b><span>Pick a house; they get a text.</span></a>
+    <a href="#"><span class="k">SAFE PLACE</span><b>Back door or porch</b><span>With a photo when it's there.</span></a>
+    <a href="#"><span class="k">ANOTHER DAY</span><b>Reschedule</b><span>Any weekday this week, free.</span></a>
+    <a href="#"><span class="k">PICK-UP</span><b>Collect it</b><span>Kiosk on Oderberger Str., open until 22:00.</span></a>
+  </div>
+</section>
+<footer><span>Hopway, Linden &amp; Co. and this address are fictional. The scene is drawn live with Linework, in the Signal look.</span></footer>
+
+<script src="../../engine/kernel.js"></script>
+<script src="../../engine/linework.js"></script>
+<script src="../../engine/system.js"></script>
+<script src="../systems/parcels.js"></script>
+<script>
+(() => {
+  const STEPS = [
+    ["rack", "Picked in Leipzig", "Mon 09:12", "Picked", "Packed and labelled in Leipzig."],
+    ["sorter", "Sorted, lane 7", "Mon 11:40", "Sorted", "Scanned and sent down lane 7 to Berlin."],
+    ["truck", "On the way to Berlin", "Mon 18:05", "In transit", "On the overnight truck, Leipzig → Berlin."],
+    ["hub", "At your local hub", "Tue 05:31", "At the hub", "Arrived at Berlin-Mitte; loading for the round."],
+    ["van", "Out for delivery", "Tue 08:47", "Out for delivery", "Arriving today, <b>14:20 – 14:50</b>"],
+    ["house", "Delivered", "Tue 14:32", "Delivered", "Left at your front door at <b>14:32</b>."],
+  ];
+  const NOW = STEPS.length - 1;
+  const $ = (id) => document.getElementById(id);
+  const list = $("steps");
+  list.innerHTML = STEPS.map((s, i) => `<li><button type="button" data-i="${i}"><span class="d"></span><span>${s[1]}</span><span class="t">${s[2]}</span></button></li>`).join("");
+  const handle = LW.mount($("fig"), LW.figures.parcels, { clear: true });
+  window.linework.figure = handle;
+
+  let shown = 0, timer = 0;
+  function show(i) {
+    shown = i;
+    handle.send("stage", i);
+    [...list.children].forEach((li, k) => { li.className = k < i ? "done" : k === i ? "now" : ""; });
+    // the last stop is only "Delivered" once the parcel is on the doorstep
+    const [title, text] = i === NOW ? ["Arriving now", "Van 12 is pulling up outside."] : [STEPS[i][3], STEPS[i][4]];
+    $("status").textContent = title;
+    $("eta").innerHTML = text;
+    $("bar").style.width = (i === NOW ? 100 : ((i + 0.5) / STEPS.length) * 100) + "%";
+  }
+  list.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) { playing = false; clearTimeout(timer); show(Number(b.dataset.i)); } });
+
+  // the replay walks the parcel's day: each stop starts when the parcel has arrived at the last
+  let playing = false;
+  $("fig").addEventListener("lw:arrived", (e) => {
+    if (e.detail.stage === NOW && shown === NOW) { $("status").textContent = STEPS[NOW][3]; $("eta").innerHTML = STEPS[NOW][4]; }
+    if (!playing) return;
+    if (e.detail.stage < NOW) timer = setTimeout(() => show(e.detail.stage + 1), 450);
+    else playing = false;
+  });
+  function replay() {
+    clearTimeout(timer);
+    handle.act("reset");
+    show(0);
+    playing = true;
+    timer = setTimeout(() => show(1), 900);
+  }
+  $("replay").addEventListener("click", replay);
+  show(0);
+  setTimeout(replay, 500);
+})();
+</script>
+</body>
+</html>

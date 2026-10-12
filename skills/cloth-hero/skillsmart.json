@@ -1,0 +1,44 @@
+{
+  "slug": "cloth-hero",
+  "name": "Cloth Hero",
+  "tagline": "A landing-page hero where your picture becomes real cloth — vinyl, curtains, beads or silk — that ripples under the cursor.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["cloth", "fabric", "physics", "3D", "three.js", "WebGL", "curtain", "silk", "interactive", "hero section", "landing page"],
+  "youSay": "/cloth-hero A silk scarf brand called Mare: the koi scarf streaming under water, calm and luxurious",
+  "whatYouGet": [
+    "A landing-page hero with real-time cloth physics: a sheet you pull, panels you walk through, a bead curtain or a banner in a current",
+    "Your picture on the cloth, baked into the material: a print on vinyl, dye in linen, one bead per pixel, a silk print",
+    "The page around it: brand, headline, copy, details, fonts, palette, synthesised sound, and layouts for desktop and phone",
+    "A static site (HTML, CSS, JS and three.js) you can host anywhere"
+  ],
+  "goodFit": [
+    "Fashion, textiles, jewellery, hospitality and craft brands",
+    "Launches and campaigns built around one striking picture"
+  ],
+  "notFor": [
+    "Pages that must work without WebGL",
+    "Long scrolling pages or online shops"
+  ],
+  "youBring": [
+    "What the page is for, and a picture if you have one",
+    "Optional: the kind of cloth, brand name, colours and tone"
+  ],
+  "needs": [
+    "Skillsmart credits for generated pictures (about 40–60 per page; none with your own)",
+    "Python 3",
+    "Node 18+",
+    "A modern browser"
+  ],
+  "generates": { "models": ["nano-banana-pro"], "estimate": "about 40–60 per page, none with your own pictures" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.30–0.45 per page",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "network": [
+    { "host": "cdn.jsdelivr.net", "purpose": "the three.js library" }
+  ],
+  "testedIn": ["Claude Code"]
+}

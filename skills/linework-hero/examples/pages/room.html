@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reading Room · Hollis</title>
+<meta name="description" content="Nine pieces, chosen to work together. Shop the room piece by piece.">
+<meta name="theme-color" content="#eef0e8">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #eef0e8; --ink: #2c3327; --text: #454d3f; --muted: #6c7563; --line: #d7dccd; --clay: #cf6233; --card: #f7f8f2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; }
+  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 30px; padding: 24px 40px; font-size: 14px; }
+  .mark { font: 400 28px/1 "Fraunces", serif; letter-spacing: -.02em; color: var(--ink); }
+  nav.top .links { display: flex; gap: 24px; color: var(--muted); }
+  nav.top .links a.on { color: var(--ink); }
+  .bagbtn { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer; }
+  .bagbtn b { min-width: 20px; height: 20px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: 12px; display: grid; place-items: center; font-weight: 600; }
+  /* the hero: no frame; a soft pool of light behind the room and its shadow on the page */
+  .hero { position: relative; min-height: 100vh; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr); align-items: center; padding: 96px 40px 40px; }
+  .hero::before { content: ""; position: absolute; z-index: -1; right: -10%; top: 4%; width: 78%; aspect-ratio: 1.2; background: radial-gradient(closest-side, #fbfcf8 0%, rgba(251, 252, 248, .7) 45%, transparent 100%); }
+  .hero::after { content: ""; position: absolute; z-index: -1; right: 12%; bottom: 7%; width: 50%; height: 9%; background: radial-gradient(closest-side, rgba(44, 51, 39, .12), transparent); }
+  .copy { position: relative; z-index: 2; max-width: 440px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  h1 { font: 300 clamp(56px, 7.5vw, 104px)/.92 "Fraunces", serif; letter-spacing: -.035em; color: var(--ink); margin: 18px 0 22px; }
+  h1 em { font-style: italic; color: var(--clay); }
+  .copy p { font-size: 18px; margin: 0 0 26px; }
+  .seg { display: inline-flex; padding: 4px; border-radius: 999px; background: #e3e7da; margin-bottom: 22px; }
+  .seg button { border: 0; background: transparent; padding: 9px 18px; border-radius: 999px; color: var(--muted); cursor: pointer; font-weight: 500; }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(44, 51, 39, .15); }
+  .cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .all { padding: 14px 22px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-weight: 500; cursor: pointer; }
+  .cta span { color: var(--muted); font-size: 14px; }
+  .scene { position: relative; margin-right: -4%; }
+  .tip { position: absolute; left: 50%; bottom: 2%; transform: translateX(-50%); font-size: 12px; color: var(--muted); letter-spacing: .02em; white-space: nowrap; }
+  section.shop { max-width: 1240px; margin: 0 auto; padding: 72px 40px 120px; }
+  section.shop h2 { font: 300 48px/1 "Fraunces", serif; letter-spacing: -.03em; color: var(--ink); margin: 0 0 8px; }
+  section.shop .sub { color: var(--muted); margin: 0 0 32px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 12px; padding: 20px 22px; border-radius: 18px; background: var(--card); box-shadow: 0 0 0 1px var(--line); transition: box-shadow .2s, transform .2s; }
+  .item:hover, .item.on { box-shadow: 0 0 0 1.5px var(--ink); }
+  .item b { font: 400 22px/1.1 "Fraunces", serif; color: var(--ink); }
+  .item small { grid-column: 1; color: var(--muted); font-size: 14px; }
+  .item .p { grid-row: 1 / span 2; grid-column: 2; display: grid; justify-items: end; gap: 6px; }
+  .item .p span { font-weight: 600; color: var(--ink); }
+  .add { border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 999px; padding: 5px 14px; font-size: 13px; cursor: pointer; }
+  .add[aria-pressed="true"] { background: var(--clay); border-color: var(--clay); color: #fff; }
+  .bag { position: fixed; z-index: 20; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 16px; padding: 12px 12px 12px 20px; border-radius: 999px; background: var(--ink); color: var(--bg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.5); transform: translateY(140%); transition: transform .4s cubic-bezier(.3,.7,0,1); }
+  .bag.show { transform: none; }
+  .bag a { padding: 10px 18px; border-radius: 999px; background: var(--clay); color: #fff; font-weight: 500; font-size: 14px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 40px 48px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 980px) {
+    nav.top { padding: 16px 20px; } nav.top .links { display: none; }
+    .hero { grid-template-columns: minmax(0, 1fr); padding: 80px 20px 24px; min-height: 0; }
+    .scene { order: -1; margin: 0 -8%; }
+    .hero::after { display: none; }
+    .tip { display: none; }
+    section.shop { padding: 48px 20px 120px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="mark" href="#">Hollis</a>
+  <div class="links"><a href="#">Living</a><a href="#">Dining</a><a href="#">Bedroom</a><a class="on" href="#">Rooms</a><a href="#">Journal</a></div>
+  <button class="bagbtn" type="button">Bag <b id="count">0</b></button>
+</nav>
+
+<section class="hero">
+  <div class="copy">
+    <span class="eyebrow">Rooms · No. 04</span>
+    <h1>The Reading <em>Room</em></h1>
+    <p>Nine pieces in oak, linen and wool, chosen to work together. Point at anything to see what it is; click to add it.</p>
+    <div class="seg" role="group" aria-label="Layout"><button type="button" data-l="reading" aria-pressed="true">Reading</button><button type="button" data-l="hosting" aria-pressed="false">Hosting</button></div>
+    <div class="cta"><button class="all" id="all" type="button">Add the whole room</button><span>9 pieces · €4,680</span></div>
+  </div>
+  <div class="scene"><div id="fig"></div><span class="tip">Hover a piece · click to add · switch to Hosting to move things around</span></div>
+</section>
+
+<section class="shop">
+  <h2>Everything in the room</h2>
+  <p class="sub">Delivered together, assembled in your home, free returns for 100 days.</p>
+  <div class="grid" id="grid"></div>
+</section>
+<div class="bag" id="bag"><span id="bagtext"></span><a href="#">Checkout</a></div>
+<footer><span>Hollis and these pieces are fictional. The room is drawn live with Linework, in the Sage look.</span></footer>
+
+<script src="../../engine/kernel.js"></script>
+<script src="../../engine/linework.js"></script>
+<script src="../../engine/system.js"></script>
+<script src="../systems/room.js"></script>
+<script>
+(() => {
+  const ITEMS = [
+    ["sofa", "Ames sofa", "3-seat · boucle", 1890], ["chair", "Ames lounge chair", "oak · linen", 780], ["table", "Brook coffee table", "solid oak", 420],
+    ["lamp", "Arc floor lamp", "brass · 2700 K", 260], ["shelf", "Stack shelf", "4 bays · ash", 540], ["rug", "Dune rug", "wool · 200 × 140", 390],
+    ["side", "Orb side table", "travertine", 190], ["plant", "Terra planter", "with olive tree", 60], ["pouf", "Knot pouf", "wool · in Hosting", 150],
+  ];
+  const $ = (id) => document.getElementById(id);
+  const bag = new Set();
+  const eur = (n) => "€" + n.toLocaleString("en-GB");
+  $("grid").innerHTML = ITEMS.map(([id, name, sub, p]) => `<div class="item" data-id="${id}"><b>${name}</b><small>${sub}</small><div class="p"><span>${eur(p)}</span><button class="add" type="button" aria-pressed="false">Add</button></div></div>`).join("");
+
+  const handle = LW.mount($("fig"), LW.figures.room, { clear: true });
+  window.linework.figure = handle;
+
+  function render() {
+    $("count").textContent = bag.size;
+    document.querySelectorAll(".item").forEach((el) => {
+      const on = bag.has(el.dataset.id), b = el.querySelector(".add");
+      b.setAttribute("aria-pressed", String(on));
+      b.textContent = on ? "Added" : "Add";
+    });
+    const total = ITEMS.filter((i) => bag.has(i[0])).reduce((a, i) => a + i[3], 0);
+    $("bagtext").textContent = `${bag.size} ${bag.size === 1 ? "piece" : "pieces"} · ${eur(total)}`;
+    $("bag").classList.toggle("show", bag.size > 0);
+  }
+  const toggle = (id) => { if (bag.has(id)) bag.delete(id); else bag.add(id); render(); };
+  $("fig").addEventListener("lw:toggle", (e) => toggle(e.detail.id));
+  document.querySelectorAll(".item").forEach((el) => {
+    el.addEventListener("mouseenter", () => { handle.send("focus", el.dataset.id); el.classList.add("on"); });
+    el.addEventListener("mouseleave", () => { handle.send("focus", null); el.classList.remove("on"); });
+    el.querySelector(".add").addEventListener("click", () => toggle(el.dataset.id));
+  });
+  document.querySelectorAll(".seg button").forEach((b) => b.addEventListener("click", () => {
+    document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    handle.send("layout", b.dataset.l);
+  }));
+  $("all").addEventListener("click", () => { ITEMS.forEach((i) => bag.add(i[0])); render(); });
+  render();
+})();
+</script>
+</body>
+</html>

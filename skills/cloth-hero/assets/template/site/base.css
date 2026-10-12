@@ -1,0 +1,155 @@
+/* The shell every page shares. Each page's own styles are in themes/<id>.css, scoped by body[data-theme="<id>"]. */
+:root {
+  --gutter: clamp(18px, 3.2vw, 48px);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #0b0b0e;
+  --ink: #f2f0ee;
+  --muted: color-mix(in oklab, var(--ink) 58%, transparent);
+  --hair: color-mix(in oklab, var(--ink) 18%, transparent);
+  --accent: #ff2e88;
+  --dock: color-mix(in oklab, var(--bg) 62%, transparent);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  touch-action: none;
+  overscroll-behavior: none;
+  transition: background-color 0.6s var(--ease), color 0.6s var(--ease);
+}
+body[data-cursor="grab"] { cursor: grab; }
+body[data-cursor="grabbing"] { cursor: grabbing; }
+body[data-cursor="pointer"] { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+#bg, #back { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+#bg { z-index: 0; }
+#back { z-index: 1; }
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 2; pointer-events: none; }
+#hero { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
+#hero :is(a, button, label, input, [data-ui]) { pointer-events: auto; }
+
+/* ——— shared hero parts ——— */
+.nav {
+  position: absolute; inset: 0 0 auto;
+  display: flex; align-items: center; gap: clamp(16px, 2.4vw, 36px);
+  padding: clamp(16px, 2.2vw, 26px) var(--gutter);
+}
+.nav .links { display: flex; gap: clamp(14px, 2vw, 30px); font-size: 13.5px; }
+.nav .links a { opacity: 0.78; transition: opacity 0.3s; }
+.nav .links a:hover { opacity: 1; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px;
+  border-radius: 999px; font-size: 13.5px; white-space: nowrap;
+  transition: transform 0.4s var(--ease), background-color 0.3s, color 0.3s;
+}
+.pill:hover { transform: translateY(-1px); }
+.foot {
+  position: absolute; inset: auto 0 0;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+  padding: 0 var(--gutter) 24px;
+  font: 400 10.5px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+}
+.foot .hint {
+  position: absolute; left: 50%; bottom: 76px; transform: translateX(-50%);
+  white-space: nowrap; letter-spacing: 0.1em; opacity: 0.85;
+  animation: hint 1.4s var(--ease) 1.6s both;
+}
+@keyframes hint { from { opacity: 0; transform: translate(-50%, 6px); } }
+@keyframes hint-left { from { opacity: 0; transform: translateY(6px); } } /* for a hint moved to the side */
+.fail { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 13px var(--mono); padding: 12px 16px; border: 1px solid var(--hair); border-radius: 8px; }
+
+/* entrance: everything in the hero rises in, a beat apart */
+#hero > * { animation: rise 1.1s var(--ease) both; }
+#hero > :nth-child(2) { animation-delay: 0.12s; }
+#hero > :nth-child(3) { animation-delay: 0.22s; }
+#hero > :nth-child(4) { animation-delay: 0.3s; }
+#hero > :nth-child(5) { animation-delay: 0.36s; }
+#hero > :nth-child(6) { animation-delay: 0.42s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* ——— dock ——— */
+.dock {
+  position: fixed; z-index: 5; left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 2px; padding: 4px;
+  border-radius: 999px; background: var(--dock); border: 1px solid var(--hair);
+  backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  font: 400 11px/1 var(--mono); letter-spacing: 0.04em; color: var(--ink);
+  box-shadow: 0 12px 40px -20px rgba(0, 0, 0, 0.55);
+}
+.dock .themes { display: flex; gap: 2px; }
+.dock :is(a, label, button) {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px;
+  border-radius: 999px; color: var(--muted); white-space: nowrap; cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.dock :is(a, label, button):hover { color: var(--ink); background: color-mix(in oklab, var(--ink) 9%, transparent); }
+.dock .themes a[aria-current] { background: var(--ink); color: var(--bg); }
+.dock .themes i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px color-mix(in oklab, var(--ink) 35%, transparent); }
+.dock .themes b { font-weight: 500; }
+.dock .rule { width: 1px; height: 18px; background: var(--hair); margin: 0 4px; }
+.dock .ico { font-size: 12px; }
+.dock .bars { display: inline-flex; gap: 2px; align-items: flex-end; height: 10px; }
+.dock .bars i { width: 2px; height: 3px; background: currentColor; border-radius: 1px; }
+.dock .sound[aria-pressed="true"] { color: var(--ink); }
+.dock .sound[aria-pressed="true"] .bars i { animation: eq 0.8s ease-in-out infinite alternate; }
+.dock .sound[aria-pressed="true"] .bars i:nth-child(2) { animation-delay: -0.3s; }
+.dock .sound[aria-pressed="true"] .bars i:nth-child(3) { animation-delay: -0.55s; }
+@keyframes eq { to { height: 10px; } }
+
+#toast {
+  position: fixed; z-index: 6; left: 50%; bottom: 64px; transform: translate(-50%, 8px);
+  padding: 9px 14px; border-radius: 999px; background: var(--ink); color: var(--bg);
+  font: 12px var(--mono); opacity: 0; pointer-events: none; white-space: nowrap;
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+#toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+#drop {
+  position: fixed; inset: 12px; z-index: 7; display: grid; place-items: center; pointer-events: none;
+  border: 1px dashed var(--ink); border-radius: 18px; opacity: 0; transition: opacity 0.25s;
+  background: color-mix(in oklab, var(--bg) 40%, transparent);
+  font: 13px var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+}
+body.dropping #drop { opacity: 1; }
+
+/* ——— veil between themes ——— */
+#veil {
+  position: fixed; inset: 0; z-index: 8; display: grid; place-items: center;
+  background: var(--veil, #0b0b0e); color: var(--veil-ink, #fff);
+  clip-path: inset(100% 0 0 0); pointer-events: none;
+  transition: clip-path 0.65s cubic-bezier(0.7, 0, 0.2, 1);
+}
+#veil.in, #veil.solid { clip-path: inset(0 0 0 0); pointer-events: auto; }
+#veil.solid { transition: none; }
+#veil.out { clip-path: inset(0 0 100% 0); }
+#veil p {
+  display: flex; align-items: baseline; gap: 18px;
+  font-family: var(--veil-font); font-weight: var(--veil-weight); font-size: clamp(28px, 4vw, 56px); line-height: 1;
+  opacity: 0; transform: translateY(12px); transition: opacity 0.5s 0.15s, transform 0.6s var(--ease) 0.15s;
+}
+#veil:is(.in, .solid) p { opacity: 1; transform: none; }
+#veil b { font: 500 11px var(--mono); letter-spacing: 0.12em; align-self: center; opacity: 0.7; }
+#veil i { font-style: normal; font-size: 0.62em; opacity: 0.6; }
+#veil.solid p::after { content: ""; position: absolute; left: 0; right: 0; bottom: -18px; height: 1px; background: currentColor; transform-origin: left; animation: load 1.6s var(--ease) infinite; opacity: 0.4; }
+#veil.solid p { position: relative; }
+@keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); opacity: 0; } }
+
+.nojs { position: fixed; inset: 0; display: grid; place-items: center; font: 14px var(--mono); }
+
+@media (max-width: 760px) {
+  .dock .themes span, .dock .txt { display: none; }
+  .dock { bottom: max(12px, env(safe-area-inset-bottom)); }
+  .foot { font-size: 9.5px; padding-bottom: 18px; }
+  .foot > span:not(.hint) { display: none; }
+  .foot .hint { bottom: 64px; width: calc(100% - 2 * var(--gutter)); white-space: normal; text-align: center; text-wrap: balance; }
+  .nav .links { display: none; }
+}
+

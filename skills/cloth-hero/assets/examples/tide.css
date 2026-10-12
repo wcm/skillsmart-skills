@@ -1,0 +1,77 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@500;700&display=swap");
+
+/* ========================================================================================================
+   04 TIDE
+   ======================================================================================================== */
+body[data-theme="tide"] {
+  --bg: #041b2c; --ink: #e6f3f5; --muted: rgba(230, 243, 245, 0.62); --hair: rgba(230, 243, 245, 0.18);
+  --accent: #ff7a5c; --dock: rgba(4, 27, 44, 0.45);
+}
+.td-plate { position: absolute; inset: -3%; background: url(../img/tide-plate.webp) center / cover; filter: saturate(1.08) brightness(0.92); animation: td-drift 40s ease-in-out infinite alternate; }
+@keyframes td-drift { to { transform: scale(1.06) translate(-1%, 1%); } }
+.td-rays {
+  position: absolute; inset: -10% -20% 20%; mix-blend-mode: screen; opacity: 0.55; filter: blur(8px);
+  background: repeating-linear-gradient(104deg, transparent 0 70px, rgba(170, 232, 255, 0.07) 90px, rgba(200, 240, 255, 0.12) 104px, transparent 140px);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%); mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  animation: td-rays 18s linear infinite alternate;
+}
+.td-rays--b { opacity: 0.35; background-size: 380px 100%; animation-duration: 26s; animation-direction: alternate-reverse; transform: skewX(-6deg); }
+@keyframes td-rays { from { background-position: 0 0; } to { background-position: 260px 0; } }
+.td-surface { position: absolute; inset: 0 0 auto; height: 22vh; background: linear-gradient(to bottom, rgba(160, 225, 245, 0.22), transparent); }
+.td-deep { position: absolute; inset: auto 0 0; height: 45vh; background: linear-gradient(to top, rgba(2, 14, 24, 0.82), transparent); }
+
+[data-theme="tide"] .nav .brand { display: flex; align-items: baseline; gap: 8px; font: 400 30px/1 "Instrument Serif", serif; }
+[data-theme="tide"] .nav .brand span { font: 500 16px "Shippori Mincho", serif; color: var(--accent); }
+[data-theme="tide"] .nav .links { margin-left: auto; }
+[data-theme="tide"] .pill { border: 1px solid var(--hair); background: rgba(230, 243, 245, 0.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+[data-theme="tide"] .pill:hover { background: var(--ink); color: var(--bg); }
+
+/* the copy sits in the open water at the top left, as in the key art; the banner streams in below it */
+[data-theme="tide"] .copy { position: absolute; left: var(--gutter); top: clamp(88px, 14vh, 150px); width: min(660px, 48vw); }
+[data-theme="tide"] .copy :is(.kicker, h1, .lede) { text-shadow: 0 1px 18px rgba(3, 22, 36, 0.6); } /* legible when the silk drifts behind */
+[data-theme="tide"] .kicker { font: 10.5px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+[data-theme="tide"] h1 { margin: 14px 0 14px -0.03em; font: 400 clamp(50px, 6.2vw, 112px)/0.9 "Instrument Serif", serif; letter-spacing: -0.02em; }
+[data-theme="tide"] h1 em { font-style: italic; color: #bfe9f5; }
+[data-theme="tide"] .lede { max-width: 40ch; font-size: 15px; color: var(--muted); }
+[data-theme="tide"] .cta { display: flex; align-items: center; gap: 18px; margin-top: 22px; font: 11px var(--mono); letter-spacing: 0.06em; color: var(--muted); }
+[data-theme="tide"] .btn {
+  display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 22px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); font: 400 18px "Instrument Serif", serif; transition: background-color 0.3s;
+}
+[data-theme="tide"] .btn i { font-style: normal; font-family: var(--sans); font-size: 14px; transition: transform 0.4s var(--ease); }
+[data-theme="tide"] .btn:hover { background: #bfe9f5; }
+[data-theme="tide"] .btn:hover i { transform: translateX(4px); }
+
+[data-theme="tide"] .gauge { position: absolute; right: var(--gutter); top: 52vh; height: 30vh; width: 92px; font: 10px var(--mono); letter-spacing: 0.08em; color: var(--muted); }
+[data-theme="tide"] .ruler {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 14px;
+  background: linear-gradient(var(--hair), var(--hair)) right / 1px 100% no-repeat,
+    repeating-linear-gradient(to bottom, rgba(230, 243, 245, 0.35) 0 1px, transparent 1px 10.4%) right / 14px 100% no-repeat,
+    repeating-linear-gradient(to bottom, rgba(230, 243, 245, 0.18) 0 1px, transparent 1px 2.08%) right / 7px 100% no-repeat;
+}
+[data-theme="tide"] .ruler b { position: absolute; right: 22px; font-weight: 400; transform: translateY(-50%); }
+[data-theme="tide"] .ruler b:nth-child(1) { top: 0; } [data-theme="tide"] .ruler b:nth-child(2) { top: 25%; } [data-theme="tide"] .ruler b:nth-child(3) { top: 50%; }
+[data-theme="tide"] .ruler b:nth-child(4) { top: 75%; } [data-theme="tide"] .ruler b:nth-child(5) { top: 100%; }
+[data-theme="tide"] .mark { position: absolute; right: 0; top: clamp(0%, var(--y, 62%), 100%); transform: translateY(-50%); display: flex; align-items: center; gap: 8px; color: var(--ink); transition: top 0.25s var(--ease); }
+[data-theme="tide"] .mark i { width: 22px; height: 1px; background: var(--accent); order: 2; }
+[data-theme="tide"] .mark .depth { white-space: nowrap; padding: 3px 7px; border-radius: 999px; background: rgba(4, 27, 44, 0.55); }
+[data-theme="tide"] .temp { position: absolute; right: 0; top: calc(100% + 18px); white-space: nowrap; }
+
+@media (max-aspect-ratio: 21/20) {
+  [data-theme="tide"] .copy { top: auto; bottom: 108px; width: min(560px, 80vw); }
+  [data-theme="tide"] h1 { font-size: clamp(54px, 9vw, 96px); }
+  [data-theme="tide"] .gauge { display: none; }
+}
+@media (max-width: 760px) {
+  [data-theme="tide"] .nav .pill { margin-left: auto; }
+  [data-theme="tide"] h1 { font-size: 46px; margin: 10px 0 10px; }
+  [data-theme="tide"] .lede { font-size: 13.5px; }
+  [data-theme="tide"] .cta { margin-top: 14px; }
+  [data-theme="tide"] .gauge { display: none; }
+}
+
+/* the sunlit surface is bright up top: a soft shadow keeps the nav legible over it */
+[data-theme="tide"] .nav { text-shadow: 0 1px 16px rgba(3, 22, 36, 0.75), 0 0 2px rgba(3, 22, 36, 0.4); }
+[data-theme="tide"] .nav::before { content: ""; position: absolute; inset: 0 0 -48px; z-index: -1; pointer-events: none; background: linear-gradient(rgba(4, 27, 44, 0.5), transparent); }
+[data-theme="tide"] .nav .links a { opacity: 0.92; }

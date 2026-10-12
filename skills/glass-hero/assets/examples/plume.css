@@ -1,0 +1,2 @@
+/* 06 Plume (extra, light only): rainbow-fringed smoke on black. */
+body[data-theme="plume"] { --bg: #040405; --ink: #f3f1ee; }

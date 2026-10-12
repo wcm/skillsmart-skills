@@ -1,0 +1,63 @@
+{
+  "photo": "Photorealistic, extremely detailed, natural light, subtle film grain. No text, no lettering, no signage, no logos, no watermark, no border.",
+  "flat": "Flat, front-on, evenly lit, filling the whole frame edge to edge. No text, no lettering, no seals, no signature, no watermark, no border, no frame.",
+  "images": {
+    "afterhours-human": {
+      "page": "afterhours",
+      "role": "the picture printed on the vinyl",
+      "ratio": "4:5",
+      "prompt": "High-fashion CGI portrait of a digital human, head and shoulders, facing the camera: an androgynous synthetic model with flawless porcelain-white skin that turns into polished liquid chrome along the jaw, neck and collarbones, hair-fine luminous seams like circuit traces running across the cheekbones and temples, a sleek wraparound holographic visor reflecting iridescent cyan and magenta, short platinum hair slicked back and wet, tiny chrome implants at the temples. Calm, cool, unreadable expression. Hard magenta rim light from the left, electric cyan rim light from the right, pure black background, a few faint horizontal glitch scanlines. Hyper-real 3D render, razor sharp, futuristic, editorial. Fully synthetic, clearly not a real person."
+    },
+    "afterhours-city": {
+      "page": "afterhours",
+      "role": "the backdrop behind the cloth",
+      "ratio": "16:9",
+      "prompt": "Cyberpunk megacity at night in heavy rain, from street level looking up a canyon of colossal dark brutalist towers wrapped in thin glowing magenta, cyan and acid-violet light strips, enormous translucent holographic projections of abstract digital human faces floating between the buildings, streams of flying-vehicle light trails, volumetric fog and drizzle, a wet mirror-like plaza reflecting everything. Futuristic western megastructure architecture, no Asian characters, no lettering, no signs, no text anywhere. Cinematic anamorphic look, deep blacks."
+    },
+    "noren-art": {
+      "page": "noren",
+      "role": "the picture dyed into the linen (its darks become indigo)",
+      "ratio": "1:1",
+      "style": "flat",
+      "prompt": "A single bold Japanese sumi-e ink painting of a great crashing wave with curling claw-like foam and flying spray, black ink on white washi paper, confident expressive brushwork, dry-brush texture at the edges, generous empty space."
+    },
+    "noren-plate": {
+      "page": "noren",
+      "role": "the doorway the panels hang in",
+      "ratio": "16:9",
+      "prompt": "Straight-on, perfectly symmetrical photograph of the entrance of a traditional Kyoto machiya townhouse on a bright early morning, high-key and airy. A wide open doorway sits exactly in the centre of the frame, about a third of the frame wide and two thirds of its height; nothing hangs in it and nothing stands in it. Through the doorway, a narrow sunlit inner courtyard garden glows with soft white-gold morning light: moss, a stone lantern and young maple leaves, all softly out of focus. On both sides, sun-bleached pale cedar koshi lattice and cream lime-plaster walls; a pale granite step across the bottom; a faint warm haze. Calm, minimal, serene, lots of light, gentle warm tones, 50mm lens at eye level."
+    },
+    "noren-paper": {
+      "page": "noren",
+      "role": "the paper behind the copy",
+      "ratio": "16:9",
+      "prompt": "Flat, evenly lit, straight-down photograph of a large sheet of warm ivory handmade xuan paper with a faint raw-silk sheen, delicate long fibres, very subtle mottling and soft natural texture, filling the whole frame edge to edge. No objects, no folds, no shadows, no vignette."
+    },
+    "moongate-moon": {
+      "page": "moongate",
+      "role": "the picture strung in beads (one bead per pixel; keep it bold and simple)",
+      "ratio": "1:1",
+      "style": "none",
+      "prompt": "A full moon with a branch of plum blossoms, in the style of a Song dynasty painting on dark night-blue silk: a huge luminous pale-gold full moon filling the centre of the square, a dark gnarled plum branch crossing in front of it from the lower left to the upper right with clusters of coral-red and white blossoms and buds, deep indigo night all around the moon. Bold simple shapes, high contrast, centred composition, flat front-on, filling the frame edge to edge. No seals, no calligraphy, no text, no border."
+    },
+    "moongate-garden": {
+      "page": "moongate",
+      "role": "the garden seen through the gate",
+      "ratio": "16:9",
+      "prompt": "Night photograph of a classical Chinese scholar's garden under a full moon, seen straight on from inside a dark pavilion: a still pond in the middle distance reflecting the moon, a gnarled plum tree in white and pale pink blossom, pale Taihu rockery stones, a low curved stone bridge, soft silver mist over the water, a few distant warm paper lanterns glowing as soft bokeh, deep indigo-blue night. Calm, poetic, cinematic, shallow depth of field, very dark overall with luminous highlights."
+    },
+    "tide-banner": {
+      "page": "tide",
+      "role": "the print along the silk banner (long, flat artwork)",
+      "ratio": "21:9",
+      "style": "none",
+      "prompt": "Flat artwork for a long horizontal luxury silk scarf, shown perfectly straight-on and filling the entire frame edge to edge: the printed design itself, not a photo of fabric. On a clean, bright ivory-white silk ground: a loose procession of seven kohaku koi carp, white bodies with bold vermilion-red patches and a few tiny gold-leaf accents, swimming from left to right along the length at gently varied angles, interleaved with flat round green lotus pads in several sizes with fine radiating veins and thin gold outlines, and two pale blush-pink lotus buds. Generous white space between the motifs; a few pads and fins run off the top and bottom edges. Refined contemporary Japanese textile design: crisp fine-line drawing with soft watercolour shading, luminous and airy. No fabric texture, no folds, no shadows, no perspective, no border, no frame, no text, no signature, no seal."
+    },
+    "tide-plate": {
+      "page": "tide",
+      "role": "the water the banner streams through",
+      "ratio": "16:9",
+      "prompt": "Underwater photograph in deep, clear blue water: sunlight caustics ripple across the frame, god rays stream down from the rippling silver surface at the top, fine bubbles rise, and the faint ruins of a submerged stone temple sit in the blue haze far below. Open water fills most of the frame and nothing floats in it. Serene, dreamlike, cinematic, deep blue with luminous highlights."
+    }
+  }
+}

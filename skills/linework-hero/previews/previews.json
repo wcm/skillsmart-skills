@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Tally — an event pipeline that builds stop by stop as you read",
+      "prompt": "/linework-hero Draw my system: apps → collector → stream → processors → lake and warehouse → dashboard, as the hero of an engineering blog post"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Orra — a camera lens taken apart on scroll, a callout per part",
+      "prompt": "/linework-hero A lens product page: scroll takes the 35 mm f/1.4 apart into its seven parts, with a callout for each"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Hollis — a room you shop piece by piece, in cutaway",
+      "prompt": "/linework-hero A furniture shop page: a reading room in cutaway with a price on every piece, click to add, switch the layout"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Hopway — a parcel's journey from shelf to door, driven by the timeline",
+      "prompt": "/linework-hero A parcel tracker: warehouse shelf, sorter, truck, hub, van, house, with the timeline moving one lit parcel through"
+    }
+  ]
+}
