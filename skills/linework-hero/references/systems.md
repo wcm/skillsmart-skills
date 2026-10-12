@@ -104,12 +104,28 @@ it only part way (a broken chain); `null` gives it back.
 ## The page
 
 Make the drawing the hero, not a picture in a box: mount it with `clear: true` (no stage background, labels may
-run past its edge), make the page's background the look's `ground`, and put a grid or a soft light behind it
-that fades out (`examples/pages/*.html` show three ways). Keep labels close: `dy` of about -14, `dx` only to
-point outward.
+run past its edge) and `fill: true`, make the page's background the look's `ground`, and put a grid or a soft light
+behind it that fades out (`examples/pages/*.html` show three ways). Keep labels close: `dy` of about -14, `dx` only
+to point outward.
+
+**Fill.** Without it, the host is a 5:4 box with the drawing in its middle three quarters. With `fill`, the host is
+any box you size in CSS (positioned with insets, or given a height) and the drawing, labels included, is scaled to
+fill it: as large as it fits, centred, or aligned with `fill: [x, y]` from 0 to 1 (`[1, 0.5]` holds it to the right
+edge). Size the host to all the space the drawing may take, less room to breathe: the hero's height below the nav
+less about 48px top and bottom, and everything beside the column of words. Give the section around it `overflow:
+clip` (not `hidden`, which stops a sticky stage sticking). A stage held while words scroll past shares one grid cell
+with them (`grid-area: 1 / 1`, `align-self: start`, as in `data.html`), never a negative margin, which lets it ride
+over whatever follows. Labels that appear only later (the callouts
+of an exploded view) are not in the measured box: pass `crop: [x0, y0, x1, y1]` in viewBox units (`report().box`
+gives the drawing's) with room for them. `handle.crop(box)` moves the view at any time; `camera.html` pulls back
+from the whole lens to its parts as you scroll.
+
+**Words.** Few, and where the drawing leaves room: a title of a few words, one line, the controls. The facts are
+the labels. In a scroll story, each step is a short heading and one line.
 
 ```js
 const handle = LW.mount(document.getElementById("fig"), LW.figures.pipeline, {
+  clear: true, fill: true,                // on the page, filling #fig
   onpick: (id) => showCaption(id),        // hover, or null when the pointer leaves
   onread: (text) => {},                   // the read-out, whenever it changes
   scroll: document.getElementById("track") // optional: input.scroll from this element's scroll progress
@@ -119,8 +135,10 @@ handle.act("verify");                     // once: input.action
 host.addEventListener("lw:verify", (e) => e.detail);
 ```
 
-Patterns in `examples/pages/`: `data.html` (an engineering post: the whole system in the hero, then built stop
-by stop as the article scrolls), `parcels.html` (a tracking page: the timeline moves one lit parcel through a
-warehouse, a truck and a van to a door), `room.html` (a furniture shop: every piece has a price tag, a click adds
-it to the bag, a switch rearranges the room), `camera.html` (a product page that takes the lens apart on scroll
-with a callout per part). `examples/systems/room.js` is a scene built without `LW.system`, piece by piece.
+Patterns in `examples/pages/`: `data.html` (an engineering post: one drawing held on screen beside the words, the
+whole system first, then built stop by stop as you scroll), `parcels.html` (a tracking page: the scene fills the
+screen beside the tracking card, whose timeline moves one lit parcel through a warehouse, a truck and a van to a
+door), `room.html` (a furniture shop: the room fills the hero beside the words; every piece has a price tag,
+a click adds it to the bag, a switch rearranges the room), `camera.html` (a product page: the whole lens fills the
+screen, then the view pulls back as it comes apart on scroll, with a callout per part). `examples/systems/room.js`
+is a scene built without `LW.system`, piece by piece.

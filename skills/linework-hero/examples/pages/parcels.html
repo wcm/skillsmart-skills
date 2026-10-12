@@ -16,7 +16,8 @@
   body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
-  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 28px; padding: 22px 36px; font-size: 15px; }
+  nav.top { position: absolute; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 28px; padding: 22px 36px; font-size: 15px; pointer-events: none; }
+  nav.top > * { pointer-events: auto; }
   .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
   .logo i { width: 26px; height: 26px; border-radius: 7px; background: var(--orange); position: relative; }
   .logo i::after { content: ""; position: absolute; inset: 7px 6px; border: 2px solid #fff; border-radius: 2px; border-top-width: 5px; }
@@ -24,11 +25,12 @@
   nav.top .links a.on { color: var(--ink); }
   nav.top .right { margin-left: auto; display: flex; gap: 12px; align-items: center; }
   .pill { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--ink); font-weight: 500; font-size: 14px; }
-  /* the hero: the scene is drawn straight onto the page, over a dot grid that fades out */
-  .hero { position: relative; min-height: 100vh; overflow: hidden; isolation: isolate; }
-  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(circle, rgba(38, 37, 31, .16) 1.1px, transparent 1.4px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 62% 58% at 62% 54%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 62% 58% at 62% 54%, #000 30%, transparent 80%); }
-  .scene { position: absolute; top: 50%; left: 61%; width: min(1180px, calc(100vh * 1.32), 92vw); transform: translate(-50%, -47%); }
-  .track { position: absolute; z-index: 5; left: 36px; top: 112px; width: 360px; padding: 22px 22px 18px; border-radius: 20px; background: var(--card); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 30px 60px -36px rgba(28, 27, 23, .45), 0 0 0 1px var(--line); }
+  /* the hero: the scene drawn straight onto the page, as large as the screen allows, over a dot grid that
+     fades out; the tracking card in the corner the scene leaves free */
+  .hero { position: relative; height: 100vh; min-height: 680px; overflow: clip; isolation: isolate; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(circle, rgba(38, 37, 31, .16) 1.1px, transparent 1.4px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 52% 60% at 64% 52%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 52% 60% at 64% 52%, #000 30%, transparent 80%); }
+  #fig { position: absolute; top: 92px; bottom: 56px; left: 420px; right: 36px; aspect-ratio: auto; }
+  .track { position: absolute; z-index: 5; left: 36px; top: 104px; width: 352px; padding: 22px 22px 18px; border-radius: 20px; background: var(--card); box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 30px 60px -36px rgba(28, 27, 23, .45), 0 0 0 1px var(--line); }
   .track .id { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
   .track h1 { margin: 12px 0 2px; font-size: 34px; line-height: 1.05; letter-spacing: -.035em; color: var(--ink); font-weight: 600; }
   .track .eta { margin: 0 0 16px; font-size: 15px; }
@@ -45,11 +47,9 @@
   ol.steps li.now button { color: var(--ink); font-weight: 600; }
   ol.steps li.now .d { border-color: var(--orange); background: var(--orange); box-shadow: 0 0 0 4px rgba(255, 91, 31, .18); }
   ol.steps .t { font-family: "JetBrains Mono", monospace; font-size: 12px; }
-  .replay { margin-top: 10px; display: flex; gap: 8px; }
+  .replay { margin-top: 10px; display: flex; }
   .btn { flex: 1; text-align: center; padding: 11px 14px; border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; border: 0; font-family: inherit; }
   .btn.o { background: var(--orange); color: #fff; }
-  .btn.g { background: transparent; box-shadow: 0 0 0 1px var(--line) inset; color: var(--ink); }
-  .hint { position: absolute; z-index: 5; right: 36px; bottom: 28px; font-size: 12px; color: var(--muted); }
   section.opts { max-width: 1180px; margin: 0 auto; padding: 72px 36px 40px; }
   section.opts h2 { font-size: 40px; letter-spacing: -.035em; margin: 0 0 6px; color: var(--ink); font-weight: 600; }
   section.opts p.sub { margin: 0 0 28px; color: var(--muted); font-size: 18px; }
@@ -62,10 +62,9 @@
   footer { max-width: 1180px; margin: 0 auto; padding: 32px 36px 48px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   @media (max-width: 980px) {
     nav.top .links { display: none; }
-    .hero { min-height: 0; display: flex; flex-direction: column; padding-top: 76px; }
-    .scene { position: relative; top: auto; left: auto; transform: none; width: 112%; margin: 0 -6%; order: -1; }
-    .track { position: relative; left: auto; top: auto; width: auto; margin: -20px 16px 24px; }
-    .hint { display: none; }
+    .hero { height: auto; min-height: 0; display: flex; flex-direction: column; padding: 68px 12px 0; }
+    #fig { position: relative; inset: auto; order: -1; width: 100%; aspect-ratio: 8 / 7; }
+    .track { position: relative; left: auto; top: auto; width: auto; margin: 12px 4px 24px; }
     .cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
     section.opts { padding: 48px 16px 24px; }
     nav.top { padding: 16px; }
@@ -80,21 +79,20 @@
 </nav>
 
 <section class="hero">
-  <div class="scene"><div id="fig"></div></div>
+  <div id="fig"></div>
   <aside class="track" aria-label="Tracking">
     <div class="id mono"><span>HW 4821 7703</span><span>from Linden &amp; Co.</span></div>
     <h1 id="status">Picked</h1>
     <p class="eta" id="eta">Packed and labelled in Leipzig.</p>
     <div class="bar"><i id="bar"></i></div>
     <ol class="steps" id="steps"></ol>
-    <div class="replay"><button class="btn o" id="replay" type="button">Replay the journey</button><button class="btn g" type="button">Delivery options</button></div>
+    <div class="replay"><button class="btn o" id="replay" type="button">Replay the journey</button></div>
   </aside>
-  <span class="hint mono">Hover anything in the scene · pick a step to follow the parcel</span>
 </section>
 
 <section class="opts">
   <h2>Not home next time?</h2>
-  <p class="sub">Choose where your parcels go until the van leaves the hub. Your driver sees it on their next stop.</p>
+  <p class="sub">Change it any time before the van leaves the hub.</p>
   <div class="cards">
     <a href="#"><span class="k">NEIGHBOUR</span><b>Leave it next door</b><span>Pick a house; they get a text.</span></a>
     <a href="#"><span class="k">SAFE PLACE</span><b>Back door or porch</b><span>With a photo when it's there.</span></a>
@@ -122,7 +120,8 @@
   const $ = (id) => document.getElementById(id);
   const list = $("steps");
   list.innerHTML = STEPS.map((s, i) => `<li><button type="button" data-i="${i}"><span class="d"></span><span>${s[1]}</span><span class="t">${s[2]}</span></button></li>`).join("");
-  const handle = LW.mount($("fig"), LW.figures.parcels, { clear: true });
+  // fill: the scene takes all of #fig
+  const handle = LW.mount($("fig"), LW.figures.parcels, { clear: true, fill: true });
   window.linework.figure = handle;
 
   let shown = 0, timer = 0;

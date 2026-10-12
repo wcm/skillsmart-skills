@@ -105,11 +105,12 @@ Planes: `"z"` is the ground plane at height `at` (u = x, v = y); `"y"` is a face
 
 ## The handle
 
-`LW.mount(host, fig, { look, camera, value, scroll, clear, onread, onpick })` returns a handle (`clear: true`
-drops the stage's own background and lets labels run past its edge, for a drawing that sits on the page): `send(key, value)`,
-`act(name)`, `setLook(look)`, `set(value)`, `hold([x, y])`, `release()`, `play()`, `stop()`, `settle(ms)`,
-`report()`, `destroy()`, and `readout`, `look`, `value`, `playing`. `onpick(id)` hears hovers, `onread(text)` the
-read-out.
+`LW.mount(host, fig, { look, camera, value, scroll, clear, fill, crop, onread, onpick })` returns a handle (`clear:
+true` drops the stage's own background and lets labels run past its edge, for a drawing that sits on the page;
+`fill: true` or `[x, y]` scales the drawing to fill whatever box the host is, `crop` names that box in viewBox units:
+`references/systems.md`, The page): `send(key, value)`, `act(name)`, `setLook(look)`, `set(value)`, `crop(box)`,
+`hold([x, y])`, `release()`, `play()`, `stop()`, `settle(ms)`, `report()`, `destroy()`, and `readout`, `look`,
+`value`, `playing`. `onpick(id)` hears hovers, `onread(text)` the read-out.
 
 ## The bench page
 
