@@ -27,6 +27,8 @@ const BUCKET = process.env.R2_BUCKET || "skillsmart";
 const ONLY = opt("only", null);
 
 const CATEGORIES = ["web", "slides", "social", "poster", "brand", "motion"];
+// Models a skill can generate with through Skillsmart (apps/web/src/lib/gen/models.ts).
+const GEN_MODELS = ["nano-banana-pro", "kling-v3-pro"];
 const SHIP_EXCLUDE = new Set(["previews", "skillsmart.json", "node_modules", "out", ".DS_Store", ".git"]);
 const MEDIA = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".avif", ".mp4", ".webm", ".woff", ".woff2", ".ttf", ".otf"]);
 const TEXT = new Set([".md", ".txt", ".json", ".js", ".mjs", ".cjs", ".ts", ".py", ".sh", ".html", ".css", ".glsl", ".frag", ".vert", ".yml", ".yaml", ".toml", ".csv", ""]);
@@ -80,6 +82,12 @@ function validate(slug, dir) {
       if (!n || !HOST.test(n.host || "")) errors.push(`network: "${n?.host}" is not a hostname`);
       if (!n?.purpose || n.purpose.length > 80) errors.push(`network: ${n?.host} needs a short "purpose" (≤ 80 characters)`);
     }
+  }
+  // Skills that generate through Skillsmart (paid with credits): the models they may call and a cost estimate.
+  if (meta.generates !== undefined) {
+    const g = meta.generates;
+    if (!g || !Array.isArray(g.models) || !g.models.length || g.models.some((m) => !GEN_MODELS.includes(m))) errors.push(`generates.models must list models from: ${GEN_MODELS.join(", ")}`);
+    if (!g?.estimate || g.estimate.length > 80) errors.push('generates.estimate must be a short cost estimate (≤ 80 characters), e.g. "about 325 credits per page"');
   }
   const skillMd = path.join(dir, "SKILL.md");
   if (!fs.existsSync(skillMd)) errors.push("missing SKILL.md");
@@ -212,7 +220,7 @@ for (const slug of slugs) {
   const entries = walk(dir)
     .filter((f) => !f.symlink && !f.rel.split("/").some((seg) => SHIP_EXCLUDE.has(seg)))
     .map((f) => ({ name: `${slug}/${f.rel}`, data: fs.readFileSync(f.abs) }));
-  entries.push({ name: `${slug}/skill-manifest.json`, data: Buffer.from(JSON.stringify({ slug, version: meta.version, source: SOURCE, name: meta.name, youSay: meta.youSay, needs: meta.needs, byoKey: meta.byoKey ?? null }, null, 2) + "\n") });
+  entries.push({ name: `${slug}/skill-manifest.json`, data: Buffer.from(JSON.stringify({ slug, version: meta.version, source: SOURCE, name: meta.name, youSay: meta.youSay, needs: meta.needs, byoKey: meta.byoKey ?? null, ...(meta.generates ? { generates: meta.generates } : {}) }, null, 2) + "\n") });
   const archive = zip(entries);
   const sha256 = crypto.createHash("sha256").update(archive).digest("hex");
   const zipKey = `skills/${SOURCE}/${slug}/${meta.version}.zip`;
