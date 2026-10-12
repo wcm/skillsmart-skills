@@ -1,0 +1,11 @@
+/* 05 Halo (extra, light only): a gradient sky; the copy sits high, with no scrim (a flat scrim would show). */
+body[data-theme="halo"] {
+  --bg: #6d7884; --ink: #fffaf3;
+  --dim: rgba(255, 250, 243, 0.78); --faint: rgba(255, 250, 243, 0.3);
+  --dock: rgba(28, 38, 48, 0.26); --dock-line: rgba(255, 250, 243, 0.2);
+}
+body[data-theme="halo"]::after { display: none; }
+[data-theme="halo"] .copy { top: clamp(110px, 18vh, 180px); transform: none; }
+[data-theme="halo"] #hero > .copy { animation-name: rise; }
+[data-theme="halo"] :is(h1, .lede) { text-shadow: 0 1px 24px rgba(30, 50, 64, 0.35); }
+[data-theme="halo"] h1 em { background: none; color: var(--ink); }

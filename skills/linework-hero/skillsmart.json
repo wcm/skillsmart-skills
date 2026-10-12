@@ -1,0 +1,48 @@
+{
+  "slug": "linework-hero",
+  "name": "Linework Hero",
+  "tagline": "Draw your system as an animated isometric diagram with real labels and moving packets, made to be the hero of a page.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "isometric",
+    "diagram",
+    "architecture diagram",
+    "system diagram",
+    "data flow",
+    "draw my system",
+    "exploded view",
+    "illustration",
+    "interactive",
+    "line art",
+    "hero section"
+  ],
+  "youSay": "/linework-hero Draw my system: apps → collector → stream → warehouse → dashboard, as the hero of a blog post",
+  "whatYouGet": [
+    "An animated isometric diagram of your system: correct labels, links that route themselves, packets, hover lifts and click-to-open layers",
+    "The page around it: a blog post that builds it as you scroll, a tracker, a shop or a product page that takes it apart",
+    "Fourteen looks (paper, blueprint, riso, neon, terminal, sage…) or one made from your brand's hue",
+    "Plain HTML and JS, or one self-contained file to publish or send"
+  ],
+  "goodFit": [
+    "Engineering blogs, docs and product pages that explain how something works",
+    "Exploded product views, process pages and interactive empty states"
+  ],
+  "notFor": [
+    "Huge diagrams with dozens of nodes (split them into two)",
+    "Photorealistic 3D or charts of data"
+  ],
+  "youBring": [
+    "The system: its parts and how they connect (or the object)",
+    "Optional: where it will live, a look or a brand colour"
+  ],
+  "needs": [
+    "Node 18+",
+    "A browser"
+  ],
+  "credits": "Built on Hairline by Lucas Marques (MIT)",
+  "testedIn": [
+    "Claude Code"
+  ]
+}

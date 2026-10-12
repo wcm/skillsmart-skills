@@ -1,0 +1,15 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
+/* 02 Brique (Cubes): a pearl page and a black-ruled light box; an architectural serif. */
+body[data-theme="cubes"] {
+  --bg: #eceae6; --ink: #141416;
+  --dim: rgba(20, 20, 22, 0.62); --faint: rgba(20, 20, 22, 0.1);
+  --dock: rgba(255, 255, 255, 0.55); --dock-line: rgba(20, 20, 22, 0.1);
+  --display: "Instrument Serif", Georgia, serif; --scrim: 80%;
+}
+[data-theme="cubes"] .brand { font: 400 26px/1 "Instrument Serif", serif; letter-spacing: -0.01em; }
+[data-theme="cubes"] .brand span { font: 400 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); align-self: flex-end; margin-bottom: 3px; }
+[data-theme="cubes"] .copy { width: min(28rem, 30vw); } /* the wall drifts left: keep the copy clear of it */
+[data-theme="cubes"] h1 { font-weight: 400; letter-spacing: -0.03em; line-height: 0.95; font-size: clamp(44px, 5vw, 88px); }
+[data-theme="cubes"] h1 em { font-style: italic; background: none; color: var(--ink); -webkit-text-fill-color: currentColor; }

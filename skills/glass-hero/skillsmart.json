@@ -1,0 +1,33 @@
+{
+  "slug": "glass-hero",
+  "name": "Glass Hero",
+  "tagline": "A landing-page hero around an abstract 3D glass object that splits light into vivid rainbows and turns under your cursor.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["glass", "prism", "rainbow", "refraction", "dispersion", "3D", "three.js", "WebGL", "shader", "hero section", "landing page", "interactive"],
+  "youSay": "/glass-hero A launch page for Spectra, an AI lab whose model sees every colour in an image",
+  "whatYouGet": [
+    "A landing-page hero with a live 3D glass object: prism rods, glass blocks, a ribbed knot or a glass flower",
+    "Real dispersive refraction: every edge splits light into its spectrum, in a colour scheme made for the brand",
+    "The page around it: brand, headline, copy, call to action, type and layouts for desktop and phone",
+    "A static site (HTML, CSS, JS and three.js) you can host anywhere"
+  ],
+  "goodFit": [
+    "Product launches, AI and tech brands, beauty, events and studios that want a striking first screen",
+    "Brands that want something abstract and premium rather than a product photo"
+  ],
+  "notFor": [
+    "Pages that must work without WebGL or on very old devices",
+    "Long scrolling pages or online shops"
+  ],
+  "youBring": [
+    "What the page is for",
+    "Optional: the brand name, colours and tone"
+  ],
+  "needs": ["Python 3", "A modern browser"],
+  "network": [
+    { "host": "cdn.jsdelivr.net", "purpose": "the three.js library" }
+  ],
+  "testedIn": ["Claude Code"]
+}

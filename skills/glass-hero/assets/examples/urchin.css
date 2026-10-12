@@ -1,0 +1,7 @@
+/* 01 Spectra (Urchin): black void, white light. Geist light throughout, the spectrum on one phrase. */
+body[data-theme="urchin"] { --bg: #020308; --ink: #f3f1ee; }
+[data-theme="urchin"] .ur-mark {
+  width: 14px; height: 14px; border-radius: 50%; flex: none;
+  background: conic-gradient(from 90deg, #ff4d4d, #ffe14a, #4fe08a, #3fd0ff, #5a6bff, #b65cff, #ff4d4d);
+  box-shadow: 0 0 14px rgba(160, 200, 255, 0.45);
+}

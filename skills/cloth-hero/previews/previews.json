@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Afterhours — holographic vinyl you pull, crease and drop",
+      "prompt": "/cloth-hero A digital-fashion label: a rendered model printed on holographic vinyl, clipped in the rain, that you can pull and crease"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Noren — indigo linen panels you lift and walk through",
+      "prompt": "/cloth-hero An indigo dye atelier in Kyoto: a noren curtain with an ink wave, dyed into hemp linen, that parts as you walk in"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Moon Gate — a full moon strung in pearls, coral and onyx",
+      "prompt": "/cloth-hero A haute joaillerie house: a full moon and plum branch strung as a bead curtain of pearls, coral and onyx in a moon gate"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Tide — a koi silk banner streaming under water",
+      "prompt": "/cloth-hero A silk maison: a long koi-and-lotus silk banner streaming in deep water, with caustics and bubbles"
+    }
+  ]
+}

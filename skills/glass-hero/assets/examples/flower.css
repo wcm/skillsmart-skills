@@ -1,0 +1,9 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+
+/* 04 Iris Nº 4 (Flower): black, hot pink, violet and electric blue through a soft lens; a perfumer's serif. */
+body[data-theme="flower"] { --bg: #06050c; --ink: #f6eef4; --display: "Cormorant Garamond", Georgia, serif; }
+[data-theme="flower"] .brand { font: 400 22px/1 "Cormorant Garamond", serif; letter-spacing: 0.18em; text-transform: uppercase; }
+[data-theme="flower"] h1 { font-weight: 300; letter-spacing: -0.02em; line-height: 0.95; font-size: clamp(50px, 6.2vw, 108px); }
+[data-theme="flower"] h1 em { font-style: italic; background: linear-gradient(90deg, #ff8fd0, #c58bff 55%, #7aa8ff); -webkit-background-clip: text; background-clip: text; }
+[data-theme="flower"] .btn { font-family: "Cormorant Garamond", serif; font-size: 19px; }

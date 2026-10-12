@@ -1,0 +1,65 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Noto+Serif+SC:wght@400;600;900&display=swap");
+
+/* ========================================================================================================
+   03 MOON GATE 
+   ======================================================================================================== */
+body[data-theme="moongate"] {
+  --bg: #190807; --ink: #f0e6d2; --muted: rgba(240, 230, 210, 0.6); --hair: rgba(240, 230, 210, 0.16);
+  --accent: #d9b26a; --dock: rgba(30, 10, 8, 0.55);
+}
+.mg-garden { position: absolute; background: url(../img/moongate-garden.webp) center / 100% 100% no-repeat; filter: saturate(1.05) brightness(0.72); }
+.mg-haze {
+  position: absolute; transform: translate(-50%, -50%); border-radius: 50%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, rgba(150, 175, 230, 0.08), rgba(150, 175, 230, 0.03) 70%, transparent);
+  animation: mg-breathe 9s ease-in-out infinite;
+}
+@keyframes mg-breathe { 50% { opacity: 0.6; } }
+
+[data-theme="moongate"] .nav .brand { display: flex; align-items: baseline; gap: 12px; font: 500 21px/1 "Bodoni Moda", serif; letter-spacing: 0.34em; }
+[data-theme="moongate"] .nav .brand span { font: 600 15px "Noto Serif SC", serif; letter-spacing: 0; color: var(--accent); }
+[data-theme="moongate"] .nav .links { margin-left: auto; font-size: 12.5px; letter-spacing: 0.06em; }
+[data-theme="moongate"] .pill { border: 1px solid rgba(217, 178, 106, 0.6); color: var(--ink); letter-spacing: 0.04em; }
+[data-theme="moongate"] .pill:hover { background: var(--accent); color: #1a0806; border-color: var(--accent); }
+
+[data-theme="moongate"] .copy { position: absolute; left: var(--gutter); top: 50%; transform: translateY(-44%); width: min(470px, 30vw); }
+[data-theme="moongate"] #hero > .copy { animation-name: rise-mg; }
+@keyframes rise-mg { from { opacity: 0; transform: translateY(-38%); } }
+[data-theme="moongate"] .kicker { font: 10.5px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+[data-theme="moongate"] .kicker span { font: 600 12px "Noto Serif SC", serif; letter-spacing: 0.2em; }
+[data-theme="moongate"] h1 { margin: 20px 0 22px -0.02em; font: 400 clamp(44px, 4.8vw, 84px)/0.98 "Bodoni Moda", serif; letter-spacing: -0.015em; }
+[data-theme="moongate"] h1 em { font-style: italic; color: #e9cf96; }
+[data-theme="moongate"] .lede { max-width: 36ch; font-size: 14.5px; line-height: 1.62; color: var(--muted); }
+[data-theme="moongate"] .cta { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 28px; font: 10.5px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+[data-theme="moongate"] .btn {
+  display: inline-flex; align-items: center; gap: 12px; height: 46px; padding: 0 24px; border-radius: 999px;
+  background: var(--accent); color: #1a0806; font: 500 16px "Bodoni Moda", serif; letter-spacing: 0.02em; text-transform: none;
+  transition: background-color 0.3s;
+}
+[data-theme="moongate"] .btn i { font-style: normal; font-family: var(--sans); font-size: 13px; transition: transform 0.4s var(--ease); }
+[data-theme="moongate"] .btn:hover { background: #f0dcae; }
+[data-theme="moongate"] .btn:hover i { transform: translateX(4px); }
+[data-theme="moongate"] .idiom { position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+[data-theme="moongate"] .idiom .zh { writing-mode: vertical-rl; font: 600 22px/1 "Noto Serif SC", serif; letter-spacing: 0.32em; color: var(--accent); }
+[data-theme="moongate"] .idiom .py { font: italic 400 13px "Bodoni Moda", serif; color: var(--ink); white-space: nowrap; }
+[data-theme="moongate"] .idiom p:last-child { width: 112px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+
+@media (max-aspect-ratio: 21/20) {
+  [data-theme="moongate"] .copy { top: auto; bottom: 104px; transform: none; width: min(560px, 82vw); }
+  [data-theme="moongate"] #hero > .copy { animation-name: rise; }
+  [data-theme="moongate"] .idiom { top: 12vh; transform: none; }
+  [data-theme="moongate"] .idiom .py, [data-theme="moongate"] .idiom p:last-child { display: none; }
+}
+@media (max-width: 760px) {
+  [data-theme="moongate"] .nav .pill { margin-left: auto; }
+  [data-theme="moongate"] .nav .brand { font-size: 18px; }
+  [data-theme="moongate"] h1 { font-size: 38px; margin: 10px 0 10px; }
+  [data-theme="moongate"] .lede { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  [data-theme="moongate"] .cta { margin-top: 14px; }
+  [data-theme="moongate"] .idiom { display: none; }
+}
+
+/* the hint sits in the copy column, clear of the cloth */
+@media (min-width: 761px) {
+  [data-theme="moongate"] .foot .hint { left: var(--gutter); bottom: 58px; transform: none; animation-name: hint-left; }
+}

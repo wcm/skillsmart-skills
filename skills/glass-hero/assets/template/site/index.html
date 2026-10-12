@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050507'/%3E%3Cpath d='M16 7 25 24H7z' fill='none' stroke='%23f2efe9' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M4 17h8' stroke='%23f2efe9' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M20 15l8-3' stroke-width='1.4' stroke-linecap='round' stroke='%23ff5a5a'/%3E%3Cpath d='M20.5 16.5l8 0' stroke-width='1.4' stroke-linecap='round' stroke='%2350e08a'/%3E%3Cpath d='M21 18l8 3' stroke-width='1.4' stroke-linecap='round' stroke='%236a7bff'/%3E%3C/svg%3E">
+  <title>{{BRAND}}</title>
+  <meta name="description" content="{{BRAND}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@300..500&display=swap">
+  <link rel="stylesheet" href="base.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+  </script>
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <main id="hero"></main>
+  <nav class="dock" aria-label="Pages"></nav>
+  <div id="veil" class="solid" aria-hidden="true"></div>
+  <noscript><p class="nojs">This page needs JavaScript and WebGL.</p></noscript>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@500..800&display=swap");
+
+/* 03 Loop (Twist): a dark room of hot orange, electric blue and magenta glows; a loud festival display face. */
+body[data-theme="twist"] { --bg: #050309; --ink: #f6f2ee; --display: "Syne", var(--sans); }
+[data-theme="twist"] .brand { font: 800 21px/1 "Syne", sans-serif; letter-spacing: -0.03em; }
+[data-theme="twist"] .brand span { font: 500 10px var(--mono); letter-spacing: 0.08em; margin-left: 6px; padding: 3px 6px; border-radius: 99px; border: 1px solid var(--faint); }
+[data-theme="twist"] h1 { font-weight: 800; letter-spacing: -0.055em; line-height: 0.88; font-size: clamp(54px, 7vw, 128px); }
+[data-theme="twist"] h1 em { background: linear-gradient(90deg, #ff7a1a, #ff3d9a 45%, #3f7bff); -webkit-background-clip: text; background-clip: text; }
+[data-theme="twist"] .btn { background: linear-gradient(90deg, #ff7a1a, #ff3d9a); color: #fff; }

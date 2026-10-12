@@ -1,0 +1,77 @@
+/* This page's fonts (the shell's Geist and Geist Mono load in index.html). */
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap");
+
+/* ========================================================================================================
+   02 NOREN
+   ======================================================================================================== */
+body[data-theme="noren"] {
+  --bg: #ece4d3; --ink: #1c2a4f; --muted: rgba(28, 42, 79, 0.62); --hair: rgba(28, 42, 79, 0.18);
+  --accent: #c8642a; --dock: rgba(240, 233, 219, 0.72);
+}
+.nr-plate { position: absolute; background: url(../img/noren-plate.webp) no-repeat; }
+.nr-glow {
+  position: absolute; width: 46vmin; height: 64vmin; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255, 236, 196, 0.55), rgba(255, 226, 170, 0.18) 55%, transparent);
+  mix-blend-mode: screen; filter: blur(10px); animation: nr-breathe 7s ease-in-out infinite;
+}
+@keyframes nr-breathe { 50% { opacity: 0.72; transform: translate(-50%, -50%) scale(1.06); } }
+.nr-paper { position: absolute; inset: 0; z-index: -1; background: #ede5d4 url(../img/noren-paper.webp) center / cover; background-blend-mode: multiply; }
+.nr-rule { position: absolute; top: 0; bottom: 0; left: calc(30vw - 22px); width: 1px; background: rgba(28, 42, 79, 0.14); }
+.nr-plate { box-shadow: 0 30px 60px -40px rgba(60, 40, 20, 0.45); }
+
+[data-theme="noren"] .nav .brand { display: flex; align-items: baseline; gap: 8px; font-family: "Shippori Mincho", serif; }
+[data-theme="noren"] .nav .brand b { font-size: 27px; font-weight: 800; line-height: 1; }
+[data-theme="noren"] .nav .brand span { font-size: 17px; font-weight: 600; letter-spacing: 0.04em; }
+[data-theme="noren"] .nav .sub { font: 10.5px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+[data-theme="noren"] .nav .links { margin-left: auto; }
+[data-theme="noren"] .pill { background: var(--ink); color: #f1e9d8; }
+[data-theme="noren"] .pill:hover { background: var(--accent); }
+
+[data-theme="noren"] .copy { position: absolute; left: var(--gutter); top: 19vh; width: calc(30vw - var(--gutter) - 44px); max-width: 440px; }
+[data-theme="noren"] .kicker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: 12.5px; color: var(--muted); }
+[data-theme="noren"] .kicker span { font: 600 16px "Shippori Mincho", serif; color: var(--ink); letter-spacing: 0.08em; }
+[data-theme="noren"] .kicker em { font: italic 12.5px var(--sans); color: var(--accent); }
+[data-theme="noren"] h1 { margin: 22px 0 22px -0.03em; font: 500 clamp(40px, 4.6vw, 80px)/1.02 "Shippori Mincho", serif; letter-spacing: -0.025em; }
+[data-theme="noren"] .lede { font-size: 14.5px; line-height: 1.62; color: var(--muted); max-width: 40ch; }
+[data-theme="noren"] .cta { display: flex; align-items: center; gap: 18px; margin-top: 26px; font: 11px var(--mono); letter-spacing: 0.06em; color: var(--muted); }
+[data-theme="noren"] .btn.walk {
+  height: 46px; padding: 0 26px; border-radius: 999px; background: var(--ink); color: #f1e9d8; white-space: nowrap;
+  font: 600 15px "Shippori Mincho", serif; letter-spacing: 0.06em; transition: background-color 0.3s, transform 0.4s var(--ease);
+}
+[data-theme="noren"] .btn.walk:hover { background: var(--accent); transform: translateY(-1px); }
+[data-theme="noren"] .facts { display: grid; grid-template-columns: auto auto 1fr; gap: 20px; margin-top: 7vh; padding-top: 16px; border-top: 1px solid var(--hair); }
+[data-theme="noren"] .facts dt { font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+[data-theme="noren"] .facts dd { margin-top: 4px; font: 500 15px "Shippori Mincho", serif; }
+[data-theme="noren"] .vert {
+  position: absolute; right: var(--gutter); top: 21vh; writing-mode: vertical-rl;
+  font: 600 15px "Shippori Mincho", serif; letter-spacing: 0.34em; color: var(--ink);
+  padding: 14px 8px; border-radius: 999px; background: rgba(244, 238, 226, 0.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+[data-theme="noren"] .foot > span:last-child { color: var(--ink); background: rgba(244, 238, 226, 0.62); padding: 6px 10px; border-radius: 999px; }
+
+@media (max-width: 760px), (max-aspect-ratio: 21/20) {
+  .nr-rule { display: none; }
+  [data-theme="noren"] .nav .sub { display: none; }
+  [data-theme="noren"] .nav .pill { margin-left: auto; }
+  [data-theme="noren"] .copy { top: calc(58vh + 18px); left: var(--gutter); right: var(--gutter); width: auto; }
+  [data-theme="noren"] .kicker { font-size: 11px; }
+  [data-theme="noren"] .kicker em { display: none; }
+  [data-theme="noren"] h1 { font-size: 36px; margin: 8px 0 8px; }
+  [data-theme="noren"] .lede { font-size: 12.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  [data-theme="noren"] .cta { margin-top: 12px; }
+  [data-theme="noren"] .facts, [data-theme="noren"] .vert { display: none; }
+}
+@media (min-width: 761px) and (max-aspect-ratio: 21/20) {
+  [data-theme="noren"] .copy { top: calc(58vh + 4vh); max-width: 640px; }
+  [data-theme="noren"] h1 { font-size: clamp(44px, 6vw, 72px); }
+  [data-theme="noren"] .lede { font-size: 14.5px; -webkit-line-clamp: 4; }
+  [data-theme="noren"] .kicker { font-size: 12.5px; }
+  [data-theme="noren"] .kicker em { display: inline; }
+  [data-theme="noren"] .cta { margin-top: 22px; }
+  [data-theme="noren"] .vert { display: block; top: 12vh; }
+}
+
+/* the hint sits in the copy column, clear of the cloth */
+@media (min-width: 761px) {
+  [data-theme="noren"] .foot .hint { left: var(--gutter); bottom: 58px; transform: none; animation-name: hint-left; }
+}

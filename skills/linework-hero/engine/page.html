@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Linework</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 4 28 10v12L16 28 4 22V10z' fill='none' stroke='%23888' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M4 10l12 6 12-6M16 16v12' fill='none' stroke='%23888' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+  :root { --bg: #fff; --ink: #232327; --muted: #77777f; --line: #e7e7eb; --accent: #232327; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); transition: background-color .4s, color .4s; }
+  body { font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  a { color: inherit; }
+  .mono, .tag, .label, output, .top .hint { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .top { display: flex; align-items: center; gap: 8px; max-width: 1080px; margin: 0 auto; padding: 16px; font-size: 13px; }
+  .brand { font-weight: 600; text-decoration: none; letter-spacing: -.01em; }
+  .top .sep { color: var(--muted); }
+  .top .hint { margin-left: auto; color: var(--muted); font-size: 11px; text-align: right; }
+  main { max-width: 760px; margin: 0 auto; padding: 4px 16px 56px; }
+  .plate { position: relative; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .tag { position: absolute; top: 12px; z-index: 2; font-size: 11px; line-height: 1; color: var(--muted); pointer-events: none; letter-spacing: .02em; }
+  #name { left: 14px; }
+  #read { right: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  #means { margin: 14px 2px 0; text-wrap: pretty; }
+  .controls { display: grid; gap: 12px; margin-top: 16px; }
+  .looks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px 0 7px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); font: 12px/1 inherit; cursor: pointer; }
+  .chip:hover { border-color: var(--muted); }
+  .chip[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .sw { display: inline-flex; width: 26px; height: 16px; border-radius: 5px; overflow: hidden; outline: 1px solid rgba(128,128,128,.35); outline-offset: -1px; }
+  .sw i { flex: 1; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+  .label { font-size: 11px; color: var(--muted); }
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .seg button { height: 30px; padding: 0 10px; border: 0; background: transparent; color: var(--muted); font: 12px/1 inherit; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  input[type="range"] { flex: 1 1 120px; min-width: 0; accent-color: var(--ink); }
+  output { font-size: 11px; min-width: 4ch; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .play { height: 30px; padding: 0 14px; border: 1px solid var(--line); border-radius: 9px; background: transparent; color: var(--ink); font: 12px/1 inherit; cursor: pointer; }
+  .play[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  button:focus-visible, input:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 2px; }
+  #huerow[hidden] { display: none; }
+  #error { margin: 12px 0 0; padding-left: 10px; border-left: 2px solid var(--accent); font-size: 12px; }
+  .scrollcue { display: none; }
+  body.scrolly .track { height: 320vh; }
+  body.scrolly .sticky { position: sticky; top: 8px; }
+  body.scrolly main { max-width: min(760px, calc((100vh - 230px) * 1.25 + 32px)); }
+  body.scrolly .scrollcue { display: block; position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 2; font: 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); pointer-events: none; }
+  body.bare .top, body.bare #means, body.bare .controls, body.bare .scrollcue { display: none; }
+  body.bare main { padding: 0; max-width: none; }
+  body.bare .plate { border: 0; border-radius: 0; }
+  @media (max-width: 520px) { .top .hint { display: none; } .seg button { padding: 0 8px; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Linework</a><span class="sep">/</span><span id="title"></span>
+  <span class="hint" id="hint"></span>
+</header>
+<main>
+  <section class="track" id="track">
+    <div class="sticky">
+      <div class="plate">
+        <span class="tag" id="name"></span>
+        <span class="tag" id="read">rest</span>
+        <div id="stage"></div>
+        <span class="scrollcue">scroll to take it apart</span>
+      </div>
+      <p id="means"></p>
+      <div class="controls">
+        <div class="looks" id="looks" role="radiogroup" aria-label="Look"></div>
+        <div class="row" id="huerow" hidden>
+          <span class="label">hue</span>
+          <input id="hue" type="range" min="0" max="360" step="1" value="285" aria-label="Hue">
+          <output id="hueval">285</output>
+          <label class="label"><input id="huedark" type="checkbox"> dark</label>
+        </div>
+        <div class="row">
+          <span class="label">camera</span>
+          <div class="seg" id="cams" aria-label="Camera"></div>
+        </div>
+        <div class="row">
+          <label class="label" for="intensity" id="ilabel">intensity</label>
+          <input id="intensity" type="range" min="0" max="1" step="0.01" value="0.5">
+          <output id="value" for="intensity"></output>
+          <button id="play" class="play" type="button" aria-pressed="false">play</button>
+        </div>
+      </div>
+      <p id="error" role="alert" hidden></p>
+    </div>
+  </section>
+</main>
+<!--LW:SCRIPTS-->
+</body>
+</html>
