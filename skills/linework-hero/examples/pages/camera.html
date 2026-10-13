@@ -100,7 +100,7 @@
   <div><b>Hard case</b><span>milled foam, holds lens and hood</span></div>
   <div><b>Cloth</b><span>for the front group</span></div>
 </section>
-<footer><span>Orra is a fictional camera maker. The lens is drawn live with Linework, in the Studio look.</span></footer>
+<footer><span>Orra is a fictional camera maker. The lens is drawn live with Linework, in a brighter Studio look.</span></footer>
 
 <script src="../../engine/kernel.js"></script>
 <script src="../../engine/linework.js"></script>
@@ -144,7 +144,10 @@
     }, 180);
   }
   const track = document.getElementById("track");
-  const handle = LW.mount(document.getElementById("fig"), LW.figures.camera, { scroll: track, fill: true, crop: REST, onread: render });
+  // Studio with near-white lines, for contrast on this dark page. A look is only colours, so the page brings its
+  // own and the figure stays as it is (references/looks.md)
+  const LOOK = { label: "Studio bright", dark: true, w: 1.2, fx: "", c: { ground: "#141312", plate: "#1a1918", shade: "#161514", top: "#24221f", edge: "#f6f2ec", crease: "#625c53", mid: "#b5ada1", accent: "#e6b35a", accentTop: "#4a3b22", ink2: "#e6b35a", glow: "transparent", ink: "#f6f2ec", muted: "#bab2a6", line: "#2b2926" } };
+  const handle = LW.mount(document.getElementById("fig"), LW.figures.camera, { look: LOOK, scroll: track, fill: true, crop: REST, onread: render });
   window.linework.figure = handle;
   render(handle.readout);
 

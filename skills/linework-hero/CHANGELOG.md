@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 — 2026-10-13
+- The lens page draws in near-white lines (a brighter Studio look of its own), for contrast on its dark page.
+- The lens follows the scroll exactly: its parts are set from the scroll position instead of springing after
+  it, so nothing plays catch-up as you scroll. `references/parts.md` says to do the same for anything scroll drives.
+
 ## 1.1.0 — 2026-10-13
 - The drawing is the hero: a new `fill` option scales a drawing and its labels to fill whatever box the page gives
   it (centred, or aligned with `fill: [x, y]`), and `crop` / `handle.crop()` choose the view, for a camera that
