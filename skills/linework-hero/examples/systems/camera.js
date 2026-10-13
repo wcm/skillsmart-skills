@@ -73,7 +73,9 @@
           if (input.scroll > 0.33) focus = Math.min(ELEMENTS.length - 1, Math.floor(((input.scroll - 0.33) / 0.64) * ELEMENTS.length));
         } else if (input.at) e = ease(LW.clamp((0.86 - input.u) / 0.6, 0, 1));
         const gap = REST_GAP + (spread - REST_GAP) * e;
-        axis.to({ gap });
+        // scroll places the parts where the page is, frame by frame; the pointer moves them on springs
+        const go = (g, vals) => (input.scroll != null ? g.set(vals) : g.to(vals));
+        go(axis, { gap });
         // pick from the targets: where each element is going, not where it is on this frame
         let pick = null, best = Infinity;
         if (input.at) for (const p of parts) {
@@ -82,7 +84,7 @@
           if (d < p.e.R * s.V.S * 1.05 && d < best) { best = d; pick = p; }
         }
         const lit = pick || (focus != null ? parts[focus] : null);
-        for (const p of parts) p.g.to({ y: p.e.base + (p.i + 1) * gap, show: e > 0.6 ? 1 : 0 }).to({ lift: p === lit ? 5 : 0 }, { ease: true });
+        for (const p of parts) go(p.g, { y: p.e.base + (p.i + 1) * gap, show: e > 0.6 ? 1 : 0 }).to({ lift: p === lit ? 5 : 0 }, { ease: true });
         s.accent((lit || parts[2]).g);
         return lit ? lit.e.name : e > 0.6 ? "exploded" : "rest";
       };

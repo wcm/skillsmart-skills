@@ -94,7 +94,7 @@ Planes: `"z"` is the ground plane at height `at` (u = x, v = y); `"y"` is a face
 | `input.ground` | the pointer on the ground plane, `z = 0` |
 | `input.u`, `input.v` | the pointer across and down the stage, 0 to 1 |
 | `input.clicked` | the `pick` that was clicked (or `true`), on that call only |
-| `input.scroll` | 0 to 1 through the page's scroll track, or `null` when there is none (a gallery card) |
+| `input.scroll` | 0 to 1 through the page's scroll track, or `null` when there is none (a gallery card). Set what it drives with `g.set`, so the drawing sits where the page is; a spring would make every scroll replay a catch-up |
 | `input.ghost` | the tour's unseen pointer, not a hand |
 | `input.step`, `input.focus` | whatever the page last sent with `handle.send("step", n)` / `send("focus", id)` |
 | `input.action` | what the page sent with `handle.act(name)`, on that call only |
