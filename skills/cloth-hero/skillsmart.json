@@ -5,6 +5,7 @@
   "category": "web",
   "tier": "free",
   "version": "1.0.0",
+  "featured": 2,
   "tags": ["cloth", "fabric", "physics", "3D", "three.js", "WebGL", "curtain", "silk", "interactive", "hero section", "landing page"],
   "youSay": "/cloth-hero A silk scarf brand called Mare: the koi scarf streaming under water, calm and luxurious",
   "whatYouGet": [
