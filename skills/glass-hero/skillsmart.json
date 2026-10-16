@@ -5,7 +5,6 @@
   "category": "web",
   "tier": "free",
   "version": "1.0.0",
-  "featured": 1,
   "tags": ["glass", "prism", "rainbow", "refraction", "dispersion", "3D", "three.js", "WebGL", "shader", "hero section", "landing page", "interactive"],
   "youSay": "/glass-hero A launch page for Spectra, an AI lab whose model sees every colour in an image",
   "whatYouGet": [
