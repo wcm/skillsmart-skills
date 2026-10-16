@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Hugger — hot-pink satin letters that lean, pop and squeeze under the cursor",
+      "prompt": "/puff-hero HUGGER in hot-pink satin for a puffer label's FW26 drop, over rows of the name in outline"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Pop Star — glossy bubblegum vinyl on a twisted lime grid",
+      "prompt": "/puff-hero A launch page for our single POP STAR, glossy bubblegum-pink letters on lime green"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Soft Serve — squishy matte rubber over a soft-serve swirl and sprinkles",
+      "prompt": "/puff-hero SOFT SERVE in squishy matte rubber, one colour a letter, for a small-batch ice-cream counter"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Hello Cozy Season — faux-fur letters among crayon clouds",
+      "prompt": "/puff-hero HELLO COZY SEASON in faux fur on cornflower blue, for a homeware shop's winter edit"
+    }
+  ]
+}

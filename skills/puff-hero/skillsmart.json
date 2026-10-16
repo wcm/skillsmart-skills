@@ -1,0 +1,44 @@
+{
+  "slug": "puff-hero",
+  "name": "Puff Hero",
+  "tagline": "A landing-page hero whose word is in puffy, overinflated 3D letters that lean toward your cursor and jiggle when you touch them.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "featured": 10,
+  "tags": ["puffy", "inflated", "3D lettering", "balloon letters", "bubble letters", "squishy", "plush", "Y2K", "kinetic typography", "video loop", "hero section", "landing page", "interactive"],
+  "youSay": "/puff-hero A launch page for our single POP STAR, glossy bubblegum-pink letters on lime green",
+  "whatYouGet": [
+    "A poster-like landing page whose hero is your word in overinflated, wildly deformed 3D letters, in a material made for the brand",
+    "Letters that lean toward the cursor, pop when you touch them and jiggle through a seamless loop on hover",
+    "Three stills and two loops to choose from, cut out frame by frame so the letters float on the page with real transparency",
+    "The page around them: brand, copy, type, a background drawn in code and layouts for desktop and phone, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Launches, drops, singles, events and seasonal campaigns with a short, playful name",
+    "Fashion, music, food, toy and homeware brands that want a loud, tactile first screen"
+  ],
+  "notFor": [
+    "Long phrases (1–3 short lines of 2–6 letters work best)",
+    "Quiet, corporate or text-heavy pages"
+  ],
+  "youBring": [
+    "The words and what the page is for",
+    "Optional: the material, colours, brand name and tone"
+  ],
+  "needs": [
+    "Skillsmart credits (about 190 per page)",
+    "Node 18+",
+    "ffmpeg",
+    "Python 3",
+    "Chrome or Edge",
+    "A Mac to encode the Safari version of the loop"
+  ],
+  "generates": { "models": ["nano-banana-pro", "kling-v3-pro", "birefnet-video"], "estimate": "about 190 per page" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $1.50 per page",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "testedIn": ["Claude Code"]
+}

@@ -1,0 +1,51 @@
+/* The page colour is the still's backdrop colour (or very close): the cut-out's soft edges carry a little of it.
+   --sh1, --sh2: the letters' shadows, tinted from the page colour, never grey. */
+:root {
+  --bg: {{BG}};
+  --ink: {{INK}};
+  --sh1: rgba(20, 30, 60, .24);
+  --sh2: rgba(20, 30, 60, .14);
+  --display: "Inter Tight", system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 3vw, 48px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body { background: var(--bg); color: var(--ink); font-family: var(--display); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nojs { position: fixed; inset: 0; display: grid; place-items: center; font: 500 12px var(--mono); }
+
+.poster { position: fixed; inset: 0; overflow: hidden; }
+canvas.bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
+/* the puffy layer (puff.js sizes and places it, and drives the transform on .tilt) */
+.puff { position: absolute; z-index: 2; transform: translate(-50%, -50%); pointer-events: none; }
+.puff .tilt { width: 100%; height: 100%; will-change: transform; }
+.puff .drift { width: 100%; height: 100%; animation: drift 7s ease-in-out infinite; }
+/* the letters float in front of the page: a wide soft shadow below them and a tighter one, both sliding away from the
+   cursor (--sx, --sy: −1…1) */
+.puff video { display: block; width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(calc(var(--sx, 0) * 2.2vh) calc(3.4vh + var(--sy, 0) * 1.6vh) 3.2vh var(--sh1)) drop-shadow(calc(var(--sx, 0) * .6vh) calc(1vh + var(--sy, 0) * .4vh) 1vh var(--sh2)); }
+@keyframes drift { 0%, 100% { transform: translateY(0) rotate(-.35deg) scale(1); } 50% { transform: translateY(-.9%) rotate(.35deg) scale(1.006); } }
+@media (prefers-reduced-motion: reduce) { .puff .drift { animation: none; } }
+
+/* the copy round the letters: header on top, a label bottom left, a call to action bottom right */
+.site { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 26px; padding: 20px var(--gutter); }
+.brand { font: 900 20px/1 var(--display); letter-spacing: -.03em; }
+.links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; font-weight: 500; }
+.links a { opacity: .8; }
+.links a:hover { opacity: 1; }
+.label { position: absolute; z-index: 3; left: var(--gutter); bottom: 28px; max-width: min(360px, 34vw); display: grid; gap: 6px; }
+.label b { font: 900 clamp(22px, 2.2vw, 32px) / 1 var(--display); letter-spacing: -.03em; }
+.label span { font-size: 14px; line-height: 1.45; opacity: .85; }
+.cta { position: absolute; z-index: 3; right: var(--gutter); bottom: 28px; padding: 14px 22px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; }
+/* copy over a busy pattern (outline rows, a grid): a panel of the page colour behind it, without moving it */
+.backed { background: var(--bg); padding: 8px 12px; margin: -8px -12px; border-radius: 10px; }
+
+@media (max-width: 1100px) { .links { display: none; } }
+@media (max-width: 760px) {
+  .label { max-width: 58vw; bottom: 24px; }
+  .cta { bottom: 24px; padding: 11px 16px; font-size: 13px; }
+}

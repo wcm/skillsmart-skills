@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BRAND}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23111'/%3E%3Cellipse cx='16' cy='16.5' rx='9' ry='8' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- the page's fonts (references/page.md): one loud display face, one plain or mono face -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="poster">
+    <canvas class="bg" aria-hidden="true"></canvas>
+    <header class="site">
+      <a class="brand" href="#">{{BRAND}}</a>
+      <nav class="links" aria-label="Site"><a href="#">Shop</a><a href="#">About</a><a href="#">Journal</a></nav>
+    </header>
+
+    <!-- the words the letters spell, for screen readers and search; the puffy letters are a picture of them -->
+    <h1 class="sr-only">{{WORDS}}</h1>
+    <div class="puff" aria-label="{{WORDS}} in puffy letters"></div>
+
+    <p class="label"><b>{{BRAND}}</b><span>A line about what this is.</span></p>
+    <a class="cta" href="#">Get started</a>
+  </main>
+  <noscript><p class="nojs">This page needs JavaScript for its moving letters.</p></noscript>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
