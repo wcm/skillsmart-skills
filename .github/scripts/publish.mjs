@@ -71,10 +71,10 @@ function validate(slug, dir) {
   if (!/^\d+\.\d+\.\d+$/.test(meta.version || "")) errors.push(`version "${meta.version}" must be semver x.y.z`);
   if (!CATEGORIES.includes(meta.category)) errors.push(`category must be one of ${CATEGORIES.join(", ")}`);
   if (!["free", "paid"].includes(meta.tier)) errors.push('tier must be "free" or "paid"');
-  if (meta.tier === "paid" && !(meta.price && Number.isInteger(meta.price.amount) && meta.price.amount > 0)) errors.push("paid skills need price.amount (integer, cents)");
+  // No price here: every premium skill sells at the one price set in the admin portal (skillsmart.io/admin/pricing).
   if (SOURCE === "free" && meta.tier !== "free") errors.push("the free repo may only contain free skills");
   if ((meta.tagline || "").length > 140) errors.push("tagline must be ≤ 140 characters");
-  if (meta.featured !== undefined && !(Number.isInteger(meta.featured) && meta.featured > 0)) errors.push("featured must be a positive integer (1 = first)");
+  // No featured rank either: the order, home page and stage are set in the admin portal.
   // Hosts the skill contacts without an API key (CDNs for fonts or libraries). Shown on the skill page.
   if (meta.network !== undefined) {
     if (!Array.isArray(meta.network)) errors.push("network must be a list of { host, purpose }");
