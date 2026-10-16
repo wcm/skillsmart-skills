@@ -1,0 +1,30 @@
+{
+  "_about": "The prompt formula (references/prompt-formula.md and motion.md). Fill in the page; keep the shared lines unless a reference says otherwise.",
+  "publish": "../site/img",
+  "formula": {
+    "still": "<Words>, as <material>. <deform> <camera> <frame with {bg}>",
+    "loop": "<motion: the shared pop template with the page's subject and shine, or the page's own> <loop>"
+  },
+  "deform": "This is expressive custom display lettering sculpted by hand, not a typeface. The letters are inflated to bursting and wildly deformed: every letter a different size, some swollen huge and some small and squeezed between their neighbours, every one warped its own way, strokes that bulge to double width on one side and pinch thin on the other, ends that sag and droop like melting dough, fat blobby terminals, counters squeezed into small slits. The letters tumble against each other at wild angles of up to thirty degrees, overlapping and pressing so hard that they flatten where they touch, piled into one tight, lumpy, organic cluster instead of neat rows. Playful and chaotic, yet every letter is still readable.",
+  "camera": "Seen at eye level from a three-quarter angle, the cluster turned about thirty degrees away from the camera so the letters recede in depth one behind another and their thick puffy sides show.",
+  "frame": "Only the puffy letters, floating in mid-air in front of a seamless, plain {bg} backdrop: no floor, no ground, no table, no surface under them, and no shadow falling on the backdrop. Every letter is rounded and puffy on all sides, its bottom as round as its top: nothing is flat, sliced or resting on anything. No other text, no props, no logos, no watermark. Photorealistic studio product photograph, crisp focus. The whole cluster sits inside the frame with clear empty space on every side; nothing touches an edge.",
+  "loop": "Locked-off static camera: no zoom, no pan, no cuts, no change in the lighting, and the plain backdrop stays perfectly still. The letters stay inside the frame, keep their spelling and stay readable while they squash and stretch.",
+  "motion": {
+    "template": "{subject} float in mid-air. With a sudden springy pop they come alive: the whole cluster jolts upward a little and jiggles like a giant jelly, quick wobbles rippling through every letter, side to side and up and down, then quickly settling. Halfway through, a second, smaller jolt and jiggle. {shine} Every letter stays round, full and taut, floating in the same spot in the air. Snappy, springy, eye-catching motion.",
+    "negative": "falling, dropping, landing, hitting the ground, bouncing off a floor, squeezing, squashing, crushing, shrinking, wrinkles, crinkles, creases, deflating, bursting, exploding, popping apart, hands, fingers, slow motion",
+    "seconds": "4",
+    "cfg": 0.8
+  },
+  "negative": "camera movement, zoom, pan, cut, letters turning into other letters, new letters, extra text, letters leaving the frame, melting away, blur, flicker, lighting change, background change, slow motion, frozen, still image, only one letter moving, letters swapping places, letters flying out of the cluster, a letter changing shape",
+  "cfg": 0.7,
+  "pages": {
+    "{{ID}}": {
+      "ratio": "{{RATIO}}",
+      "bg": "{{BACKDROP}}",
+      "words": "{{WORDS_PROMPT}}",
+      "material": "FILL IN: one sentence about the surface (references/prompt-formula.md → materials)",
+      "subject": "FILL IN: e.g. The glossy pink letters",
+      "shine": "FILL IN: e.g. The mirror-bright reflections flash and slide across the smooth pink as it jiggles."
+    }
+  }
+}

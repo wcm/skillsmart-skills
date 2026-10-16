@@ -1,0 +1,37 @@
+{
+  "_about": "The four pages of the reference build (the Puff demo), as they were generated. Each entry slots into a project's tools/pages.json next to the shared lines; hug and pop use the shared pop motion, soft and cozy their own motion lines. See README.md here for how each page was laid out.",
+  "pages": {
+    "hug": {
+      "ratio": "1:1",
+      "bg": "warm off-white",
+      "words": "the word \"HUGGER\" split over two lines, \"HUG\" over \"GER\"",
+      "material": "hot magenta-pink letters with a smooth, seamless satin finish like soft-touch inflated vinyl: one continuous skin with no seams or crimps, soft broad highlights, deep saturated pink in the shadows",
+      "subject": "The pink satin letters",
+      "shine": "The soft satin sheen slides across the taut pink as it jiggles."
+    },
+    "pop": {
+      "ratio": "3:2",
+      "bg": "lime green",
+      "words": "the words \"POP\" over \"STAR\" on two lines",
+      "material": "smooth, high-gloss bubblegum-pink inflated vinyl like a pool toy: one perfectly even pink with no marbling, no swirls, no stripes, no streaks and no pattern of any kind, a seamless skin with no seams, knots or crimps, mirror-like reflections of soft studio lights as bright white highlights along the curves, a warm hot-pink glow where the surface turns away and a slightly deeper pink in the creases",
+      "subject": "The glossy pink letters",
+      "shine": "The mirror-bright reflections flash and slide across the smooth pink as it jiggles.",
+      "negative": "wrinkles, crinkles, creases, deflating, marbling, stripes"
+    },
+    "soft": {
+      "ratio": "4:3",
+      "bg": "light grey",
+      "words": "the words \"SOFT\" over \"SERVE\" on two lines",
+      "material": "thick, chunky letters of squishy matte soft-touch rubber foam with wobbly, wavy, melted outlines, each letter a different flat colour from coral orange, cobalt blue, sunflower yellow and mint green, with a velvety micro-texture and no gloss at all",
+      "motion": "The whole cluster of squishy rubber letters bounces like a jelly on a plate, again and again: it squashes down, springs up and wobbles from side to side, every letter jiggling with it while staying in its place in the cluster, the soft colours squishing into each other where the letters touch. Lively, bouncy, energetic motion from start to end."
+    },
+    "cozy": {
+      "ratio": "3:4",
+      "bg": "cornflower blue",
+      "matte": "matting",
+      "words": "the words \"HELLO\", \"COZY\" and \"SEASON\" on three lines",
+      "material": "overstuffed plush letters covered in soft faux fur in white, pale grey and dove grey, changing letter by letter, fine fibres catching the light at the edges",
+      "motion": "The whole stack of fluffy letters bounces like a big plush pillow dropped on a bed, again and again: it drops, squashes wide, then stretches tall as it springs back up, three springy bounces with a soft wobble running through every letter, the fur ruffling with every bounce. Every letter stays in its place in the stack and keeps its shape. Lively, bouncy, energetic motion from start to end."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "puff-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "sharp": "^0.34.0"
+  }
+}

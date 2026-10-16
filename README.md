@@ -4,6 +4,10 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 
 | Skill | Makes |
 |---|---|
+| [glass-hero](skills/glass-hero) | A hero around an abstract 3D glass object that splits light into rainbows |
+| [cloth-hero](skills/cloth-hero) | A hero where a picture becomes real cloth that ripples under the cursor |
+| [linework-hero](skills/linework-hero) | Your system drawn as an animated isometric diagram |
+| [puff-hero](skills/puff-hero) | A hero whose word is in puffy, overinflated 3D letters that pop when touched |
 | [shader-hero](skills/shader-hero) | A landing page with a dramatic, interactive shader hero |
 | [type-poster](skills/type-poster) | Bold typographic event posters (PNG + print PDF) |
 | [social-carousel](skills/social-carousel) | Instagram / LinkedIn carousels |
