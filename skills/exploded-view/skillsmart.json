@@ -1,0 +1,42 @@
+{
+  "slug": "exploded-view",
+  "name": "Exploded View",
+  "tagline": "A scroll page that takes your product apart: it lifts out of a real photo, splits into labelled parts, then lands whole somewhere new.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["exploded view", "teardown", "what's inside", "product page", "product story", "scroll animation", "scroll-driven", "scrollytelling", "annotations", "infographic", "launch page", "landing page", "3D product", "video"],
+  "youSay": "/exploded-view A launch page for our walnut wireless headphones, from a Tokyo listening bar to a train at golden hour",
+  "whatYouGet": [
+    "A scroll page in three scenes: your product in a real-looking place, taken apart in the middle with a label on every part, then whole again at a new angle in a second place",
+    "The photos, the exploded view and the two clips between them generated for your product, cut out and lined up so the product lifts out of the photo and lands back in the next without a seam",
+    "A lab behind the parts for your kind of product: an order ticket for food, a sound lab for audio, a motion lab for sport, an energy model for buildings, each with its own animated data",
+    "Words, labels and numbers in HTML you can edit, type and colours chosen for the brand, layouts for desktop and phone, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Product launches and pages that sell what's inside: food, gadgets, shoes, furniture, appliances, buildings",
+    "Brands that want one memorable, scroll-driven story instead of a gallery of product shots"
+  ],
+  "notFor": [
+    "Products made of tiny repeated parts, thin wires or liquids (keyboards, bicycles, cocktails)",
+    "Pages that must show a real product's exact engineering: the parts are generated, not your CAD"
+  ],
+  "youBring": [
+    "The product and what the page is for",
+    "Optional: the two places, the parts and their facts, the brand's name, colours and tone"
+  ],
+  "needs": [
+    "Skillsmart credits (about 280 per page)",
+    "Node 18+",
+    "ffmpeg",
+    "Python 3",
+    "Chrome or Edge"
+  ],
+  "generates": { "models": ["nano-banana-pro", "kling-v3-pro", "birefnet-video", "birefnet-image", "sam-3"], "estimate": "about 280 per page" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $2.50 per page",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "testedIn": ["Claude Code"]
+}
