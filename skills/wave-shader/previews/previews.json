@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Sorbet — warm silk that lifts under the cursor and ripples on a click",
+      "prompt": "/wave-shader a launch page for Sorbet, a colour palette tool, warm and soft"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Kp9 — a ragged aurora curtain that bends toward you",
+      "prompt": "/wave-shader Kp9, an app that wakes you when the aurora is out: night sky, green to violet"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Meltemi — a satin sea rolling to a low sun",
+      "prompt": "/wave-shader Meltemi, small-boat sailing holidays in the Aegean, a sunset sea"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Brio — a vivid silky ribbon in shallow focus",
+      "prompt": "/wave-shader Brio, global payroll: bold and colourful on white, like Stripe"
+    }
+  ]
+}

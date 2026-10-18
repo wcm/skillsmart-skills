@@ -1,0 +1,13 @@
+{
+  "style": "Photograph, natural colour, sharp focus where it matters, no text, no lettering, no logos, no watermark, no people's faces in close-up.",
+  "photos": {
+    "street": {
+      "aspect": "16:9",
+      "prompt": "A rainy city street at night seen straight through a large café window, the glass itself perfectly clear and dry. Wet asphalt mirrors the lights; blurred neon signs glow red, amber and teal with no readable letters; a yellow taxi passes; a few people under umbrellas; shopfront lights and traffic lights dissolve into soft round bokeh. Cinematic, 35mm, deep blues and warm oranges, slightly moody."
+    },
+    "flowers": {
+      "aspect": "16:9",
+      "prompt": "Overhead close-up of a lush heap of fresh garden flowers just cut at dawn: coral and pink ranunculus, pale peach garden roses, orange tulips, a few white sweet peas, eucalyptus and fern greenery, small dew drops on the petals. Soft early-morning daylight, rich saturated colour, the frame filled edge to edge with flowers, no vase, no table visible."
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tincture — Pour colour into every frame</title>
+  <meta name="description" content="Tincture grades video in real time: drag a look across your footage like dye through water, and skin tones stay true.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0820'/%3E%3Cpath d='M16 6c4 6 7 9.5 7 13a7 7 0 0 1-14 0c0-3.5 3-7 7-13z' fill='%237b3cff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #0b0820;
+      --ink: #f3f1ff;
+      --muted: rgba(232, 228, 255, 0.7);
+      --line: rgba(232, 228, 255, 0.13);
+      --accent: #8f6bff;
+      --btn: #f3f1ff;
+      --btn-ink: #0b0820;
+      --ghost: rgba(255, 255, 255, 0.07);
+      --ghost-line: rgba(232, 228, 255, 0.26);
+      --title-size: clamp(48px, 7.8vw, 128px);
+      --title-weight: 600;
+      --title-lh: 0.94;
+      --title-track: -0.045em;
+      --fallback: radial-gradient(45% 55% at 30% 40%, #5b2bd6, transparent 70%), radial-gradient(40% 50% at 72% 62%, #2457e0, transparent 70%), #0b0820;
+    }
+    .hero__title { max-width: 13ch; margin-inline: auto; }
+    .more { background: #0b0820; }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="center">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.2 4.6 5.6 7.4 5.6 10.4a5.6 5.6 0 0 1-11.2 0C6.4 10.4 8.8 7.6 12 3z" fill="#8f6bff"/></svg>Tincture</a>
+      <nav class="links" aria-label="Main"><a href="#">Product</a><a href="#">Looks</a><a href="#">Pricing</a><a href="#">Docs</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Download</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Real-time colour grading</p>
+      <h1 class="hero__title">Pour colour into every frame</h1>
+      <p class="hero__sub">Drag a look across your footage like dye through water. Tincture grades as you go, and skin tones stay true.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Download for Mac</a>
+        <a class="btn btn--ghost" href="#">Watch the reel</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Grading you do with your hands, not your spreadsheets.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>Looks you can touch</h3><p>Drag colour straight onto the shot instead of hunting through wheels and curves.</p></article>
+      <article class="feature"><b>02</b><h3>Skin stays skin</h3><p>Faces are found and protected, so the grade never turns people green.</p></article>
+      <article class="feature"><b>03</b><h3>Fast on a laptop</h3><p>Full-speed 4K previews on Apple silicon, without proxies.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Tincture Labs</span><span>Made for colourists and people who just like colour.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as dye from "./engine/looks/dye.js";
+    mount(document.querySelector(".hero__gl"), dye, {
+      colors: ["#7b3cff", "#3a6bff", "#a35cff", "#2a4bff", "#6aa0ff"],
+      bg: "#0b0820", bg2: "#05040f",
+    });
+  </script>
+</body>
+</html>

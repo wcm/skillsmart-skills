@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bulle — Thinner than a bubble</title>
+  <meta name="description" content="Bulle Skin Tint: a sheer tint that wears like nothing at all, in twelve shades.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307070a'/%3E%3Ccircle cx='16' cy='15' r='9' fill='none' stroke='%23c9b6ff' stroke-width='2'/%3E%3Cpath d='M22 21l5 6' stroke='%23b9bcc4' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #07070a;
+      --ink: #f6f2ef;
+      --muted: rgba(246, 242, 239, 0.66);
+      --line: rgba(246, 242, 239, 0.12);
+      --accent: #e8a6ff;
+      --btn: #f6f2ef;
+      --btn-ink: #07070a;
+      --font-display: "Gloock", Georgia, serif;
+      --font-body: "Manrope", system-ui, sans-serif;
+      --title-size: clamp(48px, 6.6vw, 112px);
+      --title-weight: 400;
+      --title-lh: 0.98;
+      --title-track: -0.02em;
+      --disc: min(54vw, 92svh);
+    }
+    .no-gl .hero[data-layout="disc"] .hero__gl {
+      background: radial-gradient(circle at 50% 50%, rgba(200, 170, 255, 0.0) 0 38%, rgba(220, 200, 255, 0.5) 39.5%, transparent 41%);
+    }
+    .hero[data-layout="disc"] .hero__copy { padding-left: calc(var(--gutter) + 1vw); }
+    .swatches { display: flex; gap: 8px; margin-top: 34px; }
+    .swatches i { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15); }
+    .more { background: #07070a; }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="disc">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="#d9c8ff" stroke-width="1.6"/><path d="M16 16l5 5" stroke="#b9bcc4" stroke-width="1.6" stroke-linecap="round"/></svg>Bulle</a>
+      <nav class="links" aria-label="Main"><a href="#">Skin tint</a><a href="#">Shades</a><a href="#">Ingredients</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Bag</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Bulle skin tint · twelve shades</p>
+      <h1 class="hero__title">Thinner than a bubble</h1>
+      <p class="hero__sub">A sheer tint that wears like nothing at all: a breath of colour, and your skin still shows through.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Find your shade</a>
+        <a class="btn btn--ghost" href="#">What's inside</a>
+      </div>
+      <div class="swatches" aria-hidden="true"><i style="background:#f3d9c6"></i><i style="background:#e8c2a6"></i><i style="background:#d6a585"></i><i style="background:#b9845f"></i><i style="background:#8f5f40"></i><i style="background:#5e3b27"></i></div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Colour you notice, on skin you can still see.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>Sheer by design</h3><p>One layer evens tone without hiding freckles, pores or the person underneath.</p></article>
+      <article class="feature"><b>02</b><h3>Twelve true shades</h3><p>Matched on real skin in daylight, not on a swatch card under studio lamps.</p></article>
+      <article class="feature"><b>03</b><h3>Nothing to take off</h3><p>Rinses away with water, so the day ends the way it started.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Bulle</span><span>Light on skin, light on the planet.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as film from "./engine/looks/film.js";
+    mount(document.querySelector(".hero__gl"), film, {});
+  </script>
+</body>
+</html>

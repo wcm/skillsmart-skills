@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dewfall — Cut at dawn, at your door by noon</title>
+  <meta name="description" content="Seasonal flowers from small growers, picked the morning they're delivered and wrapped in paper, not plastic.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f6f1ea'/%3E%3Cpath d='M16 5c4.5 6 7 9.4 7 12.6a7 7 0 0 1-14 0C9 14.4 11.5 11 16 5z' fill='none' stroke='%231f2a1c' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <link rel="preload" as="image" href="img/flowers.jpg">
+  <style>
+    :root {
+      --bg: #f6f1ea;
+      --ink: #1f2a1c;
+      --muted: rgba(31, 42, 28, 0.72);
+      --line: rgba(31, 42, 28, 0.14);
+      --accent: #e0584a;
+      --btn: #1f2a1c;
+      --btn-ink: #f6f1ea;
+      --ghost: transparent;
+      --ghost-line: rgba(31, 42, 28, 0.28);
+      --font-display: "DM Serif Display", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --title-size: clamp(48px, 6.4vw, 108px);
+      --title-weight: 400;
+      --title-lh: 0.96;
+      --title-track: -0.025em;
+      --fallback: linear-gradient(90deg, #f6f1ea 38%, rgba(246, 241, 234, 0) 60%), radial-gradient(30% 40% at 70% 45%, #f08a6a, transparent 70%), radial-gradient(25% 35% at 85% 70%, #f4b6c2, transparent 70%), #5d7a52;
+      color-scheme: light;
+    }
+    .hero[data-layout="split"] .hero__gl { width: 100%; -webkit-mask-image: none; mask-image: none; }
+    .hero[data-layout="split"] .hero__copy { --copy-w: 640px; padding-left: calc(var(--gutter) + 1vw); }
+    .hero__title em { font-style: italic; color: #c2493d; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    @media (max-aspect-ratio: 5/6) {
+      .hero[data-layout="split"] .hero__gl { height: 100%; -webkit-mask-image: none; mask-image: none; }
+      .hero[data-layout="split"] .hero__copy { margin: auto 0 0; padding-top: 0; padding-bottom: 150px; }
+      .hero__title { font-size: clamp(40px, 11vw, 64px); }
+    }
+    .more { background: var(--bg); }
+  </style>
+</head>
+<body>
+  <section class="hero has-scrim" data-layout="split" data-side="right">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.4 4.5 5.3 7 5.3 9.5a5.3 5.3 0 0 1-10.6 0C6.7 10 8.6 7.5 12 3z" fill="none" stroke="#1f2a1c" stroke-width="1.7"/></svg>Dewfall</a>
+      <nav class="links" aria-label="Main"><a href="#">This week</a><a href="#">Subscriptions</a><a href="#">Our growers</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Basket</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Flowers by the week</p>
+      <h1 class="hero__title">Cut at dawn, <em>at your door by noon</em></h1>
+      <p class="hero__sub">Seasonal stems from small growers, picked the morning they're delivered and wrapped in paper, not plastic.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Choose a bunch</a>
+        <a class="btn btn--ghost" href="#">This week's flowers</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Fresher than the shop, because it skipped the shop.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>Picked to order</h3><p>Growers cut only what's been ordered, at first light, while the stems are full of water.</p></article>
+      <article class="feature"><b>02</b><h3>Same-day, by bike</h3><p>Bunches travel by cargo bike across town and arrive before lunch.</p></article>
+      <article class="feature"><b>03</b><h3>What's in season</h3><p>Ranunculus in spring, dahlias in late summer. Nothing flown in.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Dewfall Flowers</span><span>Grown within 60 miles.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as liquid from "./engine/looks/liquid.js";
+    mount(document.querySelector(".hero__gl"), liquid, { src: "img/flowers.jpg", page: "#f6f1ea", split: 0.4, focus: [0.62, 0.5] });
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "slug": "glass-shader",
+  "name": "Glass Shader",
+  "tagline": "A landing-page hero with glass over the page: reeded, fogged, beaded with drops or frosted into tiles, bending what's behind it.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["shader", "WebGL", "glass", "frosted glass", "reeded glass", "fluted glass", "glassmorphism", "refraction", "fog", "steam", "water drops", "hero section", "landing page", "interactive"],
+  "youSay": "/glass-shader a launch page for Pane, privacy-first web analytics",
+  "whatYouGet": [
+    "A landing page whose hero is glass over the page: full-page reeded glass, a fogged window you wipe, water drops on a photo, or a wall of frosted tiles over a glowing ball",
+    "Real refraction with nothing painted on: what's behind is magnified, squeezed, frosted and fringed, while the backdrop answers the cursor",
+    "The page around it: brand, copy, type and a layout made for the look, on wide screens, tall windows and phones",
+    "A static site with no libraries, plus a tool that generates a photo for the glass through your Skillsmart account"
+  ],
+  "goodFit": [
+    "Calm, architectural, natural or techy brands that want a premium, tactile first screen",
+    "Weather, sound, café, flower and energy products (the examples)"
+  ],
+  "notFor": [
+    "A 3D glass object as the hero (that's Glass Hero)",
+    "Busy, text-heavy first screens"
+  ],
+  "youBring": [
+    "What the page is for and the brand name",
+    "Optional: a photo for the glass to sit over, colours, headline and fonts"
+  ],
+  "needs": ["Python 3", "A browser", "Node 18+ and Skillsmart credits only to generate a photo (20 each)"],
+  "generates": { "models": ["nano-banana-pro"], "estimate": "20 per photo, only if you generate one" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.15 per photo",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "testedIn": ["Claude Code"]
+}

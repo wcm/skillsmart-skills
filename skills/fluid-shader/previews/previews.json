@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Tincture — glowing colour drawn gently through dark water",
+      "prompt": "/fluid-shader a launch page for Tincture, a colour-grading app"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Ingot — liquid chrome whose folds catch the cursor's light",
+      "prompt": "/fluid-shader Ingot, wireless headphones machined from one bar of aluminium: liquid metal"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Endpaper — marbled ink combed like a stylus, a drop of new colour",
+      "prompt": "/fluid-shader Endpaper, a small bindery's marbled notebooks: ink on water"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Bulle — a soap film in true rainbow colour that pops and comes back",
+      "prompt": "/fluid-shader Bulle, a sheer skin tint: a soap film, iridescent and delicate"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kp9 — Be outside at the right minute</title>
+  <meta name="description" content="Kp9 turns solar-wind data, cloud cover and dark-sky spots near you into one alert: go now.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2303050d'/%3E%3Cpath d='M6 22c4-10 7-12 10-6s6 2 10-8' fill='none' stroke='%232ef59a' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #04070f;
+      --ink: #eef6f2;
+      --muted: rgba(226, 240, 234, 0.66);
+      --line: rgba(226, 240, 234, 0.13);
+      --accent: #2ef59a;
+      --btn: #2ef59a;
+      --btn-ink: #03140c;
+      --ghost: rgba(255, 255, 255, 0.05);
+      --ghost-line: rgba(226, 240, 234, 0.24);
+      --font-display: "Sora", system-ui, sans-serif;
+      --title-size: clamp(44px, 6.4vw, 104px);
+      --title-weight: 500;
+      --title-lh: 1;
+      --title-track: -0.045em;
+      --fallback: radial-gradient(40% 60% at 8% 40%, #0f8a5f, transparent 70%), radial-gradient(40% 60% at 92% 40%, #4b2a99, transparent 70%), linear-gradient(#03050d, #0a1626);
+    }
+    .hero__title em { font-style: normal; color: #b6ffd9; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .hero[data-layout="wings"] { --copy-w: 940px; }
+    .more { background: linear-gradient(#04070f, #070b16); }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="wings">
+    <canvas class="hero__gl" aria-hidden="true" style="-webkit-mask-image:none;mask-image:none"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c3-8 5.5-9.5 8-5s5 1.5 10-7" fill="none" stroke="#2ef59a" stroke-width="2.2" stroke-linecap="round"/></svg>Kp9</a>
+      <nav class="links" aria-label="Main"><a href="#">Forecast</a><a href="#">Dark-sky map</a><a href="#">Field guide</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Get the app</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Live aurora alerts · 60°N and up</p>
+      <h1 class="hero__title">Be outside at <em>the right minute</em></h1>
+      <p class="hero__sub">Solar wind, cloud cover and the darkest open sky near you, boiled down to one alert: go now.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Get tonight's forecast</a>
+        <a class="btn btn--ghost" href="#">How alerts work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Ten minutes' warning beats an hour of waiting.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>Solar wind, translated</h3><p>Speed, density and field direction from a million miles out, turned into a plain yes, maybe or not tonight.</p></article>
+      <article class="feature"><b>02</b><h3>Clouds included</h3><p>An aurora behind cloud is no aurora. We check the sky over you, not only the sun.</p></article>
+      <article class="feature"><b>03</b><h3>Spots, not stats</h3><p>The nearest dark, open horizon, with the drive time and whether the road is clear.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Kp9</span><span>Made in Tromsø, mostly at night.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as wave from "./engine/wave.js";
+    import { aurora } from "./engine/presets.js";
+    mount(document.querySelector(".hero__gl"), wave, aurora);
+  </script>
+</body>
+</html>

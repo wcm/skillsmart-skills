@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Endpaper — No two sheets alike</title>
+  <meta name="description" content="Endpaper makes hand-marbled notebooks. Every cover is floated on a bath of ink and lifted onto paper, so yours is the only one with its pattern.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f2e9d8'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%231d3a73' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23b2392d'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #f2e9d8;
+      --ink: #1d1a17;
+      --muted: rgba(29, 26, 23, 0.7);
+      --line: rgba(29, 26, 23, 0.16);
+      --accent: #b2392d;
+      --btn: #1d3a73;
+      --btn-ink: #f7f1e4;
+      --ghost: transparent;
+      --ghost-line: rgba(29, 26, 23, 0.3);
+      --font-display: "Cormorant Garamond", Garamond, serif;
+      --font-body: "Newsreader", Georgia, serif;
+      --title-size: clamp(46px, 5.6vw, 88px);
+      --title-weight: 500;
+      --title-lh: 0.98;
+      --title-track: -0.015em;
+      --fallback: repeating-radial-gradient(circle at 12% 70%, #1d3a73 0 14px, #f2e9d8 14px 26px, #b2392d 26px 34px, #f2e9d8 34px 48px), #f2e9d8;
+      color-scheme: light;
+    }
+    .nav { z-index: 3; }
+    .nav, .nav .brand, .nav .links { color: var(--ink); }
+    .nav .btn--ghost { background: rgba(247, 241, 228, 0.86); }
+    .nav .brand, .nav .links a { background: rgba(247, 241, 228, 0.86); padding: 7px 12px; border-radius: 999px; }
+    .nav .links { gap: 6px; }
+    /* the title page: a sheet laid on the marbled endpapers */
+    .hero[data-layout="wings"] .hero__copy {
+      --copy-w: 600px;
+      background: #f7f1e4;
+      border-radius: 3px;
+      padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 18px 50px rgba(40, 28, 10, 0.22), 0 4px 12px rgba(40, 28, 10, 0.12);
+      outline: 1px solid rgba(29, 26, 23, 0.12);
+      outline-offset: -10px;
+      margin-top: max(24px, 4vh);
+      margin-bottom: 14vh;
+    }
+    .hero__title em { font-style: italic; }
+    .hero__sub { font-size: clamp(16px, 1.25vw, 18.5px); color: rgba(29, 26, 23, 0.76); }
+    .eyebrow { color: rgba(29, 26, 23, 0.6); }
+    .btn { font-family: "Inter", system-ui, sans-serif; }
+    @media (max-aspect-ratio: 5/6) {
+      .hero[data-layout="wings"] .hero__copy { width: calc(100% - 2 * var(--gutter)); margin-inline: var(--gutter); }
+    }
+    .more { background: var(--bg); }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="wings">
+    <canvas class="hero__gl" aria-hidden="true" style="-webkit-mask-image:none;mask-image:none"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="#1d3a73" stroke-width="2.6"/><circle cx="12" cy="12" r="3.6" fill="#b2392d"/></svg>Endpaper</a>
+      <nav class="links" aria-label="Main"><a href="#">Notebooks</a><a href="#">Papers</a><a href="#">The studio</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Basket (0)</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Hand-marbled notebooks</p>
+      <h1 class="hero__title">No two sheets <em>alike</em></h1>
+      <p class="hero__sub">Every cover is floated by hand on a bath of ink, then lifted onto paper. Yours will be the only one with its pattern.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Shop notebooks</a>
+        <a class="btn btn--ghost" href="#">See a sheet made</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Slow work, done one sheet at a time.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>I</b><h3>Floated by hand</h3><p>Inks are dropped onto thickened water, combed with a stylus, then laid onto paper in one pass.</p></article>
+      <article class="feature"><b>II</b><h3>Archival paper</h3><p>Acid-free cotton pages that take fountain pen, pencil and watercolour without bleeding.</p></article>
+      <article class="feature"><b>III</b><h3>Lies flat</h3><p>Sewn bindings open flat on the desk from the first page to the last.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Endpaper Bindery</span><span>Every pattern happens once.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as marble from "./engine/looks/marble.js";
+    mount(document.querySelector(".hero__gl"), marble, {});
+  </script>
+</body>
+</html>

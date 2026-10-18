@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ingot — Sound, poured in metal</title>
+  <meta name="description" content="Ingot One: wireless headphones machined from a single bar of recycled aluminium, tuned by hand and built to be repaired.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050506'/%3E%3Cpath d='M7 21l3-10h12l3 10z' fill='%23d9dde6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #050506;
+      --ink: #f2f3f5;
+      --muted: rgba(230, 233, 238, 0.64);
+      --line: rgba(230, 233, 238, 0.12);
+      --accent: #cfd6e4;
+      --btn: #eef0f4;
+      --btn-ink: #050506;
+      --font-display: "Unbounded", system-ui, sans-serif;
+      --title-size: clamp(40px, 5.6vw, 92px);
+      --title-weight: 400;
+      --title-lh: 1.02;
+      --title-track: -0.05em;
+      --wing-solid: 6%;
+      --wing-clear: 33%;
+      --fallback: linear-gradient(90deg, #8e939c, #1b1c20 30%, #050506 40% 60%, #1b1c20 70%, #8e939c);
+    }
+    .hero[data-layout="wings"] { --copy-w: 820px; }
+    .hero__title em { font-style: normal; color: #b9c0cc; }
+    .more { background: #050506; }
+  </style>
+</head>
+<body>
+  <section class="hero has-scrim" data-layout="wings">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l2.6-9h10.8l2.6 9z" fill="none" stroke="#e6e9ef" stroke-width="1.6" stroke-linejoin="round"/></svg>Ingot</a>
+      <nav class="links" aria-label="Main"><a href="#">Ingot One</a><a href="#">Repairs</a><a href="#">Stories</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Pre-order</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Ingot One · wireless over-ear</p>
+      <h1 class="hero__title">Sound, poured <em>in metal</em></h1>
+      <p class="hero__sub">Machined from a single bar of recycled aluminium, tuned by hand, and built to be repaired rather than replaced.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Pre-order</a>
+        <a class="btn btn--ghost" href="#">Hear it</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Built like a tool, tuned like an instrument.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>One bar, one body</h3><p>Each housing is cut from a single piece, so there are no seams to creak or crack.</p></article>
+      <article class="feature"><b>02</b><h3>Tuned by ear</h3><p>Every pair is measured and matched by a person, then signed inside the cup.</p></article>
+      <article class="feature"><b>03</b><h3>Made to be opened</h3><p>Standard screws, swappable cells and pads, and spares kept in stock for ten years.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Ingot Audio</span><span>Milled in small batches.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as chrome from "./engine/looks/chrome.js";
+    mount(document.querySelector(".hero__gl"), chrome, {});
+  </script>
+</body>
+</html>
