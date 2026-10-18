@@ -85,7 +85,8 @@ exploded-kissa/
     engine/                      the scroll stage, shared by every page
     kissa/
       index.html page.json       the look; the words, parts and lab
-      layout.json img/ frames/   written by tools/build.mjs: photos, cut-outs and both clips as frames
+      layout.json img/ frames/   written by tools/build.mjs: photos, cut-outs and both clips as frames (full size and
+                                 for phones)
   tools/
     subjects.json                the prompts
     build.mjs                    node build.mjs kissa --stills · node build.mjs kissa --motion

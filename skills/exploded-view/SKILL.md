@@ -125,7 +125,8 @@ node build.mjs <id> --motion          # minutes: run it in the background → ou
 ```
 
 It makes the two empty places (plates), the two Kling clips (studio 1 → exploded, exploded → studio 2), cuts both clips
-out frame by frame, and writes the page's files: `site/<id>/img/`, `site/<id>/frames/` and `site/<id>/layout.json`.
+out frame by frame, and writes the page's files: `site/<id>/img/`, `site/<id>/frames/` (with a smaller set for phones)
+and `site/<id>/layout.json`.
 `frames-a.jpg` and `frames-b.jpg` show six moments of each clip on a checkerboard: the parts should separate in order
 and come back together without melting, extra parts or the backdrop showing. If a clip is wrong, make two takes and let
 the user choose: `node build.mjs <id> --takes 2 --only clips` (300 credits), then `--pick a2,b1 --motion`. When only

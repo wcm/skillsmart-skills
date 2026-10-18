@@ -41,6 +41,7 @@ stays).
 | The words are hard to read on a photo | a stronger `--scrim1`/`--scrim3`, or swap light and dark ink for that scene |
 | The page lags or looks frozen in a preview | background panes and hidden tabs throttle animation frames; open it in a visible window, or use `explode.seek(p)` |
 | A blank flash on a fast scroll early on | the frames are still loading (every fourth frame comes first); `check.mjs` waits for all of them |
+| A page built before 1.3.0 is heavy on phones | it has no phone frames yet: `node build.mjs <id> --only frames,web` (free) |
 
 ## The tools
 
