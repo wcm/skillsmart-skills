@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Meltemi — Let the sea set the pace</title>
+  <meta name="description" content="Week-long sailings between the quieter Cyclades, twelve guests a boat, no itinerary set in stone.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23150d38'/%3E%3Ccircle cx='16' cy='14' r='5' fill='%23ffc58e'/%3E%3Cpath d='M4 21c4-3 8 3 12 0s8 3 12 0' fill='none' stroke='%23ff6f6a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #150d38;
+      --ink: #fff4ec;
+      --muted: rgba(255, 240, 230, 0.74);
+      --line: rgba(255, 240, 230, 0.16);
+      --accent: #ffc58e;
+      --btn: #fff4ec;
+      --btn-ink: #1b1142;
+      --ghost: rgba(27, 17, 66, 0.28);
+      --ghost-line: rgba(255, 240, 230, 0.3);
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Manrope", system-ui, sans-serif;
+      --title-size: clamp(50px, 7.6vw, 128px);
+      --title-weight: 340;
+      --title-lh: 0.95;
+      --title-track: -0.03em;
+      --fallback: linear-gradient(180deg, #150d38 0%, #5a2d8f 34%, #e0679a 52%, #ffa27d 58%, #c33fae 64%, #4b2aa6 82%, #1b1142 100%);
+    }
+    .hero__title { font-variation-settings: "SOFT" 100, "WONK" 0; }
+    .hero__title em { font-style: italic; font-weight: 300; }
+    .hero__copy { --copy-w: 980px; }
+    .more { background: #150d38; }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="horizon">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="4" fill="#ffc58e"/><path d="M2 16c3.3-2.5 6.7 2.5 10 0s6.7 2.5 10 0" fill="none" stroke="#ff8f7a" stroke-width="1.8" stroke-linecap="round"/></svg>Meltemi</a>
+      <nav class="links" aria-label="Main"><a href="#">Sailings</a><a href="#">The boats</a><a href="#">Islands</a><a href="#">Journal</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Enquire</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Small boats · the Aegean · June to September</p>
+      <h1 class="hero__title">Let the sea <em>set the pace</em></h1>
+      <p class="hero__sub">Week-long sailings between the quieter Cyclades. Twelve guests a boat, and no itinerary set in stone.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">See the 2027 sailings</a>
+        <a class="btn btn--ghost" href="#">Life on board</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Twelve guests, one captain, no rush.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>Islands without queues</h3><p>Folegandros, Sikinos, Kimolos: harbours small enough that the café knows the boat.</p></article>
+      <article class="feature"><b>02</b><h3>Lunch from the market</h3><p>Our cook shops wherever we tie up, so lunch is whatever came in that morning.</p></article>
+      <article class="feature"><b>03</b><h3>Plans that bend</h3><p>When the meltemi blows, we stay put and swim. The route is a suggestion.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Meltemi Sailing</span><span>Piraeus · Naxos · Milos</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as wave from "./engine/wave.js";
+    import { swell } from "./engine/presets.js";
+    mount(document.querySelector(".hero__gl"), wave, swell);
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "slug": "fluid-shader",
+  "name": "Fluid Shader",
+  "tagline": "A landing-page hero around a gentle liquid you can touch: glowing dye, liquid chrome, marbled ink or a soap film.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["shader", "WebGL", "fluid simulation", "liquid", "ink", "dye", "smoke", "marbling", "chrome", "liquid metal", "soap film", "iridescent", "hero section", "landing page", "interactive"],
+  "youSay": "/fluid-shader a launch page for Tincture, a colour-grading app",
+  "whatYouGet": [
+    "A landing page whose hero is a liquid you can touch: glowing colour in dark water, liquid chrome, marbled ink or a soap film",
+    "A delicate touch: the cursor draws the liquid along (or lights the chrome) and a click lets something open slowly",
+    "The page around it: brand, copy, type and a layout made for the look, on wide screens, tall windows and phones",
+    "A static site with no libraries: one small WebGL2 engine, a CSS fallback and a still frame for reduced motion"
+  ],
+  "goodFit": [
+    "Creative tools, audio and hardware, stationery and craft, beauty and skincare",
+    "Launch pages that want an interactive, tactile first screen"
+  ],
+  "notFor": [
+    "Pages that need a photo or product image as the hero",
+    "Loud, high-energy splash effects (the liquid is kept calm)"
+  ],
+  "youBring": [
+    "What the page is for and the brand name",
+    "Optional: colours, mood, headline and fonts"
+  ],
+  "needs": ["Python 3", "A browser"],
+  "testedIn": ["Claude Code"]
+}

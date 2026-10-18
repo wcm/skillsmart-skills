@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pane — Privacy that lets the light in</title>
+  <meta name="description" content="Pane shows you what's working on your site, without cookies, fingerprints or a single personal detail.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23cdbfff'/%3E%3Cpath d='M9 6v20M13 6v20M17 6v20M21 6v20' stroke='%23160c2e' stroke-width='2' stroke-linecap='round' opacity='.75'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="./engine/page.css">
+  <style>
+    :root {
+      --bg: #efe9ff;
+      --ink: #160c2e;
+      --muted: rgba(22, 12, 46, 0.72);
+      --line: rgba(22, 12, 46, 0.14);
+      --accent: #7a2bff;
+      --btn: #160c2e;
+      --btn-ink: #f6f2ff;
+      --ghost: rgba(255, 255, 255, 0.4);
+      --ghost-line: rgba(22, 12, 46, 0.2);
+      --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      --title-size: clamp(42px, 5.4vw, 88px);
+      --title-weight: 700;
+      --title-lh: 0.98;
+      --title-track: -0.045em;
+      --fallback: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 13px, rgba(22, 12, 46, 0.06) 13px 26px), radial-gradient(50% 60% at 30% 40%, #9b4dff, transparent 70%), radial-gradient(50% 60% at 75% 65%, #5a3dff, transparent 70%), #e3dbff;
+      color-scheme: light;
+    }
+    /* the fluted glass covers the hero; it's flat behind the copy and grows its flutes away from it */
+    .hero__copy { --copy-w: 640px; }
+    .hero__title { margin-top: 18px; }
+    .hero__sub { color: rgba(22, 12, 46, 0.8); }
+    .eyebrow { color: rgba(22, 12, 46, 0.66); }
+    @media (max-aspect-ratio: 5/6) {
+      .hero__copy { --copy-w: 100%; padding: 0 28px; }
+    }
+    .more { background: #f4f0ff; }
+  </style>
+</head>
+<body>
+  <section class="hero" data-layout="center">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <header class="nav">
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16M10 4v16M14 4v16M18 4v16" stroke="#160c2e" stroke-width="1.8" stroke-linecap="round" opacity=".8"/></svg>Pane</a>
+      <nav class="links" aria-label="Main"><a href="#">Product</a><a href="#">Privacy model</a><a href="#">Pricing</a><a href="#">Docs</a></nav>
+      <a class="btn btn--ghost btn--sm" href="#">Sign in</a>
+    </header>
+    <div class="hero__copy">
+      <p class="eyebrow">Privacy-first web analytics</p>
+      <h1 class="hero__title">Privacy that lets the light in</h1>
+      <p class="hero__sub">See what's working on your site: pages, paths, sources. No cookies, no fingerprints, not one personal detail.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#">Start free</a>
+        <a class="btn btn--ghost" href="#">How we count</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="more">
+    <div class="more__head"><h2>Everything you need to know, nothing about who.</h2></div>
+    <div class="more__grid">
+      <article class="feature"><b>01</b><h3>No banner needed</h3><p>Nothing is stored on your visitors' devices, so there's no consent pop-up to design.</p></article>
+      <article class="feature"><b>02</b><h3>Counts, not people</h3><p>Visits are tallied the moment they happen and never joined into a profile.</p></article>
+      <article class="feature"><b>03</b><h3>One small script</h3><p>Under 2 KB, served from the EU, and it never slows a page down.</p></article>
+    </div>
+  </section>
+  <div class="foot-wrap"><footer class="foot"><span>© 2026 Pane Analytics</span><span>Built in Amsterdam.</span></footer></div>
+
+
+  <script type="module">
+    import { mount } from "./engine/core.js";
+    import * as reeded from "./engine/looks/reeded.js";
+    mount(document.querySelector(".hero__gl"), reeded, {
+      copy: document.querySelector(".hero__copy"),
+      backdrop: { base: "#efe9ff", base2: "#cdbfff", blobs: ["#8f2bff", "#5a3dff", "#b04dff", "#4a2bff", "#d68bff"], cursor: "#ae00ff" },
+    });
+  </script>
+</body>
+</html>

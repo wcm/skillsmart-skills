@@ -9,6 +9,9 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 | [linework-hero](skills/linework-hero) | Your system drawn as an animated isometric diagram |
 | [puff-hero](skills/puff-hero) | A hero whose word is in puffy, overinflated 3D letters that pop when touched |
 | [exploded-view](skills/exploded-view) | A scroll page that lifts your product out of a real photo and takes it apart, with a label on every part |
+| [wave-shader](skills/wave-shader) | A hero over a live, wavy gradient: silk, an aurora, a sunset sea or a silky ribbon |
+| [fluid-shader](skills/fluid-shader) | A hero around a gentle liquid you can touch: dye, chrome, marbled ink or a soap film |
+| [glass-shader](skills/glass-shader) | A hero with glass over the page: reeded, fogged, beaded with drops or frosted into tiles |
 | [shader-hero](skills/shader-hero) | A landing page with a dramatic, interactive shader hero |
 | [type-poster](skills/type-poster) | Bold typographic event posters (PNG + print PDF) |
 | [social-carousel](skills/social-carousel) | Instagram / LinkedIn carousels |
