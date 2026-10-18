@@ -51,6 +51,22 @@
       "remove2": "Remove the cabin and its deck completely, leaving the empty desert ground among the boulders and Joshua trees.",
       "explode": "The cabin comes apart like an architect's model: the roof lifts up, the roof frame and the loft floor rise after it, the walls slide outward and the foundation piles drop down, until every part hangs in an evenly spaced exploded view.",
       "rebuild": "The floating parts glide back together into one whole cabin, which turns so its glass gable faces the camera, as warm golden evening light falls on it."
+    },
+    "moka": {
+      "noun": "moka pot",
+      "find": "coffee pot",
+      "backdrop": "#1A1614",
+      "backdropName": "deep warm charcoal",
+      "fit": 0.36,
+      "place1": "Sunlit morning photograph in a small Italian kitchen. A classic eight-sided brushed-aluminium moka pot with a black bakelite handle and knob stands on the small blue flame of an old cream enamel gas stove. A thin wisp of steam rises from its spout. Behind it, softly out of focus: a wall of hand-painted blue and white majolica tiles in an abstract pattern, a window with half-closed green shutters striping the room with warm sunlight, a lemon tree in a terracotta pot, a white espresso cup on a saucer. Warm golden light from the left, crisp highlights on the aluminium facets. Camera at stove height, front three-quarter view, 85 mm lens, shallow depth of field, the moka pot razor sharp. The moka pot sits in the right third of the frame and fills about half the frame height; the left half of the frame is calm and softer, leaving room for a headline.",
+      "place2": "Show the very same moka pot whole again, now outdoors at dawn, sitting on a small camping stove on a flat granite rock beside a still mountain lake, with mist on the water, pine forest and a pale pink sky. A new camera position: high above the rock, looking steeply down at about 60 degrees, so we see the top of the lid and the eight-sided shoulders from above and the base is hidden; the black handle points toward the bottom-left corner of the frame. Cool blue dawn light with a warm glow on one side of the aluminium. The moka pot sits in the left third of the frame and is large and sharp; the right half of the frame is calm water and mist, leaving room for text.",
+      "exploded": "Turn this into a clean exploded view of the very same moka pot, seen from the same front three-quarter angle. Its parts lift apart and float weightless in mid-air, evenly spaced on one vertical axis, from top to bottom: the hinged lid with its black knob, the upper chamber with its spout and black handle, the rubber gasket, the round perforated filter plate, the funnel filled with dark ground coffee, the lower boiler with its small brass safety valve. Soft studio light with a bright rim on every part. The stack stands in the middle of the frame, about 80% of the frame height, with wide empty space on both sides.",
+      "remove1": "Remove the moka pot completely, leaving the small blue gas flame burning on the empty stove grate.",
+      "remove2": "Remove the moka pot completely, leaving the small camping stove on the rock.",
+      "detach1": "the stove grate and the blue gas flame under it",
+      "detach2": "the camping stove and the blue flame under it",
+      "explode": "The moka pot comes apart: the upper chamber lifts off the boiler, the funnel rises out of it, and the lid, gasket and filter plate separate, until every part hangs in an evenly spaced vertical stack.",
+      "rebuild": "The floating parts glide back down onto each other and close into one whole moka pot, which tilts toward the camera so its lid and spout show, as cool dawn light falls on it."
     }
   }
 }

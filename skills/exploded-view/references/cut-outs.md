@@ -9,7 +9,7 @@ after every change, and redo a cut-out with `node build.mjs <id> --only cut1` (o
 
 ## 1 · SAM 3 by name, BiRefNet's edges (the default, 4 credits)
 
-What the four reference pages were cut out with. BiRefNet (`birefnet-image`) finds whatever stands out in the photo,
+What the reference pages were cut out with. BiRefNet (`birefnet-image`) finds whatever stands out in the photo,
 with soft, accurate edges, but it takes along what touches the product. SAM 3 (`sam-3`) finds only the object a short
 prompt names: "headphones" leaves out the stand, "shoe" leaves out its reflection. The cut-out is BiRefNet's mask
 inside SAM 3's (grown a little), then only the biggest blob, so specks go.

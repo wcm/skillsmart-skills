@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Scaffold an Exploded View page: one product in a real place, taken apart by scroll, then whole again somewhere new.
 
-    python3 new_project.py <project-dir> <id> --from burger|headphones|sneaker|cabin
+    python3 new_project.py <project-dir> <id> --from burger|headphones|sneaker|cabin|moka
         [--brand "Kissa"] [--noun "headphones"] [--backdrop "#e9e5de"] [--backdrop-name "pale warm grey"] [--examples]
 
 <id>             a short name for the page (lowercase, e.g. "moka"); its folder is site/<id>/
---from           the reference page to start from: its lab (burger: ticket, headphones: sound, sneaker: motion,
-                 cabin: energy), layout, fonts and colours. You then rewrite its words, parts and look for the product.
+--from           the reference page to start from: its lab (burger and moka: ticket, headphones: sound, sneaker:
+                 motion, cabin: energy), layout, fonts and colours. You then rewrite its words, parts and look for the product.
 --noun           what the product is called in the prompts ("moka pot", "cabin and its deck")
 --backdrop       the plain colour the product is cut out on and the lab's background (hex); --backdrop-name the same
                  in words for the prompts ("pale warm grey"). Light products on a dark backdrop or dark on light.
@@ -26,7 +26,7 @@ from pathlib import Path
 SKILL = Path(__file__).resolve().parent.parent
 TEMPLATE = SKILL / "assets" / "template"
 EXAMPLES = SKILL / "assets" / "examples"
-REFS = ["burger", "headphones", "sneaker", "cabin"]
+REFS = ["burger", "headphones", "sneaker", "cabin", "moka"]
 
 ap = argparse.ArgumentParser()
 ap.add_argument("project")

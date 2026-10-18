@@ -93,8 +93,12 @@ try {
     return img;
   }, which);
   const layout = await page.evaluate(() => fetch("layout.json").then((r) => r.json()));
+  // the moments come from the page's own timeline (window.explode.timeline): the photo at rest, the cut-out over the
+  // empty place just before it moves, the cut-out just before it lands, and the second photo once it has taken over
+  const T = await page.evaluate(() => window.explode.timeline);
+  const mid = ([a, b]) => (a + b) / 2, full = T.labels[1];
   const shots = {};
-  for (const [name, p] of [["photo1", 0.04], ["lift", 0.0655], ["land", 0.838], ["photo2", 0.9]]) { await seek(page, p); shots[name] = await page.screenshot(); }
+  for (const [name, p] of [["photo1", 0], ["lift", T.lift[0] + 0.0005], ["land", T.land[1] - 0.002], ["photo2", Math.min(1, T.photo2[1] + 0.02)]]) { await seek(page, p); shots[name] = await page.screenshot(); }
   for (const [check, a, b, n] of [["lift", "photo1", "lift", 1], ["landing", "land", "photo2", 2]]) {
     const r = await boxAt(n), [pw] = layout.photo, k = r.width / pw, bx = layout[`cut${n}`].photo;
     const box = { left: Math.max(0, Math.round(r.x + bx[0] * k)), top: Math.max(0, Math.round(r.y + bx[1] * k)) };
@@ -103,8 +107,8 @@ try {
     ok(check, d < 14, `the product differs by ${d.toFixed(1)} of 255 between the photo and the cut-out${d < 14 ? "" : ": the cut-out doesn't line up (rebuild the cuts and web steps)"}`);
   }
 
-  // the hold: labels on screen and apart
-  await seek(page, 0.52);
+  // the moment the last label is in: labels on screen and apart
+  await seek(page, full);
   const lab = await page.evaluate(() => [...document.querySelectorAll(".e-label")].map((l) => { const r = l.getBoundingClientRect(); return [r.left, r.top, r.right, r.bottom, getComputedStyle(l).opacity]; }));
   const off = lab.filter(([l, t, r, b]) => l < 0 || t < 0 || r > W || b > H).length;
   let overlap = 0;
@@ -114,7 +118,7 @@ try {
   }
   ok("labels", !off && !overlap && lab.every((l) => +l[4] > 0.9), `${lab.length} labels · ${off} off screen · ${overlap} overlapping`);
   const tiles = [];
-  for (const p of [0, 0.13, 0.3, 0.52, 0.72, 0.97]) { await seek(page, p); tiles.push(await page.screenshot()); }
+  for (const p of [0, mid(T.lift), mid(T.explode), full, mid(T.land), 1]) { await seek(page, p); tiles.push(await page.screenshot()); }
   await ctx.close();
 
   // ——— reduced motion ———
@@ -129,10 +133,10 @@ try {
   const ph = await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
   await ph.page.evaluate(() => window.explode.ready);
   const phoneTiles = [];
-  for (const p of [0, 0.52, 0.97]) { await seek(ph.page, p); phoneTiles.push(await ph.page.screenshot()); }
-  await seek(ph.page, 0.52);
+  for (const p of [0, full, 1]) { await seek(ph.page, p); phoneTiles.push(await ph.page.screenshot()); }
+  await seek(ph.page, full);
   const fit = await ph.page.evaluate(() => ({ scroll: document.scrollingElement.scrollWidth, vw: innerWidth, legend: +getComputedStyle(document.querySelector(".e-legend")).opacity }));
-  ok("phone", fit.scroll <= fit.vw + 1 && fit.legend > 0.9, `page ${fit.scroll} px wide in ${fit.vw}; legend ${fit.legend > 0.9 ? "shows" : "hidden"} at the hold`);
+  ok("phone", fit.scroll <= fit.vw + 1 && fit.legend > 0.9, `page ${fit.scroll} px wide in ${fit.vw}; legend ${fit.legend > 0.9 ? "shows" : "hidden"} with every label in`);
   await ph.ctx.close();
 
   ok("console", !errors.length, errors.slice(0, 3).join(" | "));

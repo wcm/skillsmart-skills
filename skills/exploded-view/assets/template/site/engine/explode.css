@@ -32,7 +32,7 @@ body[data-scene="2"] { --nav-ink: var(--three-ink); }
 .e-steps b { font-weight: 400; }
 
 /* —— the stage —— */
-.e-scroll { position: relative; height: var(--length, 880vh); }
+.e-scroll { position: relative; height: var(--length, 700vh); }
 .e-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--lab-bg); }
 .e-photo { position: absolute; inset: 0; overflow: hidden; will-change: opacity, filter, transform; }
 .e-photo-front { position: absolute; max-width: none; }
