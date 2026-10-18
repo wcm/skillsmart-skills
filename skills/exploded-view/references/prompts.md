@@ -12,7 +12,8 @@ are in `<skill>/assets/examples/subjects.json`: read the one closest to your pro
 | `backdrop`, `backdropName` | the plain colour the product is cut out on, as hex and in words ("#E9E5DE", "pale warm grey"). Dark for a light product, light for a dark one; it is also the lab's background (`--lab-bg`) |
 | `fit` | how tall the whole product is in the studio frame, as a share of its height (0.3–0.55). Lower when the explosion spreads up and down (a stack 0.3–0.4), higher when it spreads sideways (0.45–0.55) |
 | `find` | optional: the common word SAM 3 finds the product by, when `noun` is unusual (references/cut-outs.md) |
-| `detach1`, `detach2`, `erase1`, `erase2` | optional: cut-out fixes (references/cut-outs.md) |
+| `detach1`, `detach2`, `patch1`, `patch2`, `erase1`, `erase2` | optional: cut-out fixes (references/cut-outs.md) |
+| `dropx`, `specks` | optional: an extra part in the exploded view, specks that flash in the clips (references/cut-outs.md) |
 | `cut` | optional: `"birefnet"` skips SAM 3 for a product standing free |
 | `place1` | the first photo |
 | `place2` | the second photo |

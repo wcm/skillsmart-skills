@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 — 2026-10-18
+- The last scene's words scroll up into place from below the window instead of fading in, and the page ends on a
+  short stop on that finished scene (the last 5% of the scroll; the page is 740% of the window tall to keep the pace).
+- The scene rail at the bottom left is optional (`steps` in page.json); the reference pages leave it out.
+- Cleaner cut-outs. `patch1`/`patch2`: polygons around something in front of the product (a stand's cradle under a
+  headband), where the cut-out takes the detach edit, which painted in what the thing hid. `dropx`: points on a part
+  the exploded view shouldn't have, painted out of the picture before the clips. `specks`: clears small drops or crumbs
+  that flash in the clips. A detach edit is reused while nothing it depends on changed.
+- Reference pages: the burger's sauce drops no longer flash, and the headphones leave their stand's cradle behind and
+  come apart without the extra band it had turned into (new clips).
+
 ## 1.1.0 — 2026-10-18
 - No pauses between scenes: the product starts to move on the first scroll, the labels leave as soon as the last one is
   in, and the scroll ends as the second scene's words arrive. The page is 700% of the window tall instead of 880%, so

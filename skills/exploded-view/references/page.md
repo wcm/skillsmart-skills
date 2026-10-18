@@ -9,7 +9,7 @@ A page is `site/<id>/index.html` (fonts, colours) and `site/<id>/page.json` (wor
 | Field | What |
 |---|---|
 | `brand`, `nav`, `navCta` | the top bar: the brand, three or so links, one button |
-| `steps` | three short names for the scenes, shown in a pill at the bottom left ("The diner", "Inside", "The park") |
+| `steps` | optional: three short names for the scenes, shown in a pill at the bottom left that marks where the visitor is ("The diner", "Inside", "The park"). The reference pages leave it out |
 | `one` | scene 1's words: `kicker`, `title` (`\n` breaks a line, `*word*` sets it in italics), `body`, `cta`, `ghost` (a second, outlined button), `meta` (two or three short facts), `hint` ("Scroll to take it apart"), `alt` (the photo described) |
 | `two` | scene 2's header: `kicker`, `title`, `note` ("Keep scrolling to put it back together") |
 | `three` | scene 3's words, like `one` |
@@ -57,14 +57,16 @@ a dark scrim on dark ones).
 
 ## The scroll
 
-The page is 700% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
+The page is 740% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
 `site/engine/explode.js` sets when each thing happens, as fractions of the scroll, and nothing waits between scenes:
-the product starts to move on the first scroll (the photo hands over to the cut-out at 0–0.015 and the product flies to
-the middle until 0.185), clip a plays 0.16–0.435, the labels draw in 0.395–0.56 and leave as soon as the last one is in
-(0.56–0.62), clip b plays 0.585–0.86 while the product flies to the second photo (0.635–0.885), the second photo takes
-over at 0.885–0.935, and the scroll ends as its words arrive (0.895–0.985). To give one moment more room, widen its span
-and narrow the others, or raise `--length` to slow the whole page; `check.mjs` reads the timeline from the page
-(`window.explode.timeline`), so its checks follow. The shown point eases after the scroll (smooth steps between
+the product starts to move on the first scroll (the photo hands over to the cut-out at 0–0.014 and the product flies to
+the middle until 0.176), clip a plays 0.152–0.413, the labels draw in 0.375–0.532 and leave as soon as the last one is
+in (0.532–0.589), clip b plays 0.556–0.817 while the product flies to the second photo (0.603–0.841), the second photo
+takes over at 0.841–0.888, and its words scroll up into place from below the window (0.850–0.936). Only the end rests:
+once those words are in, the last 6% of the scroll changes nothing, a short stop on the finished last scene (`REST` at
+the top of the file makes room for it; every span is scaled to fit ahead of it). To give one moment more room, widen
+its span and narrow the others, or raise `--length` to slow the whole page; `check.mjs` reads the timeline from the
+page (`window.explode.timeline`), so its checks follow. The shown point eases after the scroll (smooth steps between
 frames); with reduced motion it follows at once and nothing moves on its own.
 
 On a phone (under 760 px wide) the words sit at the top, each photo shrinks until the product fits across the screen

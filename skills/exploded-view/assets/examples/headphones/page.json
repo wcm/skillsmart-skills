@@ -1,15 +1,22 @@
 {
   "brand": "Kissa",
-  "nav": ["Headphones", "Listening rooms", "Journal"],
+  "nav": [
+    "Headphones",
+    "Listening rooms",
+    "Journal"
+  ],
   "navCta": "Pre-order",
-  "steps": ["The bar", "Inside", "The train"],
   "one": {
     "kicker": "Kissa One · wireless over-ear",
     "title": "Made for the\n*listening room.*",
     "body": "Oiled walnut, brushed aluminium and a 40 mm driver, tuned in the late-night record bars of Tokyo.",
     "cta": "Pre-order · $449",
     "ghost": "Look inside",
-    "meta": ["40 mm driver", "−42 dB", "60 h"],
+    "meta": [
+      "40 mm driver",
+      "−42 dB",
+      "60 h"
+    ],
     "hint": "Scroll to take it apart"
   },
   "two": {
@@ -23,24 +30,127 @@
     "body": "Noise cancelling that turns a train into a whisper, and sixty hours of battery for the long way round.",
     "cta": "Pre-order · $449",
     "ghost": "Compare models",
-    "meta": ["Ships in March", "2-year warranty"]
+    "meta": [
+      "Ships in March",
+      "2-year warranty"
+    ]
   },
-  "stage": { "area": [0.05, 0.27, 0.9, 0.5], "mobile": [0.03, 0.27, 0.94, 0.3] },
+  "stage": {
+    "area": [
+      0.05,
+      0.27,
+      0.9,
+      0.5
+    ],
+    "mobile": [
+      0.03,
+      0.27,
+      0.94,
+      0.3
+    ]
+  },
   "labels": "rows",
   "parts": [
-    { "name": "Walnut caps", "spec": "Oiled by hand; the wood damps ringing", "at": [0.175, 0.765], "side": "bottom" },
-    { "name": "Brain and battery", "spec": "8 mics for noise cancelling, 60 h charge", "at": [0.272, 0.7], "side": "bottom" },
-    { "name": "Acoustic mesh", "spec": "Tunes the air in front of the driver", "at": [0.378, 0.7], "side": "bottom" },
-    { "name": "Headband", "spec": "One bent aluminium band, 254 g all in", "at": [0.505, 0.15], "side": "top" },
-    { "name": "Lambskin cushions", "spec": "Slow memory foam, 22 mm deep", "at": [0.565, 0.455], "side": "top" },
-    { "name": "40 mm driver", "spec": "Beryllium-coated, 4 Hz to 40 kHz", "at": [0.675, 0.538], "side": "top" },
-    { "name": "Machined housing", "spec": "Aluminium, milled from one block", "at": [0.79, 0.53], "side": "top" }
+    {
+      "name": "Walnut caps",
+      "spec": "Oiled by hand; the wood damps ringing",
+      "at": [
+        0.175,
+        0.765
+      ],
+      "side": "bottom"
+    },
+    {
+      "name": "Brain and battery",
+      "spec": "8 mics for noise cancelling, 60 h charge",
+      "at": [
+        0.272,
+        0.7
+      ],
+      "side": "bottom"
+    },
+    {
+      "name": "Acoustic mesh",
+      "spec": "Tunes the air in front of the driver",
+      "at": [
+        0.378,
+        0.7
+      ],
+      "side": "bottom"
+    },
+    {
+      "name": "Headband",
+      "spec": "One bent aluminium band, 254 g all in",
+      "at": [
+        0.505,
+        0.15
+      ],
+      "side": "top"
+    },
+    {
+      "name": "Lambskin cushions",
+      "spec": "Slow memory foam, 22 mm deep",
+      "at": [
+        0.565,
+        0.455
+      ],
+      "side": "top"
+    },
+    {
+      "name": "40 mm driver",
+      "spec": "Beryllium-coated, 4 Hz to 40 kHz",
+      "at": [
+        0.675,
+        0.538
+      ],
+      "side": "top"
+    },
+    {
+      "name": "Machined housing",
+      "spec": "Aluminium, milled from one block",
+      "at": [
+        0.79,
+        0.53
+      ],
+      "side": "top"
+    }
   ],
   "lab": {
     "style": "sound",
-    "drivers": [[0.325, 0.632], [0.675, 0.632]],
-    "readout": { "caption": "Active noise cancelling", "value": 42, "unit": "dB", "level": 0.86 },
-    "facts": [["Driver", "40 mm"], ["Range", "4 Hz – 40 kHz"], ["Battery", "60 h"], ["Weight", "254 g"]]
+    "drivers": [
+      [
+        0.325,
+        0.632
+      ],
+      [
+        0.675,
+        0.632
+      ]
+    ],
+    "readout": {
+      "caption": "Active noise cancelling",
+      "value": 42,
+      "unit": "dB",
+      "level": 0.86
+    },
+    "facts": [
+      [
+        "Driver",
+        "40 mm"
+      ],
+      [
+        "Range",
+        "4 Hz – 40 kHz"
+      ],
+      [
+        "Battery",
+        "60 h"
+      ],
+      [
+        "Weight",
+        "254 g"
+      ]
+    ]
   },
   "footer": "Kissa · headphones for listening rooms"
 }

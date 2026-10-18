@@ -9,6 +9,7 @@
 //   node build.mjs <id> --cost            what the steps would cost, without running them
 //   node build.mjs <id> --takes 3 --only place1    three first photos side by side (out/<id>/place1-takes.jpg); then --pick 2
 //   node build.mjs <id> --takes 2 --only clips     two takes of each clip (out/<id>/clips-takes-a.jpg, -b.jpg); then --pick a2,b1
+//   node build.mjs <id> --only clips,mattes,frames,web --clip a    redo one clip only (a comes apart, b closes)
 //
 // --stills  place1    the product in its first place, from the prompt (20 credits)
 //           cut1      the product cut out of place1 (4), trying in turn (references/cut-outs.md):
@@ -18,17 +19,22 @@
 //                          `"cut": "birefnet"` skips SAM 3 for a product that stands free.
 //                       2  `detach1`, naming what still clings ("the stove under it"): an edit of the cut-out on the
 //                          plain backdrop takes it away, and only what is left is kept (+22)
+//                          With `patch1` polygons around the thing when it sits in front of the product (a stand's
+//                          cradle under a headband): there the cut-out takes the edited picture, which painted it in
 //                       3  `erase1`: polygons in the photo (u, v from 0 to 1) cleared by hand (free)
 //                     Also studio1: the cut-out alone on the backdrop, centred at `fit` of the frame's height (clip a's
 //                     first frame). After changing find, detach or erase, redo it with --only cut1.
 //           place2    the same product, whole, at a new angle in its second place: an edit of studio1 (20)
 //           cut2      the same for place2 (`detach2`, `erase2`), and studio2 at the same size (clip b's last frame)
 //           exploded  the exploded view: an edit of studio1 (20)
-//           cutx      the exploded view cut out with BiRefNet (2)
+//           cutx      the exploded view cut out with BiRefNet (2); `dropx` points on parts it shouldn't have paint them
+//                     out of exploded.png itself (then redo the clips)
 // --motion  plates    place1 and place2 with the product removed (2 × 20): what stays when it lifts away
 //           clips     Kling: studio1 → exploded (a) and exploded → studio2 (b), 5 s each (2 × 75)
 //           mattes    BiRefNet masks of both clips (2 × 10)
 //           frames    both clips as alpha WebP frames, cropped to where the product goes (free)
+//                     `"specks": 0.03` in the subject clears small round blobs that flash in a clip (sauce drops, crumbs)
+//                     from every frame and from cutx; redo with --only cutx,frames,web
 //           web       photos, plates and cut-outs as WebP, and layout.json: every box the page lines up (free)
 //
 // Prompts live in subjects.json. Generation goes through the user's Skillsmart account with credits (gen.mjs); with
@@ -72,6 +78,8 @@ const from = flag("--from");
 for (const k of [...(only ?? []), ...(from ? [from] : [])]) if (!STEPS.includes(k)) { console.error(`unknown step "${k}"; steps: ${STEPS.join(", ")}`); process.exit(1); }
 const takes = +(flag("--takes") ?? 0);
 const pick = flag("--pick");
+const CLIPS = flag("--clip") ? [flag("--clip")] : ["a", "b"]; // --clip a: the clips and mattes steps redo only that clip
+if (CLIPS.some((ab) => ab !== "a" && ab !== "b")) { console.error('--clip takes "a" (the one that comes apart) or "b" (the one that closes)'); process.exit(1); }
 const fix = flag("--fix");
 const steps = only ?? (from ? STEPS.slice(STEPS.indexOf(from)) : argv.includes("--stills") ? STILLS : argv.includes("--motion") ? MOTION : STEPS);
 const named = Boolean(only || from);
@@ -199,6 +207,101 @@ async function biggest(alpha, W, H) {
   return res;
 }
 
+// Polygons in a picture (u across and v down, 0 to 1) as a 0–255 mask, its edge softened by `soften` pixels.
+async function polygons(list, W, H, soften = 0) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${list.map((poly) => `<polygon points="${poly.map(([u, v]) => `${u * W},${v * H}`).join(" ")}" fill="#fff"/>`).join("")}</svg>`;
+  const hard = await one8(sharp(Buffer.from(svg)).ensureAlpha().extractChannel(3), W, H);
+  return soften ? one8(sharp(hard, { raw: { width: W, height: H, channels: 1 } }).blur(soften).extractChannel(0), W, H) : hard;
+}
+
+// Specks: small round blobs a matte catches in some frames and not others, so they flash (sauce drops, crumbs). Only
+// when the subject asks: `"specks": 0.03` clears every round blob under 3% of the biggest one, in the exploded still
+// and in every clip frame. Long thin blobs (a carbon plate seen edge-on, a lace) stay, however small.
+function despeckle(alpha, W, H, share) {
+  const label = new Int32Array(W * H), sizes = [0], boxes = [null];
+  for (let i = 0; i < W * H; i++) {
+    if (alpha[i] < 128 || label[i]) continue;
+    const id = sizes.length, stack = [i];
+    label[i] = id;
+    let n = 0, x0 = W, y0 = H, x1 = 0, y1 = 0;
+    while (stack.length) {
+      const p = stack.pop(); n++;
+      const x = p % W, y = (p / W) | 0;
+      if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+      for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, y > 0 ? p - W : -1, y < H - 1 ? p + W : -1])
+        if (q >= 0 && !label[q] && alpha[q] >= 128) { label[q] = id; stack.push(q); }
+    }
+    sizes.push(n); boxes.push([x0, y0, x1 - x0 + 1, y1 - y0 + 1]);
+  }
+  const top = Math.max(0, ...sizes);
+  const drop = sizes.map((n, l) => {
+    if (!l || n >= top * share) return false;
+    const [, , bw, bh] = boxes[l];
+    return Math.max(bw, bh) <= 3 * Math.min(bw, bh) && n >= 0.3 * bw * bh; // round enough to be a drop
+  });
+  const removed = drop.filter(Boolean).length;
+  if (!removed) return { alpha, removed };
+  // clear each blob and its soft rim (within r), but never a pixel near a blob that stays
+  const res = Buffer.from(alpha), r = 3;
+  const near = (x, y, test) => {
+    for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+      const qx = x + dx, qy = y + dy;
+      if (qx >= 0 && qy >= 0 && qx < W && qy < H && test(label[qy * W + qx])) return true;
+    }
+    return false;
+  };
+  for (let l = 1; l < sizes.length; l++) if (drop[l]) {
+    const [bx, by, bw, bh] = boxes[l];
+    for (let y = Math.max(0, by - r); y < Math.min(H, by + bh + r); y++) for (let x = Math.max(0, bx - r); x < Math.min(W, bx + bw + r); x++) {
+      const k = y * W + x;
+      if (label[k] === l || (!label[k] && near(x, y, (m) => m === l) && !near(x, y, (m) => m && !drop[m]))) res[k] = 0;
+    }
+  }
+  return { alpha: res, removed };
+}
+
+// A part the exploded view shouldn't have (an extra band that came from a stand left in the first cut-out): `dropx`
+// lists points (u, v) on such parts. Every part is its own blob there, so each part a point lands on, with its soft rim,
+// is painted over with the backdrop in exploded.png itself (the old one is kept as exploded.bak-N.png), so the clips
+// leave it out too, and it is cleared from the cut-out.
+async function dropParts(src, alpha, W, H, points, label) {
+  const raw1 = { raw: { width: W, height: H, channels: 1 } }, raw3 = { raw: { width: W, height: H, channels: 3 } };
+  const lab = new Int32Array(W * H);
+  let next = 0;
+  for (let i = 0; i < W * H; i++) {
+    if (alpha[i] < 128 || lab[i]) continue;
+    const l = ++next, stack = [i];
+    lab[i] = l;
+    while (stack.length) {
+      const p = stack.pop(), x = p % W, y = (p / W) | 0;
+      for (const q of [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, y > 0 ? p - W : -1, y < H - 1 ? p + W : -1])
+        if (q >= 0 && !lab[q] && alpha[q] >= 128) { lab[q] = l; stack.push(q); }
+    }
+  }
+  const hit = new Set();
+  for (const [u, v] of points) {
+    const x0 = Math.round(u * W), y0 = Math.round(v * H);
+    let found = 0;
+    for (let r = 0; r <= 16 && !found; r++) for (let dy = -r; dy <= r && !found; dy++) for (let dx = -r; dx <= r && !found; dx++) {
+      const x = x0 + dx, y = y0 + dy;
+      if (x >= 0 && y >= 0 && x < W && y < H && lab[y * W + x]) found = lab[y * W + x];
+    }
+    if (found) hit.add(found);
+    else console.log(`[${id}/${label}] dropx: no part at ${u}, ${v} (already gone?)`);
+  }
+  if (!hit.size) return alpha;
+  const solid = Buffer.alloc(W * H);
+  for (let k = 0; k < W * H; k++) if (hit.has(lab[k])) solid[k] = 255;
+  // grown a few pixels to take the soft rim, with a soft edge
+  const m = (await one8(sharp(solid, raw1).blur(3).extractChannel(0), W, H)).map((v) => Math.min(255, v * 3));
+  const rgb = await sharp(src).removeAlpha().raw().toBuffer(), bg = [1, 3, 5].map((i) => parseInt(s.backdrop.slice(i, i + 2), 16));
+  for (let k = 0; k < W * H; k++) if (m[k]) for (let c = 0; c < 3; c++) rgb[k * 3 + c] = Math.round(rgb[k * 3 + c] + (bg[c] - rgb[k * 3 + c]) * m[k] / 255);
+  keep(src);
+  await sharp(rgb, raw3).png().toFile(src);
+  console.log(`[${id}/${label}] dropped ${hit.size} part${hit.size > 1 ? "s" : ""} from the exploded view (old picture kept as a .bak)`);
+  return Buffer.from(alpha.map((v, k) => Math.round(v * (1 - m[k] / 255))));
+}
+
 // The product alone, as an RGBA the size of the photo (n = 1 or 2), trying the ladder in references/cut-outs.md; for the
 // exploded view (n = null), BiRefNet alone: there every part is its own blob.
 async function cut(src, n, dest, label) {
@@ -225,21 +328,57 @@ async function cut(src, n, dest, label) {
     // 2 · detach: an edit takes away what still clings, on the plain backdrop (an easy edit, unlike one on the busy photo)
     const detach = s[`detach${n}`];
     if (detach) {
-      const pre = `${base}-pre.png`, clean = `${base}-clean.png`;
+      const pre = `${base}-pre.png`, clean = `${base}-clean.png`, asked = `${base}-clean.json`;
       const now = await sharp(rgb, raw3).joinChannel(alpha, raw1).png().toBuffer();
-      await sharp({ create: { width: W, height: H, channels: 3, background: s.backdrop } }).composite([{ input: now }]).png().toFile(pre);
-      await gen("nano-banana-pro", image(fill(spec.detach, detach) + note, [pre]), clean, `${label} detach`);
-      const kept = within(alpha, await grown(await birefnet(clean, `${base}-clean`, `${label} detached`)));
+      const picture = await sharp({ create: { width: W, height: H, channels: 3, background: s.backdrop } }).composite([{ input: now }]).png().toBuffer();
+      // the edit is reused while the picture and the words are the same (redoing an erase doesn't pay for it again)
+      const request = JSON.stringify({ detach, note });
+      const same = existsSync(pre) && existsSync(clean) && existsSync(asked) && readFileSync(pre).equals(picture) && readFileSync(asked, "utf8") === request;
+      if (!same) {
+        writeFileSync(pre, picture);
+        await gen("nano-banana-pro", image(fill(spec.detach, detach) + note, [pre]), clean, `${label} detach`);
+        writeFileSync(asked, request);
+      }
+      const cleanMask = await birefnet(clean, `${base}-clean`, `${label} detached`);
+      const kept = within(alpha, await grown(cleanMask));
+      // 2b · patch: polygons around something pressed against the product, which the grown mask keeps (a stand's
+      // cradle in front of a headband). There the cut-out takes the edited picture, toned to match the photo around
+      // it: the bit of product the thing hid, as the edit painted it in, and the edit's outline.
+      const patch = s[`patch${n}`];
+      let P = null, C = null;
+      if (patch?.length) {
+        P = await polygons(patch, W, H, 1.5);
+        C = await sharp(clean).resize(W, H, { fit: "fill" }).removeAlpha().raw().toBuffer();
+        const around = await polygons(patch, W, H, 12), sum = [0, 0, 0, 0, 0, 0];
+        for (let k = 0; k < W * H; k++) if (around[k] > 8 && !P[k] && alpha[k] > 230) for (let c = 0; c < 3; c++) { sum[c] += rgb[k * 3 + c]; sum[c + 3] += C[k * 3 + c]; }
+        const gain = [0, 1, 2].map((c) => (sum[c + 3] ? sum[c] / sum[c + 3] : 1));
+        for (let k = 0; k < W * H; k++) if (P[k]) {
+          for (let c = 0; c < 3; c++) C[k * 3 + c] = Math.min(255, Math.round(C[k * 3 + c] * gain[c]));
+          kept[k] = Math.round(kept[k] + (cleanMask[k] - kept[k]) * P[k] / 255);
+        }
+      }
       if (count(kept) < count(alpha) * 0.4) console.log(`[${id}/${label}] the detach edit took away most of the product, so it's left out: look at out/${id}/${label}-clean.png and reword detach${n}`);
-      else { alpha = await biggest(kept, W, H); console.log(`[${id}/${label}] detached ${detach}`); }
+      else {
+        if (P) for (let k = 0; k < W * H; k++) if (P[k]) for (let c = 0; c < 3; c++) rgb[k * 3 + c] = Math.round(rgb[k * 3 + c] + (C[k * 3 + c] - rgb[k * 3 + c]) * P[k] / 255);
+        alpha = await biggest(kept, W, H);
+        console.log(`[${id}/${label}] detached ${detach}${P ? ` · patched ${patch.length} area${patch.length > 1 ? "s" : ""} from the edit` : ""}`);
+      }
+    } else if (s[`patch${n}`]?.length) {
+      console.log(`[${id}/${label}] patch${n} needs detach${n}: the detach edit paints in what the thing hid`);
     }
     // 3 · erase: polygons in the photo, u across and v down from 0 to 1
     const erase = s[`erase${n}`];
     if (erase?.length) {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${erase.map((poly) => `<polygon points="${poly.map(([u, v]) => `${u * W},${v * H}`).join(" ")}" fill="#fff"/>`).join("")}</svg>`;
-      const E = await one8(sharp(Buffer.from(svg)).ensureAlpha().extractChannel(3), W, H);
+      const E = await polygons(erase, W, H);
       alpha = Buffer.from(alpha.map((v, k) => Math.round(v * (1 - E[k] / 255))));
       console.log(`[${id}/${label}] erased ${erase.length} polygon${erase.length > 1 ? "s" : ""}`);
+    }
+  } else {
+    if (s.dropx?.length) alpha = await dropParts(src, alpha, W, H, s.dropx, label);
+    if (s.specks) {
+      const d = despeckle(alpha, W, H, s.specks);
+      alpha = d.alpha;
+      console.log(`[${id}/${label}] cleared ${d.removed} speck${d.removed === 1 ? "" : "s"}`);
     }
   }
   keep(dest);
@@ -296,9 +435,11 @@ async function frames(src, mask, dir, stageW, sheetFile, tag) {
   // the mask tightened a touch, so no backdrop rims the product
   await ff("-i", mask, "-vf", `${crop},format=gray,lut=y='clip((val-24)*1.12\\,0\\,255)'`, "-frames:v", String(n), join(tmp, "m", "%04d.png"));
   rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
+  let specks = 0;
   for (let i = 1; i <= n; i++) {
     const f = String(i).padStart(4, "0") + ".png";
-    const a = await sharp(join(tmp, "m", f)).extractChannel(0).raw().toBuffer();
+    let a = await sharp(join(tmp, "m", f)).extractChannel(0).raw().toBuffer();
+    if (s.specks) { const d = despeckle(a, W, H, s.specks); a = d.alpha; specks += d.removed; }
     // no removeAlpha() here: sharp applies it last, so it would strip the alpha just joined
     await sharp(join(tmp, "c", f)).joinChannel(a, { raw: { width: W, height: H, channels: 1 } })
       .webp({ quality: 74, alphaQuality: 85, effort: 5 }).toFile(join(dir, f.replace(".png", ".webp")));
@@ -309,7 +450,7 @@ async function frames(src, mask, dir, stageW, sheetFile, tag) {
   const picks = [0, 0.2, 0.4, 0.6, 0.8, 1].map((t) => join(dir, String(Math.round(t * (n - 1)) + 1).padStart(4, "0") + ".webp"));
   await sheet([picks.slice(0, 3), picks.slice(3)], sheetFile, 520);
   rmSync(tmp, { recursive: true, force: true });
-  console.log(`[${id}/${tag}] ${n} frames ${W}×${H} · crop ${manifest.crop.join(" ")} (stage px)`);
+  console.log(`[${id}/${tag}] ${n} frames ${W}×${H} · crop ${manifest.crop.join(" ")} (stage px)${s.specks ? ` · ${specks} specks cleared` : ""}`);
   return manifest;
 }
 
@@ -364,7 +505,7 @@ if (takes && steps.includes("place1")) {
   process.exit(0);
 }
 if (takes && steps.includes("clips")) {
-  for (const ab of ["a", "b"]) {
+  for (const ab of CLIPS) {
     const files = Array.from({ length: takes }, (_, k) => o(`clip-${ab}-take-${k + 1}.mp4`));
     await Promise.all(files.map((f, k) => generate("kling-v3-pro", clip(ab), { skill: SKILL, out: f, label: `${id}/clip ${ab} take ${k + 1}` })));
     await takeSheet(files, o(`clips-takes-${ab}.jpg`));
@@ -403,8 +544,8 @@ if (STILLS.some((k) => steps.includes(k))) {
 }
 
 if (due("plates")) await Promise.all([1, 2].map((n) => save(`plate${n}.png`, (f) => gen("nano-banana-pro", image(P.plate(n), [`place${n}.png`]), f, `plate${n}`))));
-if (due("clips")) await Promise.all(["a", "b"].map((ab) => save(`clip-${ab}.mp4`, (f) => gen("kling-v3-pro", clip(ab), f, `clip ${ab}`))));
-if (due("mattes")) await Promise.all(["a", "b"].map((ab) => save(`mask-${ab}.mp4`, (f) => gen("birefnet-video", { video: file(o(`clip-${ab}.mp4`)), variant: "heavy", resolution: "2K" }, f, `matte ${ab}`))));
+if (due("clips")) await Promise.all(CLIPS.map((ab) => save(`clip-${ab}.mp4`, (f) => gen("kling-v3-pro", clip(ab), f, `clip ${ab}`))));
+if (due("mattes")) await Promise.all(CLIPS.map((ab) => save(`mask-${ab}.mp4`, (f) => gen("birefnet-video", { video: file(o(`clip-${ab}.mp4`)), variant: "heavy", resolution: "2K" }, f, `matte ${ab}`))));
 if (due("frames")) {
   boxes.frames = {};
   for (const ab of ["a", "b"]) boxes.frames[ab] = await frames(o(`clip-${ab}.mp4`), o(`mask-${ab}.mp4`), join(site, "frames", ab), SW, o(`frames-${ab}.jpg`), `frames-${ab}`);

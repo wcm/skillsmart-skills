@@ -111,8 +111,10 @@ To fix:
   (everything made from it is remade; earlier versions are kept as `*.bak-N.png`). To compare first photos, run
   `--takes 3 --only place1` (60 credits) and `--pick <n> --stills`.
 - a cut-out: climb the ladder in `references/cut-outs.md`: another word in `find`, then `detach1`/`detach2` naming
-  what clings ("the stove grate under it", 22 credits), then `erase1`/`erase2` polygons (free). Redo with
-  `--only cut1` (or `cut2`).
+  what clings ("the stove grate under it", 22 credits), with `patch1` polygons when the thing sits in front of the
+  product (a stand's cradle under a headband), then `erase1`/`erase2` polygons (free). Redo with `--only cut1` (or
+  `cut2`). Anything of the place left in `cut1` ends up in the studio frame, so the clips grow it into a part: fix it
+  now.
 
 Don't start the motion until the stills are right: the clips are made from them.
 
@@ -126,13 +128,17 @@ It makes the two empty places (plates), the two Kling clips (studio 1 → explod
 out frame by frame, and writes the page's files: `site/<id>/img/`, `site/<id>/frames/` and `site/<id>/layout.json`.
 `frames-a.jpg` and `frames-b.jpg` show six moments of each clip on a checkerboard: the parts should separate in order
 and come back together without melting, extra parts or the backdrop showing. If a clip is wrong, make two takes and let
-the user choose: `node build.mjs <id> --takes 2 --only clips` (300 credits), then `--pick a2,b1 --motion`.
+the user choose: `node build.mjs <id> --takes 2 --only clips` (300 credits), then `--pick a2,b1 --motion`. When only
+one clip is wrong, redo just that one: `--only clips,mattes,frames,web --clip a` (or `b`). Small drops
+or crumbs that come and go between frames flash on the page: set `"specks": 0.03` and redo `--only cutx,frames,web`
+(free). A part the product doesn't have: `dropx` (references/cut-outs.md), then redo the clips.
 
 ## Step 5 — The page
 
-- **Words and data** in `site/<id>/page.json` (`references/page.md`): brand, nav, the three scenes' copy, the step
-  names, the parts' names and specs, and the lab's numbers. Keep the words short and concrete; invented numbers must be
-  plausible and labelled as examples when the product isn't real.
+- **Words and data** in `site/<id>/page.json` (`references/page.md`): brand, nav, the three scenes' copy, the
+  parts' names and specs, and the lab's numbers (`steps` adds a scene rail at the bottom left, if the user wants one).
+  Keep the words short and concrete; invented numbers must be plausible and labelled as examples when the product isn't
+  real.
 - **Label dots**: run `node anchors.mjs <id> --grid` and look at `out/<id>/anchors.png` with its grid: set each part's
   `at` to `[u, v]` (u across, v down, 0–1) on the part, at the edge that faces its label, and its `side`. Then run
   `node anchors.mjs <id>` and check every dot sits on its part. The lab's own points (`drivers`, `flow`) work the same way.

@@ -5,6 +5,7 @@
       "backdrop": "#1A1614",
       "backdropName": "deep warm charcoal",
       "fit": 0.4,
+      "specks": 0.03,
       "place1": "Cinematic late-night photograph inside an American diner at 1 a.m. A double smash burger rests on a sheet of crinkled white wax paper on a worn Formica counter with a chrome edge. The burger: a glossy, deep-golden toasted brioche bun scattered with sesame seeds; two thin smashed beef patties with dark, crispy, lacy edges, each draped in a slice of melted orange American cheese that drips over the sides; crinkle-cut green pickles; soft caramelised onions; a smear of pale orange burger sauce. A wisp of steam rises from it. Behind it, softly out of focus: rain streaking down a big plate-glass window, a wet street outside, the red glow of neon tubes bent into abstract shapes, a row of chrome stools with red vinyl seats, a glass coffee pot on a warmer. Moody light like Edward Hopper's Nighthawks: a warm amber pendant lamp right above the burger, red neon spill from the window, cool teal shadows. Camera low at counter height, front three-quarter view, 85 mm lens, shallow depth of field, the burger razor sharp. The burger sits in the right third of the frame and fills about half the frame height; the left half of the frame is darker and calm, leaving room for a headline.",
       "place2": "Show the very same burger whole again, now outdoors on a bright sunny afternoon in a green city park, photographed from high above: the camera looks steeply down at about 60 degrees, so we see the whole round sesame top of the bun, with the melted cheese, the patties and the pickles peeking out around its edge. It sits on a red-and-white gingham cloth on a weathered wooden picnic table, with a few fries in a red paper tray beside it and dappled leaf shade across the table. No bottles, no cans, no cups. Bright natural sunlight with crisp soft shadows and rich natural colour. The burger sits in the left third of the frame and is large and sharp; the right half of the frame is open wooden table and gingham, calm and uncluttered, leaving room for text.",
       "exploded": "Turn this into a clean exploded view of the very same burger, seen from the same low front three-quarter angle. Its layers lift straight up and hang weightless in mid-air, evenly spaced on one vertical axis, each layer level. From top to bottom: the sesame brioche crown, the pickles, the top patty with its melted cheese, the bottom patty with its melted cheese, the caramelised onions, the toasted heel of the bun. A few sesame seeds and two small drops of sauce float between the layers. Studio light: a soft warm key light from the front left and a thin amber rim light around every layer so each one separates from the dark background. The stack stands in the middle of the frame, about 80% of the frame height, with wide empty space on both sides.",
@@ -23,6 +24,143 @@
       "exploded": "Turn this into a clean exploded view of the very same headphones, seen from the same three-quarter front angle. Both ear cups come apart outward along their own axis, mirroring each other, every part floating weightless in mid-air, in line and evenly spaced, each part turned a little toward the camera so its round face shows. For each cup, from the outside in: the oiled-walnut outer cap, the brushed-aluminium housing, a small matte-black circuit board with a slim battery, the round driver with its signal-orange ring, a fine black acoustic mesh, the ivory leather cushion. The headband lifts straight up above them with its ivory leather pad floating just below it, and the aluminium yokes and sliders float apart at each end. Soft, even studio light. The whole assembly sits in the middle of the frame, about 75% of the frame width, with empty space all around.",
       "remove1": "Remove the headphones completely; the empty aluminium headphone stand stays exactly where it is on the counter.",
       "remove2": "Remove the headphones completely, leaving the empty grey wool train seat in the sunlight.",
+      "detach1": "the metal headphone stand: its curved cradle under the headband and any part of its post",
+      "patch1": [
+        [
+          [
+            0.6999,
+            0.2057
+          ],
+          [
+            0.7129,
+            0.2025
+          ],
+          [
+            0.7267,
+            0.2051
+          ],
+          [
+            0.7376,
+            0.2168
+          ],
+          [
+            0.7522,
+            0.224
+          ],
+          [
+            0.7645,
+            0.2285
+          ],
+          [
+            0.7689,
+            0.2357
+          ],
+          [
+            0.7645,
+            0.2422
+          ],
+          [
+            0.7413,
+            0.2409
+          ],
+          [
+            0.7231,
+            0.2383
+          ],
+          [
+            0.7049,
+            0.237
+          ],
+          [
+            0.6991,
+            0.2253
+          ]
+        ],
+        [
+          [
+            0.7863,
+            0.2708
+          ],
+          [
+            0.7987,
+            0.2695
+          ],
+          [
+            0.8045,
+            0.2943
+          ],
+          [
+            0.806,
+            0.3047
+          ],
+          [
+            0.8089,
+            0.3255
+          ],
+          [
+            0.8125,
+            0.3333
+          ],
+          [
+            0.8132,
+            0.3529
+          ],
+          [
+            0.7958,
+            0.3542
+          ],
+          [
+            0.7863,
+            0.3385
+          ]
+        ]
+      ],
+      "erase1": [
+        [
+          [
+            0.7943,
+            0.207
+          ],
+          [
+            0.8147,
+            0.207
+          ],
+          [
+            0.8147,
+            0.2435
+          ],
+          [
+            0.8092,
+            0.2435
+          ],
+          [
+            0.806,
+            0.2344
+          ],
+          [
+            0.8034,
+            0.2279
+          ],
+          [
+            0.8001,
+            0.2214
+          ],
+          [
+            0.7965,
+            0.2148
+          ],
+          [
+            0.7943,
+            0.2096
+          ]
+        ]
+      ],
+      "dropx": [
+        [
+          0.5,
+          0.238
+        ]
+      ],
       "explode": "The headphones come apart: the headband rises, and every part of each ear cup slides outward along one line until all the parts hang in a mirrored, evenly spaced row, as the headphones turn to face the camera straight on.",
       "rebuild": "The floating parts glide back together into one pair of headphones, which turns onto its side so a walnut ear cup faces the camera, as the light turns to warm golden sunlight."
     },
