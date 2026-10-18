@@ -1,0 +1,44 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Night Shift — a smash burger lifts off a 1 a.m. diner counter, splits into six labelled layers and lands at a picnic",
+      "prompt": "/exploded-view A page for Night Shift's double smash burger, from a 1 a.m. diner counter to a Sunday picnic"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Kissa One — walnut headphones from a Tokyo listening bar, opened up over a sound lab, to a train at golden hour",
+      "prompt": "/exploded-view A launch page for our walnut wireless headphones, from a Tokyo listening bar to a train at golden hour"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Strata Volt — a carbon-plated running shoe in seven layers, from a noon concrete ledge to a wet neon street",
+      "prompt": "/exploded-view Our carbon-plated running shoe, from a sunlit concrete ledge to a wet neon street at night"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Fjell 30 — a prefab cabin taken apart like an architect's drawing, from a fjord at blue hour to the desert",
+      "prompt": "/exploded-view A page for our prefab timber cabin, built in six weeks and placed anywhere, from a fjord to the desert"
+    }
+  ]
+}

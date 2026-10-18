@@ -1,0 +1,10 @@
+{
+  "photo": "Photorealistic photograph, full-frame camera, real lens optics and natural depth of field, true-to-life materials with tiny real-world imperfections, subtle film grain. Wide 16:9 frame. No text, no lettering, no readable signs, no logos, no watermark, no border.",
+  "same": "It must be exactly the same object as in the photo: the same shape, proportions, colours, materials and details. Do not redesign it.",
+  "detach": "Remove {detach} from this picture, and anything else that is not the {noun}. Keep the {noun} exactly as it is, pixel for pixel: the same position, size, shape, colours and light, on the same plain {backdropName} background ({backdrop}). Nothing else changes. No text, no logos, no watermark.",
+  "exploded": "Keep the same perfectly plain, seamless {backdropName} background ({backdrop}) with no floor, no props and no shadows. Photographic product-shot quality, as if the real parts were photographed weightless in a studio. Every part crisp and in focus. Wide 16:9 frame. No text, no labels, no numbers, no arrows, no lines, no logos, no watermark, no border.",
+  "plate": "Keep the exact same camera, framing, perspective, lighting, colours and depth of field, so the two photos overlay exactly. Fill the space naturally so the scene continues seamlessly where it was. Nothing else changes. No text, no logos, no watermark.",
+  "clip": "Slow, smooth, weightless motion. The camera stays perfectly still and the plain studio backdrop stays the same flat colour the whole time.",
+  "negative": "camera movement, zoom, pan, background change, shadows on the backdrop, extra parts, duplicated parts, text, logos, watermark, blur, flicker, distortion, melting",
+  "subjects": {}
+}

@@ -1,0 +1,44 @@
+{
+  "brand": "Fjell",
+  "nav": ["Cabins", "How it's built", "Sites"],
+  "navCta": "Plan yours",
+  "steps": ["The fjord", "Inside", "The desert"],
+  "one": {
+    "kicker": "Fjell 30 · prefab cabin",
+    "title": "Built in six weeks.\nPlaced anywhere.",
+    "body": "A 30 m² cabin made in our workshop, delivered on one truck and set on screw piles in a single day. No concrete.",
+    "cta": "Plan your cabin",
+    "ghost": "See how it's built",
+    "meta": ["30 m²", "6 weeks", "1 day on site"],
+    "hint": "Scroll to take it apart"
+  },
+  "two": { "kicker": "How a Fjell goes together", "title": "Eight parts.\nOne truck.", "note": "Keep scrolling to put it back together" },
+  "three": {
+    "kicker": "Same cabin, new horizon",
+    "title": "From the fjord\nto the desert.",
+    "body": "The same shell holds heat at −30 °C and stays cool at +45 °C. The solar roof and battery run it off-grid.",
+    "cta": "Plan your cabin",
+    "ghost": "Sites we deliver to",
+    "meta": ["Off-grid ready", "−30 to +45 °C"]
+  },
+  "stage": { "area": [0.33, 0.11, 0.34, 0.8], "mobile": [0.06, 0.18, 0.88, 0.46] },
+  "labels": "columns",
+  "parts": [
+    { "name": "Solar roof", "spec": "Standing-seam steel, 6.4 kWp of panels", "at": [0.575, 0.134], "side": "right" },
+    { "name": "Roof frame", "spec": "Timber trusses, 300 mm wood-fibre insulation", "at": [0.575, 0.269], "side": "right" },
+    { "name": "Sleeping loft", "spec": "9 m² under the ridge", "at": [0.52, 0.426], "side": "right" },
+    { "name": "Glass gable", "spec": "Triple glazing, U-value 0.6", "at": [0.42, 0.627], "side": "right" },
+    { "name": "Walls", "spec": "Cross-laminated timber, charred larch outside", "at": [0.665, 0.645], "side": "right" },
+    { "name": "Ground floor", "spec": "21 m², heated slab, kitchen and stove", "at": [0.54, 0.668], "side": "right" },
+    { "name": "Deck", "spec": "Larch, 6 m²", "at": [0.495, 0.797], "side": "right" },
+    { "name": "Screw piles", "spec": "Steel, no concrete, in the ground in an hour", "at": [0.583, 0.9], "side": "right" }
+  ],
+  "lab": {
+    "style": "energy",
+    "flow": [[0.545, 0.116], [0.5, 0.573], [0.475, 0.717]],
+    "flowTags": [["6.4 kWp", "solar roof"], ["13.5 kWh", "battery"], ["Warm floor", "21 m²"]],
+    "legend": { "caption": "Heat lost through the shell", "low": "Low", "high": "High" },
+    "facts": [["30 m²", "inside"], ["6 weeks", "to build"], ["18 t", "CO₂ held in the timber"], ["−30 °C", "rated to"]]
+  },
+  "footer": "Fjell · prefab cabins, built in six weeks"
+}
