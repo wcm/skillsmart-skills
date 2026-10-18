@@ -41,7 +41,18 @@ on a plain background), BiRefNet cuts the edited picture out, and only what the 
 moka pot photos where SAM 3 alone didn't.
 
 If the edit takes away most of the product, it is left out and the step says so: look at `out/<id>/cut1-clean.png`
-and reword `detach1` (name the thing more exactly, say where it is: "under it", "behind its handle").
+and reword `detach1` (name the thing more exactly, say where it is: "under it", "behind its handle"). The edit is kept
+and reused while the cut-out and the words stay the same, so redoing a patch or an erase doesn't pay for it again.
+
+### 2b · Patch (free, with a detach)
+
+When the thing sits in front of the product or presses against it (a stand's cradle under a headband), the edit paints
+the hidden bit of product in, but "only what the edit left" still keeps the thing: it touches the product, and the
+edit's outline covers the same spot. `patch1` (or `patch2`) lists polygons around the thing, in the photo like
+`erase1`: there the cut-out takes the edited picture, toned to match the photo around it, and the edit's outline. Draw
+them a little larger than the thing; wherever the edit shows backdrop, those pixels go. The headphones needed one
+around the cradle under the headband and one around the stand's post beside the right slider. The place keeps the
+thing (the plate is made from the photo), so it stays behind when the product lifts away.
 
 ## 3 · Erase by hand (free)
 
@@ -49,6 +60,18 @@ and reword `detach1` (name the thing more exactly, say where it is: "under it", 
 cleared from the cut-out: `"erase2": [[[0.31, 0.71], [0.62, 0.71], [0.62, 0.9], [0.31, 0.9]]]`. Read the points off
 the photo with a grid: the same idea as `anchors.mjs --grid`, on `out/<id>/place2.png`. Use it for a thin bar or a
 reflection's last sliver; it can't add back what the mask missed.
+
+## The exploded view and the clips
+
+`cutx` is BiRefNet alone: in an exploded view every part is its own blob. Two fixes, both in the subject's entry:
+
+- **`dropx`**: points `[u, v]` on parts the exploded view shouldn't have, such as the extra band the headphones grew
+  from the cradle left in their first cut-out (find the point with `node anchors.mjs <id> --grid`). Each part a point
+  lands on is painted over with the backdrop in `exploded.png` itself (the old one is kept as `exploded.bak-N.png`) and
+  cleared from the cut-out. The clips start or end on that picture, so redo them: `--only cutx,clips,mattes,frames,web`.
+- **`specks`**: `0.03` clears every round blob under 3% of the biggest one, in the exploded view and in every clip frame:
+  sauce drops or crumbs the video model adds, which the matte catches in some frames and not others, so they flash.
+  Long thin parts (a carbon plate seen edge on, a lace) stay. Free: `--only cutx,frames,web`.
 
 ## 4 · Change the place
 
@@ -63,3 +86,8 @@ surface, with nothing under it and no reflection (references/subjects.md), and r
 - **Comparing the photo with its plate** (the product removed): the plate re-renders everything a little, so what
   stayed (a stand) still differs, and dark parts of the product match dark parts of the scene and get punched out.
 - **BiRefNet alone on a product on a stand, in a tray or over a reflection**: it keeps them all.
+- **Comparing colours before and after a detach edit** to find what it took away: the edit shifts the tone a little
+  all over, so a pale product near the backdrop's colour (the headphones' leather) got punched full of holes, and a
+  light cradle that matched the leather wasn't found. Polygons (`patch1`) are exact.
+- **Asking an image edit to remove a part from the exploded view**: it took the part out but recoloured the whole
+  picture and nudged the other parts, which moves the labels. `dropx` changes only that part.

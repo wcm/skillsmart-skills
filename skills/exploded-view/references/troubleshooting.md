@@ -16,15 +16,17 @@ What went wrong while the method was worked out, and the fix.
 ## The cut-outs
 
 See `references/cut-outs.md`. In short: a stand, stove, tray or reflection in a cut-out → another word in `find`, then
-`detach1`/`detach2`, then `erase1`/`erase2`; SAM 3 finds nothing → a plainer word; specks → they're dropped
-automatically (only the biggest blob stays).
+`detach1`/`detach2` (plus `patch1`/`patch2` when the thing sits in front of the product), then `erase1`/`erase2`;
+SAM 3 finds nothing → a plainer word; specks in a photo's cut-out → they're dropped automatically (only the biggest blob
+stays).
 
 ## The clips
 
 | Symptom | Fix |
 |---|---|
 | Parts melt or new parts appear mid-clip | two takes and pick (`--takes 2 --only clips`, then `--pick a<n>,b<n> --motion`); simplify `explode`/`rebuild` to one motion |
-| A small object floats in from nowhere (a block over a headband) | another take; if it keeps coming, the studio frame has a speck in it: check the cut-out |
+| A part that isn't the product's floats through the clips, or the exploded view has one (a block and an extra band under a headband) | something from the place stayed in the first cut-out (a stand's cradle), so it is in `studio1.png` and the clips grew it into a part: fix `cut1` (`detach1` with `patch1`, or `erase1`), take the part out of the exploded view (`dropx`), then `--only cutx,clips,mattes,frames,web` |
+| Small drops or crumbs flash on and off as the product comes apart or closes | `"specks": 0.03` in the entry, then `--only cutx,frames,web` (free) |
 | The camera moves or zooms | the shared `clip` and `negative` lines prevent it; check they weren't edited |
 | The backdrop flickers, so the frames' edges glow | the matte cleans most of it; keep `--lab-bg` equal to the backdrop so what's left disappears |
 

@@ -1,35 +1,110 @@
 {
   "brand": "Night Shift",
-  "nav": ["Menu", "Locations", "After 2 a.m."],
+  "nav": [
+    "Menu",
+    "Locations",
+    "After 2 a.m."
+  ],
   "navCta": "Order",
-  "steps": ["The diner", "Inside", "The park"],
   "one": {
     "kicker": "Night Shift · open till 4 a.m.",
     "title": "The\nDouble.",
     "body": "Two smashed patties, melted American, pickles and soft onions on a toasted brioche bun. Made to order, after midnight.",
     "cta": "Order now",
     "ghost": "See inside",
-    "meta": ["$14", "820 kcal", "4 min"],
+    "meta": [
+      "$14",
+      "820 kcal",
+      "4 min"
+    ],
     "hint": "Scroll to take it apart"
   },
-  "two": { "kicker": "Inside the Double", "title": "Six layers.\nNinety seconds.", "note": "Keep scrolling to put it back together" },
+  "two": {
+    "kicker": "Inside the Double",
+    "title": "Six layers.\nNinety seconds.",
+    "note": "Keep scrolling to put it back together"
+  },
   "three": {
     "kicker": "Same burger, new light",
     "title": "Tastes like\nSunday.",
     "body": "Take it to the park. A toasted heel and a seal of melted cheese keep it whole for the walk, twenty minutes or more.",
     "cta": "Order for pickup",
     "ghost": "Find a Night Shift",
-    "meta": ["Ready in 8 min", "12 locations"]
+    "meta": [
+      "Ready in 8 min",
+      "12 locations"
+    ]
   },
-  "stage": { "area": [0.33, 0.12, 0.34, 0.78], "mobile": [0.06, 0.19, 0.88, 0.44] },
+  "stage": {
+    "area": [
+      0.33,
+      0.12,
+      0.34,
+      0.78
+    ],
+    "mobile": [
+      0.06,
+      0.19,
+      0.88,
+      0.44
+    ]
+  },
   "labels": "columns",
   "parts": [
-    { "name": "Brioche crown", "spec": "Toasted 45 s, butter side down", "at": [0.612, 0.244], "side": "right" },
-    { "name": "Pickles", "spec": "Crinkle-cut, brined in-house for 3 days", "at": [0.59, 0.352], "side": "right" },
-    { "name": "Top patty", "spec": "90 g chuck, smashed at 230 °C, cheese melted on", "at": [0.632, 0.471], "side": "right" },
-    { "name": "Bottom patty", "spec": "90 g, 30-day aged, crust 2 mm deep", "at": [0.628, 0.582], "side": "right" },
-    { "name": "Onions", "spec": "Cooked low for 40 min until jammy", "at": [0.59, 0.691], "side": "right" },
-    { "name": "Toasted heel", "spec": "Holds 20 g of sauce without going soggy", "at": [0.612, 0.796], "side": "right" }
+    {
+      "name": "Brioche crown",
+      "spec": "Toasted 45 s, butter side down",
+      "at": [
+        0.612,
+        0.244
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Pickles",
+      "spec": "Crinkle-cut, brined in-house for 3 days",
+      "at": [
+        0.59,
+        0.352
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Top patty",
+      "spec": "90 g chuck, smashed at 230 °C, cheese melted on",
+      "at": [
+        0.632,
+        0.471
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Bottom patty",
+      "spec": "90 g, 30-day aged, crust 2 mm deep",
+      "at": [
+        0.628,
+        0.582
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Onions",
+      "spec": "Cooked low for 40 min until jammy",
+      "at": [
+        0.59,
+        0.691
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Toasted heel",
+      "spec": "Holds 20 g of sauce without going soggy",
+      "at": [
+        0.612,
+        0.796
+      ],
+      "side": "right"
+    }
   ],
   "lab": {
     "style": "ticket",
@@ -39,14 +114,48 @@
       "head": "NIGHT SHIFT",
       "order": "#0147",
       "lines": [
-        ["1 × The Double", "$14.00"],
-        ["Patties", "2 × 90 g"],
-        ["Flat-top", "230 °C"],
-        ["Cheese melts at", "66 °C"],
-        ["Sauce", "20 g"],
-        ["Total", "820 kcal"]
+        [
+          "1 × The Double",
+          "$14.00"
+        ],
+        [
+          "Patties",
+          "2 × 90 g"
+        ],
+        [
+          "Flat-top",
+          "230 °C"
+        ],
+        [
+          "Cheese melts at",
+          "66 °C"
+        ],
+        [
+          "Sauce",
+          "20 g"
+        ],
+        [
+          "Total",
+          "820 kcal"
+        ]
       ],
-      "macros": [["Protein", 48, "g"], ["Fat", 52, "g"], ["Carbs", 38, "g"]],
+      "macros": [
+        [
+          "Protein",
+          48,
+          "g"
+        ],
+        [
+          "Fat",
+          52,
+          "g"
+        ],
+        [
+          "Carbs",
+          38,
+          "g"
+        ]
+      ],
       "timer": 90,
       "timerLabel": "On the flat-top",
       "foot": "Served hot · 01:12 a.m."

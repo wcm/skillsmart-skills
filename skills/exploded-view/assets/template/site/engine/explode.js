@@ -22,9 +22,11 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const lines = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>").replace(/\n/g, "<br>");
 
-// the timeline, as fractions of the scroll through the stage. Nothing waits: the product starts to move on the first
-// scroll, the labels leave as soon as the last one is in, and the scroll ends as the second scene's words arrive.
-const T = {
+// the timeline, as fractions of the scroll through the stage. Nothing waits between scenes: the product starts to move
+// on the first scroll and the labels leave as soon as the last one is in. Only the end rests: the last REST of the
+// scroll changes nothing, a short stop on the finished last scene. The spans below are before that rest takes its share.
+const REST = 0.05;
+const T = Object.fromEntries(Object.entries({
   copy1: [0, 0.06],        // scene 1's words leave
   photo1: [0, 0.015],      // the photo gives way to its empty place with the cut-out on top, before anything moves
   lift: [0.015, 0.185],    // the cut-out flies from the photo to the middle
@@ -38,8 +40,8 @@ const T = {
   land: [0.635, 0.885],    // the middle → the second place
   labOut: [0.71, 0.87],
   photo2: [0.885, 0.935],
-  copy3: [0.895, 0.985],
-};
+  copy3: [0.895, 0.985],   // the last scene's words scroll up into place
+}).map(([k, [a, b]]) => [k, [a * (1 - REST), b * (1 - REST)]]));
 const SWAP = 0.012;        // how long one picture of the product takes to hand over to the next
 
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
@@ -103,8 +105,9 @@ export async function boot() {
   const legend = el("ol", "e-legend");
   stage.append(q1.wrap, q2.wrap, labBg, canvas, p1.wrap, p2.wrap, labFg, labelLayer, scrim1, scrim3, copy1, copy3, head2, hint, note2, legend);
   scroll.append(stage);
-  const steps = el("ol", "e-steps", page.steps.map((s, i) => `<li><b>0${i + 1}</b><span>${esc(s)}</span></li>`).join(""));
-  document.body.append(nav, scroll, steps);
+  // the scene rail at the bottom left, when page.json names the steps
+  const steps = page.steps?.length ? el("ol", "e-steps", page.steps.map((s, i) => `<li><b>0${i + 1}</b><span>${esc(s)}</span></li>`).join("")) : null;
+  document.body.append(nav, scroll, ...(steps ? [steps] : []));
   if (page.footer) document.body.append(el("footer", "e-foot", `<p>${esc(page.footer)}</p>`));
 
   // parts: a dot, a leader and a label each; on a phone, numbered dots and a legend
@@ -134,7 +137,7 @@ export async function boot() {
   const labView = lab(labApi);
 
   // —— layout: everything that depends on the window ——
-  let vw, vh, mobile, dpr, R1, R2, Rc, r1, r2;
+  let vw, vh, mobile, dpr, R1, R2, Rc, r1, r2, rise3 = 0;
   // where a photo goes: covering the window, pushed away from the words (`side` is where the product sits) while the
   // product stays whole; on a phone it shrinks until the product fits across the screen and a blurred copy fills the rest
   function photoRect([pw, ph], box, side) {
@@ -177,6 +180,9 @@ export async function boot() {
     Rc = centre();
     labApi.toScreen = (u, v) => [Rc.x + u * SW * Rc.s, Rc.y + v * SH * Rc.s];
     labApi.vw = vw; labApi.vh = vh; labApi.mobile = mobile; labApi.Rc = Rc;
+    // how far below its place the last scene's words start: just under the bottom of the window
+    // (desktop centres the block on the middle of the window, a phone sets it under the nav)
+    rise3 = vh - (copy3.offsetTop - (mobile ? 0 : copy3.offsetHeight / 2)) + 24;
     placeLabels();
     labView.layout?.();
     last = -1;
@@ -315,8 +321,9 @@ export async function boot() {
     copy1.style.opacity = c1; copy1.style.setProperty("--lift", `${-(1 - c1) * 40}px`);
     scrim1.style.opacity = 1 - seg(p, T.photo1);
     hint.style.opacity = 1 - seg(p, [0, 0.03]);
+    // the last scene's words scroll up into place from below the window, as if the page went on
     const c3 = seg(p, T.copy3);
-    copy3.style.opacity = c3; copy3.style.setProperty("--lift", `${(1 - c3) * 40}px`);
+    copy3.style.opacity = c3 > 0 ? 1 : 0; copy3.style.setProperty("--lift", `${(1 - c3) * rise3}px`);
     copy3.style.pointerEvents = c3 > 0.5 ? "auto" : "none";
     copy1.style.pointerEvents = c1 > 0.5 ? "auto" : "none";
     scrim3.style.opacity = seg(p, T.photo2);
@@ -343,7 +350,7 @@ export async function boot() {
     const mid = ([a, b]) => (a + b) / 2;
     const scene = p < mid(T.lift) ? 0 : p < mid(T.land) ? 1 : 2;
     document.body.dataset.scene = scene;
-    [...steps.children].forEach((li, i) => li.classList.toggle("on", i === scene));
+    if (steps) [...steps.children].forEach((li, i) => li.classList.toggle("on", i === scene));
   }
 
   // the shown point eases after the scroll (smooth steps between frames); with reduced motion it follows at once

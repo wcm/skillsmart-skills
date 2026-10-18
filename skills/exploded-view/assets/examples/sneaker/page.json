@@ -1,44 +1,160 @@
 {
   "brand": "Strata",
-  "nav": ["Run", "Race", "Lab"],
+  "nav": [
+    "Run",
+    "Race",
+    "Lab"
+  ],
   "navCta": "Shop",
-  "steps": ["The ledge", "Inside", "The street"],
   "one": {
     "kicker": "Strata Volt · race-day running shoe",
     "title": "Light.\nLoud.\nFast.",
     "body": "A full carbon plate between two layers of foam that give back 87% of every stride. 198 grams in a US 9.",
     "cta": "Shop · $240",
     "ghost": "See the layers",
-    "meta": ["198 g", "87% return", "8 mm drop"],
+    "meta": [
+      "198 g",
+      "87% return",
+      "8 mm drop"
+    ],
     "hint": "Scroll to take it apart"
   },
-  "two": { "kicker": "Inside the Strata Volt", "title": "Seven layers.\nOne stride.", "note": "Keep scrolling to put it back together" },
+  "two": {
+    "kicker": "Inside the Strata Volt",
+    "title": "Seven layers.\nOne stride.",
+    "note": "Keep scrolling to put it back together"
+  },
   "three": {
     "kicker": "After dark",
     "title": "Own the\nnight.",
     "body": "Reflective knit and a volt sole that glows under streetlight, so the city sees you coming.",
     "cta": "Shop · $240",
     "ghost": "Find your size",
-    "meta": ["Reflective knit", "Wet-grip rubber"]
+    "meta": [
+      "Reflective knit",
+      "Wet-grip rubber"
+    ]
   },
-  "stage": { "area": [0.33, 0.12, 0.34, 0.78], "mobile": [0.06, 0.19, 0.88, 0.44] },
+  "stage": {
+    "area": [
+      0.33,
+      0.12,
+      0.34,
+      0.78
+    ],
+    "mobile": [
+      0.06,
+      0.19,
+      0.88,
+      0.44
+    ]
+  },
   "labels": "columns",
   "parts": [
-    { "name": "Laces", "spec": "Flat and grippy; they stay tied", "at": [0.47, 0.095], "side": "right" },
-    { "name": "Knit upper", "spec": "One piece, 42 g, breathes on hot days", "at": [0.648, 0.335], "side": "right" },
-    { "name": "Sockliner", "spec": "4 mm of soft foam under the foot", "at": [0.64, 0.462], "side": "right" },
-    { "name": "Top foam", "spec": "PEBA, gives back 87% of each stride", "at": [0.655, 0.565], "side": "right" },
-    { "name": "Carbon plate", "spec": "Full length, spoon-shaped, rolls you forward", "at": [0.645, 0.646], "side": "right" },
-    { "name": "Bottom foam", "spec": "PEBA, 39 mm under the heel", "at": [0.66, 0.744], "side": "right" },
-    { "name": "Outsole", "spec": "2 mm rubber lugs that grip wet roads", "at": [0.655, 0.849], "side": "right" }
+    {
+      "name": "Laces",
+      "spec": "Flat and grippy; they stay tied",
+      "at": [
+        0.47,
+        0.095
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Knit upper",
+      "spec": "One piece, 42 g, breathes on hot days",
+      "at": [
+        0.648,
+        0.335
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Sockliner",
+      "spec": "4 mm of soft foam under the foot",
+      "at": [
+        0.64,
+        0.462
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Top foam",
+      "spec": "PEBA, gives back 87% of each stride",
+      "at": [
+        0.655,
+        0.565
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Carbon plate",
+      "spec": "Full length, spoon-shaped, rolls you forward",
+      "at": [
+        0.645,
+        0.646
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Bottom foam",
+      "spec": "PEBA, 39 mm under the heel",
+      "at": [
+        0.66,
+        0.744
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Outsole",
+      "spec": "2 mm rubber lugs that grip wet roads",
+      "at": [
+        0.655,
+        0.849
+      ],
+      "side": "right"
+    }
   ],
   "lab": {
     "style": "motion",
     "markers": 16,
-    "heat": { "caption": "Pressure through one stride", "low": "Low", "high": "High" },
-    "big": { "value": 87, "caption": "Energy return" },
-    "compare": [["Strata PEBA", 87], ["Standard EVA", 65]],
-    "facts": [["198 g", "US 9"], ["39 mm", "heel stack"], ["8 mm", "drop"], ["2 mm", "lugs"]]
+    "heat": {
+      "caption": "Pressure through one stride",
+      "low": "Low",
+      "high": "High"
+    },
+    "big": {
+      "value": 87,
+      "caption": "Energy return"
+    },
+    "compare": [
+      [
+        "Strata PEBA",
+        87
+      ],
+      [
+        "Standard EVA",
+        65
+      ]
+    ],
+    "facts": [
+      [
+        "198 g",
+        "US 9"
+      ],
+      [
+        "39 mm",
+        "heel stack"
+      ],
+      [
+        "8 mm",
+        "drop"
+      ],
+      [
+        "2 mm",
+        "lugs"
+      ]
+    ]
   },
   "footer": "Strata · running shoes, layer by layer"
 }
