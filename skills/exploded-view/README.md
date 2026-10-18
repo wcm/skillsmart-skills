@@ -13,9 +13,10 @@ every part, then flies back together and lands at a new angle in a second place:
 - **A real page around it.** Brand, nav, headlines, labels and numbers in HTML you can edit, type and colours chosen
   for the brand, layouts for desktop and phone. Your agent makes the pictures with your Skillsmart credits.
 
-Four reference pages ship in `assets/examples/`: *Night Shift* (a double smash burger, diner to picnic), *Kissa One*
+Five reference pages ship in `assets/examples/`: *Night Shift* (a double smash burger, diner to picnic), *Kissa One*
 (walnut headphones, listening bar to train), *Strata Volt* (a carbon-plated running shoe, concrete ledge to neon
-street) and *Fjell 30* (a prefab cabin, fjord to desert).
+street), *Fjell 30* (a prefab cabin, fjord to desert) and *Caffè Riva* (a stovetop moka pot, Italian kitchen to a lake
+at dawn).
 
 Works with any agent that supports skills: Claude Code (and the Claude desktop app's Code tab), Codex, Cursor,
 Gemini CLI, OpenCode and others.
@@ -73,7 +74,7 @@ scripts/new_project.py           scaffolds a project from one of the reference p
 assets/template/site/engine/     explode.js (the scroll stage), labs.js, frames.js, explode.css
 assets/template/tools/           subjects.json (prompts), build.mjs (every picture), anchors.mjs (label dots),
                                  check.mjs (headless checks), gen.mjs (generation with credits)
-assets/examples/                 the four reference pages and their prompts
+assets/examples/                 the five reference pages and their prompts
 ```
 
 ### How a generated project is laid out

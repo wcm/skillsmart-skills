@@ -2,7 +2,7 @@
 
 ## The product
 
-Score an idea from 1 to 5 on six questions before you commit to it. The four reference pages scored 27–29 of 30;
+Score an idea from 1 to 5 on six questions before you commit to it. The reference pages scored 26–29 of 30;
 anything under about 22 will be hard work.
 
 | Question | What a 5 looks like |

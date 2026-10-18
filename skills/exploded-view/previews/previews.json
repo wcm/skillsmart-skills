@@ -39,6 +39,16 @@
       "height": 1000,
       "caption": "Fjell 30 — a prefab cabin taken apart like an architect's drawing, from a fjord at blue hour to the desert",
       "prompt": "/exploded-view A page for our prefab timber cabin, built in six weeks and placed anywhere, from a fjord to the desert"
+    },
+    {
+      "file": "05.mp4",
+      "kind": "video",
+      "poster": "05.webp",
+      "thumb": "05-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Caffè Riva — a stovetop moka pot lifts off a sunlit Italian stove, opens into six parts and lands by a lake at dawn",
+      "prompt": "/exploded-view A page for our stovetop moka pot, from a sunlit Italian kitchen to a lake at dawn"
     }
   ]
 }

@@ -13,7 +13,7 @@ A page is `site/<id>/index.html` (fonts, colours) and `site/<id>/page.json` (wor
 | `one` | scene 1's words: `kicker`, `title` (`\n` breaks a line, `*word*` sets it in italics), `body`, `cta`, `ghost` (a second, outlined button), `meta` (two or three short facts), `hint` ("Scroll to take it apart"), `alt` (the photo described) |
 | `two` | scene 2's header: `kicker`, `title`, `note` ("Keep scrolling to put it back together") |
 | `three` | scene 3's words, like `one` |
-| `stage` | where the exploded product sits, as fractions of the window `[x, y, width, height]`: `area` on a desktop, `mobile` on a phone. The four references use `[0.33, 0.12, 0.34, 0.78]` (a column in the middle) or `[0.05, 0.27, 0.9, 0.5]` (a wide band, for `"labels": "rows"`) |
+| `stage` | where the exploded product sits, as fractions of the window `[x, y, width, height]`: `area` on a desktop, `mobile` on a phone. The reference pages use `[0.33, 0.12, 0.34, 0.78]` (a column in the middle) or `[0.05, 0.27, 0.9, 0.5]` (a wide band, for `"labels": "rows"`) |
 | `labels` | `"columns"` (labels beside the product: every part's `side` is `"right"`, or `"left"` for some) or `"rows"` (above and below: `"top"` / `"bottom"`) |
 | `parts` | one per label, in the order they draw in: `name`, `spec` (one line of facts), `at` (`[u, v]` on the exploded view, 0–1), `side` |
 | `lab` | the lab: `style` and its data (references/labs.md) |
@@ -41,7 +41,7 @@ Fonts come from Google Fonts (one `<link>`); everything else is custom propertie
 | `--label-font`, `--label-size`, `--label-weight`, `--label-style`, `--label-case` | the parts' names |
 | `--foot-bg`, `--foot-ink`, `--brand-size`, `--brand-track` | the footer and the brand |
 
-The four reference looks:
+The five reference looks:
 
 | Page | Display + mono | Colours | Lab |
 |---|---|---|---|
@@ -49,6 +49,7 @@ The four reference looks:
 | `headphones` | Instrument Serif, italic for emphasis + Geist and Geist Mono, Doto for the readout | walnut, ivory, one signal orange; pale lab | sound |
 | `sneaker` | Archivo at 125% width, 900, uppercase (wide letters read as speed) + Martian Mono | cobalt sky, chalk, asphalt, volt green; dark lab | motion |
 | `cabin` | Schibsted Grotesk 800, tight + IBM Plex Mono | blue hour, moss, amber window light, desert gold; pale lab | energy |
+| `moka` | Bodoni Moda 600, italic for emphasis (an Italian didone) + DM Sans and DM Mono | espresso, cream, majolica blue, crema amber; dark lab | ticket |
 
 A new look: one display face with character that fits the product's world, a mono for data, an accent that pops on
 both photos, and words that read on each photo's calm half (dark text and a light scrim on bright photos, light text and
@@ -56,12 +57,15 @@ a dark scrim on dark ones).
 
 ## The scroll
 
-The page is 880% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
-`site/engine/explode.js` sets when each thing happens, as fractions of the scroll: the photo hands over to the
-cut-out at 0.05–0.065, the product flies to the middle until 0.2, clip a plays 0.18–0.4, labels draw in 0.37–0.5, they
-leave at 0.58–0.63, clip b plays 0.6–0.82 while the product flies to the second photo (0.64–0.84), and the second
-photo takes over at 0.84–0.88. The shown point eases after the scroll (smooth steps between frames); with reduced
-motion it follows at once and nothing moves on its own.
+The page is 700% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
+`site/engine/explode.js` sets when each thing happens, as fractions of the scroll, and nothing waits between scenes:
+the product starts to move on the first scroll (the photo hands over to the cut-out at 0–0.015 and the product flies to
+the middle until 0.185), clip a plays 0.16–0.435, the labels draw in 0.395–0.56 and leave as soon as the last one is in
+(0.56–0.62), clip b plays 0.585–0.86 while the product flies to the second photo (0.635–0.885), the second photo takes
+over at 0.885–0.935, and the scroll ends as its words arrive (0.895–0.985). To give one moment more room, widen its span
+and narrow the others, or raise `--length` to slow the whole page; `check.mjs` reads the timeline from the page
+(`window.explode.timeline`), so its checks follow. The shown point eases after the scroll (smooth steps between
+frames); with reduced motion it follows at once and nothing moves on its own.
 
 On a phone (under 760 px wide) the words sit at the top, each photo shrinks until the product fits across the screen
 (a blurred copy fills the rest), and the labels become numbered dots with a legend.

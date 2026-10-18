@@ -1,6 +1,6 @@
 # The prompts
 
-`tools/subjects.json` has shared lines at the top and one entry per page in `subjects`. The four reference entries
+`tools/subjects.json` has shared lines at the top and one entry per page in `subjects`. The five reference entries
 are in `<skill>/assets/examples/subjects.json`: read the one closest to your product before you write. `{noun}`,
 `{backdrop}`, `{backdropName}` and `{detach}` in the shared lines are filled in from the entry.
 
@@ -8,7 +8,7 @@ are in `<skill>/assets/examples/subjects.json`: read the one closest to your pro
 
 | Slot | What to write |
 |---|---|
-| `noun` | what the product is called in the prompts: "burger", "headphones", "shoe", "cabin and its deck" |
+| `noun` | what the product is called in the prompts: "burger", "headphones", "shoe", "cabin and its deck", "moka pot" |
 | `backdrop`, `backdropName` | the plain colour the product is cut out on, as hex and in words ("#E9E5DE", "pale warm grey"). Dark for a light product, light for a dark one; it is also the lab's background (`--lab-bg`) |
 | `fit` | how tall the whole product is in the studio frame, as a share of its height (0.3–0.55). Lower when the explosion spreads up and down (a stack 0.3–0.4), higher when it spreads sideways (0.45–0.55) |
 | `find` | optional: the common word SAM 3 finds the product by, when `noun` is unusual (references/cut-outs.md) |

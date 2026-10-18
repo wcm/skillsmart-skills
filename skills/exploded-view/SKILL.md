@@ -61,9 +61,10 @@ Decide, and say in a few lines what you chose (`references/subjects.md` has the 
 - **How it comes apart**: straight up (a stack), sideways in a mirror (two halves), up and down from the middle (a
   burst), or an architect's exploded drawing. And its parts, in order.
 - **The lab** and the reference page to start from: `burger` (ticket: food and drink), `headphones` (sound: audio and
-  tech), `sneaker` (motion: sport and anything worn), `cabin` (energy: buildings, appliances, vehicles).
+  tech), `sneaker` (motion: sport and anything worn), `cabin` (energy: buildings, appliances, vehicles), `moka` (ticket again,
+  for drinks and kitchen things).
 - **Type and colours**: one fashionable display face and a mono for data, a palette per place, the backdrop colour
-  (`references/page.md` lists the four reference looks).
+  (`references/page.md` lists the five reference looks).
 
 ## Step 1 — Scaffold
 
@@ -81,7 +82,7 @@ the plain colour the product is cut out on and the lab's background: dark for a 
 ## Step 2 — Write the prompts
 
 In `tools/subjects.json` → `subjects` → `<id>`, write the slots that start with `WRITE:` (`references/prompts.md`
-explains each one with the four reference entries; `_example` beside them is the reference page's own):
+explains each one with the five reference entries; `_example` beside them is the reference page's own):
 
 - `place1`: the product in its first place, on the right of the frame, the left half calm for the headline.
 - `place2`: the same product whole again in the second place, on the left, **at a clearly different angle**. Say the

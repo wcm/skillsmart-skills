@@ -1,0 +1,171 @@
+{
+  "brand": "Caffè Riva",
+  "nav": [
+    "Coffee",
+    "Pots",
+    "Journal"
+  ],
+  "navCta": "Shop",
+  "steps": [
+    "The kitchen",
+    "Inside",
+    "The lake"
+  ],
+  "one": {
+    "kicker": "Caffè Riva · stovetop moka, 3 cups",
+    "title": "Four\n*minutes.*",
+    "body": "Eight sides of cast aluminium, a funnel, a filter and a valve. Water, heat and four minutes do the rest.",
+    "cta": "Shop · $39",
+    "ghost": "See inside",
+    "meta": [
+      "3 cups",
+      "150 ml",
+      "4 min"
+    ],
+    "hint": "Scroll to take it apart",
+    "alt": "An aluminium moka pot on a gas flame in a sunlit Italian kitchen"
+  },
+  "two": {
+    "kicker": "Inside the moka",
+    "title": "Six parts.\n*One pressure.*",
+    "note": "Keep scrolling to put it back together"
+  },
+  "three": {
+    "kicker": "Same pot, new morning",
+    "title": "Coffee by\n*the lake.*",
+    "body": "It packs into a bag and brews on any flame, from a camping stove to an old enamel range.",
+    "cta": "Shop · $39",
+    "ghost": "Find a stockist",
+    "meta": [
+      "Any flame",
+      "No filters"
+    ],
+    "alt": "The same moka pot seen from above on a rock by a misty lake at dawn"
+  },
+  "stage": {
+    "area": [
+      0.33,
+      0.12,
+      0.34,
+      0.78
+    ],
+    "mobile": [
+      0.06,
+      0.19,
+      0.88,
+      0.44
+    ]
+  },
+  "labels": "columns",
+  "parts": [
+    {
+      "name": "Lid",
+      "spec": "Hinged, with a heat-proof knob",
+      "at": [
+        0.558,
+        0.163
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Upper chamber",
+      "spec": "Where the coffee rises and waits",
+      "at": [
+        0.5916,
+        0.28
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Gasket",
+      "spec": "Food-safe rubber, seals the pressure in",
+      "at": [
+        0.534,
+        0.454
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Filter plate",
+      "spec": "Holds the grounds as water pushes up",
+      "at": [
+        0.537,
+        0.514
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Funnel",
+      "spec": "15 g of fine ground coffee",
+      "at": [
+        0.529,
+        0.579
+      ],
+      "side": "right"
+    },
+    {
+      "name": "Boiler and valve",
+      "spec": "150 ml of water; the valve lets off steam at 1.5 bar",
+      "at": [
+        0.52,
+        0.781
+      ],
+      "side": "right"
+    }
+  ],
+  "lab": {
+    "style": "ticket",
+    "numeral": "93",
+    "numeralUnit": "°C",
+    "ticket": {
+      "head": "CAFFÈ RIVA",
+      "order": "#0003",
+      "lines": [
+        [
+          "1 × Moka, 3 cups",
+          "$39.00"
+        ],
+        [
+          "Water",
+          "150 ml"
+        ],
+        [
+          "Ground coffee",
+          "15 g"
+        ],
+        [
+          "Pressure",
+          "1.5 bar"
+        ],
+        [
+          "Water at",
+          "93 °C"
+        ],
+        [
+          "Ready in",
+          "4 min"
+        ]
+      ],
+      "macros": [
+        [
+          "Body",
+          80,
+          "%"
+        ],
+        [
+          "Crema",
+          40,
+          "%"
+        ],
+        [
+          "Acidity",
+          55,
+          "%"
+        ]
+      ],
+      "timer": 240,
+      "timerLabel": "On the flame",
+      "foot": "Poured at 7:12 a.m."
+    }
+  }
+}

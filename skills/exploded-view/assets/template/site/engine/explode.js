@@ -10,6 +10,7 @@
 //   seek(p)    jump to a point of the scroll (0–1) and draw it at once, without the easing (checks, screenshots)
 //   progress   the point being shown
 //   ready      a promise that resolves when every frame of both clips has loaded (recorders wait for it)
+//   timeline   a copy of T below, so checks can find each moment
 
 import { FrameSeq } from "./frames.js";
 import { labs } from "./labs.js";
@@ -21,22 +22,23 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const lines = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>").replace(/\n/g, "<br>");
 
-// the timeline, as fractions of the scroll through the stage
+// the timeline, as fractions of the scroll through the stage. Nothing waits: the product starts to move on the first
+// scroll, the labels leave as soon as the last one is in, and the scroll ends as the second scene's words arrive.
 const T = {
-  copy1: [0.02, 0.075],    // scene 1's words leave
-  photo1: [0.05, 0.065],   // the photo gives way to its empty place with the cut-out on top, before anything moves
-  lift: [0.065, 0.2],      // the cut-out flies from the photo to the middle
-  labIn: [0.09, 0.2],
-  explode: [0.18, 0.4],    // clip a
-  head2: [0.2, 0.27],
-  chart: [0.28, 0.4],
-  labels: [0.37, 0.5],
-  out2: [0.58, 0.63],      // labels, header and chart leave
-  rebuild: [0.6, 0.82],    // clip b
-  land: [0.64, 0.84],      // the middle → the second place
-  labOut: [0.7, 0.83],
-  photo2: [0.84, 0.88],
-  copy3: [0.85, 0.92],
+  copy1: [0, 0.06],        // scene 1's words leave
+  photo1: [0, 0.015],      // the photo gives way to its empty place with the cut-out on top, before anything moves
+  lift: [0.015, 0.185],    // the cut-out flies from the photo to the middle
+  labIn: [0.045, 0.185],
+  explode: [0.16, 0.435],  // clip a
+  head2: [0.185, 0.27],
+  chart: [0.285, 0.435],
+  labels: [0.395, 0.56],
+  out2: [0.56, 0.62],      // labels, header and chart leave
+  rebuild: [0.585, 0.86],  // clip b
+  land: [0.635, 0.885],    // the middle → the second place
+  labOut: [0.71, 0.87],
+  photo2: [0.885, 0.935],
+  copy3: [0.895, 0.985],
 };
 const SWAP = 0.012;        // how long one picture of the product takes to hand over to the next
 
@@ -320,7 +322,7 @@ export async function boot() {
     scrim3.style.opacity = seg(p, T.photo2);
     const h2 = seg(p, T.head2) * (1 - seg(p, T.out2));
     head2.style.opacity = h2; head2.style.transform = `translateY(${(1 - seg(p, T.head2)) * 16}px)`;
-    note2.style.opacity = seg(p, [0.5, 0.54]) * (1 - seg(p, T.out2));
+    note2.style.opacity = seg(p, [T.labels[1] - 0.04, T.labels[1]]) * (1 - seg(p, T.out2));
 
     // labels draw in one after another, then all leave together
     const out = 1 - seg(p, T.out2);
@@ -338,7 +340,8 @@ export async function boot() {
     labView.update?.(p, { explode: seg(p, T.explode), chart: seg(p, T.chart), hold: seg(p, [T.chart[0], T.out2[0]]) });
 
     // the nav and the step rail follow the scene underneath
-    const scene = p < 0.13 ? 0 : p < 0.77 ? 1 : 2;
+    const mid = ([a, b]) => (a + b) / 2;
+    const scene = p < mid(T.lift) ? 0 : p < mid(T.land) ? 1 : 2;
     document.body.dataset.scene = scene;
     [...steps.children].forEach((li, i) => li.classList.toggle("on", i === scene));
   }
@@ -361,6 +364,7 @@ export async function boot() {
     seek(p) { scrollTo(0, clamp(p) * (scroll.offsetHeight - vh)); shown = target = clamp(p); render(shown); last = shown; },
     get progress() { return shown; },
     ready: loaded.then(() => true),
+    timeline: structuredClone(T),
   };
   document.body.classList.add("e-ready");
   requestAnimationFrame(tick);
