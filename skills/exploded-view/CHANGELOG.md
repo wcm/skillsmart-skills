@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 — 2026-10-19
+- The last scene's words fade in and rise a little again, with the gradient behind them, and they're in as the product
+  closes up instead of after the clip. The page still ends on a short stop on that finished scene (700% tall again).
+- Phones load their own frames: sized from the page's layout so they look as sharp on a phone as the full ones on a
+  retina laptop, about 40% fewer bytes. Every frame also sheds the faint alpha that cost bytes without showing (the
+  full frames are about 7% lighter).
+- Five preview clips that open and close on a short still moment.
+
 ## 1.2.0 — 2026-10-18
 - The last scene's words scroll up into place from below the window instead of fading in, and the page ends on a
   short stop on that finished scene (the last 5% of the scroll; the page is 740% of the window tall to keep the pace).

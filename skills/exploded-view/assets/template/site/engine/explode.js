@@ -23,10 +23,9 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const lines = (s) => esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>").replace(/\n/g, "<br>");
 
 // the timeline, as fractions of the scroll through the stage. Nothing waits between scenes: the product starts to move
-// on the first scroll and the labels leave as soon as the last one is in. Only the end rests: the last REST of the
-// scroll changes nothing, a short stop on the finished last scene. The spans below are before that rest takes its share.
-const REST = 0.05;
-const T = Object.fromEntries(Object.entries({
+// on the first scroll and the labels leave as soon as the last one is in. Only the end rests: after the second photo has
+// taken over (0.935) the scroll changes nothing, a short stop on the finished last scene.
+const T = {
   copy1: [0, 0.06],        // scene 1's words leave
   photo1: [0, 0.015],      // the photo gives way to its empty place with the cut-out on top, before anything moves
   lift: [0.015, 0.185],    // the cut-out flies from the photo to the middle
@@ -39,9 +38,10 @@ const T = Object.fromEntries(Object.entries({
   rebuild: [0.585, 0.86],  // clip b
   land: [0.635, 0.885],    // the middle → the second place
   labOut: [0.71, 0.87],
+  copy3: [0.76, 0.86],     // the last scene's words and the gradient behind them fade in, done as clip b ends
   photo2: [0.885, 0.935],
-  copy3: [0.895, 0.985],   // the last scene's words scroll up into place
-}).map(([k, [a, b]]) => [k, [a * (1 - REST), b * (1 - REST)]]));
+};
+const RISE3 = 56;          // how far (px) the last scene's words rise as they fade in
 const SWAP = 0.012;        // how long one picture of the product takes to hand over to the next
 
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
@@ -128,7 +128,9 @@ export async function boot() {
 
   // —— pictures of the product ——
   const [cut1, cut2, cutx] = await Promise.all(["img/cut1.webp", "img/cut2.webp", "img/cutx.webp"].map(image));
-  const [A, B] = await Promise.all([FrameSeq.load("frames/a"), FrameSeq.load("frames/b")]);
+  // a phone takes the smaller frames when the page has them (layout.json → frames.a.phone, written by tools/build.mjs)
+  const small = innerWidth < 760 && Boolean(L.frames?.a?.phone && L.frames?.b?.phone);
+  const [A, B] = await Promise.all(["a", "b"].map((ab) => FrameSeq.load(small ? `frames/${ab}-phone` : `frames/${ab}`)));
   // clip a first (it plays first), then clip b
   const loaded = (A ? A.preload() : Promise.resolve()).then(() => B?.preload());
 
@@ -137,7 +139,7 @@ export async function boot() {
   const labView = lab(labApi);
 
   // —— layout: everything that depends on the window ——
-  let vw, vh, mobile, dpr, R1, R2, Rc, r1, r2, rise3 = 0;
+  let vw, vh, mobile, dpr, R1, R2, Rc, r1, r2;
   // where a photo goes: covering the window, pushed away from the words (`side` is where the product sits) while the
   // product stays whole; on a phone it shrinks until the product fits across the screen and a blurred copy fills the rest
   function photoRect([pw, ph], box, side) {
@@ -180,9 +182,6 @@ export async function boot() {
     Rc = centre();
     labApi.toScreen = (u, v) => [Rc.x + u * SW * Rc.s, Rc.y + v * SH * Rc.s];
     labApi.vw = vw; labApi.vh = vh; labApi.mobile = mobile; labApi.Rc = Rc;
-    // how far below its place the last scene's words start: just under the bottom of the window
-    // (desktop centres the block on the middle of the window, a phone sets it under the nav)
-    rise3 = vh - (copy3.offsetTop - (mobile ? 0 : copy3.offsetHeight / 2)) + 24;
     placeLabels();
     labView.layout?.();
     last = -1;
@@ -321,12 +320,12 @@ export async function boot() {
     copy1.style.opacity = c1; copy1.style.setProperty("--lift", `${-(1 - c1) * 40}px`);
     scrim1.style.opacity = 1 - seg(p, T.photo1);
     hint.style.opacity = 1 - seg(p, [0, 0.03]);
-    // the last scene's words scroll up into place from below the window, as if the page went on
+    // the last scene's words fade in and rise a little, easing into place, while the product closes up
     const c3 = seg(p, T.copy3);
-    copy3.style.opacity = c3 > 0 ? 1 : 0; copy3.style.setProperty("--lift", `${(1 - c3) * rise3}px`);
+    copy3.style.opacity = c3; copy3.style.setProperty("--lift", `${Math.pow(1 - c3, 3) * RISE3}px`);
     copy3.style.pointerEvents = c3 > 0.5 ? "auto" : "none";
     copy1.style.pointerEvents = c1 > 0.5 ? "auto" : "none";
-    scrim3.style.opacity = seg(p, T.photo2);
+    scrim3.style.opacity = c3;
     const h2 = seg(p, T.head2) * (1 - seg(p, T.out2));
     head2.style.opacity = h2; head2.style.transform = `translateY(${(1 - seg(p, T.head2)) * 16}px)`;
     note2.style.opacity = seg(p, [T.labels[1] - 0.04, T.labels[1]]) * (1 - seg(p, T.out2));

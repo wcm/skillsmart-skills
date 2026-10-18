@@ -57,17 +57,21 @@ a dark scrim on dark ones).
 
 ## The scroll
 
-The page is 740% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
+The page is 700% of the window tall (`--length` on `.e-scroll`), with a sticky stage. `T` at the top of
 `site/engine/explode.js` sets when each thing happens, as fractions of the scroll, and nothing waits between scenes:
-the product starts to move on the first scroll (the photo hands over to the cut-out at 0–0.014 and the product flies to
-the middle until 0.176), clip a plays 0.152–0.413, the labels draw in 0.375–0.532 and leave as soon as the last one is
-in (0.532–0.589), clip b plays 0.556–0.817 while the product flies to the second photo (0.603–0.841), the second photo
-takes over at 0.841–0.888, and its words scroll up into place from below the window (0.850–0.936). Only the end rests:
-once those words are in, the last 6% of the scroll changes nothing, a short stop on the finished last scene (`REST` at
-the top of the file makes room for it; every span is scaled to fit ahead of it). To give one moment more room, widen
-its span and narrow the others, or raise `--length` to slow the whole page; `check.mjs` reads the timeline from the
-page (`window.explode.timeline`), so its checks follow. The shown point eases after the scroll (smooth steps between
-frames); with reduced motion it follows at once and nothing moves on its own.
+the product starts to move on the first scroll (the photo hands over to the cut-out at 0–0.015 and the product flies to
+the middle until 0.185), clip a plays 0.16–0.435, the labels draw in 0.395–0.56 and leave as soon as the last one is in
+(0.56–0.62), and clip b plays 0.585–0.86 while the product flies to the second photo (0.635–0.885). The last scene's
+words, and the gradient behind them, fade in and rise a little (`RISE3`, 56 px) at 0.76–0.86, done as clip b ends; the
+second photo takes over at 0.885–0.935. After that the scroll changes nothing: a short stop on the finished last scene.
+To give one moment more room, widen its span and narrow the others, or raise `--length` to slow the whole page;
+`check.mjs` reads the timeline from the page (`window.explode.timeline`), so its checks follow. The shown point eases
+after the scroll (smooth steps between frames); with reduced motion it follows at once and nothing moves on its own.
+
+Phones get frames of their own: under 760 px wide the page loads `frames/a-phone` and `frames/b-phone` when
+`layout.json` lists them. `build.mjs` writes them next to the full ones, sized from the page's own layout so a phone
+shows them as sharply as a retina laptop shows the full ones: about 40% fewer bytes. A page built before 1.3.0 gets them
+with `node build.mjs <id> --only frames,web` (free).
 
 On a phone (under 760 px wide) the words sit at the top, each photo shrinks until the product fits across the screen
 (a blurred copy fills the rest), and the labels become numbered dots with a legend.

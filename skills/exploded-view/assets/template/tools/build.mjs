@@ -32,7 +32,7 @@
 // --motion  plates    place1 and place2 with the product removed (2 × 20): what stays when it lifts away
 //           clips     Kling: studio1 → exploded (a) and exploded → studio2 (b), 5 s each (2 × 75)
 //           mattes    BiRefNet masks of both clips (2 × 10)
-//           frames    both clips as alpha WebP frames, cropped to where the product goes (free)
+//           frames    both clips as alpha WebP frames, cropped to where the product goes, and a smaller set for phones (free)
 //                     `"specks": 0.03` in the subject clears small round blobs that flash in a clip (sauce drops, crumbs)
 //                     from every frame and from cutx; redo with --only cutx,frames,web
 //           web       photos, plates and cut-outs as WebP, and layout.json: every box the page lines up (free)
@@ -414,8 +414,12 @@ async function sheet(rows, dest, W = 640) {
     .composite(tiles).jpeg({ quality: 86 }).toFile(dest);
 }
 
+// Faint alpha (a matte's last flicker, a resize's halo) costs more bytes in a WebP than it shows: snap it to clear or
+// solid, leaving the soft edge in between as it is.
+const settle = (rgba) => { for (let k = 3; k < rgba.length; k += 4) rgba[k] = rgba[k] <= 12 ? 0 : rgba[k] >= 243 ? 255 : rgba[k]; return rgba; };
+
 // —— a clip and its mask → numbered alpha WebPs, cropped to everywhere the product goes ——
-async function frames(src, mask, dir, stageW, sheetFile, tag) {
+async function frames(src, mask, dir, stageW, sheetFile, tag, phoneShare = 1) {
   const v = await probe(src), m = await probe(mask);
   const n = Math.min(v.count, m.count);
   const sw = 320, sh = Math.round(sw * v.h / v.w);
@@ -435,23 +439,52 @@ async function frames(src, mask, dir, stageW, sheetFile, tag) {
   // the mask tightened a touch, so no backdrop rims the product
   await ff("-i", mask, "-vf", `${crop},format=gray,lut=y='clip((val-24)*1.12\\,0\\,255)'`, "-frames:v", String(n), join(tmp, "m", "%04d.png"));
   rmSync(dir, { recursive: true, force: true }); mkdirSync(dir, { recursive: true });
+  // the phone set: the same frames, as small as a phone can show them as sharply as a laptop shows the full ones
+  const phoneDir = `${dir}-phone`, Wp = Math.min(W, even(Math.max(240, W * phoneShare))), Hp = even(Wp * H / W);
+  rmSync(phoneDir, { recursive: true, force: true }); mkdirSync(phoneDir, { recursive: true });
   let specks = 0;
   for (let i = 1; i <= n; i++) {
     const f = String(i).padStart(4, "0") + ".png";
     let a = await sharp(join(tmp, "m", f)).extractChannel(0).raw().toBuffer();
     if (s.specks) { const d = despeckle(a, W, H, s.specks); a = d.alpha; specks += d.removed; }
     // no removeAlpha() here: sharp applies it last, so it would strip the alpha just joined
-    await sharp(join(tmp, "c", f)).joinChannel(a, { raw: { width: W, height: H, channels: 1 } })
-      .webp({ quality: 74, alphaQuality: 85, effort: 5 }).toFile(join(dir, f.replace(".png", ".webp")));
+    const rgba = settle(await sharp(join(tmp, "c", f)).joinChannel(a, { raw: { width: W, height: H, channels: 1 } }).raw().toBuffer());
+    const raw4 = { raw: { width: W, height: H, channels: 4 } }, name = f.replace(".png", ".webp");
+    await sharp(rgba, raw4).webp({ quality: 74, alphaQuality: 85, effort: 5 }).toFile(join(dir, name));
+    // mitchell, not lanczos: lanczos rings, and its faint halo round every edge cost a third of the phone frame's bytes
+    const small = settle(await sharp(rgba, raw4).resize(Wp, Hp, { kernel: "mitchell" }).raw().toBuffer());
+    await sharp(small, { raw: { width: Wp, height: Hp, channels: 4 } }).webp({ quality: 74, alphaQuality: 85, effort: 5 }).toFile(join(phoneDir, name));
   }
   const ks = stageW / v.w;
   const manifest = { count: n, fps: v.fps, pattern: "{n}.webp", pad: 4, size: [W, H], crop: [cx * ks, cy * ks, cw * ks, ch * ks].map((x) => Math.round(x)) };
   writeFileSync(join(dir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
+  writeFileSync(join(phoneDir, "manifest.json"), JSON.stringify({ ...manifest, size: [Wp, Hp] }, null, 2) + "\n");
+  manifest.phone = [Wp, Hp];
   const picks = [0, 0.2, 0.4, 0.6, 0.8, 1].map((t) => join(dir, String(Math.round(t * (n - 1)) + 1).padStart(4, "0") + ".webp"));
   await sheet([picks.slice(0, 3), picks.slice(3)], sheetFile, 520);
   rmSync(tmp, { recursive: true, force: true });
-  console.log(`[${id}/${tag}] ${n} frames ${W}×${H} · crop ${manifest.crop.join(" ")} (stage px)${s.specks ? ` · ${specks} specks cleared` : ""}`);
+  console.log(`[${id}/${tag}] ${n} frames ${W}×${H}, ${Wp}×${Hp} for phones · crop ${manifest.crop.join(" ")} (stage px)${s.specks ? ` · ${specks} specks cleared` : ""}`);
   return manifest;
+}
+
+// —— how small a phone's frames can be ——
+// The page draws clip a at Rc (the product apart in the middle) and clip b from Rc to about R2 (landing in the second
+// photo). This mirrors that layout (photoRect, align and centre in site/engine/explode.js) for a large phone (430 × 932)
+// and the desktop the clips are recorded at (1440 × 900), both at 2× pixels: a clip's phone frames are its desktop
+// frames scaled by the phone's drawing scale over the desktop's, at the moment that ratio is highest (plus 10%).
+function phoneShare(PW, PH) {
+  let page;
+  try { page = JSON.parse(readFileSync(join(site, "page.json"), "utf8")); } catch { return { a: 1, b: 1 }; }
+  const scales = (vw, vh) => {
+    const mobile = vw < 760;
+    const photo = (box) => Math.min(Math.max(vw / PW, vh / PH), ((mobile ? 0.82 : 0.5) * vw) / box[2]);
+    const onPhoto = (box, st) => (box[2] * photo(box)) / st[2];
+    const area = mobile ? page.stage.mobile : page.stage.area, c = boxes.cutx, pad = 1.08;
+    return { rc: Math.min((area[2] * vw) / (c[2] * pad), (area[3] * vh) / (c[3] * pad)), r2: onPhoto(boxes.cut2, boxes.studio2) };
+  };
+  const d = scales(1440, 900), m = scales(430, 932);
+  const a = (m.rc / d.rc) * 1.1, b = Math.max(m.rc / d.rc, m.r2 / d.r2) * 1.1;
+  return { a: Math.min(1, a), b: Math.min(1, b) };
 }
 
 // —— twelve moments of each take, one row per take ——
@@ -548,7 +581,8 @@ if (due("clips")) await Promise.all(CLIPS.map((ab) => save(`clip-${ab}.mp4`, (f)
 if (due("mattes")) await Promise.all(CLIPS.map((ab) => save(`mask-${ab}.mp4`, (f) => gen("birefnet-video", { video: file(o(`clip-${ab}.mp4`)), variant: "heavy", resolution: "2K" }, f, `matte ${ab}`))));
 if (due("frames")) {
   boxes.frames = {};
-  for (const ab of ["a", "b"]) boxes.frames[ab] = await frames(o(`clip-${ab}.mp4`), o(`mask-${ab}.mp4`), join(site, "frames", ab), SW, o(`frames-${ab}.jpg`), `frames-${ab}`);
+  const share = phoneShare(SW, SH);
+  for (const ab of ["a", "b"]) boxes.frames[ab] = await frames(o(`clip-${ab}.mp4`), o(`mask-${ab}.mp4`), join(site, "frames", ab), SW, o(`frames-${ab}.jpg`), `frames-${ab}`, share[ab]);
   remember();
   writeFileSync(o("frames.json"), JSON.stringify(boxes.frames) + "\n");
 }
