@@ -1,0 +1,34 @@
+{
+  "slug": "pixel-game",
+  "name": "Pixel Game",
+  "tagline": "A retro pixel-art arcade game that reskins an old classic with a news story, made for vertical video: autoplay, replays, share cards.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["pixel art", "retro game", "arcade game", "8-bit", "parody", "news", "meme", "flappy bird", "fighting game", "stealth game", "game", "vertical video", "short-form video", "TikTok", "chiptune", "canvas", "interactive"],
+  "youSay": "/pixel-game turn Tesla's flying Roadster reveal into Flappy Bird",
+  "whatYouGet": [
+    "A playable arcade game on one page: an old classic reskinned with your story, its cast drawn as pixel caricatures from real photos, with its own logo, music and sound",
+    "Made for vertical video: a 9:16 screen with the action mid-frame, an autopilot or CPU mode for hands-off B-roll, instant replays rebuilt from the run, and a 1080×1920 share card",
+    "Game feel and jokes built in: neon bloom, hit-stop, shake, slow-motion close calls, and a stamp and punchline on every loss",
+    "Proof it works: headless runs that show the game is fair and beatable, screenshots of every screen, and frame-exact demo videos with the game's own soundtrack"
+  ],
+  "goodFit": [
+    "Parodies of this week's news, launches and rivalries for TikTok, Reels and X",
+    "Creators and brands who want a playable meme or a launch-day mini game"
+  ],
+  "notFor": [
+    "Big games with levels to save, accounts or online play",
+    "3D games, or games built on real photos or video"
+  ],
+  "youBring": [
+    "The story, product or in-joke, and the old game it should feel like (or ask for ideas)",
+    "Optional: photos of who or what is in it, names, colours and jokes"
+  ],
+  "needs": ["Python 3", "A browser", "Node 18+ for the checks and screenshots", "ffmpeg for demo videos"],
+  "network": [
+    { "host": "fonts.googleapis.com", "purpose": "two pixel fonts for the page beside the game" },
+    { "host": "registry.npmjs.org", "purpose": "Playwright for the tools, installed once" }
+  ],
+  "testedIn": ["Claude Code"]
+}

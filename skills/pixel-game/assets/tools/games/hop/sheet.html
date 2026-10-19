@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pixel Hop sprite sheet</title>
+<style>body{margin:0;background:#1a1530}canvas{image-rendering:pixelated;display:block}</style>
+<canvas id="c"></canvas>
+<script src="../../../engine/core.js"></script>
+<script src="../../../games/hop/sim.js"></script>
+<script src="../../../games/hop/art.js"></script>
+<script>
+// Every sprite of the game at 4×, each with its glow twin underneath, for checking the art.
+// Open it through tools/lib.mjs's server, or: node sheet.mjs hop
+const S = 4;
+const A = R.HOP_ART;
+const items = [
+  ...['run', 'run', 'jump', 'hurt'].map((k, i) => [k === 'run' ? `run${i}` : k, k === 'run' ? A.hero.run[i] : A.hero[k]]),
+  ...Object.entries(A.ob),
+  ...A.coin.map((c, i) => [`coin${i}`, c]),
+];
+const cell = 34 * S;
+const c = document.getElementById('c');
+c.width = items.length * cell + 20;
+c.height = cell * 2 + 30;
+const x = c.getContext('2d');
+x.imageSmoothingEnabled = false;
+items.forEach(([name, sp], i) => {
+  const gx = 10 + i * cell;
+  x.fillStyle = '#251d45';
+  x.fillRect(gx, 10, cell - 6, cell - 6);
+  x.fillRect(gx, 16 + cell, cell - 6, cell - 6);
+  x.drawImage(sp.c, gx + (cell - 6 - sp.w * S) / 2, 10 + cell - 10 - sp.h * S, sp.w * S, sp.h * S);
+  x.drawImage(sp.g, gx + (cell - 6 - sp.w * S) / 2, 16 + 2 * cell - 10 - sp.h * S, sp.w * S, sp.h * S);
+  x.fillStyle = '#9a8fc4';
+  x.font = '11px monospace';
+  x.fillText(name, gx + 3, 22);
+});
+window.done = true;
+</script>
