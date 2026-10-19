@@ -8,7 +8,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Night Shift — a smash burger lifts off a 1 a.m. diner counter, splits into six labelled layers and lands at a picnic",
-      "prompt": "/exploded-view A page for Night Shift's double smash burger, from a 1 a.m. diner counter to a Sunday picnic"
+      "prompt": "/exploded-view A page for Night Shift's double smash burger, from a 1 a.m. diner counter to a Sunday picnic",
+      "url": "https://demos.skillsmart.io/exploded-view/burger/"
     },
     {
       "file": "02.mp4",
@@ -18,7 +19,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Kissa One — walnut headphones from a Tokyo listening bar, opened up over a sound lab, to a train at golden hour",
-      "prompt": "/exploded-view A launch page for our walnut wireless headphones, from a Tokyo listening bar to a train at golden hour"
+      "prompt": "/exploded-view A launch page for our walnut wireless headphones, from a Tokyo listening bar to a train at golden hour",
+      "url": "https://demos.skillsmart.io/exploded-view/headphones/"
     },
     {
       "file": "03.mp4",
@@ -28,7 +30,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Strata Volt — a carbon-plated running shoe in seven layers, from a noon concrete ledge to a wet neon street",
-      "prompt": "/exploded-view Our carbon-plated running shoe, from a sunlit concrete ledge to a wet neon street at night"
+      "prompt": "/exploded-view Our carbon-plated running shoe, from a sunlit concrete ledge to a wet neon street at night",
+      "url": "https://demos.skillsmart.io/exploded-view/sneaker/"
     },
     {
       "file": "04.mp4",
@@ -38,7 +41,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Fjell 30 — a prefab cabin taken apart like an architect's drawing, from a fjord at blue hour to the desert",
-      "prompt": "/exploded-view A page for our prefab timber cabin, built in six weeks and placed anywhere, from a fjord to the desert"
+      "prompt": "/exploded-view A page for our prefab timber cabin, built in six weeks and placed anywhere, from a fjord to the desert",
+      "url": "https://demos.skillsmart.io/exploded-view/cabin/"
     },
     {
       "file": "05.mp4",
@@ -48,7 +52,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Caffè Riva — a stovetop moka pot lifts off a sunlit Italian stove, opens into six parts and lands by a lake at dawn",
-      "prompt": "/exploded-view A page for our stovetop moka pot, from a sunlit Italian kitchen to a lake at dawn"
+      "prompt": "/exploded-view A page for our stovetop moka pot, from a sunlit Italian kitchen to a lake at dawn",
+      "url": "https://demos.skillsmart.io/exploded-view/moka/"
     }
   ]
 }
