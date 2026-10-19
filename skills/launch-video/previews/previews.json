@@ -1,0 +1,54 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in clean — soft light, a tilted browser, slides that match speed, a slow zoom on each feature",
+      "prompt": "/launch-video Orbit 2.0 launches 1 December at orbit.app — here are three screenshots"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in drafting — a technical drawing with dimension lines, plotted text and hatched callouts",
+      "prompt": "/launch-video Orbit 2.0 launches 1 December at orbit.app, drafting style"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in paper — cut paper on ivory, prints dropping onto a pile, stop motion on twos",
+      "prompt": "/launch-video Orbit 2.0 launches 1 December at orbit.app, paper style"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in pixel — an 8-bit night, typewriter text and dithered screenshots in a retro window",
+      "prompt": "/launch-video Orbit 2.0 launches 1 December at orbit.app, pixel style"
+    },
+    {
+      "file": "05.mp4",
+      "kind": "video",
+      "poster": "05.webp",
+      "thumb": "05-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in bold — huge capitals on hard cuts, a full-frame flash before every feature",
+      "prompt": "/launch-video Orbit 2.0 launches 1 December at orbit.app, bold style"
+    }
+  ]
+}

@@ -1,32 +1,54 @@
 {
   "previews": [
     {
-      "file": "01.webm",
+      "file": "01.mp4",
       "kind": "video",
-      "caption": "The full teaser",
-      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
-      "sample": true
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in loud — condensed capitals on black, one acid flash",
+      "prompt": "/kinetic-type-teaser a 12-second teaser for Orbit 2.0 on 1 December, orbit.app"
     },
     {
-      "file": "02.webp",
-      "kind": "image",
-      "caption": "Word beat",
-      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
-      "sample": true
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in swiss — flush left on a 12-column grid, red",
+      "prompt": "/kinetic-type-teaser a 12-second teaser for Orbit 2.0 on 1 December, swiss style"
     },
     {
-      "file": "03.webp",
-      "kind": "image",
-      "caption": "Flash beat",
-      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
-      "sample": true
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit 2.0 in memphis — the 24-second vertical cut: typing, a split, an odometer, a grid",
+      "prompt": "/kinetic-type-teaser a 24-second vertical teaser for Orbit 2.0, memphis style"
     },
     {
-      "file": "04.webp",
-      "kind": "image",
-      "caption": "Stack beat",
-      "prompt": "/kinetic-type-teaser 12-second teaser for our launch 'Orbit 2.0' on 1 Dec, orbit.app",
-      "sample": true
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in xerox — photocopy grain and halftone behind crisp words, stop motion",
+      "prompt": "/kinetic-type-teaser a 12-second teaser for Orbit 2.0, xerox style"
+    },
+    {
+      "file": "05.mp4",
+      "kind": "video",
+      "poster": "05.webp",
+      "thumb": "05-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit 2.0 in bauhaus — a circle, a square and a half-disc rearranging on every cut",
+      "prompt": "/kinetic-type-teaser a 12-second teaser for Orbit 2.0, bauhaus style"
     }
   ]
 }

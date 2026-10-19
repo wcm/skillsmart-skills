@@ -1,0 +1,33 @@
+/* app-sting.css · App Sting (Skillsmart, MIT) */
+#film { background: var(--ground); color: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; }
+#film .bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--ink) 9%, var(--ground)), var(--ground) 70%); }
+#film svg.defs { position: absolute; width: 0; height: 0; }
+#film .world, #film .hud { position: absolute; inset: 0; }
+#film .shot { position: absolute; inset: 0; }
+#film .c0 { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+#film .lockup { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25em; }
+#film .lockup b { font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+#film .lockup .url { font: 500 1em/1 "JetBrains Mono", monospace; letter-spacing: 0.04em; }
+#film .device { position: absolute; }
+#film .device.phone { background: #0c0d10; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08) inset, 0 calc(var(--u) * 3) calc(var(--u) * 8) rgb(0 0 0 / 0.35); }
+#film .device.browser { background: #fff; border-radius: calc(var(--u) * 1.2); overflow: hidden; box-shadow: 0 calc(var(--u) * 3) calc(var(--u) * 8) rgb(0 0 0 / 0.3); }
+#film .device .glass { position: absolute; left: 0; right: 0; bottom: 0; overflow: hidden; }
+#film .device.phone .glass { top: auto; }
+#film .device .glass img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+#film .island { position: absolute; left: 50%; top: 2.2%; width: 30%; height: 3.6%; margin-left: -15%; border-radius: 99px; background: #0c0d10; }
+#film .bar { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: center; gap: 0.45em; padding: 0 1em; background: #f3f3f5; border-bottom: 1px solid #e6e6ea; font-size: calc(var(--u) * 2); }
+#film .bar i { width: 0.75em; height: 0.75em; border-radius: 50%; background: #d6d7dc; }
+#film .bar em { margin: 0 auto; font: 500 1em/1 "JetBrains Mono", monospace; font-style: normal; color: #8b8f99; padding-right: 3em; }
+#film .ripple { position: absolute; border-radius: 50%; background: color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: 0 0 0 3px var(--accent); }
+#film .cursor { position: absolute; left: 0; top: 0; margin: -2px 0 0 -4px; filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.3)); }
+#film .cursor svg { width: 100%; height: 100%; fill: #111; stroke: #fff; stroke-width: 1.6; stroke-linejoin: round; }
+#film .toast { position: absolute; left: 0; transform-origin: 50% 50%; translate: -50% 0; display: flex; align-items: center; gap: 0.5em; padding: 0.6em 1.1em 0.6em 0.7em; white-space: nowrap; border-radius: 99px; background: #111216; color: #fff; font-weight: 600; box-shadow: 0 0.6em 1.4em rgb(0 0 0 / 0.3); }
+#film .toast i { width: 1.4em; height: 1.4em; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #111216; font-style: normal; font-size: 0.8em; }
+#film .chip { position: absolute; display: grid; gap: 0.15em; padding: 0.35em 0.55em 0.45em; border-radius: 0.35em; background: var(--accent); color: #111216; box-shadow: 0 0.25em 0.8em rgb(0 0 0 / 0.25); transform-origin: 0 100%; }
+#film .chip b { font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+#film .chip small { font: 600 0.32em/1.2 "Inter Tight", sans-serif; letter-spacing: 0.01em; max-width: 9em; }
+#film .hud { pointer-events: none; font-family: "JetBrains Mono", monospace; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+#film .hud::before { content: ""; position: absolute; inset: var(--inset); border: 1px solid var(--hairline); }
+#film .hud .c { position: absolute; padding: 0.7em 0.9em; color: var(--ink); opacity: 0.85; }
+#film .hud .tl { left: var(--inset); top: var(--inset); } #film .hud .tr { right: var(--inset); top: var(--inset); }
+#film .hud .bl { left: var(--inset); bottom: var(--inset); } #film .hud .br { right: var(--inset); bottom: var(--inset); }

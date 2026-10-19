@@ -1,0 +1,59 @@
+{
+  "slug": "stat-reel",
+  "name": "Stat Reel",
+  "tagline": "Turn 3–6 real numbers into a vertical reel: each stat gets the right chart, counts up and shows its source.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "stats video",
+    "data video",
+    "year in review",
+    "wrapped",
+    "recap",
+    "metrics",
+    "investor update",
+    "charts",
+    "9:16",
+    "reel"
+  ],
+  "youSay": "/stat-reel Our 2026 in five numbers: 12,400 teams, 38% more deep work, planning down from 4.1 to 1.2 hours a week…",
+  "whatYouGet": [
+    "A 15–30 second reel: a title card, one scene per number and an end card",
+    "The chart picked from each stat: a counter, a ring, before-and-after bars with the change worked out, columns over time, a ranking or parts of a whole",
+    "Three themes: wrapped colour blocks, a ledger report, a night glow",
+    "MP4 in 9:16, 16:9 and 1:1, with every source on screen and every scale starting at zero"
+  ],
+  "goodFit": [
+    "Year-in-review and milestone posts",
+    "Investor updates, impact reports and metrics announcements"
+  ],
+  "notFor": [
+    "Numbers you can't source",
+    "Dashboards or long data stories"
+  ],
+  "youBring": [
+    "3–6 real numbers, what each measures and where it comes from",
+    "A title, your brand, URL and a closing line"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the film's fonts"
+    },
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

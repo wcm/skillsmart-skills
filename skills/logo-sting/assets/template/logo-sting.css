@@ -1,0 +1,12 @@
+/* logo-sting.css · Logo Sting (Skillsmart, MIT) */
+#film { background: var(--bg); color: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; }
+#film .bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 46%, color-mix(in srgb, var(--accent) 9%, var(--bg)) 0%, var(--bg) 62%); }
+[data-look="line"] #film .bg, [data-look="ink"] #film .bg { background: var(--bg); }
+[data-look="ink"] #film .bg::after { content: ""; position: absolute; inset: 0; opacity: 0.5; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.22  0 0 0 0.16 0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>"); }
+#film .cam { position: absolute; inset: 0; transform-origin: 50% 46%; }
+#film canvas.gl, #film canvas.dots, #film svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+#film svg.lines path { fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; }
+#film .pen { position: absolute; left: 0; top: 0; width: calc(var(--u) * 1.1); height: calc(var(--u) * 1.1); margin: calc(var(--u) * -0.55); border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 calc(var(--u) * 0.5) color-mix(in srgb, var(--accent) 25%, transparent); opacity: 0; }
+#film .final { position: absolute; opacity: 0; }
+#film .final img, #film .final canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+#film .tagline { position: absolute; left: 0; right: 0; text-align: center; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0; color: var(--ink); }

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit 2.0 · Launch Video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- every style's fonts; the browser only downloads the ones the chosen style uses -->
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;600&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..700,100,1;1,9..144,500,100,1&family=Press+Start+2P&family=VT323&family=Anton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="film.css">
+<link rel="stylesheet" href="launch-video.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg"></div>
+  <div class="deco"></div>
+  <div class="device"></div>
+  <div class="txt"></div>
+  <div class="top"></div>
+</div>
+
+<script src="film.js"></script>
+<script src="launch-video.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STORY: the only part you edit. Fields: references/story.md.
+   Screens are the user's own screenshots (16:10 for browser, 9:19.5 for phone).
+   *word* is set in the accent colour.
+   ───────────────────────────────────────────────────────────────────────────── */
+const q = new URLSearchParams(location.search);
+LaunchVideo.film({
+  style: q.get("style") || "clean",       // clean · drafting · paper · pixel · bold
+  accent: null,                           // the brand colour, e.g. "#5B5BF6" (null keeps the style's own)
+  brand: "Orbit",
+  hook: "Your week lives in twelve tabs.",
+  problem: ["Tasks in one app.", "Notes in another.", "Deadlines in your head."],
+  product: { text: "Meet *Orbit 2.0.*", screen: "screens/home.png", device: "browser" },
+  features: [
+    { title: "The whole week on one page.", screen: "screens/home.png", focus: [0, 0.06, 0.62, 0.5] },
+    { title: "Plans that move when you do.", screen: "screens/plan.png", focus: [0.15, 0.06, 0.85, 0.45] },
+    { title: "Focus mode that sticks.", screen: "screens/focus.png", focus: [0.15, 0.06, 0.85, 0.7] },
+  ],
+  proof: { value: 4.2, suffix: "×", label: "faster weekly planning", source: "Sample figure for this demo" },
+  end: { line: "Orbit 2.0", date: "1 December", url: "orbit.app" },
+});
+</script>
+</body>
+</html>

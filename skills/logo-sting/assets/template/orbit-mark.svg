@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220">
+  <!-- Orbit sample mark (original, for the demos): a ring, a moon, an orbit line -->
+  <circle cx="132" cy="118" r="70" fill="none" stroke="#F2F0EA" stroke-width="30"/>
+  <circle cx="226" cy="40" r="22" fill="#7C8CFF"/>
+  <path d="M28 168 C 90 230, 230 210, 282 108" fill="none" stroke="#F2F0EA" stroke-width="10" stroke-linecap="round"/>
+</svg>

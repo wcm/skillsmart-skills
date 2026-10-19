@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit 2026 · Stat Reel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="film.css">
+<link rel="stylesheet" href="stat-reel.css">
+</head>
+<body>
+<div id="film">
+  <div class="bgs"></div>
+  <div class="layer"></div>
+</div>
+
+<script src="film.js"></script>
+<script src="stat-reel.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE NUMBERS: the only part you edit (references/stats.md). Only real figures,
+   each with its source. The chart is picked from the shape of the data.
+   ───────────────────────────────────────────────────────────────────────────── */
+const q = new URLSearchParams(location.search);
+StatReel.film({
+  theme: q.get("theme") || "wrapped",      // wrapped · ledger · night
+  title: "Orbit's 2026 in *five numbers*",
+  brand: "Orbit",
+  url: "orbit.app",
+  stats: [
+    { value: 12400, label: "teams planned their week in Orbit", source: "Sample data for this demo" },
+    { value: 38, suffix: "%", label: "more deep work per person", source: "Sample data for this demo" },
+    { values: [4.1, 1.2], labels: ["Before", "With Orbit"], suffix: " h", label: "spent planning each week", source: "Sample data for this demo" },
+    { values: [2.1, 2.8, 3.9, 5.2, 6.8, 8.4, 9.9, 12.4], labels: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], suffix: "k", label: "teams, month by month", source: "Sample data for this demo" },
+    { items: [["Planning", 41], ["Focus", 33], ["Sharing", 26]], parts: true, suffix: "%", label: "where Orbit time goes", source: "Sample data for this demo" },
+  ],
+  end: "Here's to *2027.*",
+});
+</script>
+</body>
+</html>

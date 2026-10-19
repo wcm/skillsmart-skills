@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nimbus · Logo Sting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="film.css">
+<link rel="stylesheet" href="logo-sting.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg no-alpha"></div>
+  <div class="cam">
+    <canvas class="gl"></canvas>
+    <canvas class="dots"></canvas>
+    <svg class="lines"></svg>
+    <i class="pen"></i>
+    <div class="final"></div>
+    <div class="tagline"></div>
+  </div>
+</div>
+
+<script src="film.js"></script>
+<script src="logo-sting.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STING: the only part you edit (references/looks.md).
+   logo: an SVG or a transparent PNG of the user's mark, or a wordmark { text, font, weight }.
+   ───────────────────────────────────────────────────────────────────────────── */
+const q = new URLSearchParams(location.search);
+LogoSting.film({
+  look: q.get("look") || "liquid",         // line · particles · liquid · ink · glass · chrome
+  wordmark: { text: "nimbus", font: "Inter Tight", weight: 800, letterSpacing: "-0.04em" },
+  // logo: "logo.svg",                     // use the user's file instead of a wordmark
+  colors: null,                            // { bg, ink, accent }: from Brand Board, or null for the look's own
+  tagline: "nimbus.app",
+  duration: 6,                             // 5–8 s
+});
+</script>
+</body>
+</html>

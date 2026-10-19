@@ -1,35 +1,57 @@
 ---
 name: kinetic-type-teaser
-description: Make a 10–15 second kinetic typography teaser video — big words snapping, wiping and scrolling on hard cuts with one accent colour — for launches, events, announcements and social posts, built in HTML/CSS and recorded to MP4/WebM in 16:9 or vertical 9:16. Use for "teaser video", "launch video", "animated text video", "kinetic type", "motion graphics for my announcement" or short promo reels without footage.
+description: Make a 10–30 second kinetic typography teaser video — big words snapping, wiping, splitting, counting and scrolling on hard cuts with one accent colour — for launches, events, announcements and social posts, in five styles (loud, swiss, memphis, xerox, bauhaus). One script renders to MP4 in 16:9, vertical 9:16 and 1:1. Use for a teaser video, launch or coming-soon video, animated text video, kinetic type, motion graphics for an announcement, or a short promo reel without footage.
 ---
 
 # Kinetic Type Teaser
 
-Output: `teaser.html` (plays in the browser, click to replay) and `out/teaser.webm` (+ `out/teaser.mp4` if ffmpeg is available).
+You make a short typographic teaser: big words on hard cuts, one accent. Each beat is a short shot; five styles
+change the type, the colours, the shapes around the words and how they move. The teaser is an HTML page on a
+frame-by-frame engine: it plays and scrubs in a browser, and `scripts/render.mjs` renders every frame to MP4.
+
+`<skill>` below means this skill's folder: the folder this `SKILL.md` is in.
+
+Output: a folder with `index.html` (the teaser, editable) and `out/<name>-16x9.mp4`, `-9x16.mp4`, `-1x1.mp4`.
 
 ## What you need
 
-- The message: what's launching/happening, the brand, a date or URL.
-- Node 18+, Chrome/Edge or Playwright's Chromium. **ffmpeg** (optional) to convert to MP4 — `brew install ffmpeg` / `winget install Gyan.FFmpeg`.
+| Need | Why | How |
+|---|---|---|
+| A brief | what's launching or happening, the brand, a date or URL, a real number if any | what the user said (`/kinetic-type-teaser a 12-second teaser for Orbit 2.0 on 1 December` in Claude Code, `$kinetic-type-teaser …` in Codex, or "make a teaser video for …") |
+| Node 18+ | the renderer | `node -v` |
+| Chrome or Edge | renders the frames, headless | an installed Chrome or Edge; otherwise `npx playwright install chromium` |
+| ffmpeg | turns the frames into MP4 | `ffmpeg -version`; install with `brew install ffmpeg`, `winget install Gyan.FFmpeg` or `apt install ffmpeg` |
+
+No credits and no API keys. The teaser loads its fonts from Google Fonts; the renderer installs `playwright-core` once
+from npm into a cache folder (never into the project) and drives the installed browser.
 
 ## Steps
 
-1. **Copy** `assets/template/teaser.html` and `scripts/render.mjs` into `./teaser-<name>/`.
-2. **Write the script** (`references/motion-script.md`): 6 beats, each 1–3 words. Pattern: tease → word → flash word → three-line stack → marquee → brand + date/URL.
-3. **Fill placeholders.** Keep words short: ≤ 8 characters at 300 px (16:9). For vertical, set `--w: 1080px; --h: 1920px;` and reduce `.word` to ~200 px.
-4. **Style.** `--bg`, `--ink`, `--accent` (one loud accent), display font (Anton default; alternatives in the reference).
-5. **Timing.** Adjust `at`/`dur` in `SHOTS`. Total 10–15 s. Keep cuts on a steady rhythm (multiples of ~0.2 s feel musical).
-6. **Preview** by opening it in a browser (serve it: `python3 -m http.server 5181`); click to replay.
-7. **Record:**
+1. **Copy** `<skill>/assets/template/` to `./teaser-<name>/`.
+2. **Write the script** (`references/motion-script.md`): 6 beats for 12 s (tease → word → flash → stack → marquee →
+   end), or 9–10 beats for 20–24 s with `type`, `split`, `count` and `grid` (see `assets/examples/long.html`). One to
+   three words per beat.
+3. **Pick the style** from the brand: `loud` (black, acid accent, condensed capitals), `swiss` (white, red, flush left
+   on a grid), `memphis` (pink, confetti shapes, bouncy), `xerox` (photocopy grain and halftone, stop motion), `bauhaus`
+   (cream, primary shapes that rearrange). `accent` sets the brand colour.
+4. **Fill the `KineticTeaser.film({...})` block** in `index.html`. Nothing else changes.
+5. **Preview**: serve the folder (`python3 -m http.server 5195 -d ./teaser-<name>`) and open it in your browser or
+   preview tool (`?style=xerox` tries another style). Space plays, ← → step a frame, `[` `]` jump between beats.
+   **Without a browser**, go straight to the sheet.
+6. **Check**: `node <skill>/scripts/render.mjs sheet ./teaser-<name>/index.html --scenes --format all`. Open the sheets
+   and look for words running off the frame in 9:16 (shorten them) and an accent that disappears on its background.
+7. **Render**:
    ```bash
-   npm i --no-save playwright-core
-   node render.mjs video teaser.html --out out/teaser.webm --width 1920 --height 1080 --duration 12.5
-   ffmpeg -y -i out/teaser.webm -c:v libx264 -pix_fmt yuv420p -movflags +faststart out/teaser.mp4   # optional
+   node <skill>/scripts/render.mjs video ./teaser-<name>/index.html --format all
    ```
-   Use `--width 1080 --height 1920` for vertical. `--duration` = total timeline + 0.3 s.
-8. **Check** the video yourself if you can (extract a few frames with ffmpeg: `ffmpeg -i out/teaser.webm -vf fps=2 out/frame-%02d.png`) for clipped words. Fix and re-record.
+   `--audio track.mp3` lays a track under it; `--draft` renders a quick half-size check.
+8. **Hand over** the MP4s and the folder, and say which style you chose and why.
 
 ## Rules
 
-- No audio is added; suggest the user add a track in their editor or social app.
-- Respect flashing-content safety: no more than 3 full-screen flashes per second.
+- Words fit themselves to the frame, so long words get small. Keep `word` and `flash` beats to one short word.
+- `count` only with a real number.
+- Flashing-content safety: no more than 3 full-screen flashes per second. Beats last at least 1.2 s; don't shorten a
+  `flash` below 0.4 s.
+- Text stays crisp: grain, halftone and shapes go behind the words, never over them.
+- No audio is added: suggest a track and mention `--audio`.
