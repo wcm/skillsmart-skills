@@ -1,0 +1,57 @@
+/* leading-dot.css · Leading Dot (Skillsmart, MIT) */
+
+#film { font-family: var(--font, "Inter Tight", system-ui, sans-serif); font-kerning: normal; }
+#film .bg, #film .under, #film .dots, #film .layer, #film svg { position: absolute; inset: 0; }
+#film svg { overflow: visible; pointer-events: none; }
+#film .fx { z-index: 1; }
+#film .under { z-index: 2; }
+#film .dots { z-index: 3; }
+#film .layer { z-index: 4; }
+#film .fx-top { z-index: 5; }
+#film .dot { position: absolute; left: 0; top: 0; will-change: transform; }
+#film em { font-style: normal; color: var(--accent); }
+#film .w, #film .c { display: inline-block; }
+
+/* captions */
+.cap { position: absolute; font-weight: 600; line-height: 1.07; letter-spacing: -0.028em; text-wrap: balance; }
+.cap.mid { transform: translateY(-50%); }
+
+/* grow: a screen or card the dot becomes */
+.screen { position: absolute; display: flex; flex-direction: column; overflow: hidden; }
+.screen .body { position: relative; flex: 1; overflow: hidden; }
+.screen .body img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.screen .ttl { font-weight: 700; font-size: 1.3em; line-height: 1.1; letter-spacing: -0.02em; margin: 0.2em 0 0.9em; }
+.screen .row { display: flex; align-items: center; gap: 0.65em; padding: 0.62em 0; border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent); line-height: 1.2; }
+.screen .row i { flex: none; width: 0.55em; height: 0.55em; border-radius: 50%; }
+.screen .status { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1em; opacity: 0.55; }
+.screen .status b { width: 2.4em; height: 0.5em; border-radius: 0.25em; background: currentColor; }
+.screen .status span { width: 1.4em; height: 0.5em; border-radius: 0.25em; background: currentColor; }
+.screen .chrome { display: flex; gap: 0.5em; padding: 0.2em 0.3em 0.9em; font-size: 14px; }
+.screen .chrome i { width: 0.8em; height: 0.8em; border-radius: 50%; background: currentColor; opacity: 0.4; }
+.screen.card .body { display: flex; flex-direction: column; justify-content: center; }
+
+/* split, orbit, line */
+.label, .olabel { position: absolute; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; white-space: nowrap; }
+.olabel { left: 0; top: 0; }
+.mark { position: absolute; border-radius: 50%; border-style: solid; }
+.tick { position: absolute; text-align: center; font-weight: 500; letter-spacing: 0.01em; }
+.callout { position: absolute; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+
+/* ring, pulse, button, type */
+.hole { position: absolute; border-radius: 50%; }
+.num { position: absolute; text-align: center; font-weight: 700; letter-spacing: -0.045em; line-height: 1.24; font-variant-numeric: tabular-nums; }
+.num small { font-size: 0.46em; margin-left: 0.05em; font-weight: 600; letter-spacing: -0.02em; }
+.ring { position: absolute; border-style: solid; border-radius: 50%; }
+.badge { position: absolute; padding: 0.12em 0.55em; border-radius: 1em; font-weight: 700; line-height: 1.24; }
+.blabel { position: absolute; text-align: center; font-weight: 600; line-height: 1.24; letter-spacing: -0.01em; }
+.ripple { position: absolute; border-style: solid; }
+.field { position: absolute; border-style: solid; }
+.typed { position: absolute; white-space: nowrap; font-weight: 500; line-height: 1.24; letter-spacing: -0.01em; }
+
+/* bounce, fill, logo */
+.sentence { position: absolute; text-align: center; font-weight: 700; line-height: 1.12; letter-spacing: -0.035em; text-wrap: balance; }
+.headline { position: absolute; text-align: center; font-weight: 700; line-height: 1.04; letter-spacing: -0.04em; text-wrap: balance; }
+.headline .bl, .brand .bl { display: inline-block; width: 0; height: 0; }
+.brand { position: absolute; text-align: center; font-weight: 700; letter-spacing: -0.05em; line-height: 1.24; }
+.brand .mask { display: inline-block; overflow: hidden; padding: 0 0.08em 0.14em; margin-bottom: -0.14em; }
+.tagline { position: absolute; text-align: center; font-weight: 500; letter-spacing: -0.01em; }

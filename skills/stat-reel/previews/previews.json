@@ -1,0 +1,34 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit's 2026 in wrapped — a colour block for every number, wiping up a beat ahead",
+      "prompt": "/stat-reel our 2026 in five numbers, wrapped theme"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit's 2026 in ledger — an annual report: paper, mono figures, one green",
+      "prompt": "/stat-reel our 2026 in five numbers for investors, ledger theme"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit's 2026 in night — deep navy and a glowing gradient",
+      "prompt": "/stat-reel our 2026 in five numbers, night theme"
+    }
+  ]
+}

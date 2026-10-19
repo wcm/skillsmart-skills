@@ -19,7 +19,12 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 | [bento-grid](skills/bento-grid) | Bento-box feature sections |
 | [brand-board](skills/brand-board) | One-page brand boards with palette, type and voice |
 | [device-mockups](skills/device-mockups) | Screenshots in phone, laptop and browser scenes |
-| [kinetic-type-teaser](skills/kinetic-type-teaser) | 10–15 s kinetic typography teaser videos |
+| [kinetic-type-teaser](skills/kinetic-type-teaser) | 10–30 s kinetic typography teaser videos in five styles |
+| [leading-dot](skills/leading-dot) | Explainer videos where one dot carries the whole film with no cuts |
+| [launch-video](skills/launch-video) | 20–40 s product launch films from your screenshots, in five styles |
+| [logo-sting](skills/logo-sting) | 5–8 s logo reveals in six looks, with a transparent version |
+| [app-sting](skills/app-sting) | 10–15 s looping stings of your app's screens with speed-matched whip pans |
+| [stat-reel](skills/stat-reel) | Vertical reels that turn 3–6 real numbers into charts that count up |
 
 ## Install
 

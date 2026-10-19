@@ -1,0 +1,34 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Orbit — four screens in a phone and a browser, whip pans that match speed, taps, a counting sticker",
+      "prompt": "/app-sting a 12-second loop of these four Orbit screenshots, brand colour #4B4BE8"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1000,
+      "height": 1000,
+      "caption": "Tempo — a running app's phone screens on lime, square for the feed",
+      "prompt": "/app-sting a square loop of these four Tempo screenshots, lime and orange"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit — the same sting vertical, for Reels and TikTok",
+      "prompt": "/app-sting the Orbit loop, vertical"
+    }
+  ]
+}

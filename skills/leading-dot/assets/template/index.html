@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nimbus · Leading Dot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="film.css">
+<link rel="stylesheet" href="leading-dot.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg"></div>
+  <svg class="fx"><defs><filter id="goo" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b"/><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter></defs></svg>
+  <div class="under"></div>
+  <div class="dots"></div>
+  <div class="layer"></div>
+  <svg class="fx-top"></svg>
+</div>
+
+<script src="film.js"></script>
+<script src="leading-dot.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STORY: the only part you edit. One dot carries the whole film; each scene
+   is what the dot becomes next. Moves and their fields: references/moves.md.
+   Text: *word* is set in the accent colour.
+   ───────────────────────────────────────────────────────────────────────────── */
+LeadingDot.film({
+  theme: "paper",            // paper · night · mono · citrus · sky   (or colors: { bg, dot, ink, accent })
+  font: "Inter Tight",       // any Google font loaded in <head>
+  scenes: [
+    { move: "drop",   text: "Every meeting ends with one question." },
+    { move: "bounce", text: "Who took the *notes?*" },
+    { move: "grow",   text: "Nimbus did.", shape: "phone",
+      card: { title: "Weekly sync · 3:00", lines: ["Recording", "Pricing: tiers ship in Q1", "Ana owns the launch post", "Review on Friday"] } },
+    { move: "split",  text: "Every call, three ways.", items: ["Transcript", "Summary", "Tasks"] },
+    { move: "line",   text: "Teams follow up *3× faster.*", values: [1, 1.3, 2.1, 3], labels: ["Wk 1", "Wk 2", "Wk 3", "Wk 4"], value: "3×" },
+    { move: "type",   text: "Ask it anything.", prompt: "What did we decide on pricing?" },
+    { move: "fill",   text: "Never take notes again" },
+    { move: "logo",   brand: "nimbus", tagline: "nimbus.app · free for teams" },
+  ],
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* stat-reel.css · Stat Reel (Skillsmart, MIT) */
+#film { font-family: var(--font); }
+#film .bgs, #film .layer, #film .scene, #film .block { position: absolute; inset: 0; }
+#film .rule { position: absolute; left: 0; right: 0; transform-origin: 0 50%; z-index: 50; }
+#film .layer { z-index: 100; }
+#film em { font-style: normal; color: var(--acc); }
+#film .headline { position: absolute; font-weight: 800; line-height: 0.98; letter-spacing: -0.045em; text-wrap: balance; }
+#film .sub { position: absolute; font-weight: 600; letter-spacing: -0.01em; opacity: 0.8; }
+#film .idx { position: absolute; font: 600 1em/1 var(--num); letter-spacing: 0.08em; opacity: 0.75; }
+#film .big { position: absolute; font: 800 1em/1 var(--num); letter-spacing: -0.05em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+#film .label { position: absolute; font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance; }
+#film .source { position: absolute; font-weight: 500; opacity: 0.6; letter-spacing: 0.01em; }
+#film .chart { position: absolute; }
+#film .gauge { position: absolute; border-radius: 99px; background: color-mix(in srgb, currentColor 18%, transparent); overflow: hidden; }
+#film .gauge .fill { position: absolute; inset: 0; background: var(--acc); transform-origin: 0 50%; border-radius: 99px; }
+#film .tick { position: absolute; width: 2px; margin-left: -1px; background: currentColor; opacity: 0.35; }
+#film .chart svg { overflow: visible; }
+#film .track { fill: none; stroke: currentColor; stroke-opacity: 0.18; }
+#film .arc { fill: none; stroke: var(--acc); stroke-linecap: round; }
+#film .col { position: absolute; background: color-mix(in srgb, currentColor 32%, transparent); transform-origin: 50% 100%; border-radius: calc(var(--u) * 0.8) calc(var(--u) * 0.8) 0 0; }
+#film .col.hi { background: var(--acc); }
+#film .cap, #film .xl { position: absolute; text-align: center; font-weight: 600; opacity: 0.8; }
+#film .vtop { position: absolute; text-align: center; font: 700 1em/1 var(--num); letter-spacing: -0.03em; }
+#film .base { position: absolute; background: currentColor; opacity: 0.5; }
+#film .row { position: absolute; display: grid; grid-template-columns: 7.5em 1fr 3.8em; align-items: center; gap: 0.7em; font-weight: 600; }
+#film .row .bar { height: 62%; display: block; position: relative; }
+#film .row .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, currentColor 32%, transparent); transform-origin: 0 50%; border-radius: 0 0.3em 0.3em 0; }
+#film .row .bar.hi i { background: var(--acc); }
+#film .row b { font: 700 1em/1 var(--num); text-align: right; }
+#film .stack { position: absolute; border-radius: calc(var(--u) * 1); overflow: hidden; background: color-mix(in srgb, currentColor 12%, transparent); }
+#film .seg { position: absolute; top: 0; bottom: 0; background: var(--acc); transform-origin: 0 50%; box-shadow: -3px 0 0 0 inset color-mix(in srgb, currentColor 30%, transparent); }
+#film .legend { position: absolute; display: flex; align-items: center; gap: 0.5em; font-weight: 600; }
+#film .legend i { width: 0.9em; height: 0.9em; border-radius: 0.2em; background: var(--acc); }
+#film .legend b { font: 700 1em/1 var(--num); margin-left: 0.3em; }
+[data-theme="ledger"] #film .big { font-weight: 700; letter-spacing: -0.06em; }
+[data-theme="ledger"] #film .label, [data-theme="ledger"] #film .headline { font-weight: 600; }
+[data-theme="ledger"] #film .col { border-radius: 0; }
+[data-theme="night"] #film .big, [data-theme="night"] #film em { background: linear-gradient(100deg, #7CF0C8, #8C7CFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-theme="night"] #film .col.hi, [data-theme="night"] #film .gauge .fill, [data-theme="night"] #film .row .bar.hi i, [data-theme="night"] #film .seg { background: linear-gradient(90deg, #7CF0C8, #8C7CFF); box-shadow: 0 0 calc(var(--u) * 3) color-mix(in srgb, #7CF0C8 40%, transparent); }
+[data-theme="night"] #film .arc { filter: drop-shadow(0 0 calc(var(--u) * 1.2) #7CF0C8); }

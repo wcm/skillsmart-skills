@@ -1,0 +1,60 @@
+{
+  "slug": "logo-sting",
+  "name": "Logo Sting",
+  "tagline": "A 5–8 second logo reveal in six looks (line, particles, liquid, ink, glass, chrome), with a transparent version for any edit.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "logo animation",
+    "logo reveal",
+    "intro",
+    "outro",
+    "bumper",
+    "end card",
+    "particles",
+    "liquid",
+    "chrome",
+    "transparent video",
+    "ProRes"
+  ],
+  "youSay": "/logo-sting reveal my logo.svg in liquid, 6 seconds, plus a transparent version for my editor",
+  "whatYouGet": [
+    "A 5–8 second reveal or outro that ends on your real logo, crisp",
+    "Six looks: the outline drawing itself, particles settling, a liquid bead, ink blooming into paper, a glass lens, polished chrome",
+    "MP4 in 16:9, 9:16 and 1:1, and a transparent ProRes 4444 .mov and WebM to drop over any video",
+    "Works from an SVG, a transparent PNG or just your name set in your typeface"
+  ],
+  "goodFit": [
+    "Intros and outros for launch films, ads, podcasts and channels",
+    "Bumpers and end cards for social videos"
+  ],
+  "notFor": [
+    "Logos you don't own",
+    "Long brand films or character animation"
+  ],
+  "youBring": [
+    "Your logo as SVG or transparent PNG (or your name and typeface)",
+    "Optional: your colours and a tagline or URL"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the film's fonts"
+    },
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tempo · App Sting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../template/film.css">
+<link rel="stylesheet" href="../template/app-sting.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg"></div>
+  <svg class="defs"><defs></defs></svg>
+  <div class="world"></div>
+  <div class="hud"></div>
+</div>
+
+<script src="../template/film.js"></script>
+<script src="../template/app-sting.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STING: the only part you edit (references/shots.md). 3–5 shots of the
+   user's own screens; each can have one action: tap, toast, number.
+   ───────────────────────────────────────────────────────────────────────────── */
+AppSting.film({
+  brand: "Tempo",
+  logo: null,
+  url: "tempo.run",
+  colors: { ground: "#C6FF3D", ink: "#0E1110", accent: "#FF6A3D", hairline: "rgba(14,17,16,0.3)" },
+  shots: [
+    { label: "Run", screen: "../template/screens/tempo-run.png", tap: [0.5, 0.93], toast: "Run saved · 6.14 km" },
+    { label: "Splits", screen: "../template/screens/tempo-splits.png", tap: [0.5, 0.36], toast: "Fastest km · 4:52" },
+    { label: "Week", screen: "../template/screens/tempo-week.png", number: { value: 28.4, suffix: " km", label: "this week, 4 of 4 runs" } },
+    { label: "Best", screen: "../template/screens/tempo-share.png", tap: [0.27, 0.54], toast: "Shared with your crew" },
+  ],
+});
+</script>
+</body>
+</html>

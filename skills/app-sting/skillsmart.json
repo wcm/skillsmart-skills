@@ -1,0 +1,58 @@
+{
+  "slug": "app-sting",
+  "name": "App Sting",
+  "tagline": "A 10–15 second looping sting of your app's screens: whip pans that match speed, taps, toasts and a number that counts up.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "app promo",
+    "UI animation",
+    "product sting",
+    "screens",
+    "device mockup",
+    "loop",
+    "App Store preview",
+    "social video",
+    "whip pan"
+  ],
+  "youSay": "/app-sting A 12-second loop of these four screenshots for Orbit, brand colour #4B4BE8",
+  "whatYouGet": [
+    "A seamless 10–15 second loop: your logo, then your screens in a phone or a browser, and back to the logo",
+    "Cuts that read as one move: both screens share every whip pan, with motion blur at the fastest frames",
+    "One action per screen: a tap (with a cursor on desktop screens), a toast that says what happened, or a sticker that counts up",
+    "MP4 in 16:9, 9:16 and 1:1 at up to 60 fps, plus the sting as an editable HTML page"
+  ],
+  "goodFit": [
+    "Social posts and launch-day loops",
+    "App Store and landing-page previews, conference bumpers"
+  ],
+  "notFor": [
+    "Explaining what a product does (make a launch video)",
+    "Products without real screens to show"
+  ],
+  "youBring": [
+    "3–5 of your own screenshots, phone or desktop",
+    "Your name or logo, URL and brand colours"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the film's fonts"
+    },
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

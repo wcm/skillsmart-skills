@@ -1,0 +1,59 @@
+{
+  "slug": "leading-dot",
+  "name": "Leading Dot",
+  "tagline": "An explainer video where one dot carries the whole film with no cuts: it becomes a screen, a chart, a ring, a button and your logo.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "explainer video",
+    "dot animation",
+    "dot transition",
+    "one take",
+    "product explainer",
+    "Apple style",
+    "morph",
+    "9:16",
+    "reel",
+    "no footage"
+  ],
+  "youSay": "/leading-dot explain how Nimbus turns meetings into notes, paper theme, end on nimbus.app",
+  "whatYouGet": [
+    "A 15–30 second explainer where one dot never stops: it drops in, bounces across the words, grows into a phone, splits into features, draws a chart, types a prompt, floods the frame and lands as the dot of your logo's i",
+    "Twelve moves your agent picks line by line from your story, in five themes or your own colours",
+    "MP4 in 16:9, 9:16 and 1:1 from one story, every frame rendered on its own",
+    "The film as an editable HTML page you can preview, scrub and render again"
+  ],
+  "goodFit": [
+    "Explaining an app or a feature in under 30 seconds",
+    "Launch posts, landing-page videos and vertical reels without footage"
+  ],
+  "notFor": [
+    "Videos with footage, a presenter or voice-over",
+    "Long tutorials or step-by-step screen recordings"
+  ],
+  "youBring": [
+    "What the product does, its name and URL, and a few short facts",
+    "Optional: real numbers and screenshots, your brand colours"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the film's fonts"
+    },
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

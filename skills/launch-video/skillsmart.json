@@ -1,0 +1,59 @@
+{
+  "slug": "launch-video",
+  "name": "Launch Video",
+  "tagline": "A 20–40 second launch film from your screenshots: hook, problem, product, features, proof and date, in one of five styles.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "launch video",
+    "product video",
+    "promo video",
+    "announcement",
+    "release video",
+    "Product Hunt",
+    "screenshots",
+    "technical drawing",
+    "pixel art",
+    "cut paper"
+  ],
+  "youSay": "/launch-video Orbit 2.0 launches on 1 December at orbit.app. Here are three screenshots; pick the style.",
+  "whatYouGet": [
+    "A launch film in six scenes: a hook, the problem, your product revealed, up to four features, one proof number and the end card with the date",
+    "Five styles your agent picks from the product: clean, drafting (technical drawing), paper (cut paper, stop motion), pixel (8-bit) and bold (huge type on hard cuts)",
+    "Your real screenshots in a browser or phone, with slow zooms into the part that matters",
+    "MP4 in 16:9, 9:16 and 1:1 from one story, plus the film as an editable HTML page"
+  ],
+  "goodFit": [
+    "Launching an app, a version or a feature",
+    "Product Hunt, landing pages, X and LinkedIn posts"
+  ],
+  "notFor": [
+    "Products you can't show screenshots of",
+    "Videos with footage, a presenter or voice-over"
+  ],
+  "youBring": [
+    "The product name, what it does, the date and URL",
+    "2–4 of your own screenshots, and a real number if you have one"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the film's fonts"
+    },
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

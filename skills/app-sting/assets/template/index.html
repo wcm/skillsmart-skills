@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit · App Sting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="film.css">
+<link rel="stylesheet" href="app-sting.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg"></div>
+  <svg class="defs"><defs></defs></svg>
+  <div class="world"></div>
+  <div class="hud"></div>
+</div>
+
+<script src="film.js"></script>
+<script src="app-sting.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STING: the only part you edit (references/shots.md). 3–5 shots of the
+   user's own screens; each can have one action: tap, toast, number.
+   ───────────────────────────────────────────────────────────────────────────── */
+AppSting.film({
+  brand: "Orbit",
+  logo: null,                    // "logo.svg" for the lockup, or null to set the name
+  url: "orbit.app",
+  colors: { ground: "#4B4BE8", ink: "#FFFFFF", accent: "#FFD23F", hairline: "rgba(255,255,255,0.3)" },
+  shots: [
+    { label: "Today", screen: "screens/phone-today.png", tap: [0.5, 0.44], toast: "Pricing page copy · done" },
+    { label: "Focus", screen: "screens/phone-focus.png", number: { value: 38, suffix: "%", label: "more deep work a week" } },
+    { label: "Plan", screen: "screens/plan.png" },
+    { label: "This week", screen: "screens/home.png", tap: [0.94, 0.05], toast: "Task added to Friday" },
+  ],
+});
+</script>
+</body>
+</html>

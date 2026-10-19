@@ -1,0 +1,140 @@
+/* launch-video.css · Launch Video (Skillsmart, MIT). One block per style. */
+
+#film { background: var(--bg); color: var(--ink); font-family: var(--body); font-kerning: normal; perspective: 1800px; }
+#film .bg, #film .deco, #film .txt, #film .top { position: absolute; inset: 0; }
+#film .bg { z-index: 0; overflow: hidden; background: var(--bg); }
+#film .deco { z-index: 1; }
+#film .device, #film .print { position: absolute; z-index: 3; }
+#film .top { z-index: 4; pointer-events: none; }
+#film .txt { z-index: 5; }
+#film em { font-style: normal; color: var(--accent); }
+#film .w { display: inline-block; }
+#film .t { position: absolute; font-family: var(--display); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; }
+#film .t small { display: block; font: 600 0.36em/1 var(--body); letter-spacing: 0.08em; margin-bottom: 1em; color: var(--sub); }
+#film .t p { font: 500 0.42em/1.35 var(--body); letter-spacing: -0.005em; color: var(--sub); margin: 0.9em 0 0; max-width: 26em; }
+#film .hook { font-size: inherit; }
+
+/* the device */
+#film .device { overflow: hidden; transform-origin: 50% 100%; }
+#film .device .bar { position: absolute; left: 0; right: 0; top: 0; height: var(--bar); display: flex; align-items: center; gap: calc(var(--bar) * 0.22); padding: 0 calc(var(--bar) * 0.45); }
+#film .device .bar i { width: calc(var(--bar) * 0.26); height: calc(var(--bar) * 0.26); border-radius: 50%; }
+#film .device .bar em { margin: 0 auto; font: 500 calc(var(--bar) * 0.6)/1 var(--body); color: var(--sub); padding-right: calc(var(--bar) * 1.2); }
+#film .device .view { position: absolute; left: var(--pad); right: var(--pad); top: calc(var(--bar) + var(--pad)); bottom: var(--pad); overflow: hidden; }
+#film .device.phone .view { inset: calc(var(--u) * 0.8); }
+#film .shot { position: absolute; inset: 0; overflow: hidden; }
+#film .shot img { position: absolute; left: 0; top: 0; display: block; transform-origin: 0 0; }
+#film .print { overflow: hidden; }
+#film .print .shot { position: absolute; inset: var(--pad); }
+
+#film .number { position: absolute; text-align: center; font: 700 1em/1.1 var(--display); letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+#film .number small { font-size: 0.45em; letter-spacing: -0.02em; margin: 0 0.04em; }
+#film .plabel { position: absolute; text-align: center; font: 600 1em/1.2 var(--body); letter-spacing: -0.01em; }
+#film .source { position: absolute; text-align: center; font: 500 1em/1.3 var(--body); color: var(--sub); }
+#film .brand { position: absolute; text-align: center; font: 700 1em/1.1 var(--display); letter-spacing: -0.045em; }
+#film .endsub { position: absolute; display: flex; justify-content: center; align-items: center; gap: 1.2em; font: 600 1em/1.2 var(--body); }
+#film .endsub .url { color: var(--accent); }
+
+/* ── clean ─────────────────────────────────────────────── */
+[data-style="clean"] #film .blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 62%); }
+[data-style="clean"] #film .blob.b2 { background: radial-gradient(circle, color-mix(in srgb, #3ad6c4 26%, transparent) 0%, transparent 62%); }
+[data-style="clean"] #film .device { background: #fff; border-radius: calc(var(--u) * 1.4); box-shadow: 0 0 0 1px rgb(20 22 28 / 0.08), 0 calc(var(--u) * 2) calc(var(--u) * 6) rgb(20 22 28 / 0.16), 0 calc(var(--u) * 0.5) calc(var(--u) * 1.2) rgb(20 22 28 / 0.08); }
+[data-style="clean"] #film .device .bar { background: #f6f6f8; border-bottom: 1px solid #e8e8ec; }
+[data-style="clean"] #film .device .bar i { background: #d9dae0; }
+[data-style="clean"] #film .device.phone { border-radius: calc(var(--u) * 4); background: #121318; }
+[data-style="clean"] #film .device.phone .view { border-radius: calc(var(--u) * 3.3); }
+[data-style="clean"] #film .note { position: absolute; display: flex; align-items: center; gap: 0.6em; padding: 0.7em 1.1em 0.7em 0.9em; border-radius: 0.8em; background: rgb(255 255 255 / 0.82); box-shadow: 0 0 0 1px rgb(20 22 28 / 0.06), 0 0.6em 1.6em rgb(20 22 28 / 0.12); font: 600 1em/1.2 var(--display); letter-spacing: -0.02em; white-space: nowrap; }
+[data-style="clean"] #film .note i { width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--accent); flex: none; }
+[data-style="clean"] #film .number b { background: linear-gradient(120deg, var(--ink), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ── drafting ──────────────────────────────────────────── */
+[data-style="drafting"] #film .bg { background-color: var(--bg); background-image:
+  linear-gradient(rgb(232 235 228 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(232 235 228 / 0.035) 1px, transparent 1px),
+  linear-gradient(rgb(232 235 228 / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(232 235 228 / 0.07) 1px, transparent 1px);
+  background-size: var(--g1) var(--g1), var(--g1) var(--g1), var(--g2) var(--g2), var(--g2) var(--g2); background-position: -1px -1px; }
+[data-style="drafting"] #film .t { font-weight: 500; letter-spacing: -0.035em; }
+[data-style="drafting"] #film .t small { color: var(--accent); font-weight: 500; }
+[data-style="drafting"] #film .marks-wrap { position: absolute; inset: 0; }
+[data-style="drafting"] #film .marks { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-opacity: 0.6; }
+[data-style="drafting"] #film .marks .cross { stroke: var(--accent); stroke-opacity: 1; }
+[data-style="drafting"] #film .titleblock { position: absolute; display: grid; grid-auto-flow: column; border: 1px solid rgb(232 235 228 / 0.5); font: 500 1em/1 var(--body); letter-spacing: 0.1em; color: var(--sub); }
+[data-style="drafting"] #film .titleblock > * { padding: 0.7em 1em; border-left: 1px solid rgb(232 235 228 / 0.5); }
+[data-style="drafting"] #film .titleblock b { border-left: 0; color: var(--ink); text-transform: uppercase; }
+[data-style="drafting"] #film .device { background: #121514; border: 1px solid rgb(232 235 228 / 0.8); }
+[data-style="drafting"] #film .device .bar { border-bottom: 1px solid rgb(232 235 228 / 0.5); }
+[data-style="drafting"] #film .device .bar i { border: 1px solid var(--ink); }
+[data-style="drafting"] #film .shot img { filter: saturate(0.85); }
+[data-style="drafting"] #film .scan { position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+[data-style="drafting"] #film .sel { position: absolute; border: 1px solid var(--accent); }
+[data-style="drafting"] #film .sel i { position: absolute; width: calc(var(--u) * 0.9); height: calc(var(--u) * 0.9); background: var(--bg); border: 1px solid var(--accent); margin: calc(var(--u) * -0.45); }
+[data-style="drafting"] #film .sel i:nth-child(1) { left: 0; top: 0; } [data-style="drafting"] #film .sel i:nth-child(2) { right: 0; top: 0; margin-right: calc(var(--u) * -0.45); }
+[data-style="drafting"] #film .sel i:nth-child(3) { left: 0; bottom: 0; margin-bottom: calc(var(--u) * -0.45); } [data-style="drafting"] #film .sel i:nth-child(4) { right: 0; bottom: 0; margin-right: calc(var(--u) * -0.45); margin-bottom: calc(var(--u) * -0.45); }
+[data-style="drafting"] #film .dim { position: absolute; display: flex; align-items: center; gap: 0.8em; font: 500 1em/1 var(--body); color: var(--ink); letter-spacing: 0.08em; }
+[data-style="drafting"] #film .dim i { flex: 1; height: 1px; background: rgb(232 235 228 / 0.7); position: relative; }
+[data-style="drafting"] #film .dim i::before { content: ""; position: absolute; top: -0.5em; height: 1em; width: 1px; background: rgb(232 235 228 / 0.7); }
+[data-style="drafting"] #film .dim i:first-child::before { left: 0; } [data-style="drafting"] #film .dim i:last-child::before { right: 0; }
+[data-style="drafting"] #film .dim.bare span { display: none; }
+[data-style="drafting"] #film .fig { position: absolute; border: 1.5px solid var(--accent); background: repeating-linear-gradient(-45deg, transparent 0 7px, color-mix(in srgb, var(--accent) 22%, transparent) 7px 8.5px); }
+[data-style="drafting"] #film .fig span { position: absolute; left: -1.5px; top: -2.2em; background: var(--accent); color: var(--bg); padding: 0.45em 0.7em; font: 600 1em/1 var(--body); letter-spacing: 0.1em; }
+[data-style="drafting"] #film .fault { position: absolute; white-space: nowrap; display: flex; gap: 1.2em; align-items: baseline; font: 500 1em/1.1 var(--display); letter-spacing: -0.03em; }
+[data-style="drafting"] #film .fault b { font: 500 0.42em/1 var(--body); color: var(--accent); letter-spacing: 0.1em; }
+[data-style="drafting"] #film .fault .hatch { position: absolute; left: 2.2em; right: -0.4em; top: 50%; height: 0.14em; background: var(--accent); transform-origin: 0 50%; }
+[data-style="drafting"] #film .number { font-weight: 500; }
+[data-style="drafting"] #film .plabel { font-family: var(--body); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; font-size: inherit; }
+[data-style="drafting"] #film .brand { font-weight: 500; }
+[data-style="drafting"] #film .endsub { font-family: var(--body); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; }
+
+/* ── paper ─────────────────────────────────────────────── */
+[data-style="paper"] #film .bg { background-color: var(--bg); background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.33  0 0 0 0 0.25  0 0 0 0.14 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>"); }
+[data-style="paper"] #film .t { font-weight: 600; letter-spacing: -0.035em; font-variation-settings: "SOFT" 100, "WONK" 1; }
+[data-style="paper"] #film .t small { font-family: var(--body); }
+[data-style="paper"] #film em { color: var(--accent); font-style: italic; }
+[data-style="paper"] #film .strip { position: absolute; box-shadow: 0 0.4em 0.9em rgb(60 40 20 / 0.18); }
+[data-style="paper"] #film .note { position: absolute; display: flex; align-items: center; gap: 0.5em; padding: 0.9em 1.2em; font: 600 1em/1.15 var(--display); letter-spacing: -0.02em; white-space: nowrap; filter: drop-shadow(0 0.35em 0.5em rgb(60 40 20 / 0.22)); }
+[data-style="paper"] #film .note i { display: none; }
+[data-style="paper"] #film .device, [data-style="paper"] #film .print { background: #fbf8f1; box-shadow: 0 calc(var(--u) * 0.8) calc(var(--u) * 2.2) rgb(60 40 20 / 0.28), 0 0 0 1px rgb(60 40 20 / 0.06); }
+[data-style="paper"] #film .number { font-weight: 700; color: var(--ink); }
+[data-style="paper"] #film .disc { position: absolute; filter: drop-shadow(0 0.4em 0.6em rgb(60 40 20 / 0.25)); }
+[data-style="paper"] #film .plabel { font-family: var(--display); font-style: italic; font-weight: 500; }
+[data-style="paper"] #film .brand { font-weight: 700; }
+
+/* ── pixel ─────────────────────────────────────────────── */
+[data-style="pixel"] #film { -webkit-font-smoothing: none; font-smooth: never; }
+[data-style="pixel"] #film .bg { background: linear-gradient(#0b0822 0 34%, #120d36 34% 58%, #1b1550 58% 78%, #271c66 78% 100%); }
+[data-style="pixel"] #film .star { position: absolute; background: #fff; }
+[data-style="pixel"] #film .top { background: repeating-linear-gradient(0deg, rgb(0 0 0 / 0.22) 0 2px, transparent 2px 4px); }
+[data-style="pixel"] #film .t { font-weight: 400; line-height: 1.5; letter-spacing: 0; text-transform: uppercase; }
+[data-style="pixel"] #film .t small { font: 400 0.8em/1 var(--display); color: var(--accent); letter-spacing: 0; }
+[data-style="pixel"] #film .t p { font: 400 1.1em/1.1 var(--body); color: var(--sub); text-transform: none; }
+[data-style="pixel"] #film .feat { font-size: calc(var(--u) * 2.6) !important; }
+[data-style="pixel"] #film .lead { font-size: calc(var(--u) * 3.2) !important; }
+[data-style="pixel"] #film .caret { display: inline-block; width: 0.7em; height: 1em; background: var(--accent); vertical-align: -0.12em; margin-left: 0.2em; }
+[data-style="pixel"] #film .device { background: #0b0822; border: calc(var(--u) * 0.6) solid var(--ink); box-shadow: calc(var(--u) * 1) calc(var(--u) * 1) 0 #05030f; image-rendering: pixelated; }
+[data-style="pixel"] #film .device .bar { background: var(--accent); color: #0b0822; justify-content: space-between; font: 400 calc(var(--bar) * 0.55)/1 var(--display); }
+[data-style="pixel"] #film .device .bar em { display: none; }
+[data-style="pixel"] #film .shot img { image-rendering: pixelated; }
+[data-style="pixel"] #film .dialog { position: absolute; padding: 1.1em 1.3em; background: #0b0822; border: calc(var(--u) * 0.5) solid var(--ink); box-shadow: calc(var(--u) * 0.8) calc(var(--u) * 0.8) 0 #05030f; font: 400 1em/1.5 var(--display); }
+[data-style="pixel"] #film .number { font: 400 1em/1.2 var(--display); color: var(--accent); letter-spacing: 0; text-shadow: calc(var(--u) * 0.6) calc(var(--u) * 0.6) 0 #05030f; }
+[data-style="pixel"] #film .number small { font-size: 0.6em; }
+[data-style="pixel"] #film .plabel { font: 400 1em/1.6 var(--display); text-transform: uppercase; }
+[data-style="pixel"] #film .source { font: 400 1.4em/1.2 var(--body); }
+[data-style="pixel"] #film .brand { font: 400 1em/1.3 var(--display); color: var(--accent); letter-spacing: 0; text-shadow: calc(var(--u) * 0.8) calc(var(--u) * 0.8) 0 #05030f; text-transform: uppercase; }
+[data-style="pixel"] #film .endsub { font: 400 1em/1.6 var(--display); flex-direction: column; gap: 0.6em; text-transform: uppercase; }
+[data-style="pixel"] #film .endsub .url { color: var(--ink); }
+[data-style="pixel"] #film .press { position: absolute; text-align: center; font: 400 1em/1 var(--display); color: var(--accent); }
+
+/* ── bold ──────────────────────────────────────────────── */
+[data-style="bold"] #film .t { font-weight: 400; text-transform: uppercase; letter-spacing: -0.005em; line-height: 0.95; font-size: calc(var(--u) * 8) !important; }
+[data-style="bold"] #film .t small { font-weight: 700; color: var(--accent); letter-spacing: 0.1em; }
+[data-style="bold"] #film .burst { position: absolute; text-align: center; font: 400 1em/1.1 var(--display); text-transform: uppercase; letter-spacing: -0.005em; white-space: nowrap; }
+[data-style="bold"] #film .strike { position: absolute; transform-origin: 0 50%; }
+[data-style="bold"] #film .outline { position: absolute; text-align: center; font: 400 1em/1 var(--display); white-space: nowrap; color: transparent; -webkit-text-stroke: 2px color-mix(in srgb, var(--ink) 35%, transparent); }
+[data-style="bold"] #film .device { background: #fff; border: calc(var(--u) * 0.7) solid var(--ink); box-shadow: calc(var(--u) * 1.6) calc(var(--u) * 1.6) 0 var(--accent); }
+[data-style="bold"] #film .device .bar { background: var(--ink); }
+[data-style="bold"] #film .device .bar i { background: var(--bg); }
+[data-style="bold"] #film .device .bar em { color: var(--bg); }
+[data-style="bold"] #film .flash { position: absolute; inset: 0; display: grid; place-items: center; background: var(--accent); color: var(--bg); font: 400 1em/1 var(--display); text-transform: uppercase; white-space: nowrap; }
+[data-style="bold"] #film .number { font-weight: 400; letter-spacing: -0.01em; }
+[data-style="bold"] #film .plabel { font: 800 1em/1.1 var(--body); text-transform: uppercase; letter-spacing: 0.02em; }
+[data-style="bold"] #film .brand { font-weight: 400; text-transform: uppercase; letter-spacing: -0.005em; }
+[data-style="bold"] #film .endsub { font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+[data-style="bold"] #film .endsub .date { background: var(--accent); color: var(--bg); padding: 0.3em 0.6em; }

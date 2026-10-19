@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beacon · Leading Dot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../template/film.css">
+<link rel="stylesheet" href="../template/leading-dot.css">
+</head>
+<body>
+<div id="film">
+  <div class="bg"></div>
+  <svg class="fx"><defs><filter id="goo" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b"/><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter></defs></svg>
+  <div class="under"></div>
+  <div class="dots"></div>
+  <div class="layer"></div>
+  <svg class="fx-top"></svg>
+</div>
+
+<script src="../template/film.js"></script>
+<script src="../template/leading-dot.js"></script>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   THE STORY: the only part you edit. One dot carries the whole film; each scene
+   is what the dot becomes next. Moves and their fields: references/moves.md.
+   Text: *word* is set in the accent colour.
+   ───────────────────────────────────────────────────────────────────────────── */
+LeadingDot.film({
+  theme: "night",
+  scenes: [
+    { move: "pulse",  text: "Your servers talk all night.", badge: "3" },
+    { move: "orbit",  text: "Beacon listens to all of them.", items: ["Postgres", "Redis", "Kafka", "S3", "Nginx"] },
+    { move: "ring",   text: "and quiets *the noise.*", value: 94, suffix: "%" },
+    { move: "button", text: "One alert that matters.", label: "Wake the on-call", done: "Paged · 0:42" },
+    { move: "logo",   brand: "beacon", tagline: "beacon.dev · incident alerts" },
+  ],
+});
+</script>
+</body>
+</html>

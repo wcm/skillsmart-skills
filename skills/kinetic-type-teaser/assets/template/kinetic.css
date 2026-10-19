@@ -1,0 +1,55 @@
+/* kinetic.css · Kinetic Type Teaser 2 (Skillsmart, MIT) */
+#film { color: var(--ink); font-family: var(--font); font-weight: var(--weight); }
+#film .bg, #film .deco, #film .layer, #film .beat { position: absolute; inset: 0; }
+#film .bg { background: var(--bg); }
+#film .layer { z-index: 2; }
+#film em { font-style: normal; color: var(--accent); }
+#film .t { position: absolute; line-height: var(--lead); letter-spacing: var(--track); white-space: nowrap; }
+#film .t.small { font-family: "JetBrains Mono", monospace; font-weight: 600; letter-spacing: 0.22em; line-height: 1.2; }
+#film .t.small.accent { color: var(--accent); letter-spacing: 0.08em; }
+#film .beat.flash { color: var(--bg); }
+#film .beat.flash em { color: var(--ink); }
+#film .stack .ln.hi { color: var(--accent); }
+#film .marquee { position: absolute; left: 0; white-space: nowrap; line-height: 1; letter-spacing: var(--track); }
+#film .marquee.alt { color: transparent; -webkit-text-stroke: 2px var(--ink); opacity: 0.8; }
+#film .rule { position: absolute; background: var(--accent); transform-origin: 0 50%; }
+#film .count .col { display: inline-block; height: 1em; overflow: hidden; vertical-align: top; line-height: 1em; }
+#film .count .roll { display: block; } #film .count .roll i { display: block; height: 1em; font-style: normal; }
+#film .count .sym { display: inline-block; height: 1em; line-height: 1em; vertical-align: top; }
+#film .count { line-height: 1em; }
+#film .half.top { clip-path: inset(0 0 50% 0); } #film .half.bot { clip-path: inset(50% 0 0 0); }
+#film .reveal { color: var(--accent); }
+#film .cell { position: absolute; text-align: center; white-space: nowrap; color: transparent; -webkit-text-stroke: 1.5px var(--ink); letter-spacing: var(--track); }
+#film .cell.hi { color: var(--accent); -webkit-text-stroke: 0; z-index: 2; }
+#film .typed .caret { display: inline-block; width: 0.5em; height: 0.8em; background: var(--accent); margin-left: 0.08em; vertical-align: -0.02em; }
+#film svg.grain { display: none; }
+[data-style="xerox"] #film svg.grain { display: block; }
+
+/* swiss: a 12-column grid and an index label */
+[data-style="swiss"] #film .grid { position: absolute; inset: 0; }
+[data-style="swiss"] #film .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: rgb(0 0 0 / 0.06); }
+[data-style="swiss"] #film .index { position: absolute; font: 600 1em/1 "JetBrains Mono", monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+[data-style="swiss"] #film .t.small { letter-spacing: 0.12em; }
+[data-style="swiss"] #film .beat.flash { color: #fff; }
+[data-style="memphis"] #film .beat.flash { color: var(--ink); }
+
+/* memphis: shapes */
+[data-style="memphis"] #film .bg { background: var(--bg) radial-gradient(rgb(0 0 0 / 0.18) 1.4px, transparent 1.6px) 0 0 / calc(var(--u) * 3.2) calc(var(--u) * 3.2); }
+[data-style="memphis"] #film .shape { position: absolute; }
+[data-style="memphis"] #film .shape.dot { border-radius: 50%; background: var(--c); border: calc(var(--u) * 0.5) solid #151515; }
+[data-style="memphis"] #film .shape.ring { border-radius: 50%; border: calc(var(--u) * 1.4) solid var(--c); }
+[data-style="memphis"] #film .shape.tri { background: var(--c); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+[data-style="memphis"] #film .shape.bar { background: repeating-linear-gradient(90deg, #151515 0 calc(var(--u) * 1), var(--c) calc(var(--u) * 1) calc(var(--u) * 2)); border-radius: 99px; }
+[data-style="memphis"] #film .shape.squig svg { width: 100%; height: 100%; overflow: visible; } [data-style="memphis"] #film .shape.squig path { fill: none; stroke: var(--c); stroke-width: 9; stroke-linecap: round; }
+[data-style="memphis"] #film .t.big { text-shadow: calc(var(--u) * 0.7) calc(var(--u) * 0.7) 0 #fff; }
+
+/* xerox: grain and a halftone corner */
+[data-style="xerox"] #film svg.grain { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: multiply; opacity: 0.4; }
+[data-style="xerox"] #film .bg::after { content: ""; position: absolute; right: -10%; bottom: -20%; width: 60%; height: 80%; background: radial-gradient(circle, #0c0c0c 34%, transparent 36%) 0 0 / calc(var(--u) * 1.6) calc(var(--u) * 1.6); -webkit-mask-image: radial-gradient(circle at 70% 70%, #000 0%, transparent 70%); mask-image: radial-gradient(circle at 70% 70%, #000 0%, transparent 70%); opacity: 0.5; }
+
+/* bauhaus: primaries */
+[data-style="bauhaus"] #film .shape { position: absolute; }
+[data-style="bauhaus"] #film .shape.circle { border-radius: 50%; }
+[data-style="bauhaus"] #film .shape.half { border-radius: 999px 999px 0 0; }
+[data-style="bauhaus"] #film .shape.bar { background: #161514; transform-origin: 0 50%; }
+[data-style="bauhaus"] #film .t.big { mix-blend-mode: multiply; }

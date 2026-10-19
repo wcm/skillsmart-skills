@@ -1,0 +1,64 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Nimbus in liquid — a glossy bead gathers, the wordmark swells out of it and the liquid drains away",
+      "prompt": "/logo-sting reveal the nimbus wordmark in liquid, 6 seconds"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Orbit in particles — thousands of specks settle into an SVG mark, vertical",
+      "prompt": "/logo-sting reveal orbit-mark.svg in particles for a vertical outro"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Nimbus in ink — ink blooms into grained paper and dries crisp",
+      "prompt": "/logo-sting reveal the nimbus wordmark in ink on warm paper"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Nimbus in glass — a lens sweeps across, the mark sharp behind it and refracted inside it",
+      "prompt": "/logo-sting reveal the nimbus wordmark in glass"
+    },
+    {
+      "file": "05.mp4",
+      "kind": "video",
+      "poster": "05.webp",
+      "thumb": "05-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Nimbus in chrome — a light wipe raises the mark as polished chrome",
+      "prompt": "/logo-sting reveal the nimbus wordmark in chrome"
+    },
+    {
+      "file": "06.mp4",
+      "kind": "video",
+      "poster": "06.webp",
+      "thumb": "06-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "Nimbus in line — the outline draws itself behind a pen point, then fills",
+      "prompt": "/logo-sting reveal the nimbus wordmark as a line drawing"
+    }
+  ]
+}
