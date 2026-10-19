@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meta Gear Solid</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap">
+<style>
+  /* One neon world: a 9:16 arcade screen centred in the dark, with help panels either side on wide screens. */
+  :root {
+    color-scheme: dark;
+    --night: #06030d;
+    --deep: #0e0820;
+    --ink: #c9c0ef;
+    --dim: #7c71a8;
+    --cyan: #2ef6ff;
+    --pink: #ff3fd2;
+    --yellow: #ffe14d;
+    --red: #ff2a3d;
+    --display: 'Silkscreen', ui-monospace, 'Courier New', monospace;
+    --body: 'VT323', ui-monospace, 'Courier New', monospace;
+  }
+  html { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--night);
+    background-image:
+      radial-gradient(120% 70% at 50% 110%, rgba(255, 63, 210, 0.16), transparent 60%),
+      radial-gradient(90% 60% at 50% -20%, rgba(46, 246, 255, 0.09), transparent 60%);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #app {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 12px;
+  }
+  #stage {
+    flex: 1 1 auto;
+    height: 100%;
+    min-width: 0;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #screen { position: relative; line-height: 0; }
+  #game {
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px rgba(46, 246, 255, 0.25), 0 0 40px rgba(255, 63, 210, 0.18), 0 20px 60px rgba(0, 0, 0, 0.6);
+    touch-action: none;
+    cursor: pointer;
+    outline: none;
+  }
+  #game:focus-visible { box-shadow: 0 0 0 2px var(--yellow), 0 0 40px rgba(255, 63, 210, 0.3); }
+  .side {
+    flex: 0 1 250px;
+    min-width: 0;
+    font-size: 20px;
+    line-height: 1.05;
+  }
+  .side h2 {
+    margin: 0 0 12px;
+    font: 700 15px/1.2 var(--display);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-wrap: balance;
+  }
+  .side.right h2 { color: var(--pink); }
+  .side dl { margin: 0; display: grid; gap: 10px; }
+  .side dt { font: 700 12px/1.2 var(--display); letter-spacing: 0.06em; color: var(--yellow); }
+  .side dd { margin: 2px 0 0; color: var(--ink); }
+  .side p { margin: 14px 0 0; color: var(--dim); }
+  .side a { color: var(--cyan); }
+  kbd {
+    font: 700 11px/1 var(--display);
+    padding: 2px 5px 3px;
+    border: 1px solid rgba(46, 246, 255, 0.4);
+    border-radius: 3px;
+    color: var(--cyan);
+    background: rgba(46, 246, 255, 0.06);
+  }
+  @media (max-width: 860px) { .side { display: none; } #app { gap: 0; } }
+  @media (max-height: 520px) { .side { font-size: 17px; } }
+</style>
+</head>
+<body>
+<main id="app">
+  <aside class="side left" aria-label="How to sneak">
+    <h2>How to sneak</h2>
+    <dl>
+      <div><dt>Hold to sneak</dt><dd>Hold anywhere (or <kbd>SPACE</kbd>) to walk. Let go and you drop under a cardboard box.</dd></div>
+      <div><dt>Cones</dt><dd>Everyone's smart glasses see a cone. Walk inside one and you're recorded.</dd></div>
+      <div><dt>The box</dt><dd>A glance passes over a box. But a guest who turns round and stares will lift it, and someone walking past will trip over it.</dd></div>
+      <div><dt>Pink rings</dt><dd>Some glasses wake up on their own and listen. Don't walk inside the ring; a box is silent.</dd></div>
+      <div><dt>Radar</dt><dd>Top right: the next stretch of the room, with every cone in it.</dd></div>
+    </dl>
+  </aside>
+  <div id="stage">
+    <div id="screen">
+      <canvas id="game" tabindex="0" aria-label="Meta Gear Solid. Hold to sneak, let go to hide in a box."></canvas>
+    </div>
+  </div>
+  <aside class="side right" aria-label="For creators">
+    <h2>For creators</h2>
+    <dl>
+      <div><dt>Ghost mode</dt><dd>Let the autopilot sneak through the rooms. Tap to take over.</dd></div>
+      <div><dt>POV footage</dt><dd>After you're caught: the last seconds again, as the guest's glasses recorded them.</dd></div>
+      <div><dt>Share card</dt><dd>Saves a 1080×1920 poster with your distance and rank, and copies a caption.</dd></div>
+      <div><dt>Keys</dt><dd><kbd>SPACE</kbd> sneak · <kbd>Enter</kbd> start · <kbd>P</kbd> pause · <kbd>M</kbd> sound · <kbd>G</kbd> ghost mode · <kbd>C</kbd> codec · <kbd>R</kbd> footage</dd></div>
+    </dl>
+    <p>Inspired by October 2026's reports of smart glasses saving conversations nobody asked them to hear (Meta says it's fixed). A fan-made parody, not affiliated with Meta, Ray-Ban or Konami.</p>
+    <p><a href="index.html">More games in the Pixel Arcade</a></p>
+  </aside>
+</main>
+<script src="engine/core.js"></script>
+<script src="engine/screen.js"></script>
+<script src="engine/audio.js"></script>
+<script src="engine/ui.js"></script>
+<script src="engine/app.js"></script>
+<script src="games/metagear/sim.js"></script>
+<script src="games/metagear/art.js"></script>
+<script src="games/metagear/view.js"></script>
+<script src="games/metagear/sfx.js"></script>
+<script src="games/metagear/ui.js"></script>
+<script src="games/metagear/main.js"></script>
+</body>
+</html>

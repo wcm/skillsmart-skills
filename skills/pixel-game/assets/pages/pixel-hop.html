@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pixel Hop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap">
+<style>
+  /* One neon world: a 9:16 arcade screen centred in the dark, with help panels either side on wide screens. */
+  :root {
+    color-scheme: dark;
+    --night: #06030d;
+    --deep: #0e0820;
+    --ink: #c9c0ef;
+    --dim: #7c71a8;
+    --cyan: #2ef6ff;
+    --pink: #ff3fd2;
+    --yellow: #ffe14d;
+    --red: #ff2a3d;
+    --display: 'Silkscreen', ui-monospace, 'Courier New', monospace;
+    --body: 'VT323', ui-monospace, 'Courier New', monospace;
+  }
+  html { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--night);
+    background-image:
+      radial-gradient(120% 70% at 50% 110%, rgba(255, 63, 210, 0.16), transparent 60%),
+      radial-gradient(90% 60% at 50% -20%, rgba(46, 246, 255, 0.09), transparent 60%);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  #app {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 12px;
+  }
+  #stage {
+    flex: 1 1 auto;
+    height: 100%;
+    min-width: 0;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #screen { position: relative; line-height: 0; }
+  #game {
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px rgba(46, 246, 255, 0.25), 0 0 40px rgba(255, 63, 210, 0.18), 0 20px 60px rgba(0, 0, 0, 0.6);
+    touch-action: none;
+    cursor: pointer;
+    outline: none;
+  }
+  #game:focus-visible { box-shadow: 0 0 0 2px var(--yellow), 0 0 40px rgba(255, 63, 210, 0.3); }
+  .side {
+    flex: 0 1 250px;
+    min-width: 0;
+    font-size: 20px;
+    line-height: 1.05;
+  }
+  .side h2 {
+    margin: 0 0 12px;
+    font: 700 15px/1.2 var(--display);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-wrap: balance;
+  }
+  .side.right h2 { color: var(--pink); }
+  .side dl { margin: 0; display: grid; gap: 10px; }
+  .side dt { font: 700 12px/1.2 var(--display); letter-spacing: 0.06em; color: var(--yellow); }
+  .side dd { margin: 2px 0 0; color: var(--ink); }
+  .side p { margin: 14px 0 0; color: var(--dim); }
+  .side a { color: var(--cyan); }
+  kbd {
+    font: 700 11px/1 var(--display);
+    padding: 2px 5px 3px;
+    border: 1px solid rgba(46, 246, 255, 0.4);
+    border-radius: 3px;
+    color: var(--cyan);
+    background: rgba(46, 246, 255, 0.06);
+  }
+  @media (max-width: 860px) { .side { display: none; } #app { gap: 0; } }
+  @media (max-height: 520px) { .side { font-size: 17px; } }
+</style>
+</head>
+<body>
+<main id="app">
+  <aside class="side left" aria-label="How to play">
+    <h2>How to play</h2>
+    <dl>
+      <div><dt>Jump</dt><dd>Tap anywhere (or <kbd>SPACE</kbd>) to jump over what's on the road.</dd></div>
+      <div><dt>Jump higher</dt><dd>Hold to keep rising: the coins hang high.</dd></div>
+      <div><dt>Faster</dt><dd>Every obstacle you clear speeds the road up a little.</dd></div>
+      <div><dt>Close calls</dt><dd>Clear one by a pixel or two and time slows down for a moment.</dd></div>
+    </dl>
+  </aside>
+  <div id="stage">
+    <div id="screen">
+      <canvas id="game" tabindex="0" aria-label="Pixel Hop. Tap to jump, hold to jump higher."></canvas>
+    </div>
+  </div>
+  <aside class="side right" aria-label="For creators">
+    <h2>For creators</h2>
+    <dl>
+      <div><dt>Autopilot</dt><dd>Let it run by itself; it plans every jump with the game's own physics. Tap to take over.</dd></div>
+      <div><dt>Replay</dt><dd>After a crash: the last seconds again in slow motion, rebuilt from the run itself.</dd></div>
+      <div><dt>Share card</dt><dd>Saves a 1080×1920 poster with your score and copies a caption.</dd></div>
+      <div><dt>Keys</dt><dd><kbd>SPACE</kbd> jump · <kbd>Enter</kbd> start · <kbd>P</kbd> pause · <kbd>M</kbd> sound · <kbd>A</kbd> autopilot · <kbd>R</kbd> replay</dd></div>
+    </dl>
+    <p>The starter game of the Pixel Game skill: the smallest complete game on the engine.</p>
+  </aside>
+</main>
+<script src="engine/core.js"></script>
+<script src="engine/screen.js"></script>
+<script src="engine/audio.js"></script>
+<script src="engine/ui.js"></script>
+<script src="engine/app.js"></script>
+<script src="games/hop/sim.js"></script>
+<script src="games/hop/art.js"></script>
+<script src="games/hop/view.js"></script>
+<script src="games/hop/sfx.js"></script>
+<script src="games/hop/ui.js"></script>
+<script src="games/hop/main.js"></script>
+</body>
+</html>

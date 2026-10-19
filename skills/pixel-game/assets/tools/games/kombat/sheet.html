@@ -1,0 +1,48 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Model Kombat sprite sheet</title>
+<style>body{margin:0;background:#1a1530}canvas{image-rendering:pixelated;display:block}</style>
+<canvas id="c"></canvas>
+<script src="../../../engine/core.js"></script>
+<script src="../../../games/kombat/art.js"></script>
+<script>
+// Every animation frame of both fighters at 4x, the portraits and the projectiles: a sheet for
+// checking the art. Open it through tools/lib.mjs's server, or node sheet.mjs.
+const S = 4;
+const anims = Object.keys(R.ANIMS);
+const cell = 100;
+const cols = anims.reduce((a, k) => a + R.ANIMS[k].length, 0);
+const c = document.getElementById('c');
+c.width = cols * cell * S / 2 + 40;
+c.height = (cell * 2 + 120) * S / 2 + 40;
+const x = c.getContext('2d');
+x.imageSmoothingEnabled = false;
+x.fillStyle = '#2a2346';
+x.fillRect(0, 0, c.width, c.height);
+['sam', 'dario'].forEach((id, row) => {
+  let col = 0;
+  for (const a of anims)
+    for (let i = 0; i < R.ANIMS[a].length; i++) {
+      const f = R.fighterFrame(id, a, i);
+      const gx = 10 + col * cell * S / 2;
+      const gy = 10 + row * cell * S / 2;
+      x.fillStyle = (col % 2) ? '#332b55' : '#2d2650';
+      x.fillRect(gx, gy, cell * S / 2, cell * S / 2);
+      x.drawImage(f.c, gx + (cell * S / 2 - f.c.width * S / 2) / 2, gy + cell * S / 2 - f.c.height * S / 2, f.c.width * S / 2, f.c.height * S / 2);
+      x.fillStyle = '#9a8fc4';
+      x.font = '10px monospace';
+      x.fillText(a + i, gx + 2, gy + 10);
+      col++;
+    }
+});
+const py = 10 + 2 * cell * S / 2 + 10;
+['sam', 'dario'].forEach((id, k) => {
+  for (const [j, face] of ['', 'hurt', 'ko', 'win'].entries()) {
+    const p = R.fighterPortrait(id, face);
+    x.drawImage(p.c, 10 + (k * 4 + j) * 150, py, p.c.width * 2, p.c.height * 2);
+  }
+});
+x.drawImage(R.AD.c, 1220, py, 64, 56);
+x.drawImage(R.TV.c, 1300, py, 64, 56);
+window.done = true;
+</script>

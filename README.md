@@ -12,6 +12,7 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 | [wave-shader](skills/wave-shader) | A hero over a live, wavy gradient: silk, an aurora, a sunset sea or a silky ribbon |
 | [fluid-shader](skills/fluid-shader) | A hero around a gentle liquid you can touch: dye, chrome, marbled ink or a soap film |
 | [glass-shader](skills/glass-shader) | A hero with glass over the page: reeded, fogged, beaded with drops or frosted into tiles |
+| [pixel-game](skills/pixel-game) | A retro pixel-art arcade game that reskins an old classic with a news story, made for vertical video |
 | [type-poster](skills/type-poster) | Bold typographic event posters (PNG + print PDF) |
 | [social-carousel](skills/social-carousel) | Instagram / LinkedIn carousels |
 | [og-card-set](skills/og-card-set) | Matching link-preview images for every page |

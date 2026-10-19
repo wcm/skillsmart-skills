@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pixel Arcade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap">
+<style>
+  /* Three cabinets in the dark: old games, this year's news, one shared pixel engine. */
+  :root {
+    color-scheme: dark;
+    --night: #06030d;
+    --deep: #0e0820;
+    --ink: #c9c0ef;
+    --dim: #7c71a8;
+    --cyan: #2ef6ff;
+    --pink: #ff3fd2;
+    --yellow: #ffe14d;
+    --red: #ff2a3d;
+    --display: 'Silkscreen', ui-monospace, 'Courier New', monospace;
+    --body: 'VT323', ui-monospace, 'Courier New', monospace;
+  }
+  html { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--night);
+    background-image:
+      radial-gradient(120% 60% at 50% 115%, rgba(255, 63, 210, 0.18), transparent 60%),
+      radial-gradient(90% 50% at 50% -15%, rgba(46, 246, 255, 0.1), transparent 60%);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 21px;
+    line-height: 1.1;
+  }
+  main {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 40px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px));
+  }
+  header { text-align: center; margin-bottom: 36px; }
+  h1 {
+    margin: 0;
+    font: 700 clamp(34px, 7vw, 64px)/1 var(--display);
+    letter-spacing: 0.04em;
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 14px var(--pink), 0 0 34px rgba(255, 63, 210, 0.6);
+  }
+  header p { margin: 12px auto 0; max-width: 34em; color: var(--dim); text-wrap: balance; }
+  .cabinets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .cab {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #160d2c, #0b0619);
+    border: 1px solid rgba(46, 246, 255, 0.22);
+    border-radius: 10px;
+    padding: 14px 14px 16px;
+    box-shadow: 0 0 34px rgba(255, 63, 210, 0.1), 0 18px 50px rgba(0, 0, 0, 0.55);
+  }
+  .cab:nth-child(2) { border-color: rgba(255, 63, 210, 0.3); }
+  .cab:nth-child(3) { border-color: rgba(58, 255, 122, 0.3); }
+  .screen {
+    position: relative;
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    line-height: 0;
+    background: #000;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  .screen img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; image-rendering: pixelated; display: block; transition: transform 0.25s ease; }
+  .screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+    pointer-events: none;
+  }
+  .cab:hover .screen img { transform: scale(1.03); }
+  .cab h2 {
+    margin: 16px 0 6px;
+    font: 700 20px/1.15 var(--display);
+    letter-spacing: 0.05em;
+    color: var(--cyan);
+  }
+  .cab:nth-child(2) h2 { color: var(--pink); }
+  .cab:nth-child(3) h2 { color: #3aff7a; }
+  .cab .old { margin: 0 0 8px; font: 700 11px/1.3 var(--display); letter-spacing: 0.08em; color: var(--yellow); text-transform: uppercase; }
+  .cab p { margin: 0 0 8px; }
+  .cab .news { color: var(--dim); }
+  .play {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-block;
+    padding: 9px 16px 10px;
+    font: 700 14px/1 var(--display);
+    letter-spacing: 0.1em;
+    color: #07040d;
+    background: var(--cyan);
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 0 0 18px rgba(46, 246, 255, 0.35);
+  }
+  .cab:nth-child(2) .play { background: var(--pink); box-shadow: 0 0 18px rgba(255, 63, 210, 0.35); }
+  .cab:nth-child(3) .play { background: #3aff7a; box-shadow: 0 0 18px rgba(58, 255, 122, 0.3); }
+  .play:hover, .play:focus-visible { filter: brightness(1.15); outline: 2px solid #fff; outline-offset: 2px; }
+  footer { margin-top: 40px; text-align: center; color: var(--dim); font-size: 18px; }
+  footer p { margin: 6px auto; max-width: 44em; text-wrap: balance; }
+  @media (max-width: 820px) {
+    .cabinets { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin: 0 auto; }
+    main { padding-top: 28px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>PIXEL ARCADE</h1>
+    <p>Old arcade games, reskinned with this year's news. Three tiny games on one shared pixel engine, each with a CPU mode for B-roll, a replay and a share card.</p>
+  </header>
+  <ul class="cabinets">
+    <li class="cab">
+      <a class="screen" href="flappy-roadster.html" tabindex="-1" aria-hidden="true"><img src="thumbs/roadster.png" alt="" width="432" height="768"></a>
+      <h2>Flappy Roadster</h2>
+      <p class="old">Flappy Bird · endless runner · gravity flip · drag race</p>
+      <p>Flap a pixel Roadster through neon pipes, kickflip traffic, run the tunnel upside down, or beat the 0-60 on a green light.</p>
+      <p class="news">Tesla finally showed the flying Roadster on Oct 15. Every crash pushes production back another year.</p>
+      <a class="play" href="flappy-roadster.html">PLAY</a>
+    </li>
+    <li class="cab">
+      <a class="screen" href="model-kombat.html" tabindex="-1" aria-hidden="true"><img src="thumbs/kombat.png" alt="" width="432" height="768"></a>
+      <h2>Model Kombat</h2>
+      <p class="old">Street Fighter · Mortal Kombat</p>
+      <p>Sam vs Dario, best of three. Ad breaks against Super Bowl ads, ACCELERATE against SLOW DOWN, and a finisher that deprecates the loser.</p>
+      <p class="news">At the AI summit in New Delhi everyone held hands for the photo, except these two.</p>
+      <a class="play" href="model-kombat.html">PLAY</a>
+    </li>
+    <li class="cab">
+      <a class="screen" href="meta-gear-solid.html" tabindex="-1" aria-hidden="true"><img src="thumbs/metagear.png" alt="" width="432" height="768"></a>
+      <h2>Meta Gear Solid</h2>
+      <p class="old">Metal Gear Solid</p>
+      <p>Sneak through a coffee shop, a gym, a wedding and a tech expo full of smart glasses. Hold to walk, let go to be a box.</p>
+      <p class="news">After October's reports of glasses saving conversations nobody asked them to hear.</p>
+      <a class="play" href="meta-gear-solid.html">PLAY</a>
+    </li>
+  </ul>
+  <footer>
+    <p>Fan-made parodies. Not affiliated with Tesla, OpenAI, Anthropic, Meta, Ray-Ban or Konami. No logos; the jokes are in the games, never in anyone's mouth.</p>
+  </footer>
+</main>
+</body>
+</html>

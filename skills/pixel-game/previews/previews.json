@@ -1,0 +1,37 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Model Kombat — Sam vs Dario after the summit photo: supers, a K.O. and the finisher",
+      "prompt": "/pixel-game a Mortal Kombat parody of Sam Altman and Dario Amodei, who wouldn't hold hands at the AI summit",
+      "url": "https://demos.skillsmart.io/pixel-game/model-kombat"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Flappy Roadster — four one-tap games on Tesla's flying Roadster: fly, kickflip, ride the ceiling, race 0-60",
+      "prompt": "/pixel-game turn Tesla's flying Roadster reveal into Flappy Bird, with a game for each stunt",
+      "url": "https://demos.skillsmart.io/pixel-game/flappy-roadster"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Meta Gear Solid — sneaking past smart glasses until someone records you",
+      "prompt": "/pixel-game a Metal Gear Solid parody about Ray-Ban Meta glasses that record without \"Hey Meta\"",
+      "url": "https://demos.skillsmart.io/pixel-game/meta-gear-solid"
+    }
+  ]
+}
