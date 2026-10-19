@@ -8,7 +8,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Spectra — prism rods that reach for the cursor and bloom",
-      "prompt": "/glass-hero A launch page for Spectra, an AI lab whose vision model sees every colour in an image"
+      "prompt": "/glass-hero A launch page for Spectra, an AI lab whose vision model sees every colour in an image",
+      "url": "https://demos.skillsmart.io/glass-hero/#urchin"
     },
     {
       "file": "02.mp4",
@@ -18,7 +19,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Brique — a wall of glass blocks bending a ruled light box",
-      "prompt": "/glass-hero Brique, a glass-block maker in Lyon: calm and architectural, on a pale page"
+      "prompt": "/glass-hero Brique, a glass-block maker in Lyon: calm and architectural, on a pale page",
+      "url": "https://demos.skillsmart.io/glass-hero/#cubes"
     },
     {
       "file": "03.mp4",
@@ -28,7 +30,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Loop — a ribbed glass knot in hot orange and electric blue",
-      "prompt": "/glass-hero Loop, a festival of generative design in Berlin: loud, saturated, nocturnal"
+      "prompt": "/glass-hero Loop, a festival of generative design in Berlin: loud, saturated, nocturnal",
+      "url": "https://demos.skillsmart.io/glass-hero/#twist"
     },
     {
       "file": "04.mp4",
@@ -38,7 +41,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Iris Nº 4 — a glass flower that comes into focus where you look",
-      "prompt": "/glass-hero A perfume called Iris Nº 4: a glowing glass flower, soft focus, hot pink and violet"
+      "prompt": "/glass-hero A perfume called Iris Nº 4: a glowing glass flower, soft focus, hot pink and violet",
+      "url": "https://demos.skillsmart.io/glass-hero/#flower"
     }
   ]
 }

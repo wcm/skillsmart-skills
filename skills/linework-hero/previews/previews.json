@@ -8,7 +8,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Tally — an event pipeline that builds stop by stop as you read",
-      "prompt": "/linework-hero Draw my system: apps → collector → stream → processors → lake and warehouse → dashboard, as the hero of an engineering blog post"
+      "prompt": "/linework-hero Draw my system: apps → collector → stream → processors → lake and warehouse → dashboard, as the hero of an engineering blog post",
+      "url": "https://demos.skillsmart.io/linework-hero/examples/pages/data"
     },
     {
       "file": "02.mp4",
@@ -18,7 +19,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Orra — a camera lens taken apart on scroll, a callout per part",
-      "prompt": "/linework-hero A lens product page: scroll takes the 35 mm f/1.4 apart into its seven parts, with a callout for each"
+      "prompt": "/linework-hero A lens product page: scroll takes the 35 mm f/1.4 apart into its seven parts, with a callout for each",
+      "url": "https://demos.skillsmart.io/linework-hero/examples/pages/camera"
     },
     {
       "file": "03.mp4",
@@ -28,7 +30,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Hollis — a room you shop piece by piece, in cutaway",
-      "prompt": "/linework-hero A furniture shop page: a reading room in cutaway with a price on every piece, click to add, switch the layout"
+      "prompt": "/linework-hero A furniture shop page: a reading room in cutaway with a price on every piece, click to add, switch the layout",
+      "url": "https://demos.skillsmart.io/linework-hero/examples/pages/room"
     },
     {
       "file": "04.mp4",
@@ -38,7 +41,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Hopway — a parcel's journey from shelf to door, driven by the timeline",
-      "prompt": "/linework-hero A parcel tracker: warehouse shelf, sorter, truck, hub, van, house, with the timeline moving one lit parcel through"
+      "prompt": "/linework-hero A parcel tracker: warehouse shelf, sorter, truck, hub, van, house, with the timeline moving one lit parcel through",
+      "url": "https://demos.skillsmart.io/linework-hero/examples/pages/parcels"
     }
   ]
 }

@@ -8,7 +8,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Pane — full-page reeded glass over colour that follows the cursor",
-      "prompt": "/glass-shader a launch page for Pane, privacy-first web analytics"
+      "prompt": "/glass-shader a launch page for Pane, privacy-first web analytics",
+      "url": "https://demos.skillsmart.io/glass-shader/"
     },
     {
       "file": "02.mp4",
@@ -18,7 +19,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Monsoon Radio — a fogged window you wipe to see the rain",
-      "prompt": "/glass-shader Monsoon Radio, live rain from rooftops: a fogged window onto a rainy street"
+      "prompt": "/glass-shader Monsoon Radio, live rain from rooftops: a fogged window onto a rainy street",
+      "url": "https://demos.skillsmart.io/glass-shader/steam"
     },
     {
       "file": "03.mp4",
@@ -28,7 +30,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Dewfall — water drops of every size, a loupe that gathers the dew",
-      "prompt": "/glass-shader Dewfall, flowers cut at dawn and delivered by noon: dew drops on the flowers"
+      "prompt": "/glass-shader Dewfall, flowers cut at dawn and delivered by noon: dew drops on the flowers",
+      "url": "https://demos.skillsmart.io/glass-shader/liquid"
     },
     {
       "file": "04.mp4",
@@ -38,7 +41,8 @@
       "width": 1600,
       "height": 1000,
       "caption": "Sunbank — a glowing ball behind thick frosted tiles",
-      "prompt": "/glass-shader Sunbank, home batteries: frosted glass tiles over a glowing orange sun"
+      "prompt": "/glass-shader Sunbank, home batteries: frosted glass tiles over a glowing orange sun",
+      "url": "https://demos.skillsmart.io/glass-shader/tiles"
     }
   ]
 }
