@@ -28,7 +28,7 @@ const ONLY = opt("only", null);
 
 const CATEGORIES = ["web", "slides", "social", "poster", "brand", "motion"];
 // Models a skill can generate with through Skillsmart (apps/web/src/lib/gen/models.ts).
-const GEN_MODELS = ["nano-banana-pro", "kling-v3-pro", "birefnet-video", "birefnet-image", "sam-3"];
+const GEN_MODELS = ["nano-banana-pro", "kling-v3-pro", "birefnet-video", "birefnet-image", "sam-3", "gemini-tts"];
 const SHIP_EXCLUDE = new Set(["previews", "skillsmart.json", "node_modules", "out", ".DS_Store", ".git"]);
 const MEDIA = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".avif", ".mp4", ".webm", ".woff", ".woff2", ".ttf", ".otf"]);
 const TEXT = new Set([".md", ".txt", ".json", ".js", ".mjs", ".cjs", ".ts", ".py", ".sh", ".html", ".css", ".glsl", ".frag", ".vert", ".yml", ".yaml", ".toml", ".csv", ""]);

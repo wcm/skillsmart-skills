@@ -1,0 +1,44 @@
+{
+  "slug": "explainer-reel",
+  "name": "Explainer Reel",
+  "tagline": "Turn a topic or a script into a narrated explainer reel: a calm voice, word-timed captions and illustrations made of glowing particles.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["explainer", "explainer video", "voice-over", "narration", "captions", "faceless video", "science", "health", "wellness", "education", "particles", "illustration", "reel", "9:16", "16:9"],
+  "youSay": "/explainer-reel why the Moon is drifting away from us",
+  "whatYouGet": [
+    "A 20–90 second explainer read by a calm, natural voice, captioned word by word, with every picture arriving on the word it answers to",
+    "Illustrations made of light: thousands of particles that form each subject and fly on into the next, turning 3D forms, flow fields and engraved drawings",
+    "A script written and fact-checked from your topic (or your own words, kept), a storyboard and a contact sheet of every scene before the render",
+    "MP4 in 9:16, 4:5, 1:1 and 16:9, with an ambient soundtrack mixed under the voice"
+  ],
+  "goodFit": [
+    "Science, health, wellness and how-it-works topics told in under a minute",
+    "Faceless channels and brands posting explainers to Reels, TikTok, Shorts or YouTube"
+  ],
+  "notFor": [
+    "Footage, photos, screenshots or product demos",
+    "Presenters, avatars or fast, loud hype edits"
+  ],
+  "youBring": [
+    "A topic, or your script",
+    "Optional: the voice, the format and the look, or your own recording instead of the generated voice"
+  ],
+  "needs": [
+    "Skillsmart credits (about 2 per 20-second reel)",
+    "Node 18+",
+    "ffmpeg",
+    "Google Chrome or Edge"
+  ],
+  "network": [
+    { "host": "registry.npmjs.org", "purpose": "playwright-core for the renderer and the Skillsmart CLI, installed once" }
+  ],
+  "generates": { "models": ["gemini-tts"], "estimate": "about 2 per 20-second reel, 9 per minute" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.04 per minute of voice-over",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "testedIn": ["Claude Code"]
+}

@@ -1,0 +1,8 @@
+/* Latin subsets from Google Fonts, all SIL Open Font License 1.1 (OFL.txt). */
+@font-face { font-family: "Poppins"; font-weight: 400; font-display: block; src: url(poppins-400.woff2) format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; font-display: block; src: url(poppins-600.woff2) format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; font-display: block; src: url(poppins-700.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 100 800; font-display: block; src: url(jetbrainsmono.woff2) format("woff2"); }
+@font-face { font-family: "VT323"; font-weight: 400; font-display: block; src: url(vt323.woff2) format("woff2"); }
+@font-face { font-family: "Caveat"; font-weight: 400 700; font-display: block; src: url(caveat.woff2) format("woff2"); }
+@font-face { font-family: "Fraunces"; font-weight: 100 900; font-display: block; src: url(fraunces.woff2) format("woff2"); }
