@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trame</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { --bg: #0b0b0c; --panel: #151417; --line: #2a282d; --text: #e9e6ee; --dim: #8b8792; --hi: #f2b84b; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 13px/1.4 "JetBrains Mono", ui-monospace, Menlo, monospace; }
+  body.render { background: #000; overflow: hidden; }
+  #wrap { display: grid; grid-template-columns: minmax(0, 1fr) 320px; height: 100%; }
+  #stage { position: relative; display: grid; place-items: center; padding: 16px; min-height: 0; }
+  #frame { position: relative; height: calc(100vh - 32px); aspect-ratio: 9 / 16; max-width: 100%; }
+  #out { width: 100%; height: 100%; display: block; border-radius: 10px; background: #000; }
+  body.render #out { border-radius: 0; }
+  body.render #stage { padding: 0; }
+  body.render #frame { position: fixed; inset: 0; width: 100vw; height: 100vh; aspect-ratio: auto; }
+  body.render #safe { display: none; }
+  #safe { position: absolute; inset: 0; pointer-events: none; display: none; }
+  #safe.on { display: block; }
+  #safe div { position: absolute; border: 1px dashed rgba(255, 90, 90, .55); background: rgba(255, 60, 60, .07); }
+  #side { border-left: 1px solid var(--line); background: var(--panel); display: flex; flex-direction: column; min-height: 0; }
+  #side header { padding: 14px 16px 10px; border-bottom: 1px solid var(--line); }
+  #side h1 { font: 600 15px/1.2 Poppins, sans-serif; margin: 0 0 4px; }
+  #meta { color: var(--dim); }
+  .row { display: flex; gap: 8px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  button, select { background: #222026; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; font: inherit; cursor: pointer; }
+  button:hover, select:hover { border-color: #4a4650; }
+  #play { min-width: 64px; }
+  #time { margin-left: auto; color: var(--dim); font-variant-numeric: tabular-nums; }
+  #scrub { width: 100%; accent-color: var(--hi); }
+  #beats { overflow: auto; flex: 1; padding: 6px 0; }
+  .beat { padding: 7px 16px; cursor: pointer; color: var(--dim); border-left: 2px solid transparent; }
+  .beat:hover { background: #1c1b20; }
+  .beat.on { color: var(--text); border-left-color: var(--hi); background: #1c1b20; }
+  .beat b { color: var(--text); }
+  .beat .t { display: inline-block; width: 46px; color: #5d5964; }
+  .pause { font-style: italic; }
+  #err { position: fixed; inset: auto 16px 16px 16px; background: #3a1414; color: #ffd5d5; padding: 12px; border-radius: 8px; white-space: pre-wrap; display: none; z-index: 9; }
+  @media (max-width: 760px) { #wrap { grid-template-columns: 1fr; grid-template-rows: auto 1fr; } #frame { height: 70vh; } #side { border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="stage"><div id="frame"><canvas id="out"></canvas><div id="safe"></div></div></div>
+  <aside id="side">
+    <header><h1 id="title">Trame</h1><div id="meta"></div></header>
+    <div class="row"><button id="play">Play</button><button id="mute">Sound on</button><span id="time">0.0 / 0.0</span></div>
+    <div class="row"><input id="scrub" type="range" min="0" max="1" step="0.001" value="0"></div>
+    <div class="row"><select id="look"></select><select id="pal"></select><button id="safeBtn">Safe zones</button></div>
+    <div id="beats"></div>
+  </aside>
+</div>
+<pre id="err"></pre>
+<script type="module">
+// The engine's modules: next to this page when it's served (preview, check), or inlined as blob URLs in a reel's
+// self-contained page (scripts/page.mjs writes window.__mods, __reelUrl and __timing).
+const mod = (n) => (window.__mods && window.__mods[n]) || new URL(`./${n}`, import.meta.url).href;
+const { compile, drawFrame, audit, FORMATS, PALETTES, LOOKS } = await import(mod("trame.js"));
+const { createLook } = await import(mod("look.js"));
+const { renderAudio, wav } = await import(mod("audio.js"));
+
+const q = new URLSearchParams(location.search);
+// render=1 is how Skillsmart's render.mjs (video, sheet, still) opens a film
+const mode = q.get("render") === "1" ? "render" : q.get("mode") || "preview";
+if (mode !== "preview") document.body.classList.add("render");
+if (mode !== "preview") document.getElementById("side").remove();
+const scale = parseFloat(q.get("scale") || "1");
+const showErr = (e) => { const el = document.getElementById("err"); el.style.display = "block"; el.textContent = String(e && e.stack || e); console.error(e); };
+window.addEventListener("error", (e) => showErr(e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => showErr(e.reason));
+
+const reelUrl = window.__reelUrl || q.get("reel");
+if (!reelUrl) { showErr("open with ?reel=<path to reel.js>, e.g. page.html?reel=../reels/habits.js"); throw new Error("no reel"); }
+
+async function load() {
+  const m = await import(window.__reelUrl || new URL(reelUrl, location.href).href + (mode === "preview" ? `?v=${Date.now()}` : ""));
+  const reel = { ...m.default };
+  if (q.get("look")) reel.look = q.get("look");
+  if (q.get("palette")) reel.palette = q.get("palette") === "default" ? undefined : q.get("palette");
+  let timing = window.__timing ?? null;
+  const tUrl = q.get("timing") || (window.__reelUrl ? location.href : reelUrl.replace(/\.js$/, ".timing.json"));
+  if (!window.__reelUrl) try { const r = await fetch(new URL(tUrl, location.href)); if (r.ok) timing = await r.json(); } catch {}
+  if (q.get("timing") === "none") timing = null;
+  return { reel, timing, tUrl };
+}
+
+const { reel, timing, tUrl } = await load();
+// the format: ?format= (render.mjs passes it), else the reel's own, else 9:16
+const format = FORMATS[q.get("format")] ? q.get("format") : FORMATS[reel.format] ? reel.format : "9x16";
+let sc = compile(reel, timing, { format });
+const W = FORMATS[format].W, H = FORMATS[format].H;
+document.getElementById("frame").style.aspectRatio = `${W} / ${H}`;
+const w = Math.round(W * scale), h = Math.round(H * scale);
+const art = Object.assign(document.createElement("canvas"), { width: w, height: h });
+const ui = Object.assign(document.createElement("canvas"), { width: w, height: h });
+const out = document.getElementById("out");
+out.width = w; out.height = h;
+const actx = art.getContext("2d"), uctx = ui.getContext("2d");
+const look = createLook(out);
+
+const families = ["Poppins", "JetBrains Mono", "VT323", "Caveat", "Fraunces"];
+await Promise.all(families.flatMap((f) => [document.fonts.load(`400 40px "${f}"`), document.fonts.load(`700 40px "${f}"`)]).map((p) => p.catch(() => {})));
+await document.fonts.ready;
+
+const fps = reel.fps || 30;
+function frame(t) {
+  drawFrame(sc, t, actx, uctx, scale);
+  look.render(art, ui, { look: sc.lookName, pal: sc.pal, t, frame: Math.round(t * fps), grain: reel.grain ?? 1 });
+}
+
+/* ---------- render mode: the API scripts/render.mjs drives ---------- */
+const b64 = (u8) => { let s = ""; for (let i = 0; i < u8.length; i += 32768) s += String.fromCharCode.apply(null, u8.subarray(i, i + 32768)); return btoa(s); };
+window.trame = {
+  info: { title: reel.title || "", duration: sc.duration, fps, w, h, format, look: sc.lookName, palette: sc.palName, beats: sc.beats.length, voice: timing?.audio ? new URL(timing.audio, new URL(tUrl, location.href)).pathname : null },
+  script: sc.script,
+  beats: sc.beats.map((b) => ({ text: b.text, start: b.start, end: b.end })),
+  frame,
+  async grab(type = "image/jpeg", quality = 0.94) {
+    const blob = await new Promise((r) => out.toBlob(r, type, quality));
+    return b64(new Uint8Array(await blob.arrayBuffer()));
+  },
+  async audio() { return b64(wav(await renderAudio(sc, { voice: !!timing?.audio }))); },
+  audit: (t) => audit(sc, t, uctx),
+};
+window.trameReady = true;
+// the film interface Skillsmart's render.mjs drives: ready (duration, fps, the beats as labels) and seek(t)
+window.__film = { ready: Promise.resolve({ duration: sc.duration, fps, labels: sc.beats.map((b) => ({ name: b.text.replace(/\*/g, ""), at: b.start })) }), seek: (t) => frame(t) };
+
+if (mode !== "preview") {
+  frame(parseFloat(q.get("t") || "0"));
+} else {
+  /* ---------- preview ---------- */
+  const $ = (id) => document.getElementById(id);
+  $("title").textContent = reel.title || reelUrl;
+  const meta = () => $("meta").textContent = `${sc.duration.toFixed(1)} s · ${sc.beats.length} beats · ${timing ? "voice timing" : "estimated timing"}`;
+  meta();
+  for (const k of Object.keys(LOOKS)) $("look").add(new Option(`look: ${k}`, k, false, k === sc.lookName));
+  for (const k of Object.keys(PALETTES)) $("pal").add(new Option(`palette: ${k}`, k, false, k === sc.palName));
+  const beatsEl = $("beats");
+  const listBeats = () => {
+    beatsEl.innerHTML = "";
+    let bi = 0;
+    for (const s of sc.script) {
+      const d = document.createElement("div");
+      if (s.kind === "pause") { d.className = "beat pause"; d.innerHTML = `<span class="t"></span>· pause ${s.dur}s`; }
+      else {
+        const b = sc.beats[bi++];
+        d.className = "beat"; d.dataset.i = b.i;
+        d.innerHTML = `<span class="t">${b.start.toFixed(1)}</span>` + b.text.replace(/\*([^*]+)\*/g, "<b>$1</b>");
+        d.onclick = () => seek(b.start - 0.05);
+      }
+      beatsEl.appendChild(d);
+    }
+  };
+  listBeats();
+  // instagram reel overlays: top bar, right action rail, bottom caption/CTA area
+  const safe = $("safe");
+  for (const [l, t, ww, hh] of [[0, 0, 100, 7], [86, 52, 14, 34], [0, 86, 100, 14]]) {
+    const d = document.createElement("div");
+    Object.assign(d.style, { left: l + "%", top: t + "%", width: ww + "%", height: hh + "%" });
+    safe.appendChild(d);
+  }
+  $("safeBtn").onclick = () => safe.classList.toggle("on");
+
+  let t = parseFloat(q.get("t") || "0"), playing = false, last = 0, actxA = null, buf = null, src = null, muted = false;
+  const vo = timing?.audio ? new Audio(new URL(timing.audio, new URL(tUrl, location.href)).href) : null;
+  const ensureAudio = async () => {
+    actxA ||= new AudioContext();
+    if (!buf) buf = await renderAudio(sc, { voice: !!vo });
+  };
+  // every stop or restart bumps gen, so a start that was waiting on the audio render gives up if it's stale
+  let gen = 0;
+  const startSound = async () => {
+    stopSound();
+    const mine = gen;
+    if (muted) return;
+    await ensureAudio();
+    if (mine !== gen || !playing) return;
+    src = actxA.createBufferSource(); src.buffer = buf; src.connect(actxA.destination); src.start(0, Math.min(t, buf.duration - 0.01));
+    if (vo) { vo.currentTime = t; vo.play().catch(() => {}); }
+    last = performance.now(); // the picture's clock restarts with the sound, so time spent rendering it isn't skipped
+  };
+  const stopSound = () => { gen++; if (src) { try { src.stop(); } catch {} src = null; } if (vo) vo.pause(); };
+  const seek = (nt) => { t = Math.max(0, Math.min(sc.duration, nt)); if (playing) startSound(); draw(); };
+  const draw = () => {
+    frame(t);
+    $("time").textContent = `${t.toFixed(1)} / ${sc.duration.toFixed(1)}`;
+    $("scrub").value = t / sc.duration;
+    const cur = sc.beats.findLast?.((b) => b.start - 0.1 <= t);
+    for (const el of beatsEl.children) el.classList.toggle("on", cur && +el.dataset.i === cur.i);
+  };
+  const tick = (now) => {
+    if (playing) {
+      t += (now - last) / 1000; last = now;
+      if (t >= sc.duration) { t = 0; startSound(); }
+      draw();
+      requestAnimationFrame(tick);
+    }
+  };
+  const toggle = async () => {
+    playing = !playing; $("play").textContent = playing ? "Pause" : "Play";
+    if (playing) { await startSound(); last = performance.now(); requestAnimationFrame(tick); } else stopSound();
+  };
+  $("play").onclick = toggle;
+  $("mute").onclick = () => { muted = !muted; $("mute").textContent = muted ? "Sound off" : "Sound on"; if (playing) startSound(); };
+  $("scrub").oninput = (e) => seek(e.target.value * sc.duration);
+  const recompile = () => { const cur = t; sc = compile(reel, timing, { format }); buf = null; meta(); listBeats(); seek(cur); };
+  $("look").onchange = (e) => { reel.look = e.target.value; if (!q.get("palette") && !reel._palPinned) reel.palette = LOOKS[e.target.value].palette; $("pal").value = reel.palette; recompile(); };
+  $("pal").onchange = (e) => { reel.palette = e.target.value; reel._palPinned = true; recompile(); };
+  addEventListener("keydown", (e) => {
+    if (e.target.tagName === "SELECT") return;
+    if (e.code === "Space") { e.preventDefault(); toggle(); }
+    if (e.code === "ArrowRight") seek(t + (e.shiftKey ? 5 : 1));
+    if (e.code === "ArrowLeft") seek(t - (e.shiftKey ? 5 : 1));
+    if (e.key === "]" || e.key === "[") {
+      const i = sc.beats.findIndex((b) => b.start > t + 0.01);
+      const target = e.key === "]" ? sc.beats[i] : sc.beats[Math.max(0, (i < 0 ? sc.beats.length : i) - 2)];
+      if (target) seek(target.start - 0.05);
+    }
+  });
+  draw();
+}
+</script>
+</body>
+</html>

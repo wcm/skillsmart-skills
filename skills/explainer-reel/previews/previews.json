@@ -1,0 +1,34 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 900,
+      "caption": "The Moon drifting away, in aurora — a cratered Moon turns over Earth, becomes a ruler of light, and a laser finds Apollo 11's mirrors",
+      "prompt": "/explainer-reel why the Moon is drifting away from us, 16:9 for YouTube"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 648,
+      "height": 1152,
+      "caption": "Your body rebuilding itself, in mono — a figure of 7,000 particles pours into the gut, streams round a turning red cell, settles into an engraved bone",
+      "prompt": "/explainer-reel how your body rebuilds itself, a calm 20-second reel"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1000,
+      "height": 1000,
+      "caption": "The 20-20-20 rule, in ember — gold particles fill a screen, a 20-second countdown, and an engraved eye lets its focus go",
+      "prompt": "/explainer-reel the 20-20-20 rule for tired eyes, square for the feed"
+    }
+  ]
+}
