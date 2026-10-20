@@ -25,6 +25,7 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 | [logo-sting](skills/logo-sting) | 5–8 s logo reveals in six looks, with a transparent version |
 | [app-sting](skills/app-sting) | 10–15 s looping stings of your app's screens with speed-matched whip pans |
 | [stat-reel](skills/stat-reel) | Vertical reels that turn 3–6 real numbers into charts that count up |
+| [motion-reel](skills/motion-reel) | Looping motion-design reels about any idea: generative scenes cut on the beat, joined by bold transitions |
 
 ## Install
 

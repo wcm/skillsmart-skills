@@ -1,0 +1,156 @@
+[
+ {
+  "family": "Montserrat",
+  "source": "Montserrat",
+  "file": "Montserrat-normal-latin-ext.woff2",
+  "style": "normal",
+  "weight": "100 900",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+ },
+ {
+  "family": "Montserrat",
+  "source": "Montserrat",
+  "file": "Montserrat-normal-latin.woff2",
+  "style": "normal",
+  "weight": "100 900",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Instrument Serif",
+  "file": "InstrumentSerif-italic-latin-ext.woff2",
+  "style": "italic",
+  "weight": "400",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Instrument Serif",
+  "file": "InstrumentSerif-italic-latin.woff2",
+  "style": "italic",
+  "weight": "400",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Instrument Serif",
+  "file": "InstrumentSerif-normal-latin-ext.woff2",
+  "style": "normal",
+  "weight": "400",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Instrument Serif",
+  "file": "InstrumentSerif-normal-latin.woff2",
+  "style": "normal",
+  "weight": "400",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+ },
+ {
+  "family": "JetBrains Mono",
+  "source": "JetBrains Mono",
+  "file": "JetBrainsMono-normal-greek.woff2",
+  "style": "normal",
+  "weight": "100 800",
+  "range": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+ },
+ {
+  "family": "JetBrains Mono",
+  "source": "JetBrains Mono",
+  "file": "JetBrainsMono-normal-latin-ext.woff2",
+  "style": "normal",
+  "weight": "100 800",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+ },
+ {
+  "family": "JetBrains Mono",
+  "source": "JetBrains Mono",
+  "file": "JetBrainsMono-normal-latin.woff2",
+  "style": "normal",
+  "weight": "100 800",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+ },
+ {
+  "family": "Montserrat",
+  "source": "Montserrat",
+  "file": "Montserrat-normal-symbols.woff2",
+  "style": "normal",
+  "weight": "100 900",
+  "range": "U+25, U+3d, U+a3, U+a5, U+ab, U+b0-b1, U+b5, U+b7, U+bb, U+d7, U+f7, U+338, U+2013-2014, U+2018-2019, U+201c-201d, U+2022, U+2026, U+2030, U+2032-2033, U+20ac, U+20bf, U+2116, U+2190-2193, U+2197-2198, U+219a-219b, U+21ba-21bb, U+2202, U+2206-2207, U+2211, U+221a, U+221e, U+222b, U+2248-2249, U+2260, U+2264-2265, U+2270-2271, U+25a0-25a1, U+25aa, U+25ae, U+25b2, U+25ba, U+25bc, U+25c4, U+25c6-25c7, U+25cb, U+25cf, U+2605-2606, U+2713, U+2715, U+2733"
+ },
+ {
+  "family": "JetBrains Mono",
+  "source": "JetBrains Mono",
+  "file": "JetBrainsMono-normal-symbols.woff2",
+  "style": "normal",
+  "weight": "100 800",
+  "range": "U+25, U+3d, U+a3, U+a5, U+ab, U+b0-b1, U+b5, U+b7, U+bb, U+d7, U+f7, U+338, U+2013-2014, U+2018-2019, U+201c-201d, U+2022, U+2026, U+2030, U+2032-2033, U+20ac, U+20bf, U+2116, U+2190-2193, U+2197-2198, U+219a-219b, U+21ba-21bb, U+2202, U+2206-2207, U+2211, U+221a, U+221e, U+222b, U+2248-2249, U+2260, U+2264-2265, U+2270-2271, U+25a0-25a1, U+25aa, U+25ae, U+25b2, U+25ba, U+25bc, U+25c4, U+25c6-25c7, U+25cb, U+25cf, U+2605-2606, U+2713, U+2715, U+2733"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Noto Serif",
+  "file": "NotoSerif-italic-greek.woff2",
+  "style": "italic",
+  "weight": "400",
+  "range": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Noto Serif",
+  "file": "NotoSerif-normal-greek.woff2",
+  "style": "normal",
+  "weight": "400",
+  "range": "U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Noto Serif",
+  "file": "NotoSerif-italic-symbols.woff2",
+  "style": "italic",
+  "weight": "400",
+  "range": "U+3d, U+b0-b1, U+d7, U+f7, U+338, U+2032-2033, U+2202, U+2206-2207, U+2211, U+221a, U+221e, U+222b, U+2248-2249, U+2260, U+2264-2265, U+2270-2271"
+ },
+ {
+  "family": "Instrument Serif",
+  "source": "Noto Serif",
+  "file": "NotoSerif-normal-symbols.woff2",
+  "style": "normal",
+  "weight": "400",
+  "range": "U+3d, U+b0-b1, U+d7, U+f7, U+338, U+2032-2033, U+2202, U+2206-2207, U+2211, U+221a, U+221e, U+222b, U+2248-2249, U+2260, U+2264-2265, U+2270-2271"
+ },
+ {
+  "family": "Archivo",
+  "source": "Archivo",
+  "file": "Archivo-normal-latin-ext.woff2",
+  "style": "normal",
+  "weight": "100 900",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF",
+  "stretch": "62% 125%"
+ },
+ {
+  "family": "Archivo",
+  "source": "Archivo",
+  "file": "Archivo-normal-latin.woff2",
+  "style": "normal",
+  "weight": "100 900",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+  "stretch": "62% 125%"
+ },
+ {
+  "family": "Unbounded",
+  "source": "Unbounded",
+  "file": "Unbounded-normal-latin-ext.woff2",
+  "style": "normal",
+  "weight": "200 900",
+  "range": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF"
+ },
+ {
+  "family": "Unbounded",
+  "source": "Unbounded",
+  "file": "Unbounded-normal-latin.woff2",
+  "style": "normal",
+  "weight": "200 900",
+  "range": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+ }
+]
