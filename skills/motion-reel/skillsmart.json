@@ -1,0 +1,57 @@
+{
+  "slug": "motion-reel",
+  "name": "Motion Reel",
+  "tagline": "Turn an idea into a looping motion-design reel: generative scenes cut on the beat, bold transitions, all drawn in code.",
+  "category": "motion",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "motion",
+    "video",
+    "reel",
+    "loop",
+    "looping video",
+    "motion graphics",
+    "generative",
+    "abstract",
+    "concept video",
+    "showreel",
+    "3D",
+    "transitions",
+    "kinetic typography",
+    "9:16"
+  ],
+  "youSay": "/motion-reel entropy",
+  "whatYouGet": [
+    "A 20–40 second reel cut on the beat that loops without a seam, with a soundtrack made for it",
+    "Scenes cast from the idea out of 21: 3D point clouds of any object, type built from cells, fractures, fractal dives, halftone, particles, ribbons, glitch and kinetic type, a rewind",
+    "Bold joins: zoom through a dot, punch, whip pan, shatter, slices, spin, ink flood, pixelate",
+    "MP4 in 9:16, plus 1:1, 4:5 and 16:9, and a page that plays it on a loop"
+  ],
+  "goodFit": [
+    "Abstract ideas, beliefs and principles told in motion",
+    "Striking loops for a talk, a podcast episode, a course or a launch teaser"
+  ],
+  "notFor": [
+    "Footage, photos or screenshots of your product",
+    "Long explainers with a voice-over"
+  ],
+  "youBring": [
+    "An idea, and a name for the end card",
+    "Your own track, if you'd rather not use the generated one"
+  ],
+  "needs": [
+    "Node 18+",
+    "Google Chrome or Edge (or Playwright's Chromium)",
+    "ffmpeg for MP4"
+  ],
+  "network": [
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "playwright-core for the renderer, installed once"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}
