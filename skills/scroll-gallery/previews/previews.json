@@ -1,0 +1,48 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Ardent — a lookbook dealt on a table rises into a runway of silk panels, turns over in glazed tiles and folds into a book",
+      "prompt": "/scroll-gallery A lookbook for Ardent's autumn–winter collection: twenty looks, editorial and bold",
+      "url": "https://demos.skillsmart.io/scroll-gallery/ardent/"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Side B — album covers as thick slabs file into a walnut crate, circle a turntable and spin on a jukebox",
+      "prompt": "/scroll-gallery A record shop's new arrivals: twenty album covers, dark and warm",
+      "url": "https://demos.skillsmart.io/scroll-gallery/side-b/"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Far Field — landscapes trail the cursor, roll along an arc, tilt into a band and close round you as a sphere",
+      "prompt": "/scroll-gallery A gallery of twenty landscape photographs, cinematic and quiet",
+      "url": "https://demos.skillsmart.io/scroll-gallery/far-field/"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Kit of Parts — design assets pinned on threads sweep into an acrylic ribbon and solve a glass cube",
+      "prompt": "/scroll-gallery A portfolio page for our library of 3D objects, posters and surfaces",
+      "url": "https://demos.skillsmart.io/scroll-gallery/kit-of-parts/"
+    }
+  ]
+}

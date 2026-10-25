@@ -1,0 +1,7 @@
+{
+  "note": "Scenery for the scenes, made by scene.mjs: pages → <page id> → <piece name> → { kind, aspect, blur, prompt }. back: a soft photo behind the cards. surface: a sharp photo of a material (paper, wood, cloth) for something to lie on or hang against. cutout: an object cut from a white background, blurred as if out of focus. luma: a bright shape on black whose brightness becomes its opacity (fog, clouds). ink: a black shape on white whose darkness becomes its opacity (a skyline). lines: a white line drawing on black, keyed to clean white lines (technical drawings). A layout that needs one by name (the crate's and the turntable's walnut) says so in references/layouts.md.",
+  "style": "Photographic, very soft focus with a shallow depth of field, calm and minimal, lots of quiet space, no people unless stated, no text, no logos, no watermark.",
+  "surfaceStyle": "Photographic, sharp and evenly in focus, calm and minimal, no objects, no people, no text, no logos, no watermark.",
+  "linesStyle": "Pure white lines on pure black only, no grey background, no shading gradients, no colour, no text, no letters, no numbers, no labels, no watermark.",
+  "pages": {}
+}
