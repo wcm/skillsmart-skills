@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.1 — 2026-10-25
+- The rebuild plays on a first visit over a slow connection. Both clips' frames now load together, coarse to fine
+  (every eighth frame of each, then every fourth, and so on), eight at a time, and the frame the page needs next jumps
+  the queue. Before, clip b waited for all of clip a, so on a phone the product could stay exploded through the
+  rebuild. On a 9 Mbps first visit, someone scrolling at a steady pace now reaches the rebuild with 61 of its 121
+  frames instead of 1.
+- A frame that arrives repaints the page when it's nearer the one being shown, so someone who stops mid-clip sees it
+  fill in without scrolling again.
+- Pages built with an earlier version: copy `frames.js` and `explode.js` from `assets/template/site/engine/` into the
+  project's `site/engine/`.
+
 ## 1.3.0 — 2026-10-19
 - The last scene's words fade in and rise a little again, with the gradient behind them, and they're in as the product
   closes up instead of after the clip. The page still ends on a short stop on that finished scene (700% tall again).

@@ -40,7 +40,8 @@ stays).
 | Labels crowd or run off the bottom | fewer parts (five to eight), shorter specs, or a smaller `stage.area` height |
 | The words are hard to read on a photo | a stronger `--scrim1`/`--scrim3`, or swap light and dark ink for that scene |
 | The page lags or looks frozen in a preview | background panes and hidden tabs throttle animation frames; open it in a visible window, or use `explode.seek(p)` |
-| A blank flash on a fast scroll early on | the frames are still loading (every fourth frame comes first); `check.mjs` waits for all of them |
+| A blank flash on a fast scroll early on | the frames are still loading (every eighth frame of both clips comes first, then every fourth, and so on, and the frame the page needs jumps the queue); `check.mjs` waits for all of them |
+| A page built before 1.3.1 stays exploded through the rebuild on a slow first visit, and fills in only after another scroll | its engine loads clip b only after all of clip a and repaints only on a scroll: copy `frames.js` and `explode.js` from the skill's `assets/template/site/engine/` into the project's `site/engine/` |
 | A page built before 1.3.0 is heavy on phones | it has no phone frames yet: `node build.mjs <id> --only frames,web` (free) |
 
 ## The tools
