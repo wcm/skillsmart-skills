@@ -1,0 +1,32 @@
+{
+  "draw-speaker": {
+    "kind": "lines",
+    "aspect": "16:9",
+    "blur": 0.3,
+    "prompt": "A precise technical exploded-view drawing of a vintage hi-fi loudspeaker cabinet: the woofer, the tweeter, the crossover board, the grille and the wooden cabinet separated along one axis with thin dashed alignment lines, fine crisp white outlines and light hatching on a plain pure black background, engineering patent drawing, very detailed and beautifully composed, centred with empty space around it."
+  },
+  "draw-synth": {
+    "kind": "lines",
+    "aspect": "16:9",
+    "blur": 0.3,
+    "prompt": "A precise technical drawing of a vintage analog modular synthesizer with a keyboard, seen in three-quarter view: rows of knobs, sliders, switches, patch cables hanging between the modules, and the keys, drawn in fine crisp white outlines on a plain pure black background, engineering patent drawing, very detailed and beautifully composed, wide, with empty space around it."
+  },
+  "draw-tape": {
+    "kind": "lines",
+    "aspect": "16:9",
+    "blur": 0.3,
+    "prompt": "A precise technical exploded-view drawing of a vintage reel-to-reel tape recorder: two large tape reels, the tape path, heads, rollers, knobs and the case, the parts separated with thin dashed alignment lines, fine crisp white outlines on a plain pure black background, engineering patent drawing, very detailed and beautifully composed, with empty space around it."
+  },
+  "draw-turntable": {
+    "kind": "lines",
+    "aspect": "16:9",
+    "blur": 0.3,
+    "prompt": "A precise technical exploded-view drawing of a vintage direct-drive record turntable, seen in three-quarter view from above: the dust cover, the record, the platter, the slip mat, the tonearm, the motor, the plinth and the feet separated along one vertical axis with thin dashed alignment lines, every part drawn in fine crisp white outlines and light hatching on a plain pure black background, engineering patent drawing, very detailed and beautifully composed, centred with empty space around it."
+  },
+  "walnut": {
+    "kind": "surface",
+    "aspect": "16:9",
+    "blur": 0,
+    "prompt": "A flat walnut wood veneer surface seen straight on, fine straight grain running horizontally, evenly lit, warm natural brown, no knots, the wood fills the whole frame from edge to edge."
+  }
+}

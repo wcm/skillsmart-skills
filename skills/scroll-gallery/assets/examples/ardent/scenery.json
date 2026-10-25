@@ -1,0 +1,26 @@
+{
+  "table": {
+    "kind": "back",
+    "aspect": "16:9",
+    "blur": 1.2,
+    "prompt": "Seen straight down from above: a large pale warm-grey self-healing cutting mat with a faint printed grid on a studio table, soft diagonal shadows of a window frame falling across it, late-afternoon light."
+  },
+  "venue": {
+    "kind": "back",
+    "aspect": "16:9",
+    "blur": 2,
+    "prompt": "A fashion show venue in near darkness: a long glossy black runway floor receding into the distance, soft haze in the air, a row of small warm spotlights high above as bokeh."
+  },
+  "fog": {
+    "kind": "luma",
+    "aspect": "21:9",
+    "blur": 3,
+    "prompt": "Low-lying stage fog rolling across the floor of a dark fashion runway, soft white wisps and drifting haze, thickest along the bottom of the frame and thinning out upward, isolated on a plain pure black background, photographic, soft edges."
+  },
+  "cobalt-tissue": {
+    "kind": "surface",
+    "aspect": "16:9",
+    "blur": 0.6,
+    "prompt": "Seen straight down from above: a large sheet of deep cobalt-blue tissue paper, crumpled and then smoothed flat again, a fine network of soft creases catching soft daylight, calm and even, the paper fills the whole frame from edge to edge."
+  }
+}

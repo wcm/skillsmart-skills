@@ -1,0 +1,46 @@
+{
+  "slug": "scroll-gallery",
+  "name": "Scroll Gallery",
+  "tagline": "A gallery page where your pictures fly from one 3D scene into the next as you scroll: a runway, a jukebox, a sphere.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["gallery", "portfolio", "lookbook", "image gallery", "photo gallery", "collection", "catalogue", "showcase", "scroll animation", "scroll-driven", "3D", "WebGL", "three.js", "landing page", "album covers", "photography"],
+  "youSay": "/scroll-gallery A lookbook for our autumn–winter collection, from the photos in ~/Pictures/aw27",
+  "whatYouGet": [
+    "A gallery page in about four scenes: your pictures laid out as a table of prints, a runway of silk panels, a jukebox, an acrylic ribbon, a sphere and more, flying from one shape into the next as you scroll",
+    "Pictures as real objects in one studio light: photo paper, record sleeves, thick acrylic, glazed tiles, silk that hangs and sways",
+    "Click any picture to bring it forward with its words; an index that brings any picture into view; type, colours and scenery chosen for your subject",
+    "Your own pictures imported for free, or a matching series generated for you; a headless check and a scroll-through video, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Portfolios, lookbooks, collections, catalogues, album shelves and photo series of 6 to 40 pictures",
+    "Brands and creators who want a gallery people remember, and a page that plays as a video"
+  ],
+  "notFor": [
+    "Hundreds of pictures, or a gallery people search and filter",
+    "Pages that must be light: it loads three.js and draws in WebGL"
+  ],
+  "youBring": [
+    "What the gallery shows, and your pictures if you have them",
+    "Optional: the brand's name, colours and tone, and a reference you like"
+  ],
+  "needs": [
+    "Your own pictures, or Skillsmart credits (20 a picture)",
+    "Node 18+",
+    "Python 3",
+    "Chrome or Edge",
+    "ffmpeg, for the video"
+  ],
+  "generates": { "models": ["nano-banana-pro", "birefnet-image"], "estimate": "20 a picture: 240 for 12, nothing with your own" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.15 a picture",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai"]
+  },
+  "network": [
+    { "host": "cdn.jsdelivr.net", "purpose": "the three.js library the gallery is drawn with" },
+    { "host": "registry.npmjs.org", "purpose": "playwright-core for the headless check, installed once into a cache" }
+  ],
+  "testedIn": ["Claude Code"]
+}
