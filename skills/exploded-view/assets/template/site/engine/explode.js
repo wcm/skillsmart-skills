@@ -131,8 +131,12 @@ export async function boot() {
   // a phone takes the smaller frames when the page has them (layout.json → frames.a.phone, written by tools/build.mjs)
   const small = innerWidth < 760 && Boolean(L.frames?.a?.phone && L.frames?.b?.phone);
   const [A, B] = await Promise.all(["a", "b"].map((ab) => FrameSeq.load(small ? `frames/${ab}-phone` : `frames/${ab}`)));
-  // clip a first (it plays first), then clip b
-  const loaded = (A ? A.preload() : Promise.resolve()).then(() => B?.preload());
+  // both clips' frames, coarse to fine across the two, so the rebuild plays (roughly) as soon as the explosion does
+  const loaded = FrameSeq.preload([A, B]);
+  // a frame that arrives repaints the page when it's nearer the one being shown than the frame on screen, so someone who
+  // stops mid-clip on a slow connection sees it fill in without scrolling again
+  let wanted = null, dirty = false;
+  for (const seq of [A, B]) if (seq) seq.onframe = (i) => { if (wanted?.seq === seq && Math.abs(i - wanted.i) < Math.abs(wanted.drawn - wanted.i)) dirty = true; };
 
   const ctx = canvas.getContext("2d");
   const labApi = { page, bg: labBg, fg: labFg, stage: L.stage, toScreen: () => [0, 0] };
@@ -267,7 +271,13 @@ export async function boot() {
       ctx.globalAlpha = Math.min(1, a);
       ctx.drawImage(img, R.x + r[0] * R.s, R.y + r[1] * R.s, r[2] * R.s, r[3] * R.s);
     };
-    const frame = (seq, t) => seq?.get(Math.round(t * (seq.count - 1)));
+    // a clip's frame for t, or the nearest one that has loaded; remembers which it wanted and which it drew
+    wanted = null;
+    const frame = (seq, t) => {
+      const i = Math.round(t * (seq.count - 1)), n = seq.nearest(i);
+      wanted = { seq, i, drawn: n < 0 ? -Infinity : n };
+      return n < 0 ? null : seq.images[n];
+    };
     const [a0, a1] = T.explode, [b0, b1] = T.rebuild;
     if (p < a0) put(cut1, L.cut1.stage);
     else if (p < a1) {
@@ -357,7 +367,7 @@ export async function boot() {
     target = progress();
     shown = still ? target : shown + (target - shown) * 0.16;
     if (Math.abs(target - shown) < 0.0004) shown = target;
-    if (Math.abs(shown - last) > 0.00005) { render(shown); last = shown; }
+    if (dirty || Math.abs(shown - last) > 0.00005) { dirty = false; render(shown); last = shown; }
     requestAnimationFrame(tick);
   }
 
