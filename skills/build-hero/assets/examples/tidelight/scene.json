@@ -1,0 +1,152 @@
+{
+  "shots": {
+    "end": {
+      "prompt": "Real architectural drone photograph for a property developer's launch campaign in a tropical city. A slender new 48-storey residential tower rises from a corner plot beside a broad, slow city river with a wide riverside promenade. The tower is elegant and minimal, a softened rectangle in plan with rounded corners: floor-to-ceiling glass with a pale silver-blue tint, slim white floor-slab bands on every floor whose deep balcony edges curve round the corners, one double-height sky garden about two thirds of the way up where lush tropical trees show through the facade, and a flat roof with a slim white canopy. At its base, a low glass podium with a planted green roof sits in a garden of big rain trees, tall palms and frangipani. All around spreads a dense, green, modern tropical city of ordinary, unrecognisable buildings: residential towers and office blocks of varied heights, all lower than the new tower, mid-rise apartment blocks with deep balconies, streets lined with huge rain trees, rooftop gardens and patches of lush park, fading into more towers in the soft distance. No famous landmarks and no recognisable skyline. The drone hovers above the river at about the height of the 20th floor, in a three-quarter view: the whole tower is in frame, slightly right of centre, its base in the lower third and its top close to the top edge; the river curves through the lower left of the frame. Warm golden late-afternoon tropical sun from the left rakes across the facade and glints on the glass; tall white cumulus clouds in a clear blue sky. No interior lights on, no cranes. Crisp, realistic, magazine quality."
+    },
+    "staged": {
+      "from": "end",
+      "prompt": "Edit this photograph: show the same plot before the tower is built. {same} Remove the tower, its sky garden, its roof canopy and its glass podium completely, revealing the city, the trees and the sky behind them. In their place: a tidy construction site behind a white site hoarding. At its centre, exactly where the tower stood, lies a raised pale concrete raft only as large as the tower's own softened-rectangle footprint, not wider, about a third of the fenced plot, with the stub of the concrete lift core rising one storey from its middle and steel starter bars along its edge. The rest of the fenced plot, where the low podium will later stand, is bare levelled brown earth and gravel, with one yellow tower crane at its lowest height, neat stacks of precast concrete floor panels, bundles of rebar and crates of glass facade panels standing on it. The river, the promenade, the rain trees and palms, the surrounding city, the clouds and the warm golden late-afternoon light are exactly the same. No people."
+    },
+    "start": {
+      "from": "staged",
+      "prompt": "Re-shoot this exact scene from a drone that is high above the river close to the construction site and has turned about thirty degrees around it to the right, tilted steeply down at about fifty degrees: the foundation raft with its softened-rectangle outline, the core stub, the crane and the stacked materials fill the middle of the frame seen from above, with the river, the promenade, the rain trees and the city streets around them and the city's towers at the top of the frame. Keep the foundation, the core stub, the crane, the materials, the hoarding, the trees, the promenade, the river, the surrounding city, the clouds and the warm golden late-afternoon light exactly the same. A realistic drone photograph, 16:9, no text, no people."
+    },
+    "half-end": {
+      "from": "end",
+      "refs": [
+        "staged"
+      ],
+      "prompt": "Edit the first photograph: show the same tower halfway through its construction. {same} The tower now stands only 22 storeys tall, on exactly the same footprint and in exactly the same place: its lower 16 floors are finished with the silver-blue glass and the white curved balcony bands, exactly as in the finished tower; the 6 floors above them are bare grey concrete floor slabs on slim columns, open to the air, with edge protection screens round the top two; the concrete lift core rises two storeys above the top slab, and the yellow tower crane from the second photograph stands on the core, its mast rising above it and its jib reaching out over the site. There is no sky garden and no roof canopy yet, and nothing above the crane. At the base there is no glass podium yet: instead the construction site from the second photograph, with its white hoarding, bare brown earth and stacked materials, surrounds the tower. The river, the promenade, the trees, the surrounding city, the clouds and the warm golden late-afternoon light are exactly the same. No people."
+    },
+    "half": {
+      "from": "half-end",
+      "crop": {
+        "zoom": 1.3,
+        "center": [
+          0.6,
+          0.5
+        ]
+      }
+    },
+    "topped-end": {
+      "from": "end",
+      "refs": [
+        "staged"
+      ],
+      "prompt": "Edit the first photograph: show the same tower just after it has topped out. {same} The tower stands at its full height, exactly as it is now, with its glass, its white balcony bands, its planted sky garden and its flat white roof canopy, but the yellow tower crane from the second photograph still stands on its roof, its mast rising from the top of the tower and its jib reaching out over the site. At the base the low podium is not finished yet: its grey concrete frame stands one storey high around the tower's foot with no glass and no green roof yet, and the construction site from the second photograph, with its white hoarding, bare brown earth and a few stacked materials, still surrounds it. The river, the promenade, the trees, the surrounding city, the clouds and the warm golden late-afternoon light are exactly the same. No people."
+    },
+    "dusk": {
+      "from": "film-last",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: it is now blue hour, about twenty minutes after sunset. {same} Change only the light. The sky turns a deep, clear twilight blue that fades to a soft peach glow at the horizon, the clouds catch the last pink light, and the river reflects it all; the sun and its shadows are gone. The new tower's lights are all switched off: its windows are dark and mirror the blue sky, and its podium, sky garden, promenade lamps and garden are unlit. The surrounding city already shows a scatter of soft lights in its windows and streets. Natural blue-hour photography, no haze, no stars."
+    },
+    "lit": {
+      "from": "dusk",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: switch the new tower's lights on. {same} Change only the light. Warm 2700 K light now glows in nearly every apartment of the new tower, floor by floor, with a few windows still dark and some softened by sheer curtains; the balcony soffits glow softly; the double-height sky garden glows warm green and gold among its trees; the roof canopy is gently uplit; the glass podium glows warm; the promenade lamps and the garden lights under the rain trees and palms are on and lay long warm streaks on the river. The blue-hour sky and the surrounding city stay exactly the same. Realistic night architectural photography, exposed for the sky, no blown highlights, no lens flare."
+    },
+    "residence": {
+      "size": {
+        "width": 2400,
+        "height": 1600
+      },
+      "prompt": "Real interior photograph for a property developer: the living room of a high-floor apartment in a slender residential tower in a tropical city, at blue hour. Floor-to-ceiling glass on two sides looks out over a dense, green city of ordinary towers and huge rain trees with a wide river curving below, their lights coming on; no famous landmarks; a curved white balcony edge with a few tropical plants outside. Inside: pale oak floor, a low cream boucle sofa, a travertine coffee table, a slim brass floor lamp glowing warm, a single large ceramic vase. Calm, airy, quiet luxury; the view is the hero. Eye-level, 24 mm lens, straight verticals."
+    },
+    "garden": {
+      "size": {
+        "width": 1600,
+        "height": 2000
+      },
+      "prompt": "Real architectural photograph: the residents' double-height sky garden on the 30th floor of a slender residential tower in a tropical city, in warm late-afternoon light. A long dark infinity pool edged in pale stone, lush tropical planting, ferns, palms and small frangipani trees in raised planters, two low teak loungers, a glass balustrade, and far below and beyond, a dense green city of ordinary towers, huge rain trees and a winding river under tall white clouds; no famous landmarks. Serene, minimal, tropical. Vertical framing, eye level, 28 mm lens."
+    },
+    "topped-fit": {
+      "from": "end",
+      "paste": {
+        "donor": "topped-end",
+        "rect": [
+          0.4296875,
+          0.7407407407407407,
+          0.8463541666666666,
+          1
+        ],
+        "feather": 0.005
+      }
+    },
+    "topped": {
+      "from": "topped-fit",
+      "crop": {
+        "zoom": 1.12,
+        "center": [
+          0.6,
+          0.52
+        ]
+      }
+    }
+  },
+  "film": {
+    "negative": "people, workers, text, logos, watermark, cuts, jump cuts, flicker, blur, distortion, a static camera, a camera that only zooms, a base that shrinks or widens, a wide round building that narrows, the tower changing shape, a tower that leans or bends, melting buildings, warping skyline, morphing city, extra towers appearing, cartoon",
+    "segments": {
+      "rise": {
+        "start": "start",
+        "end": "half",
+        "duration": 5,
+        "prompt": "One continuous, unbroken cinematic drone shot of a construction timelapse in a tropical city. The drone starts high above the river looking steeply down onto the construction site, then sinks, tilts up and swings round the site, ending closer, looking across at the half-built tower. As it moves, the tower rises from its foundation: the concrete core climbs first with the yellow tower crane climbing on it, bare concrete floor slabs stack on top of each other one at a time, each exactly the same size and shape as the one below, and the silver-blue glass and white balcony bands follow floor by floor a few floors below the top. The tower only ever grows at its top and its footprint never changes. The hoarding and the site around the base stay as they are. Steady, precise, satisfying motion. The river, the surrounding city, the trees, the clouds and the warm golden late-afternoon light stay the same throughout."
+      },
+      "top": {
+        "start": "half",
+        "end": "topped",
+        "duration": 4,
+        "prompt": "One continuous, unbroken drone shot of a construction timelapse, the drone slowly pulling back and tilting up a little. The tower keeps growing only at its top: the concrete core and the yellow crane climb, bare concrete floor slabs stack one by one on top, and the silver-blue glass and white balcony bands follow floor by floor just below them, so the top of the tower and the crane climb up and out of the top of the frame. When the new floors reach two thirds of the height, the double-height planted sky garden is built there, in place. Floors that are already built never move or change. Around the base, the podium's grey concrete frame rises one storey inside the hoarding. The river, the surrounding city, the trees, the clouds and the warm golden late-afternoon light stay the same throughout."
+      },
+      "finish": {
+        "start": "topped",
+        "end": "end",
+        "duration": 4,
+        "prompt": "One continuous, unbroken drone shot of a construction timelapse, the drone slowly pulling back so the finished top of the tower and its flat white roof canopy come into view. The tower itself is finished and does not change at all. At the base, the podium is finished step by step: its glass walls go in, its planted green roof is laid, the stacked materials are taken away, the white hoarding is taken down, and the garden and the promenade are finished. The river, the surrounding city, the trees, the clouds and the warm golden late-afternoon light stay the same throughout."
+      }
+    }
+  },
+  "frames": {
+    "fps": 10,
+    "retime": {
+      "count": 130,
+      "x": [
+        0,
+        0.135,
+        0.27,
+        0.42,
+        0.62,
+        0.79,
+        0.95,
+        1
+      ],
+      "y": [
+        0,
+        16,
+        30,
+        54,
+        150,
+        216,
+        288,
+        312
+      ]
+    },
+    "phoneCrop": {
+      "left": 760,
+      "top": 0,
+      "width": 760,
+      "height": 1080
+    }
+  },
+  "web": {
+    "residence": 2000,
+    "garden": 1400,
+    "end": 2400
+  }
+}

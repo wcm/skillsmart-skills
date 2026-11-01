@@ -1,0 +1,48 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Tidelight — the drone sinks and swings round as a riverside tower climbs floor by floor, then its windows light from the ground up",
+      "prompt": "/build-hero A launch page for a new riverside condo tower in a tropical city, sold before it's built",
+      "url": "https://demos.skillsmart.io/build-hero/tidelight/"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Cerise — a time-lapse: a blurred crew lays the linen, sets the roses and carries in the chairs, then the candles light first",
+      "prompt": "/build-hero A wedding stylist's home page: an empty modern room becomes a long candlelit table, as a time-lapse",
+      "url": "https://demos.skillsmart.io/build-hero/cerise/"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Misura — panels on the floor rise into a fitted kitchen inside a working drawing, then the LED strips come on left to right",
+      "prompt": "/build-hero A kitchen maker's home page: from a plan of panels on the floor to the fitted kitchen",
+      "url": "https://demos.skillsmart.io/build-hero/misura/"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Kebun — a tropical garden pool is dug, lined in green stone and filled, then the water glows and the garden lights spread out",
+      "prompt": "/build-hero A pool and garden builder's home page: from red earth to the pool lit at dusk",
+      "url": "https://demos.skillsmart.io/build-hero/kebun/"
+    }
+  ]
+}

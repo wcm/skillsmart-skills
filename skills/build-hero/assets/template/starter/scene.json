@@ -1,0 +1,21 @@
+{
+  "style": "",
+  "shots": {
+    "end": { "prompt": "WRITE: a real photograph of the finished place in warm daylight, from the camera's last position, with the subject right of centre and calm room for the words. No real city, landmark or brand. Lights off. {style}" },
+    "staged": { "from": "end", "prompt": "Edit this photograph: show the same place before anything is built. {same} WRITE: remove what gets built; in its place, what it starts from, with its foundation exactly the same size and in exactly the same place as the finished thing. Everything else, and the light, stays exactly the same. No people." },
+    "start": { "from": "staged", "prompt": "Re-shoot this exact scene from a very different camera position. WRITE: where the camera is now, for example high above looking steeply down, or low in a far corner, and what fills the frame. Keep everything in the scene and the light exactly the same. A realistic photograph, 16:9, no text, no people." },
+    "half-end": { "from": "end", "refs": ["staged"], "prompt": "Edit the first photograph: show the same place halfway through. {same} WRITE: what stands at this moment, exactly in place and the same size as in the finished picture, and what isn't there yet, as in the second photograph. Everything else, and the light, stays exactly the same. No people." },
+    "half": { "from": "half-end", "crop": { "zoom": 1.25, "center": [0.5, 0.5] } },
+    "dusk": { "from": "film-last", "prompt": "Edit this photograph: it is now dusk. {same} Change only the light. WRITE: the sky and what it does to the place. Every light is still switched off: WRITE: list them. Natural dusk photography, no haze." },
+    "lit": { "from": "dusk", "prompt": "Edit this photograph: switch the lights on. {same} Change only the light. WRITE: each light and how it falls. The dusk sky stays exactly the same. Realistic night photography, no blown highlights, no lens flare." }
+  },
+  "film": {
+    "negative": "text, logos, watermark, cuts, jump cuts, flicker, distortion, melting, warping, morphing, things growing by themselves, things flying, cartoon",
+    "segments": {
+      "first": { "start": "start", "end": "half", "duration": 5, "prompt": "WRITE: one continuous, unbroken shot: the camera's big move from its first position to its last, and the one job built meanwhile, in order." },
+      "second": { "start": "half", "end": "end", "duration": 5, "prompt": "WRITE: one continuous, unbroken shot: the camera pulling back slowly, and the one job that finishes the place. What is already built never moves." }
+    }
+  },
+  "frames": { "fps": 10 },
+  "web": {}
+}

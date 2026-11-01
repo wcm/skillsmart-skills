@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tidelight · Homes on the river, River Bend</title>
+<meta name="description" content="Tidelight: a 48-floor tower of 214 homes at River Bend, on the river. Watch it rise floor by floor, then register for the launch.">
+<meta name="theme-color" content="#0B1236">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1236'/%3E%3Crect x='12.5' y='5' width='7' height='22' rx='3.5' fill='none' stroke='%23F5F6FA' stroke-width='1.4'/%3E%3Crect x='14.6' y='15' width='2.8' height='9.5' rx='1' fill='%23F5B25F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Hanken+Grotesk:wght@200..600&family=Newsreader:ital,opsz,wght@1,6..72,300..400&display=swap">
+<link rel="preload" as="image" href="frames/0001.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="frames-phone/0001.webp" media="(max-width: 759.98px)">
+<link rel="stylesheet" href="../engine/chantier.css">
+<link rel="stylesheet" href="../engine/hud.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#residences">Skip the film</a>
+
+<header class="nav" data-tone="light">
+  <nav class="nav-links" aria-label="Main">
+    <a href="#residences">Residences</a>
+    <a href="#location">Location</a>
+    <a href="#availability">Availability<sup>128</sup></a>
+  </nav>
+  <a class="nav-name" href="#top" aria-label="Tidelight, back to the top"><span>tide</span><span>light</span></a>
+  <div class="nav-end"><a class="nav-cta" href="#register">Register</a></div>
+</header>
+
+<main id="top">
+
+  <!-- the build: the tower rises on the river bend as the page scrolls, then blue hour, then the windows light up -->
+  <section class="ch" id="build" aria-label="The Tidelight tower rises at River Bend as you scroll, then its windows light up at dusk">
+    <div class="ch-stage">
+      <div class="shade shade-t" aria-hidden="true"></div>
+      <div class="shade shade-b" aria-hidden="true"></div>
+      <div class="shade shade-r" aria-hidden="true"></div>
+
+      <!-- the first screen's inset frame; its lines fold back into the scaffold's corner marks -->
+      <div class="frame" aria-hidden="true">
+        <i class="ln top1"></i><i class="ln top2"></i><i class="ln bot1"></i><i class="ln bot2"></i>
+        <i class="ln lef1"></i><i class="ln lef2"></i><i class="ln rig1"></i><i class="ln rig2"></i>
+        <b class="plus tl"></b><b class="plus tr"></b><b class="plus bl"></b><b class="plus br"></b>
+      </div>
+
+      <!-- the name along the bottom, cut by the waterline; it sinks as the build starts -->
+      <div class="name" aria-hidden="true">
+        <div class="name-up"><span>tidelight</span></div>
+        <div class="name-down"><span>tidelight</span></div>
+      </div>
+
+      <p class="tab tab-place">River Bend · Now selling</p>
+      <div class="intro" data-ch-in="0 0.012" data-ch-fade="0.035 0.026">
+        <h1 class="title"><span>Homes on the river,</span> <em>before they’re built.</em></h1>
+        <p class="lede">48 floors and 214&nbsp;homes facing the water, ready late&nbsp;2028.</p>
+      </div>
+      <p class="tab tab-hint" data-ch-hint aria-hidden="true">Scroll to build <i></i></p>
+
+      <div class="hud" data-ch-bar="0.02 0.06" aria-hidden="true">
+        <i class="hud-mark tl"></i><i class="hud-mark tr"></i><i class="hud-mark bl"></i><i class="hud-mark br"></i>
+        <!-- the site's day and the tower's height (main.js: the built floors × 3.5 m) -->
+        <div class="hud-chips">
+          <p class="hud-chip"><b class="hud-live"></b>Day <span data-ch-count data-from="0" data-to="540" data-at="0.04 0.74" data-format="pad3">000</span></p>
+          <p class="hud-chip">Height <span class="js-height">000</span> m</p>
+        </div>
+
+        <!-- one chapter card; main.js switches its line on each stage's tick (the stage names are on the ruler) -->
+        <div class="chapter">
+          <p class="chap"><b>01</b><span>A raft by the river.</span></p>
+          <p class="chap"><b>02</b><span>Core and crane climb.</span></p>
+          <p class="chap"><b>03</b><span>Floors stack up.</span></p>
+          <p class="chap"><b>04</b><span>Glass follows them up.</span></p>
+          <p class="chap"><b>05</b><span>Crane out, sky garden in.</span></p>
+          <p class="chap"><b>06</b><span>A white roof, a glass podium.</span></p>
+        </div>
+
+        <!-- the big counter: the floor standing in the film, one segment per built floor -->
+        <div class="hud-count">
+          <p class="hud-label">Floor<span class="hud-h"> · <span class="js-height">000</span> m</span></p>
+          <p class="hud-num"><span class="js-floor">00</span><small>/48</small></p>
+          <i class="hud-segs js-segs" style="--n: 48; --k: 0"></i>
+        </div>
+
+        <ol class="hud-ruler">
+          <li data-ch-step="0.04"><b>01</b><span>Raft</span></li>
+          <li data-ch-step="0.135"><b>02</b><span>Core</span></li>
+          <li data-ch-step="0.229"><b>03</b><span>Frame</span></li>
+          <li data-ch-step="0.334"><b>04</b><span>Glass</span></li>
+          <li data-ch-step="0.474"><b>05</b><span>Garden</span></li>
+          <li data-ch-step="0.593"><b>06</b><span>Podium</span></li>
+          <li class="is-end" data-ch-step="0.76" style="--x: 1"><span>Lights</span></li>
+        </ol>
+      </div>
+
+      <!-- the floor ruler: one tick per floor, counting up with the tower, then lit from the ground up -->
+      <div class="floors" aria-hidden="true">
+        <p class="floors-head js-floors-head"></p>
+        <div class="floors-scale js-scale">
+          <div class="floors-now">
+            <span class="floors-tag js-tag">00</span>
+            <span class="floors-card"><b class="js-lv">Level 00 · 0 m</b><span class="js-lv-note">Lobby and river café</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="end" data-ch-in="0.88">
+        <div class="end-card">
+          <p class="end-kick">Lights on · River Bend</p>
+          <h2 class="end-title">Choose your <em>window.</em></h2>
+          <dl class="end-facts">
+            <div><dt>Homes</dt><dd>214</dd></div>
+            <div><dt>Floors</dt><dd>48</dd></div>
+            <div><dt>Completion</dt><dd>Q4 2028</dd></div>
+            <div><dt>From</dt><dd>$980,000</dd></div>
+          </dl>
+          <div class="end-actions">
+            <a class="btn btn-paper" href="#register">Register interest <span class="arr" aria-hidden="true"></span></a>
+            <a class="btn btn-ghost" href="#residences">See the residences</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 residences: four plans on periwinkle -->
+  <section class="sec res" id="residences" data-tone="light" aria-labelledby="res-h">
+    <div class="wrap">
+      <header class="sec-head res-head">
+        <div>
+          <p class="eyebrow" data-reveal><b>01</b>Residences</p>
+          <h2 class="h2" id="res-h" data-reveal>Four plans, <em>all facing the river.</em></h2>
+        </div>
+        <div class="res-side">
+          <p class="sec-lede" data-reveal style="--delay: .08s">Every home has floor-to-ceiling glass and a deep balcony on the river side. Pick one to see its plan.</p>
+          <div class="res-pick" role="group" aria-label="Home type" data-reveal style="--delay: .12s">
+            <button type="button" class="pill" data-type="one" aria-pressed="true">1 bed</button>
+            <button type="button" class="pill" data-type="two" aria-pressed="false">2 bed</button>
+            <button type="button" class="pill" data-type="three" aria-pressed="false">3 bed</button>
+            <button type="button" class="pill" data-type="pent" aria-pressed="false">Penthouse</button>
+            <i class="pill-glide" aria-hidden="true"></i>
+          </div>
+        </div>
+      </header>
+
+      <div class="res-main" id="availability" data-reveal style="--delay: .06s">
+        <div class="rail" aria-hidden="true">
+          <p class="rail-head">Floor</p>
+          <div class="rail-scale js-rail"><b class="rail-dot js-rail-dot">07</b></div>
+        </div>
+
+        <figure class="plan-box">
+          <div class="plan-draw">
+            <div class="plan-fit">
+              <svg class="plan js-plan" viewBox="0 0 640 440" role="img" aria-label="Floor plan"></svg>
+              <div class="plan-keys js-keys" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="bubble" aria-live="polite">
+            <p class="b-unit js-b-unit">No. 0704</p>
+            <p class="b-type js-b-type">1 bedroom</p>
+            <p class="b-area"><span class="js-b-area">58</span><small>m²</small></p>
+            <p class="b-price js-b-price">from $980,000</p>
+            <p class="b-levels js-b-levels">Levels 03–25</p>
+          </div>
+          <figcaption class="plan-cap"><ol class="legend js-legend"></ol><p class="left"><b class="js-left">44</b> of <span class="js-total">63</span> left</p></figcaption>
+        </figure>
+
+        <figure class="res-photo">
+          <img src="img/residence.webp" alt="A living room with a curved cream sofa and a travertine table, looking through floor-to-ceiling glass at the river and the city at blue hour" loading="lazy" width="2000" height="1333">
+          <figcaption><span>Sample interior</span><span>3 bed, blue hour</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 location -->
+  <section class="sec loc" id="location" data-tone="light" aria-labelledby="loc-h">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div>
+          <p class="eyebrow" data-reveal><b>02</b>Location</p>
+          <h2 class="h2" id="loc-h" data-reveal>On the river, <em>a short walk from everything.</em></h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--delay: .08s">On the river walk, between the park and the metro. Most of what you need is closer than the lift ride.</p>
+      </header>
+
+      <div class="dist js-dist">
+        <div data-reveal><p class="big"><span data-to="180">180</span><small>m</small></p><p class="dist-to">to the ferry pier</p></div>
+        <div data-reveal style="--delay: .08s"><p class="big"><span data-to="650">650</span><small>m</small></p><p class="dist-to">to the metro</p></div>
+        <div data-reveal style="--delay: .16s"><p class="big"><span data-to="2.4" data-dec="1">2.4</span><small>km</small></p><p class="dist-to">to the city centre</p></div>
+      </div>
+
+      <ul class="rows">
+        <li data-reveal><b>/01</b><strong>Park</strong><span>Morning runs under the rain trees, along the water.</span><em>400 m</em></li>
+        <li data-reveal style="--delay: .06s"><b>/02</b><strong>Schools</strong><span>A bilingual primary and an international school, both on the metro line.</span><em>900 m</em></li>
+        <li data-reveal style="--delay: .12s"><b>/03</b><strong>Market</strong><span>Fruit, fish and hot breakfasts under one roof, from six every morning.</span><em>300 m</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 sky garden -->
+  <section class="garden" id="garden" data-tone="dark" aria-label="The sky garden on level 30">
+    <div class="garden-pic"><img class="js-garden-img" src="img/garden.webp" alt="A long dark pool on a stone terrace high above the city, with palms, frangipani, two loungers and the river winding away below" loading="lazy" width="1400" height="1750"></div>
+    <div class="garden-copy wrap" data-reveal>
+      <p class="eyebrow"><b>03</b>Level 30 · Sky garden</p>
+      <p class="garden-line">Two thirds up: a&nbsp;pool, a&nbsp;garden <em>and the whole river.</em></p>
+    </div>
+  </section>
+
+  <!-- 04 register -->
+  <section class="sec reg" id="register" data-tone="dark" aria-labelledby="reg-h">
+    <div class="wrap reg-grid">
+      <figure class="reg-pic" data-reveal>
+        <img src="img/lit.webp" alt="The finished Tidelight tower at blue hour, its windows lit, above the river and the city" loading="lazy" width="1920" height="1080">
+        <figcaption><span class="dot" aria-hidden="true"></span>48 floors, lit from 2028</figcaption>
+      </figure>
+      <div class="reg-body">
+        <p class="eyebrow" data-reveal><b>04</b>Register</p>
+        <h2 class="h2" id="reg-h" data-reveal>Register <em>before the launch.</em></h2>
+        <p class="sec-lede" data-reveal style="--delay: .06s">Plans, prices and the first viewings, a week before they go public.</p>
+        <form class="form js-form" novalidate data-reveal style="--delay: .1s">
+          <label class="field"><span>Name</span><input name="name" autocomplete="name" placeholder="Your name"></label>
+          <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+          <fieldset class="types">
+            <legend>Home</legend>
+            <label><input type="radio" name="type" value="1 bed" checked><span>1 bed</span></label>
+            <label><input type="radio" name="type" value="2 bed"><span>2 bed</span></label>
+            <label><input type="radio" name="type" value="3 bed"><span>3 bed</span></label>
+            <label><input type="radio" name="type" value="Penthouse"><span>Penthouse</span></label>
+          </fieldset>
+          <div class="form-end">
+            <button class="btn btn-paper" type="submit">Register interest <span class="arr" aria-hidden="true"></span></button>
+            <p class="demo">This is a demo; nothing is sent.</p>
+          </div>
+          <p class="form-done js-done" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" data-tone="dark">
+  <div class="foot-name" aria-hidden="true">
+    <div class="name-up"><span>tidelight</span></div>
+    <div class="name-down"><span>tidelight</span></div>
+  </div>
+  <div class="wrap foot-row">
+    <p><b>Tidelight</b>River Bend, on the river walk</p>
+    <p><b>Sales gallery</b>Open daily, 10:00–18:00</p>
+    <p><b>A Build Hero demo</b>The film and pictures are AI-generated.</p>
+    <a href="#top">Back to the top</a>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "slug": "build-hero",
+  "name": "Build Hero",
+  "tagline": "A website hero where one scroll builds the place from bare ground while the camera moves, then evening falls and the lights come on.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["hero section", "scroll animation", "scroll-driven", "construction", "time-lapse", "building process", "real estate", "condo", "property developer", "kitchen", "interior design", "pool builder", "landscaping", "wedding", "event styling", "AI video", "landing page"],
+  "youSay": "/build-hero A launch page for a new riverside condo tower, sold before it's built",
+  "whatYouGet": [
+    "A pinned hero film: one scroll plays the place being built, from raw materials to finished, with a real change of camera angle, and one flick plays it all by itself in 3 seconds",
+    "An evening finale: dusk falls over the finished place, then the lights switch on in an order that suits it: floor by floor, across a kitchen, outward from a pool, candles first",
+    "A scaffold of readouts round the film: crop marks, a counter, a stage ruler and captions timed to the build, which come down when evening falls",
+    "The whole page around it with its own look and words, a headless check on desktop and phone, and a video of the build, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Anything sold before it exists or made by hand: new homes and towers, kitchens, renovations, pools and gardens, shop fit-outs, event styling",
+    "Pages where seeing it come together is the reason to buy"
+  ],
+  "notFor": [
+    "Exact real buildings or real places: the film is generated, so it shows the idea, not your approved plans",
+    "Pages that must be very light: the film is about 130 frames (around 15 MB on desktop)"
+  ],
+  "youBring": [
+    "What gets built and who it's for",
+    "Optional: the brand's name, colours and tone, and a reference picture of the finished place"
+  ],
+  "needs": [
+    "Skillsmart credits: about 550 for a page",
+    "Node 18+",
+    "Python 3",
+    "Chrome or Edge",
+    "ffmpeg"
+  ],
+  "generates": { "models": ["nano-banana-pro", "kling-v3-pro"], "estimate": "about 550 a page: 20 a picture, 15 a second of film" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $6 a page",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai", "rest.fal.ai"]
+  },
+  "network": [
+    { "host": "registry.npmjs.org", "purpose": "sharp for the tools; playwright-core for the headless check (installed once)" }
+  ],
+  "testedIn": ["Claude Code"]
+}

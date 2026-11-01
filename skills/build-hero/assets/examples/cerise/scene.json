@@ -1,0 +1,249 @@
+{
+  "shots": {
+    "end": {
+      "prompt": "Real editorial interior photograph for a wedding and event styling studio. A modern, calm event space in Paris, ready for a wedding dinner, with no guests yet: a long, light-filled room with smooth warm-white limewash plaster walls, a high plain white ceiling and a pale honed limestone floor; along the left side runs one wall of floor-to-ceiling glass in slim bronze frames, looking onto a green courtyard garden with young trees. Three long, slim linear pendant lights in brushed brass hang low over the table, switched off. Down the centre of the room runs one very long banquet table dressed in ivory linen that falls neatly to the floor at its sides. Along it lies a lush, low runner of cherry-red and pale-pink garden roses, ranunculus and peonies with soft trailing greenery, with tall ivory taper candles (unlit) in clear glass holders between the flowers; simple white plates and one slim glass at each place, no cutlery; simple light oak chairs with ivory linen seat cushions on both sides. At the far end of the room stands one tall, sculptural arrangement of red and pink blossom on a pale stone plinth. The camera stands at the head of the table at eye level, in one-point perspective, looking down the whole length of the table to the far end of the room. Minimal, airy, modern and luminous, with bold red flowers. Soft warm afternoon light through the glass wall. No ornate mouldings, no chandeliers, no people."
+    },
+    "tables-end": {
+      "from": "end",
+      "prompt": "Edit this photograph: show the same room an hour earlier, halfway through the setup. {same} The long table stands exactly where it is now, dressed in the same ivory linen falling neatly to the floor, but nothing is on it yet: no flowers, no candles, no plates, no glasses. There are no chairs round it: the light oak chairs stand in four tall neat stacks against the right-hand wall. The tall blossom arrangement and its plinth are not there yet. On the floor beside the far end of the table wait the zinc buckets of cherry-red and pale-pink roses and peonies and the wooden crates of taper candles and glasses. The walls, the glass wall and the garden, the brass pendants, the floor and the soft warm afternoon light are exactly the same. No people."
+    },
+    "flowers-end": {
+      "from": "end",
+      "prompt": "Edit this photograph: show the same room half an hour earlier. {same} The long table, its ivory linen, the lush runner of cherry-red and pale-pink flowers, the taper candles in their glass holders and the tall blossom arrangement on its plinth at the far end are exactly as they are now. But there are no plates and no glasses on the table yet, and no chairs round it: the light oak chairs stand in four tall neat stacks against the right-hand wall, and two wooden crates of plates and glasses wait on the floor beside them. The walls, the glass wall and the garden, the brass pendants, the floor and the soft warm afternoon light are exactly the same. No people."
+    },
+    "bare-end": {
+      "from": "tables-fit",
+      "prompt": "Edit this photograph: show the same moment a little earlier, before the linen goes on. {same} Take the ivory linen off the long table: it is now a row of plain light oak trestle tables set end to end, bare wood, exactly as long and as wide as the dressed table, standing in exactly the same place. Two thick rolls of ivory linen lie side by side across the near end of the table. Everything else, the flower buckets, the crates, the stacks of chairs, the walls, the glass wall and the garden, the brass pendants, the floor and the soft warm afternoon light, is exactly the same. No people."
+    },
+    "start": {
+      "from": "bare-end",
+      "prompt": "Re-shoot this exact room with the camera moved to the right and turned: it now stands close to the plain limewash wall on the right, about a third of the way down the room, a little above head height, looking diagonally across the room towards the glass wall and the garden, so the long bare light-oak table, the two linen rolls on it, the flower buckets, the crates and the stacks of chairs are seen from the side, with the glass wall and the garden behind them and the far end of the room on the right. Keep the room, the table, the materials and the soft warm afternoon light exactly the same. A realistic interior photograph, 16:9, no text, no people."
+    },
+    "flowers": {
+      "from": "flowers-end",
+      "crop": {
+        "zoom": 1.08,
+        "center": [
+          0.5,
+          0.55
+        ]
+      }
+    },
+    "dusk": {
+      "from": "film-last",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: it is now evening, just after sunset. {same} Change only the light. Beyond the glass wall the courtyard garden turns a deep blue dusk; the room falls into soft, cool blue shadow, with the table, the flowers and the walls still clearly visible. Every light is still off: the brass pendants are dark and every candle is unlit. Natural evening interior photography, no haze."
+    },
+    "lit": {
+      "from": "dusk",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: light the room for dinner. {same} Change only the light. Every taper candle on the table is lit with a small, steady warm flame that glows on the linen, the flowers and the glasses; the three brass linear pendants glow softly at a low, warm level onto the table; the limewash walls take a warm candlelit glow; the tall blossom arrangement at the far end catches a soft warm light. Beyond the glass wall the garden stays deep blue dusk, with a few small warm garden lights among the trees. Realistic candlelit interior photography, rich and warm, no blown highlights, no lens flare."
+    },
+    "table": {
+      "size": {
+        "width": 1600,
+        "height": 2000
+      },
+      "prompt": "Real close-up photograph of a wedding table at golden hour: ivory linen, a low lush runner of cherry-red and pale-pink garden roses, ranunculus and peonies, a lit ivory taper candle in a clear glass holder, a simple white plate and a slim glass. Soft warm light, shallow depth of field, vertical framing, 50 mm lens. Elegant, bold red flowers, no cutlery, no text."
+    },
+    "bloom": {
+      "size": {
+        "width": 2400,
+        "height": 1600
+      },
+      "prompt": "Real interior photograph: a long floating cloud of pale-pink and white blossom suspended from the ornate ceiling of a neoclassical salon, seen from below at a slight angle, with a crystal chandelier glowing warm beside it and ivory mouldings around. Soft warm evening light. 24 mm lens. No people, no text."
+    },
+    "tables-fit": {
+      "from": "tables-end",
+      "paste": {
+        "donor": "flowers-end",
+        "rect": [
+          0.6770833333333334,
+          0.4074074074074074,
+          1,
+          1
+        ],
+        "feather": 0.005
+      }
+    },
+    "tables": {
+      "from": "tables-fit",
+      "crop": {
+        "zoom": 1.2,
+        "center": [
+          0.5,
+          0.55
+        ]
+      }
+    }
+  },
+  "film": {
+    "negative": "sharp people, faces, people standing still, a crowd, objects flying through the air, floating objects, things sliding by themselves, linen spreading over the floor, cloth flying, flowers flying, petals on the floor, text, logos, watermark, cuts, jump cuts, distortion, melting, warping walls, morphing room, extra windows, chandeliers, cartoon",
+    "segments": {
+      "open": {
+        "start": "start",
+        "end": "tables",
+        "duration": 5,
+        "prompt": "A real time-lapse of a wedding dinner being set up in a modern room, filmed on a motorised camera slider that glides smoothly the whole time. Time runs fast: the crew show only as soft, see-through, motion-blurred streaks that flicker in and out, never sharp and never standing still; anyone who passes near the camera is blurred into a faint transparent streak. The slider turns slowly from the corner view to look down the length of the room from beyond the near end of the long table. Two crew unroll the ivory linen from the rolls along the bare oak table, from the near end to the far end, and smooth it down both sides to the floor; the linen stays on the table the whole time. Nothing else in the room moves: the flower buckets, the crates and the stacks of chairs stay exactly where they are. Every change is made by the crew; nothing moves, slides or grows by itself. Patches of sunlight drift slowly across the floor. The walls, the glass wall and the garden, the brass pendants and the floor stay exactly the same. A realistic, documentary time-lapse."
+      },
+      "flowers": {
+        "start": "tables",
+        "end": "flowers",
+        "duration": 4,
+        "prompt": "A real time-lapse of a wedding dinner being set up in a modern room, filmed on a motorised camera slider that glides smoothly the whole time. Time runs fast: the crew show only as soft, see-through, motion-blurred streaks that flicker in and out, never sharp and never standing still, and things change in small quick steps as the crew moves them. The crew work at the sides and the far end of the room and never pass close in front of the camera. The slider glides slowly back down the room. Florists lift the flowers out of the buckets at the far end and carry the arrangements to the table one at a time, setting each one down by hand on the middle of the table, working from the far end towards the camera, until a low runner of cherry-red and pale-pink blooms fills the table; they stand the taper candles in their glass holders along it and carry the tall blossom arrangement to its plinth at the far end. The stacks of chairs and the crates by the right-hand wall stay exactly where they are. Every change is made by the crew; nothing moves, slides or grows by itself. Patches of sunlight drift slowly across the floor. The walls, the glass wall and the garden, the brass pendants and the floor stay exactly the same. A realistic, documentary time-lapse."
+      },
+      "chairs": {
+        "start": "flowers",
+        "end": "end",
+        "duration": 4,
+        "prompt": "A real time-lapse of a wedding dinner being set up in a modern room, filmed on a motorised camera slider that glides smoothly the whole time. Time runs fast: the crew show only as soft, see-through, motion-blurred streaks that flicker in and out, never sharp and never standing still, and things change in small quick steps as the crew moves them. The slider glides slowly back. The crew carry the chairs one by one from the stacks by the wall and set them in place along both sides of the table, then lay a plate and a glass at each place, and leave; at the end the room is still and empty of people. Every change is made by the crew; nothing moves, slides or grows by itself. Patches of sunlight drift slowly across the floor. The walls, the glass wall and the garden, the brass pendants and the floor stay exactly the same. A realistic, documentary time-lapse."
+      }
+    }
+  },
+  "frames": {
+    "fps": 10,
+    "pick": [
+      2,
+      4,
+      6,
+      9,
+      11,
+      14,
+      16,
+      18,
+      21,
+      23,
+      26,
+      28,
+      30,
+      33,
+      35,
+      38,
+      40,
+      42,
+      45,
+      47,
+      50,
+      52,
+      54,
+      57,
+      59,
+      62,
+      64,
+      66,
+      69,
+      71,
+      74,
+      76,
+      78,
+      81,
+      83,
+      86,
+      88,
+      90,
+      93,
+      95,
+      98,
+      100,
+      102,
+      105,
+      107,
+      110,
+      112,
+      114,
+      116,
+      118,
+      119,
+      120,
+      121,
+      122,
+      124,
+      126,
+      129,
+      131,
+      134,
+      136,
+      138,
+      141,
+      143,
+      146,
+      148,
+      150,
+      153,
+      155,
+      158,
+      160,
+      162,
+      165,
+      167,
+      170,
+      172,
+      174,
+      177,
+      179,
+      182,
+      184,
+      186,
+      189,
+      191,
+      194,
+      197,
+      199,
+      201,
+      204,
+      208,
+      210,
+      213,
+      215,
+      218,
+      220,
+      222,
+      225,
+      227,
+      230,
+      232,
+      234,
+      237,
+      239,
+      242,
+      244,
+      246,
+      249,
+      251,
+      254,
+      256,
+      258,
+      261,
+      263,
+      266,
+      268,
+      270,
+      273,
+      275,
+      278,
+      280,
+      282,
+      285,
+      287,
+      290,
+      293,
+      294,
+      297,
+      299,
+      306,
+      309,
+      311
+    ]
+  },
+  "web": {
+    "table": 1400,
+    "bloom": 2000,
+    "end": 2400
+  }
+}

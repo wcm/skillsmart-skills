@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Misura · Kitchens drawn to the millimetre, built in four days</title>
+<meta name="description" content="Misura is a kitchen maker in Milan. We draw your kitchen to the millimetre, make it in our workshop and fit it in four days.">
+<meta name="theme-color" content="#F6F3EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315171A'/%3E%3Ccircle cx='23' cy='9' r='4' fill='%23F2CF5B'/%3E%3Cpath d='M7 24V11l6 7.5 6-7.5v13' fill='none' stroke='%23F6F3EC' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="frames/0001.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="frames-phone/0001.webp" media="(max-width: 759px)">
+<link rel="stylesheet" href="../engine/chantier.css">
+<link rel="stylesheet" href="../engine/hud.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="nav-mark" href="#build" aria-label="Misura, back to the top">Misura</a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#process"><i>01</i>Process</a>
+    <a href="#finishes"><i>02</i>Finishes</a>
+    <a href="#visit"><i>03</i>Visit</a>
+  </nav>
+  <div class="nav-end">
+    <p class="nav-clock"><span>Milano</span> <time data-clock="Europe/Rome">--:--</time></p>
+    <a class="nav-cta" href="#visit">Book a visit</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- The build: one scroll plays the kitchen from flat parts to the finished room, inside a working drawing -->
+  <section class="ch" id="build" aria-label="A Misura kitchen is drawn, then built, as you scroll">
+    <div class="ch-stage">
+      <!-- the engine adds the canvas -->
+
+      <!-- the working drawing round the film: dimension lines draw in during Measure, once the title has gone, and
+           land on the finished kitchen's real edges (the wall run, 4 800, and its height, 2 700); the chain ticks sit on
+           the door joints. They fold back into their figures as evening falls. -->
+      <div class="dwg" data-ch-bar="0.055 0.115" aria-hidden="true">
+        <div class="dim dim-x">
+          <i class="dim-ln"></i>
+          <i class="dim-chain"><i style="--s:.0888"></i><i style="--s:.1773"></i><i style="--s:.2581"></i><i style="--s:.3394"></i><i style="--s:.4123"></i><i style="--s:.4845"></i><i style="--s:.556"></i><i style="--s:.6173"></i><i style="--s:.691"></i><i style="--s:.7639"></i><i style="--s:.8462"></i><i style="--s:.9213"></i></i>
+          <b class="dim-fig"><span data-ch-count data-from="0" data-to="4800" data-at="0.055 0.115" data-format="mm">0</span></b>
+        </div>
+        <div class="dim dim-y">
+          <i class="dim-ln"></i>
+          <b class="dim-fig"><span data-ch-count data-from="0" data-to="2700" data-at="0.065 0.115" data-format="mm">0</span></b>
+        </div>
+      </div>
+
+      <div class="hud" data-ch-bar="0.02 0.055">
+        <i class="hud-veil"></i>
+        <i class="hud-veil hud-veil-top"></i>
+
+        <div class="hud-count">
+          <p class="hud-label">Modules fitted</p>
+          <!-- the wall's twelve modules go up during Carcass, the island's six as it hinges up (main.js: MODULES) -->
+          <p class="hud-num"><span data-ch-count data-from="0" data-to="1" data-at="0 1" data-format="modules">00</span><small>/18</small></p>
+          <i class="hud-segs" style="--n: 18; --k: 0"></i>
+        </div>
+
+        <ol class="hud-ruler" aria-label="Stages">
+          <!-- where each stage starts in the film (frame i of 158 plays at p = 0.04 + (i - 1) / 157 × 0.7): the first oak
+               panels lift at frame 21, the wall of units is done at 58 and its doors swing open and shut, the flat
+               butter boards start to hinge up at 80, the terrazzo slab lifts off its trestles at 96 and has landed on
+               the island by 122, then the tap, the pendants and the stools -->
+          <li data-ch-step="0.04"><b>01</b><span>Measure</span></li>
+          <li data-ch-step="0.1292"><b>02</b><span>Carcass</span></li>
+          <li data-ch-step="0.2941"><b>03</b><span>Fronts</span></li>
+          <li data-ch-step="0.3922"><b>04</b><span>Island</span></li>
+          <li data-ch-step="0.4636"><b>05</b><span>Stone</span></li>
+          <li data-ch-step="0.5795"><b>06</b><span>Fittings</span></li>
+          <li class="is-end" data-ch-step="0.76" style="--x: 1"><span>Light</span></li>
+        </ol>
+
+        <!-- one caption per stage, covering the whole stage and settling just as it starts; main.js fades each out just
+             before the next comes in. In a fast pass (the glide) only the data-cap-key ones show, each long enough to
+             read. Fronts sits on the bare wall under the wall cabinets, clear of the doors it talks about. -->
+        <p class="hud-cap" data-cap="0.052 0.120"><b>01 / 06 · Measure</b><span>Every part arrives cut to size.</span></p>
+        <p class="hud-cap cap-carcass" data-cap="0.120 0.285" data-cap-key><b>02 / 06 · Carcass</b><span>Oak panels lift off the floor onto the wall.</span></p>
+        <p class="hud-cap cap-wall" data-cap="0.285 0.383"><b>03 / 06 · Fronts</b><span>Doors on. Each one opens and shuts.</span></p>
+        <p class="hud-cap" data-cap="0.383 0.455" data-cap-key><b>04 / 06 · Island</b><span>Butter boards hinge up into the island.</span></p>
+        <p class="hud-cap" data-cap="0.455 0.571"><b>05 / 06 · Stone</b><span>The terrazzo top settles into place.</span></p>
+        <p class="hud-cap" data-cap="0.571 0.752" data-cap-key><b>06 / 06 · Fittings</b><span>A tap, two lamps,<br> three stools.</span></p>
+
+        <!-- the drawing's title block: day and time run, FITTED fills in when the film ends -->
+        <div class="tblock" role="group" aria-label="Drawing title block">
+          <p class="tb-head"><b>Misura</b><span>K—01</span><span>Scale 1:20</span></p>
+          <dl class="tb-cells">
+            <div><dt>Drawn</dt><dd>07:30</dd></div>
+            <div><dt>Day</dt><dd><span data-ch-count data-from="0" data-to="4" data-at="0.04 0.74" data-format="day">01</span><small>/04</small></dd></div>
+            <div><dt>Time</dt><dd data-ch-count data-from="0" data-to="4" data-at="0.04 0.74" data-format="shift">07:30</dd></div>
+            <div class="tb-fit" data-ch-bar="0.722 0.74"><dt>Fitted</dt><dd><span class="tb-no">—</span><span class="tb-yes">Day 04</span></dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="intro" data-ch-in="0 0.02">
+        <div class="intro-top">
+          <h1 class="intro-title">Misura</h1>
+          <a class="round round-lg" href="#visit"><span class="round-label">Book a visit</span><i class="round-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M8.5 6H18v9.5"/></svg></i></a>
+        </div>
+        <i class="intro-rule" aria-hidden="true"></i>
+        <div class="intro-row">
+          <p class="intro-line">Kitchens drawn to the millimetre in our Milan workshop. Built in four days.</p>
+          <p class="intro-pills"><a class="pill" href="#finishes">Finishes</a><a class="pill" href="#process">Process</a></p>
+        </div>
+      </div>
+
+      <div class="end" data-ch-in="0.865">
+        <p class="end-kick"><span>K—01</span><span>Day 04</span><span>18:00</span></p>
+        <h2 class="end-title">Fitted.</h2>
+        <div class="end-act">
+          <a class="round" href="#visit"><span class="round-label">Book a design visit</span><i class="round-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M8.5 6H18v9.5"/></svg></i></a>
+          <a class="pill pill-light" href="#finishes">See the finishes</a>
+        </div>
+      </div>
+
+      <p class="hint" data-ch-hint aria-hidden="true"><span>Scroll to build</span><i></i></p>
+    </div>
+  </section>
+
+  <!-- Process: three numbers in hairline cells -->
+  <section class="process" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow"><b>/01</b>Process</p>
+        <h2 class="h2" id="process-title">On site Monday.<br> Cooking by Thursday.</h2>
+        <p class="sec-note">We measure your room once, draw every module, cut it in our workshop and bring it flat. Four days later you cook in it.</p>
+      </header>
+      <!-- each number carries a dimension line, as on the drawing: one tick per module, one slab with no joins, one
+           segment per day on site -->
+      <ol class="figs">
+        <li data-reveal>
+          <p class="fig"><span class="fig-n">18</span><sup class="tag">Modules</sup></p>
+          <p class="fig-dim" style="--n: 18" aria-hidden="true"><i class="fd-ln"></i><i class="fd-segs"></i><b>18 × 600</b></p>
+          <p class="fig-t">Drawn, cut and numbered before anything leaves the workshop.</p>
+        </li>
+        <li data-reveal style="--delay: .08s">
+          <p class="fig"><span class="fig-n">30</span><sup class="tag">mm</sup></p>
+          <p class="fig-dim" style="--n: 1" aria-hidden="true"><i class="fd-ln"></i><b>3 900 · No joins</b></p>
+          <p class="fig-t">Of terrazzo on the island, poured in one slab, with no joins.</p>
+        </li>
+        <li data-reveal style="--delay: .16s">
+          <p class="fig"><span class="fig-n">4</span><sup class="tag">Days on site</sup></p>
+          <p class="fig-dim" style="--n: 4" aria-hidden="true"><i class="fd-ln"></i><i class="fd-segs"></i><b>Day 01 → 04</b></p>
+          <p class="fig-t">From flat parts on the floor to the lights on, and the room left clean.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Finishes: one at a time, with a real texture and three specs -->
+  <section class="finishes" id="finishes" aria-labelledby="fin-title">
+    <div class="wrap">
+      <header class="fin-head" data-reveal>
+        <p class="eyebrow"><b>/02</b>Finishes</p>
+        <h2 class="h2" id="fin-title">Five materials. Nothing else.</h2>
+      </header>
+      <div class="fin" data-reveal style="--delay: .06s">
+        <div class="fin-pics" aria-hidden="true">
+          <i class="fin-pic is-on" style="--pic: url(img/terrazzo.webp); --size: 225.81%; --pos: 79.49% 100%"></i>
+          <i class="fin-pic" style="--pic: url(img/oak.webp); --size: 333.33%; --pos: 28.57% 38.2%"></i>
+          <i class="fin-pic" style="--pic: url(img/terrazzo.webp); --size: 159.09%; --pos: 50% 43.68%"></i>
+          <i class="fin-pic" style="--pic: url(img/end.webp); --size: 631.58%; --pos: 59.9% 48.45%"></i>
+          <i class="fin-pic" style="--pic: url(img/lit.webp); --size: 436.36%; --pos: 13.6% 11.15%"></i>
+          <!-- a drawing's title block on the sample, as on the hero -->
+          <p class="fin-tb"><b>K—01</b><span>Finish <em class="fin-tb-i">01</em></span><span>1:1</span></p>
+        </div>
+        <div class="fin-body">
+          <div class="fin-bar">
+            <p class="fin-count" aria-live="polite"><b class="fin-i">01</b> / 05</p>
+            <p class="fin-arrows">
+              <button class="sq" type="button" data-fin="-1" aria-label="Previous finish"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
+              <button class="sq" type="button" data-fin="1" aria-label="Next finish"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            </p>
+          </div>
+          <div class="fin-texts">
+            <article class="fin-text is-on">
+              <h3 class="fin-name">Butter lacquer</h3>
+              <p class="fin-line">A soft yellow you can lean on. Satin, wipeable, made for the island.</p>
+              <dl class="specs"><div><dt>Finish</dt><dd>Satin lacquer, 25 gloss</dd></div><div><dt>Core</dt><dd>19 mm MDF, sealed edges</dd></div><div><dt>Used on</dt><dd>Island fronts</dd></div></dl>
+            </article>
+            <article class="fin-text">
+              <h3 class="fin-name">Pale oak</h3>
+              <p class="fin-line">Rift-cut white oak with a straight, quiet grain, oiled by hand.</p>
+              <dl class="specs"><div><dt>Finish</dt><dd>Matt hardwax oil</dd></div><div><dt>Veneer</dt><dd>0.6 mm on 19 mm board</dd></div><div><dt>Used on</dt><dd>Fronts, tall units, shelves</dd></div></dl>
+            </article>
+            <article class="fin-text">
+              <h3 class="fin-name">Terrazzo</h3>
+              <p class="fin-line">Marble chips set in white cement, ground and sealed in Verona.</p>
+              <dl class="specs"><div><dt>Thickness</dt><dd>30 mm, one slab</dd></div><div><dt>Edge</dt><dd>Eased, 3 mm radius</dd></div><div><dt>Used on</dt><dd>Worktops, splash ledge</dd></div></dl>
+            </article>
+            <article class="fin-text">
+              <h3 class="fin-name">Brushed steel</h3>
+              <p class="fin-line">One metal for the hinges, the tap and the sink, so nothing clashes.</p>
+              <dl class="specs"><div><dt>Grade</dt><dd>AISI 304</dd></div><div><dt>Finish</dt><dd>Brushed, No. 4 grain</dd></div><div><dt>Used on</dt><dd>Hinges, tap, sink</dd></div></dl>
+            </article>
+            <article class="fin-text">
+              <h3 class="fin-name">Warm light</h3>
+              <p class="fin-line">LED strips under the units and in the shelves, on one switch.</p>
+              <dl class="specs"><div><dt>Colour</dt><dd>2 700 K</dd></div><div><dt>Control</dt><dd>Dimmable, one switch</dd></div><div><dt>Used on</dt><dd>Wall units, shelves, pendants</dd></div></dl>
+            </article>
+          </div>
+          <p class="fin-tabs" role="group" aria-label="Choose a finish">
+            <button type="button" aria-pressed="true" aria-label="Butter lacquer" style="--pic: url(img/terrazzo.webp); --size: 225.81%; --pos: 79.49% 100%"></button>
+            <button type="button" aria-pressed="false" aria-label="Pale oak" style="--pic: url(img/oak.webp); --size: 333.33%; --pos: 28.57% 38.2%"></button>
+            <button type="button" aria-pressed="false" aria-label="Terrazzo" style="--pic: url(img/terrazzo.webp); --size: 159.09%; --pos: 50% 43.68%"></button>
+            <button type="button" aria-pressed="false" aria-label="Brushed steel" style="--pic: url(img/end.webp); --size: 631.58%; --pos: 59.9% 48.45%"></button>
+            <button type="button" aria-pressed="false" aria-label="Warm light" style="--pic: url(img/lit.webp); --size: 436.36%; --pos: 13.6% 11.15%"></button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a design visit: room size, layout, a day -->
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow"><b>/03</b>Book a design visit</p>
+        <h2 class="h2" id="visit-title">We come round, measure,<br> then draw it.</h2>
+        <p class="sec-note">A designer visits with a laser measure and a sketchbook. Free in Milano, about ninety minutes. You get the drawing a week later.</p>
+      </header>
+
+      <form class="book" id="book" novalidate data-reveal style="--delay: .06s">
+        <div class="step" role="group" aria-labelledby="step-1">
+          <p class="step-k" id="step-1"><b>01</b>Room size</p>
+          <div class="step-body sizes">
+            <label class="field"><span>Width</span><input name="width" inputmode="numeric" maxlength="6" placeholder="4 800" autocomplete="off"><em>mm</em></label>
+            <label class="field"><span>Depth</span><input name="depth" inputmode="numeric" maxlength="6" placeholder="3 600" autocomplete="off"><em>mm</em></label>
+            <label class="field"><span>Ceiling</span><input name="height" inputmode="numeric" maxlength="6" placeholder="2 700" autocomplete="off"><em>mm</em></label>
+          </div>
+        </div>
+
+        <div class="step" role="radiogroup" aria-labelledby="step-2">
+          <p class="step-k" id="step-2"><b>02</b>Layout</p>
+          <!-- the chosen plan is dimensioned with the room size typed in step 01 (main.js keeps the figures live) -->
+          <div class="step-body plans">
+            <label class="plan"><input type="radio" name="layout" value="straight">
+              <span class="plan-pic"><svg viewBox="0 0 160 112" aria-hidden="true"><path class="wall" fill-rule="evenodd" d="M8 8h144v96H8zM12 12v88h136V12z"/><path class="unit" d="M12 12h136v18H12z"/><path class="mod" d="M29 12v18M46 12v18M63 12v18M80 12v18M97 12v18M114 12v18M131 12v18"/><path class="gap" d="M108 99h24v6h-24z"/><path class="door" d="M132 100V76M108 100A24 24 0 0 1 132 76"/><path class="dimln" d="M8 -6H152M8 -11V3M152 -11V3M5 -3l6-6M149 -3l6-6M-6 8V104M-11 8H3M-11 104H3M-9 11l6-6M-9 107l6-6"/></svg><b class="plan-fig plan-w" aria-hidden="true">4 800</b><b class="plan-fig plan-d" aria-hidden="true">3 600</b></span>
+              <span class="plan-name"><i></i>Straight</span></label>
+            <label class="plan"><input type="radio" name="layout" value="l-shape">
+              <span class="plan-pic"><svg viewBox="0 0 160 112" aria-hidden="true"><path class="wall" fill-rule="evenodd" d="M8 8h144v96H8zM12 12v88h136V12z"/><path class="unit" d="M12 12h136v18H30v54H12z"/><path class="mod" d="M30 12v18M47 12v18M64 12v18M81 12v18M98 12v18M114 12v18M131 12v18M12 48h18M12 66h18"/><path class="gap" d="M108 99h24v6h-24z"/><path class="door" d="M132 100V76M108 100A24 24 0 0 1 132 76"/><path class="dimln" d="M8 -6H152M8 -11V3M152 -11V3M5 -3l6-6M149 -3l6-6M-6 8V104M-11 8H3M-11 104H3M-9 11l6-6M-9 107l6-6"/></svg><b class="plan-fig plan-w" aria-hidden="true">4 800</b><b class="plan-fig plan-d" aria-hidden="true">3 600</b></span>
+              <span class="plan-name"><i></i>L-shape</span></label>
+            <label class="plan"><input type="radio" name="layout" value="u-shape">
+              <span class="plan-pic"><svg viewBox="0 0 160 112" aria-hidden="true"><path class="wall" fill-rule="evenodd" d="M8 8h144v96H8zM12 12v88h136V12z"/><path class="unit" d="M12 12h136v72h-18V30H30v54H12z"/><path class="mod" d="M30 12v18M130 12v18M47 12v18M64 12v18M80 12v18M97 12v18M113 12v18M12 48h18M12 66h18M130 48h18M130 66h18"/><path class="gap" d="M68 99h24v6h-24z"/><path class="door" d="M92 100V76M68 100A24 24 0 0 1 92 76"/><path class="dimln" d="M8 -6H152M8 -11V3M152 -11V3M5 -3l6-6M149 -3l6-6M-6 8V104M-11 8H3M-11 104H3M-9 11l6-6M-9 107l6-6"/></svg><b class="plan-fig plan-w" aria-hidden="true">4 800</b><b class="plan-fig plan-d" aria-hidden="true">3 600</b></span>
+              <span class="plan-name"><i></i>U-shape</span></label>
+            <label class="plan"><input type="radio" name="layout" value="island" checked>
+              <span class="plan-pic"><svg viewBox="0 0 160 112" aria-hidden="true"><path class="wall" fill-rule="evenodd" d="M8 8h144v96H8zM12 12v88h136V12z"/><path class="unit" d="M12 12h136v18H12z"/><path class="unit" d="M38 54h84v22H38z"/><path class="mod" d="M29 12v18M46 12v18M63 12v18M80 12v18M97 12v18M114 12v18M131 12v18M59 54v22M80 54v22M101 54v22"/><path class="gap" d="M108 99h24v6h-24z"/><path class="door" d="M132 100V76M108 100A24 24 0 0 1 132 76"/><path class="dimln" d="M8 -6H152M8 -11V3M152 -11V3M5 -3l6-6M149 -3l6-6M-6 8V104M-11 8H3M-11 104H3M-9 11l6-6M-9 107l6-6"/></svg><b class="plan-fig plan-w" aria-hidden="true">4 800</b><b class="plan-fig plan-d" aria-hidden="true">3 600</b></span>
+              <span class="plan-name"><i></i>Island</span></label>
+          </div>
+        </div>
+
+        <div class="step" role="group" aria-labelledby="step-3">
+          <p class="step-k" id="step-3"><b>03</b>A day</p>
+          <div class="step-body days">
+            <div class="day-row" id="days" role="radiogroup" aria-label="Preferred day"></div>
+            <label class="field field-wide"><span>Email</span><input name="email" type="email" placeholder="you@example.com" autocomplete="off"></label>
+          </div>
+        </div>
+
+        <div class="book-send">
+          <p class="demo-note">This is a demo; nothing is sent.</p>
+          <p class="book-out" id="book-out" aria-live="polite"></p>
+          <button class="round round-send" type="submit"><span class="round-label">Request the visit</span><i class="round-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 18 18 6M8.5 6H18v9.5"/></svg></i></button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-cell foot-brand">
+      <p class="foot-mark">Misura</p>
+      <p>Kitchens drawn to the millimetre and built in four days.</p>
+    </div>
+    <div class="foot-cell">
+      <p class="eyebrow">Studio &amp; workshop</p>
+      <p>Via delle Squadre 12<br>Milano</p>
+    </div>
+    <div class="foot-cell">
+      <p class="eyebrow">Visits</p>
+      <p>Monday to Friday<br>08:00–18:00<br>Saturdays by appointment</p>
+    </div>
+    <div class="foot-cell foot-now">
+      <p class="eyebrow">Milano, now</p>
+      <p class="foot-clock"><time data-clock="Europe/Rome">--:--</time></p>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <p>© 2026 Misura · A Build Hero demo: every picture and film here is AI-generated.</p>
+    <a href="#build">Back to the top</a>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
