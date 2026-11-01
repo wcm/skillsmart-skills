@@ -1,0 +1,178 @@
+/* Loupe: what every demo shares. A page sets its fonts and these tokens, then places the [data-lp] elements.
+   --lp-ink        lines and small type over the picture
+   --lp-accent     the one accent: the level you are on, the needle, spot numbers
+   --lp-glass      the tint behind chips
+   --lp-ui         the small readout type (a mono)
+   ui.js writes data-level, data-depth, data-moving, data-dir, --lp-depth and --lp-go on <html>. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; --lp-depth: 0; }
+body { margin: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, canvas { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+
+:root {
+  --lp-ink: #fff;
+  --lp-accent: #ffd27a;
+  --lp-glass: rgba(16, 14, 12, .32);
+  --lp-hair: color-mix(in oklab, var(--lp-ink) 34%, transparent);
+  --lp-ui: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --lp-ease: cubic-bezier(.2, .8, .2, 1);
+  --lp-inset: clamp(14px, 2vw, 28px);
+}
+
+/* the picture: full screen; the canvas over a plain picture that shows first (and stays if WebGL is missing) */
+.lp-stage { position: relative; width: 100%; height: 100svh; overflow: hidden; background: #0d0c0b; isolation: isolate; touch-action: none; user-select: none; -webkit-user-select: none; }
+.lp-stage > img.lp-first, .lp-stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lp-stage > img.lp-first { object-fit: cover; transform: scale(1.035); }
+.lp-stage > canvas { opacity: 0; transition: opacity .7s ease; }
+.lp-stage > canvas.ready { opacity: 1; }
+.lp-stage.lp-loading { cursor: progress; }
+
+/* viewfinder corners, and a reticle while moving */
+.lp-corners { position: absolute; inset: var(--lp-inset); pointer-events: none; z-index: 2; }
+.lp-corners i { position: absolute; width: 22px; height: 22px; border: 0 solid var(--lp-hair); opacity: .9; transition: transform .6s var(--lp-ease); }
+.lp-corners i:nth-child(1) { left: 0; top: 0; border-left-width: 1px; border-top-width: 1px; }
+.lp-corners i:nth-child(2) { right: 0; top: 0; border-right-width: 1px; border-top-width: 1px; }
+.lp-corners i:nth-child(3) { left: 0; bottom: 0; border-left-width: 1px; border-bottom-width: 1px; }
+.lp-corners i:nth-child(4) { right: 0; bottom: 0; border-right-width: 1px; border-bottom-width: 1px; }
+html[data-moving] .lp-corners i:nth-child(1) { transform: translate(6px, 6px); }
+html[data-moving] .lp-corners i:nth-child(2) { transform: translate(-6px, 6px); }
+html[data-moving] .lp-corners i:nth-child(3) { transform: translate(6px, -6px); }
+html[data-moving] .lp-corners i:nth-child(4) { transform: translate(-6px, -6px); }
+.lp-reticle { position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; opacity: 0; transition: opacity .3s; }
+.lp-reticle::before, .lp-reticle::after { content: ""; position: absolute; background: var(--lp-ink); opacity: .7; }
+.lp-reticle::before { left: 8.5px; top: 0; width: 1px; height: 18px; }
+.lp-reticle::after { top: 8.5px; left: 0; height: 1px; width: 18px; }
+html[data-moving] .lp-reticle { opacity: 1; }
+
+/* spots: a ring with a dot, and a chip that says what is there and how big it is */
+.lp-spots { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.lp-spot { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: auto; }
+.lp-spot-dot { position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; }
+.lp-spot-dot::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--lp-ink); box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 1px 8px rgba(0,0,0,.3); transition: transform .35s var(--lp-ease), background-color .3s; }
+.lp-spot-dot::after { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid var(--lp-ink); opacity: 0; animation: lp-breathe 2.8s ease-out infinite; animation-delay: calc(var(--i) * .45s); }
+.lp-spot-label { position: absolute; left: 22px; top: 0; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; padding: 7px 12px 7px 9px; border-radius: 999px; font: 500 10.5px/1 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--lp-ink); background: var(--lp-glass); border: 1px solid color-mix(in oklab, var(--lp-ink) 22%, transparent); -webkit-backdrop-filter: blur(12px) saturate(1.2); backdrop-filter: blur(12px) saturate(1.2); transition: transform .4s var(--lp-ease), background-color .3s, border-color .3s; }
+.lp-spot-label b { font-weight: 600; color: var(--lp-accent); }
+.lp-spot-label em { font-style: normal; opacity: .62; max-width: 0; overflow: hidden; transition: max-width .45s var(--lp-ease); }
+.lp-spot.flip .lp-spot-label { left: auto; right: 22px; }
+.lp-spot:hover .lp-spot-dot::before, .lp-spot:focus-visible .lp-spot-dot::before { transform: scale(1.4); background: var(--lp-accent); }
+.lp-spot:hover .lp-spot-label em, .lp-spot:focus-visible .lp-spot-label em { max-width: 9em; }
+.lp-spot:hover .lp-spot-label, .lp-spot:focus-visible .lp-spot-label { border-color: color-mix(in oklab, var(--lp-ink) 55%, transparent); }
+.lp-spot:focus-visible { outline: none; }
+.lp-spot.edge .lp-spot-dot::before { width: 0; height: 0; border-radius: 0; background: none; box-shadow: none; border: 6px solid transparent; border-left: 9px solid var(--lp-ink); transform: rotate(var(--edge)); transform-origin: 3px 6px; }
+.lp-spots .lp-spot { opacity: 0; transition: opacity .5s ease; }
+.lp-spots.on .lp-spot { opacity: 1; transition-delay: calc(.15s + var(--i) * .09s); }
+@keyframes lp-breathe { 0% { transform: scale(.55); opacity: .6; } 100% { transform: scale(1.9); opacity: 0; } }
+
+/* notes pinned to the picture: a dot, a leader line and a label; they come in after the level's words */
+.lp-notes { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.lp-note { position: absolute; left: 0; top: 0; width: 0; height: 0; opacity: 0; transition: opacity .4s ease; }
+.lp-notes.on .lp-note { opacity: 1; transition: opacity .8s ease calc(.55s + var(--i) * .14s); }
+.lp-note i { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--lp-ink); box-shadow: 0 0 0 3px color-mix(in oklab, var(--lp-ink) 22%, transparent); }
+.lp-note span { position: absolute; top: 0; transform: translateY(-50%); white-space: nowrap; font: 500 10.5px/1 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--lp-ink); padding: 6px 9px; border-radius: 4px; background: var(--lp-glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.lp-note span::before { content: ""; position: absolute; top: 50%; width: 30px; height: 1px; background: color-mix(in oklab, var(--lp-ink) 70%, transparent); }
+.lp-note.right span { left: 40px; }
+.lp-note.right span::before { right: 100%; }
+.lp-note.left span { right: 40px; }
+.lp-note.left span::before { left: 100%; }
+
+/* the frame round the area a dive goes into */
+.lp-frame { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; opacity: 0; will-change: transform, width, height; }
+.lp-frame:not(.on) { visibility: hidden; }
+.lp-frame i { position: absolute; width: min(22px, 30%); height: min(22px, 30%); border: 0 solid var(--lp-ink); }
+.lp-frame i:nth-child(1) { left: 0; top: 0; border-left-width: 1.5px; border-top-width: 1.5px; }
+.lp-frame i:nth-child(2) { right: 0; top: 0; border-right-width: 1.5px; border-top-width: 1.5px; }
+.lp-frame i:nth-child(3) { left: 0; bottom: 0; border-left-width: 1.5px; border-bottom-width: 1.5px; }
+.lp-frame i:nth-child(4) { right: 0; bottom: 0; border-right-width: 1.5px; border-bottom-width: 1.5px; }
+.lp-frame-tag { position: absolute; left: 0; bottom: calc(100% + 8px); font: 500 10px/1 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; color: var(--lp-ink); padding: 5px 8px; border-radius: 4px; background: var(--lp-glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* ruler: a log scale, biggest view first. Upright by default (level names left, decades right); data-orient="h"
+   lays it along the bottom (names above, decades below). Levels one click away show as dots without names. */
+.lp-ruler { position: absolute; z-index: 3; pointer-events: none; font: 500 9.5px/1 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--lp-ink); }
+.lp-ruler-scale, .lp-ruler-marks { position: absolute; }
+.lp-ruler-scale i { position: absolute; background: var(--lp-hair); }
+.lp-ruler-scale i.major { background: color-mix(in oklab, var(--lp-ink) 70%, transparent); }
+.lp-ruler-scale i.major::after { content: attr(data-label); position: absolute; white-space: nowrap; opacity: .55; font-size: 8.5px; letter-spacing: .04em; }
+.lp-mark { position: absolute; display: flex; align-items: center; gap: 8px; pointer-events: auto; white-space: nowrap; opacity: .66; transition: opacity .3s, color .3s; }
+.lp-mark.next span { display: none; }
+.lp-mark.next { opacity: .5; }
+.lp-mark.here { opacity: 1; color: var(--lp-accent); }
+.lp-mark:hover { opacity: 1; }
+.lp-ruler-needle { position: absolute; border: 0 solid var(--lp-accent); box-shadow: 0 0 10px color-mix(in oklab, var(--lp-accent) 60%, transparent); }
+.lp-ruler-needle span { display: none; }
+
+.lp-ruler:not([data-orient="h"]) { width: 176px; }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-scale { right: 44px; top: 0; bottom: 0; width: 14px; border-right: 1px solid var(--lp-hair); }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-scale i { right: 0; top: var(--at); width: 5px; height: 1px; }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-scale i.major { width: 12px; }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-scale i.major::after { left: 19px; top: -4px; }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-marks { inset: 0 66px 0 0; }
+.lp-ruler:not([data-orient="h"]) .lp-mark { right: 0; top: var(--at); transform: translateY(-50%); }
+.lp-ruler:not([data-orient="h"]) .lp-mark::after { content: ""; width: 10px; height: 1px; background: currentColor; }
+.lp-ruler:not([data-orient="h"]) .lp-mark.next::after { width: 4px; height: 4px; border-radius: 50%; }
+.lp-ruler:not([data-orient="h"]) .lp-ruler-needle { right: 38px; top: var(--at); width: 28px; height: 0; border-top-width: 1.5px; }
+
+.lp-ruler[data-orient="h"] { height: 46px; }
+.lp-ruler[data-orient="h"] .lp-ruler-scale { left: 0; right: 0; top: 22px; height: 10px; border-top: 1px solid var(--lp-hair); }
+.lp-ruler[data-orient="h"] .lp-ruler-scale i { left: var(--at); top: 0; width: 1px; height: 4px; }
+.lp-ruler[data-orient="h"] .lp-ruler-scale i.major { height: 9px; }
+.lp-ruler[data-orient="h"] .lp-ruler-scale i.major::after { top: 13px; left: 0; transform: translateX(-50%); }
+.lp-ruler[data-orient="h"] .lp-ruler-marks { left: 0; right: 0; top: 0; height: 20px; }
+.lp-ruler[data-orient="h"] .lp-mark { left: var(--at); bottom: 2px; transform: translateX(-50%); flex-direction: column-reverse; gap: 5px; }
+.lp-ruler[data-orient="h"] .lp-mark::after { content: ""; width: 1px; height: 6px; background: currentColor; }
+.lp-ruler[data-orient="h"] .lp-mark.next::after { width: 4px; height: 4px; border-radius: 50%; }
+.lp-ruler[data-orient="h"] .lp-ruler-needle { left: var(--at); top: 14px; height: 20px; width: 0; border-left-width: 1.5px; }
+
+/* crumbs: the way back up, with little round pictures */
+.lp-crumbs { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font: 500 10.5px/1 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; }
+.lp-crumb { display: inline-flex; align-items: center; gap: 8px; opacity: .66; transition: opacity .3s; }
+.lp-crumb img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px color-mix(in oklab, currentColor 40%, transparent); }
+.lp-crumb.here { opacity: 1; }
+.lp-crumb.pending { opacity: .35; }
+.lp-crumb:hover { opacity: 1; }
+.lp-crumb-sep { width: 16px; height: 1px; background: currentColor; opacity: .35; }
+
+/* copy: swapped on arrival; its parts come in one after another, the title rising out of a mask */
+[data-lp="copy"] { display: grid; }
+.lp-copy-in { grid-area: 1 / 1; }
+.lp-copy-in > * { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--lp-ease), transform .9s var(--lp-ease), clip-path 1s var(--lp-ease); }
+.lp-copy-in > .lp-title { clip-path: inset(-10% -6% 100% -6%); transform: translateY(.35em); }
+.lp-copy-in.on > * { opacity: 1; transform: none; }
+.lp-copy-in.on > .lp-title { clip-path: inset(-10% -6% -25% -6%); }
+.lp-copy-in.on > :nth-child(2) { transition-delay: .07s; }
+.lp-copy-in.on > :nth-child(3) { transition-delay: .16s; }
+.lp-copy-in.on > :nth-child(4) { transition-delay: .24s; }
+.lp-copy-in.on > :nth-child(5) { transition-delay: .3s; }
+.lp-copy-in.out > * { opacity: 0 !important; transform: translateY(-10px); transition-duration: .3s, .4s, .3s; transition-delay: 0s; pointer-events: none; }
+.lp-kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font: 500 11px/1 var(--lp-ui); letter-spacing: .12em; text-transform: uppercase; }
+.lp-kicker span { color: var(--lp-accent); }
+.lp-kicker span::after { content: ""; display: inline-block; width: 22px; height: 1px; margin-left: 12px; vertical-align: middle; background: currentColor; opacity: .6; }
+.lp-title { margin: 0; }
+.lp-text { margin: 14px 0 0; }
+.lp-facts { display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 20px 0 0; font: 500 10.5px/1.4 var(--lp-ui); letter-spacing: .08em; text-transform: uppercase; }
+.lp-facts div { display: grid; gap: 4px; }
+.lp-facts dt { opacity: .55; }
+.lp-facts dd { margin: 0; }
+
+/* the loupe ring (mouse only): the system cursor stays; over a spot it is a zoom-in magnifier, and a ring opens
+   centred on the spot itself, so nothing trails the pointer */
+.lp-spot { cursor: zoom-in; }
+.lp-cursor { position: absolute; left: 0; top: 0; z-index: 3; width: 0; height: 0; pointer-events: none; transition: opacity .25s ease; }
+.lp-cursor.off { opacity: 0; }
+.lp-cursor i { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--lp-ink); box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), inset 0 0 0 1px rgba(0, 0, 0, .06); transition: left .35s var(--lp-ease), top .35s var(--lp-ease), width .35s var(--lp-ease), height .35s var(--lp-ease), background-color .3s, border-width .3s; }
+.lp-cursor span { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%) scale(.6); font: 600 9.5px/1 var(--lp-ui); letter-spacing: .06em; text-transform: uppercase; color: var(--lp-ink); white-space: nowrap; opacity: 0; transition: opacity .25s, transform .35s var(--lp-ease); }
+.lp-cursor.spot i { left: -36px; top: -36px; width: 72px; height: 72px; border-width: 1px; background: color-mix(in oklab, var(--lp-glass) 60%, transparent); }
+.lp-cursor.spot span { opacity: 1; transform: translate(-50%, -50%) translateY(22px) scale(1); }
+
+/* back */
+[data-lp="back"]:disabled { opacity: 0; pointer-events: none; }
+
+[data-lp="hint"] { transition: opacity .5s ease, transform .6s var(--lp-ease); }
+[data-lp="hint"].gone { opacity: 0; transform: translateY(6px); pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-spot-dot::after { animation: none; }
+  .lp-copy-in > * { transition-duration: .2s !important; transform: none !important; }
+}

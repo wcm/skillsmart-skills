@@ -1,0 +1,134 @@
+{
+  "size": [
+    3200,
+    1800
+  ],
+  "root": "portrait",
+  "nodes": {
+    "portrait": {
+      "parent": null,
+      "rect": null,
+      "span": 0.9,
+      "src": [
+        "portrait-1600.webp"
+      ],
+      "thumb": "portrait-thumb.webp"
+    },
+    "cheek": {
+      "parent": "portrait",
+      "rect": [
+        0.72512,
+        0.32983,
+        0.17865
+      ],
+      "span": 0.16,
+      "tint": [
+        0.973,
+        1.003,
+        0.964
+      ],
+      "src": [
+        "cheek-1600.webp"
+      ],
+      "thumb": "cheek-thumb.webp"
+    },
+    "drop": {
+      "parent": "cheek",
+      "rect": [
+        0.49791,
+        0.45192,
+        0.20832
+      ],
+      "span": 0.01,
+      "tint": [
+        0.946,
+        0.97,
+        0.951
+      ],
+      "src": [
+        "drop-1600.webp"
+      ],
+      "thumb": "drop-thumb.webp"
+    },
+    "cells": {
+      "parent": "drop",
+      "rect": [
+        0.33508,
+        0.5401,
+        0.12015
+      ],
+      "span": 0.0006,
+      "tint": [
+        0.993,
+        0.929,
+        1.033
+      ],
+      "src": [
+        "cells-1600.webp"
+      ],
+      "thumb": "cells-thumb.webp"
+    },
+    "molecule": {
+      "parent": "cells",
+      "rect": [
+        0.45,
+        0.655,
+        0.1
+      ],
+      "span": 2e-8,
+      "tint": [
+        0.999,
+        0.886,
+        0.855
+      ],
+      "focus": [
+        0.27,
+        0.4
+      ],
+      "src": [
+        "molecule-1600.webp"
+      ],
+      "thumb": "molecule-thumb.webp"
+    },
+    "bottle": {
+      "parent": "portrait",
+      "rect": [
+        0.55022,
+        0.70999,
+        0.26808
+      ],
+      "span": 0.24,
+      "tint": [
+        0.996,
+        1.015,
+        0.999
+      ],
+      "src": [
+        "bottle-1600.webp"
+      ],
+      "thumb": "bottle-thumb.webp"
+    },
+    "dropper": {
+      "parent": "bottle",
+      "rect": [
+        0.53987,
+        0.81006,
+        0.11904
+      ],
+      "span": 0.012,
+      "tint": [
+        1.008,
+        1.022,
+        1.009
+      ],
+      "focus": [
+        0.64,
+        0.55
+      ],
+      "src": [
+        "dropper-1600.webp"
+      ],
+      "thumb": "dropper-thumb.webp"
+    }
+  }
+}

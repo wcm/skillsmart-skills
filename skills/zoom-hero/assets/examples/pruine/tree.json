@@ -1,0 +1,82 @@
+{
+  "brand": "Pruine — natural wine estate. Pruine is the French word for the dusty white bloom on a grape's skin, where the wild yeast that ferments the wine lives.",
+  "style": "Autumn in a small natural-wine vineyard in the south of France, golden hour: low sun from the left, warm amber highlights, soft violet-blue shadows, a little haze. Rich, deep colour: purple-black grapes, gold and rust vine leaves, pale chalky limestone.",
+  "nodes": {
+    "estate": {
+      "span": 900,
+      "prompt": "Wide landscape photograph at golden hour, from a hillside at eye level, looking across rolling hills of vineyards in autumn. The upper 40% of the frame is a calm, hazy, warm golden sky with soft distant hills and a line of dark cypress trees on a far ridge: keep it quiet, nothing in it. Long curving rows of vines run down and across the hills, their leaves turned gold, amber and rust, the low sun raking along the rows. In the right foreground, the last vine of a row, close to the camera: a gnarled old trunk heavy with several dark purple-black grape bunches, clearly visible. In the left foreground, the vine row ends at a low cut bank where the hillside has been sliced away: pale cream limestone layers and chalky ochre soil, with roots showing. In the middle distance, a little right of centre, an old stone winery barn with a faded terracotta tile roof and a big wooden double door standing open onto a dark cellar. A small dirt track winds between the rows. No people, no vehicles."
+    },
+    "vine": {
+      "parent": "estate",
+      "rect": [
+        0.885,
+        0.42,
+        0.18
+      ],
+      "span": 2.4,
+      "prompt": "the heavy bunches of grapes on the old vine: plump purple-black grapes packed tight, each with a dusty pale-blue bloom, gold and rust leaves glowing in the low backlight, curling tendrils, the gnarled bark of the trunk. A real close-up photograph with shallow depth of field."
+    },
+    "grape": {
+      "parent": "vine",
+      "rect": [
+        0.764,
+        0.313,
+        0.18
+      ],
+      "span": 0.12,
+      "prompt": "one big grape and its neighbours in the bunch, up close: plump, round, flawless purple-black grapes packed tight, every skin veiled in an even, velvety bloom: a fine silvery pale-blue haze like the bloom on a plum or a blueberry, so fine it looks like frost, smooth and uniform. The low golden sun grazes their left sides, warm amber on the bloom; their shaded sides deep purple-black with a cool blue-grey sheen. One neighbouring grape has a small glossy patch where the bloom was rubbed off. On the lit side of the big central grape, a single small round dew drop, clear as glass, catches the sun as one tiny bright spark. Clean skins: no specks, no dirt, no blemishes. Macro photograph with shallow depth of field: the central grape crisp, the grapes behind it soft."
+    },
+    "bloom": {
+      "parent": "grape",
+      "rect": [
+        0.465,
+        0.42,
+        0.1
+      ],
+      "span": 0.004,
+      "prompt": "the skin of the grape at extreme magnification, like a real photograph through a microscope: the pale bloom becomes a frosty landscape of tiny waxy crystal flakes and ridges, translucent and pale silver-blue, standing on the deep purple skin. Resting on the wax a little left of centre, a loose cluster of about a dozen plump oval wild yeast cells, each clearly visible, translucent and cream-coloured with a soft glow, a few of them budding with a small round daughter cell; a few more single cells scattered nearby. The right third is quieter: only wax crystals over the deep purple, falling into soft shadow and out of focus. Warm light from the left grazing the crystals. Real, physical, tactile; soft depth of field at the edges.",
+      "medium": "micro"
+    },
+    "soil": {
+      "parent": "estate",
+      "rect": [
+        0.4,
+        0.78,
+        0.12
+      ],
+      "span": 1.8,
+      "prompt": "the face of the cut bank in the hillside: pale cream limestone in thin layers, fractured into slabs and flakes, chalky ochre soil in the cracks, a few pebbles; fine, dark, wiry vine roots threading down through the cracks into the rock; at the right edge the bank turns into the dry grassy slope in shade. Golden side light from the left raking the texture. A real close-up photograph."
+    },
+    "fossil": {
+      "parent": "soil",
+      "rect": [
+        0.53,
+        0.63,
+        0.1
+      ],
+      "span": 0.09,
+      "prompt": "in the middle of the frame, embedded in the pale limestone, a fossil seashell: a ribbed scallop shell (pecten) the size of a palm, turned to stone, its fan of radiating ribs and the two small ears at its hinge crisp, pale cream and chalky, half freed from the rock, with a few tiny shell fragments around it. Around it the same rock, cracks and grain as before. Macro photograph, golden raking light from the left."
+    },
+    "cellar": {
+      "parent": "estate",
+      "rect": [
+        0.625,
+        0.545,
+        0.12
+      ],
+      "span": 6,
+      "prompt": "the big open double door of the old stone barn: both weathered plank doors swung open, the sunlit stone wall and the wooden lintel around them. Through the doorway, revealed in the shade: a cool, dim stone cellar with old oak wine barrels lying on their sides just inside, their round heads with dark iron hoops facing the door, more rows of barrels fading into the dark behind, one bare warm bulb hanging from the ceiling and glowing amber on the barrel heads, a worn stone floor. A real photograph."
+    },
+    "barrel": {
+      "parent": "cellar",
+      "rect": [
+        0.57,
+        0.6,
+        0.11
+      ],
+      "span": 0.5,
+      "prompt": "the head of one old oak barrel up close: its vertical oak planks with tight golden grain and fine dry cracks, the dark iron hoop arching across the top rim, old purple-red wine stains running down the planks from a small wine-stained wooden bung near the top, one fresh purple drip glistening on the wood, and a few white chalk strokes hand-drawn on the planks: a short line, a cross and a tick, no letters, no numbers, no words. Warm light from the bulb above, deep shadow at the edges. A real close-up photograph."
+    }
+  },
+  "titleBand": "top 30% (the sky): no spots above y = 0.32"
+}

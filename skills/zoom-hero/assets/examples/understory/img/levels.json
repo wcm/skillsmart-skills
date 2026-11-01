@@ -1,0 +1,152 @@
+{
+  "size": [
+    3200,
+    1800
+  ],
+  "root": "canopy",
+  "nodes": {
+    "canopy": {
+      "parent": null,
+      "rect": null,
+      "span": 600,
+      "src": [
+        "canopy-1600.webp"
+      ],
+      "thumb": "canopy-thumb.webp"
+    },
+    "branch": {
+      "parent": "canopy",
+      "rect": [
+        0.83496,
+        0.54481,
+        0.20013
+      ],
+      "span": 3,
+      "tint": [
+        0.94,
+        0.961,
+        0.963
+      ],
+      "src": [
+        "branch-1600.webp"
+      ],
+      "thumb": "branch-thumb.webp"
+    },
+    "frog": {
+      "parent": "branch",
+      "rect": [
+        0.52983,
+        0.7198,
+        0.1001
+      ],
+      "span": 0.07,
+      "tint": [
+        1.199,
+        1.192,
+        1.383
+      ],
+      "src": [
+        "frog-1600.webp"
+      ],
+      "thumb": "frog-thumb.webp"
+    },
+    "eye": {
+      "parent": "frog",
+      "rect": [
+        0.41798,
+        0.24498,
+        0.15013
+      ],
+      "span": 0.006,
+      "tint": [
+        1.149,
+        1.156,
+        1.167
+      ],
+      "focus": [
+        0.4,
+        0.5
+      ],
+      "src": [
+        "eye-1600.webp"
+      ],
+      "thumb": "eye-thumb.webp"
+    },
+    "sloth": {
+      "parent": "canopy",
+      "rect": [
+        0.22197,
+        0.46807,
+        0.11011
+      ],
+      "span": 2,
+      "tint": [
+        1.017,
+        1.001,
+        0.982
+      ],
+      "src": [
+        "sloth-1600.webp"
+      ],
+      "thumb": "sloth-thumb.webp"
+    },
+    "fur": {
+      "parent": "sloth",
+      "rect": [
+        0.45,
+        0.41993,
+        0.09923
+      ],
+      "span": 0.05,
+      "tint": [
+        1.405,
+        1.148,
+        1.102
+      ],
+      "focus": [
+        0.39,
+        0.47
+      ],
+      "src": [
+        "fur-1600.webp"
+      ],
+      "thumb": "fur-thumb.webp"
+    },
+    "river": {
+      "parent": "canopy",
+      "rect": [
+        0.55997,
+        0.81998,
+        0.12014
+      ],
+      "span": 0.7,
+      "tint": [
+        0.967,
+        1.067,
+        1.198
+      ],
+      "src": [
+        "river-1600.webp"
+      ],
+      "thumb": "river-thumb.webp"
+    },
+    "scales": {
+      "parent": "river",
+      "rect": [
+        0.45208,
+        0.47778,
+        0.06011
+      ],
+      "span": 0.004,
+      "tint": [
+        1.353,
+        1.169,
+        1.063
+      ],
+      "src": [
+        "scales-1600.webp"
+      ],
+      "thumb": "scales-thumb.webp"
+    }
+  }
+}

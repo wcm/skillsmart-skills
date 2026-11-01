@@ -1,0 +1,126 @@
+{
+  "size": [
+    3200,
+    1800
+  ],
+  "root": "town",
+  "nodes": {
+    "town": {
+      "parent": null,
+      "rect": null,
+      "span": 400,
+      "src": [
+        "town-1600.webp"
+      ],
+      "thumb": "town-thumb.webp"
+    },
+    "window": {
+      "parent": "town",
+      "rect": [
+        0.4651,
+        0.44489,
+        0.1885
+      ],
+      "span": 6,
+      "tint": [
+        0.988,
+        1.016,
+        0.969
+      ],
+      "src": [
+        "window-1600.webp"
+      ],
+      "thumb": "window-thumb.webp"
+    },
+    "note": {
+      "parent": "window",
+      "rect": [
+        0.51312,
+        0.72236,
+        0.13995
+      ],
+      "span": 0.8,
+      "tint": [
+        0.917,
+        0.905,
+        0.937
+      ],
+      "src": [
+        "note-1600.webp"
+      ],
+      "thumb": "note-thumb.webp"
+    },
+    "boat": {
+      "parent": "town",
+      "rect": [
+        0.45013,
+        0.67522,
+        0.27786
+      ],
+      "span": 10,
+      "tint": [
+        0.993,
+        1.011,
+        0.956
+      ],
+      "src": [
+        "boat-1600.webp"
+      ],
+      "thumb": "boat-thumb.webp"
+    },
+    "scarf": {
+      "parent": "boat",
+      "rect": [
+        0.58961,
+        0.18052,
+        0.11053
+      ],
+      "span": 1,
+      "tint": [
+        0.906,
+        0.928,
+        0.919
+      ],
+      "src": [
+        "scarf-1600.webp"
+      ],
+      "thumb": "scarf-thumb.webp"
+    },
+    "lighthouse": {
+      "parent": "town",
+      "rect": [
+        0.82992,
+        0.40511,
+        0.33732
+      ],
+      "span": 12,
+      "tint": [
+        0.991,
+        1.012,
+        0.984
+      ],
+      "src": [
+        "lighthouse-1600.webp"
+      ],
+      "thumb": "lighthouse-thumb.webp"
+    },
+    "pip": {
+      "parent": "lighthouse",
+      "rect": [
+        0.56192,
+        0.20503,
+        0.14879
+      ],
+      "span": 2,
+      "tint": [
+        0.942,
+        0.963,
+        0.944
+      ],
+      "src": [
+        "pip-1600.webp"
+      ],
+      "thumb": "pip-thumb.webp"
+    }
+  }
+}

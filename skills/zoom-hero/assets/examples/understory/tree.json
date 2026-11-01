@@ -1,0 +1,90 @@
+{
+  "brand": "Understory — a rainforest trust. Look closer: every square metre of forest hides life the wide view can't show.",
+  "style": "Dawn in a tropical montane cloud forest: soft diffused light through mist, deep saturated greens, wet surfaces, cool blue-green shadows and a few warm highlights.",
+  "nodes": {
+    "canopy": {
+      "span": 600,
+      "prompt": "Wide landscape photograph at dawn, seen from high in the canopy of a tropical cloud forest, looking out across the treetops. The top 40% of the frame, across its whole width, is open, calm, pale, luminous mist and soft dawn sky, with only the faint blue silhouettes of distant ridges fading into it: no branches, leaves or trunks reach into it, not even at the edges. Below it, layers of rounded tree crowns in many deep greens roll away and dissolve into drifting fog, with a soft warm glow where the first sun touches the mist. Three subjects stand out clearly, each in its own place. On the right, close to the camera, a huge, thick, nearly horizontal mossy branch enters from the right edge at mid-height (between 45% and 70% of the frame height) and reaches about a third of the way into the frame; its tree trunk is out of frame to the right. The branch carries thick cushions of bright green moss, small ferns, a red-and-green bromeliad and several broad, glossy, wet leaves, all beaded with water. On the left, about a fifth of the way in from the left edge, a slender cecropia tree with a pale, almost white trunk rises from the forest below; its open crown of big silver-grey hand-shaped leaves spreads at mid-height (between 38% and 58% of the frame height), bright against the darker crowns behind it, and a three-toed sloth, small in the distance, hangs curled in a fork high in its crown. Just below the centre of the frame, seen from above through a gap in the trees, a bend of a small clear river with a pale wet sand bank and smooth grey stones at the water's edge, glinting in the dawn light; the whole bend is in view, well above the bottom edge. No people, no railings, no birds."
+    },
+    "branch": {
+      "parent": "canopy",
+      "rect": [
+        0.835,
+        0.545,
+        0.2
+      ],
+      "span": 3,
+      "prompt": "the mossy branch up close: on the left a red-and-green bromeliad rosette holding water in its cup, rising from thick cushions of moss and small ferns; in the centre and on the right, broad glossy philodendron leaves, wet and beaded with water droplets; soft pale mist behind. Everything sharp and detailed: moss fronds, droplets, leaf veins and gloss. A real close-up photograph."
+    },
+    "frog": {
+      "parent": "branch",
+      "rect": [
+        0.53,
+        0.72,
+        0.1
+      ],
+      "span": 0.07,
+      "prompt": "sitting on the broad wet leaf in the centre of the frame: a glass frog, the clear subject of the picture, big and sharp, its body about 40% of the frame width. Translucent lime-green skin dusted with tiny pale yellow dots; through its glass-clear belly the small bright red heart and pale organs show; big round bulging eyes, the near one turned to the camera, with a gold-flecked, finely netted iris and a horizontal pupil; slender translucent legs and delicate toes ending in round pads gripping the leaf. Water droplets bead the glossy leaf around it; the background soft and dark. Macro photograph, shallow depth of field, sharp on the frog."
+    },
+    "eye": {
+      "parent": "frog",
+      "rect": [
+        0.418,
+        0.245,
+        0.15
+      ],
+      "span": 0.006,
+      "prompt": "the frog's eye at extreme magnification, the whole eye in view: a glossy bulging dome over an intricate gold-and-black reticulated iris, finely netted with gold, and a horizontal oval black pupil; the surface wet and mirror-like, and in its curved reflection, small but clear, the misty forest canopy with its rounded tree crowns and the pale dawn sky, where the white highlight is. Around it, the green rim of the eyelid and translucent lime-green skin with tiny pale yellow dots and water droplets. Macro photograph, sharp on the iris.",
+      "focus": [
+        0.4,
+        0.5
+      ]
+    },
+    "sloth": {
+      "parent": "canopy",
+      "rect": [
+        0.222,
+        0.468,
+        0.11
+      ],
+      "span": 2,
+      "prompt": "a brown-throated three-toed sloth clinging to a thin branch of the cecropia tree among big silver hand-shaped leaves, looking towards the camera: its round pale cream face with a dark stripe running back from each eye, a gentle smile, a dark brown throat, long shaggy grey-brown fur with a faint green tint of algae, long curved claws hooked round the branch; soft pale mist behind. A real wildlife photograph with a long lens, sharp on the sloth."
+    },
+    "fur": {
+      "parent": "sloth",
+      "rect": [
+        0.45,
+        0.42,
+        0.1
+      ],
+      "span": 0.05,
+      "prompt": "the sloth's fur at macro scale: coarse grooved hairs with green algae growing in the grooves, and resting among them near the centre a tiny pale sloth moth with folded wings, clearly visible; droplets of mist on the hairs. Macro photograph, soft light.",
+      "focus": [
+        0.39,
+        0.47
+      ]
+    },
+    "river": {
+      "parent": "canopy",
+      "rect": [
+        0.56,
+        0.82,
+        0.12
+      ],
+      "span": 0.7,
+      "prompt": "the water's edge seen from close above: on the left, clear shallow water rippling over pebbles; in the middle, a bank of small wet grey pebbles and a few smooth stones; at the bottom right, pale wet sand; at the top right, green leaves overhanging the bank. Resting on a flat wet stone at the water's edge in the centre of the frame, a big blue morpho butterfly with its wings spread flat, seen from above: it is the clear subject, its wingspan about a quarter of the frame width, a flash of electric metallic blue with black borders and small white spots. A real wildlife photograph, sharp and natural."
+    },
+    "scales": {
+      "parent": "river",
+      "rect": [
+        0.452,
+        0.478,
+        0.06
+      ],
+      "span": 0.004,
+      "prompt": "the morpho's wing at extreme magnification: rows of tiny overlapping scales like roof tiles, each one ridged, glowing an iridescent electric blue that shifts to violet at the edges, a few brown scales at the margin. Scientific macro photograph through a microscope.",
+      "medium": "micro"
+    }
+  },
+  "titleBand": "top 35% (the mist): no spots above y = 0.36"
+}
