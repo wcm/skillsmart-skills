@@ -1,0 +1,93 @@
+/* Chantier HUD: the scaffolding every site puts round its film. It goes up as the build starts (crop marks draw in,
+   the counter starts at zero), keeps count through every stage, and comes down as evening falls, leaving only the
+   lit place. Sites set the variables below and write their own words; the parts are optional.
+
+   <div class="hud" data-ch-bar="0 0.05">                        ← --k: the scaffold going up
+     <i class="hud-mark tl"></i><i class="hud-mark tr"></i><i class="hud-mark bl"></i><i class="hud-mark br"></i>
+     <p class="hud-chip hud-tl"><b class="hud-live"></b>TDL—01 · Harbour Quay</p>
+     <p class="hud-chip hud-tr">Day <span data-ch-count data-from="0" data-to="540" data-at="0.04 0.74" data-format="pad3"></span></p>
+     <div class="hud-count">
+       <p class="hud-label">Floor</p>
+       <p class="hud-num"><span data-ch-count data-from="0" data-to="48" data-at="0.04 0.74" data-format="pad2"></span><small>/48</small></p>
+       <i class="hud-segs" style="--n: 48" data-ch-bar="0.04 0.74"></i>
+     </div>
+     <ol class="hud-ruler">                                       ← ticks sit where each stage starts in the film
+       <li data-ch-step="0.04"><b>01</b><span>Piles</span></li> …
+       <li class="is-end" data-ch-step="0.76" style="--x: 1"><span>Lights</span></li>     ← the evening, at the end
+     </ol>
+     <p class="hud-cap" data-ch-in="0.1 0.24"><b>02 / 06 · Core</b><span>The core climbs out of the ground.</span></p>
+   </div>
+*/
+
+.hud {
+  --hud-ink: #f5f4ef; --hud-dim: rgba(245, 244, 239, .58); --hud-line: rgba(245, 244, 239, .5);
+  --hud-glass: rgba(16, 18, 22, .38); --signal: #ff4b1f; --hud-pad: var(--ch-hud-pad, clamp(16px, 2.2vw, 32px)); --hud-top: var(--hud-pad);
+  --hud-font: "Geist Mono", ui-monospace, monospace; --hud-cap-font: inherit;
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; color: var(--hud-ink);
+  font: 500 13px/1.2 var(--hud-font); letter-spacing: .08em; text-transform: uppercase;
+  opacity: calc(1 - var(--dusk, 0)); translate: 0 calc(var(--dusk, 0) * 14px);
+}
+.hud > * { position: absolute; margin: 0; }
+
+/* crop marks */
+.hud-mark { width: 22px; height: 22px; border: 0 solid var(--hud-line); transform: scale(var(--k, 1)); }
+.hud-mark.tl { left: var(--hud-pad); top: var(--hud-top); border-width: 1px 0 0 1px; transform-origin: 0 0; }
+.hud-mark.tr { right: var(--hud-pad); top: var(--hud-top); border-width: 1px 1px 0 0; transform-origin: 100% 0; }
+.hud-mark.bl { left: var(--hud-pad); bottom: var(--hud-pad); border-width: 0 0 1px 1px; transform-origin: 0 100%; }
+.hud-mark.br { right: var(--hud-pad); bottom: var(--hud-pad); border-width: 0 1px 1px 0; transform-origin: 100% 100%; }
+
+/* chips */
+.hud-chip { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px 7px; border-radius: 6px; background: var(--hud-glass); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); white-space: nowrap; opacity: var(--k, 1); }
+.hud-tl { left: calc(var(--hud-pad) + 30px); top: calc(var(--hud-top) + 10px); }
+.hud-tr { right: calc(var(--hud-pad) + 30px); top: calc(var(--hud-top) + 10px); }
+.hud-live { width: 7px; height: 7px; border-radius: 1px; background: var(--signal); animation: hud-live 1.6s ease-in-out infinite; }
+@keyframes hud-live { 50% { opacity: .25; } }
+
+/* the big counter */
+.hud-count { left: calc(var(--hud-pad) + 30px); bottom: calc(var(--hud-pad) + 64px); display: grid; gap: 6px; }
+.hud-label { margin: 0; color: var(--hud-dim); }
+.hud-num { margin: 0; display: flex; align-items: baseline; gap: .12em; font: 500 clamp(56px, 7vw, 120px)/.86 var(--hud-font); letter-spacing: -.05em; font-variant-numeric: tabular-nums; text-transform: none; }
+.hud-num small { font-size: .26em; letter-spacing: 0; color: var(--hud-dim); }
+.hud-segs { --gap: 2px; display: block; width: clamp(220px, 24vw, 360px); height: 10px; margin-top: 6px;
+  background: linear-gradient(90deg, var(--hud-ink) calc(var(--k, 0) * 100%), rgba(245, 244, 239, .22) 0);
+  -webkit-mask: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--n, 24) - var(--gap)), transparent 0 calc(100% / var(--n, 24)));
+  mask: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--n, 24) - var(--gap)), transparent 0 calc(100% / var(--n, 24))); }
+.hud-pill { display: inline-block; padding: 5px 10px 4px; border: 1px solid var(--hud-line); border-radius: 999px; }
+
+/* the stage ruler: solid behind the playhead, dotted ahead of it */
+.hud-ruler { left: calc(var(--hud-pad) + 30px); right: calc(var(--hud-pad) + 30px); bottom: calc(var(--hud-pad) + 6px); height: 40px; padding: 0; list-style: none;
+  background:
+    linear-gradient(90deg, var(--hud-ink) calc(var(--film, 0) * 100%), transparent 0) 0 0 / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--hud-line) 0 2px, transparent 2px 6px) 0 0 / 100% 1px no-repeat; }
+.hud-ruler::after { content: ""; position: absolute; top: -5px; left: calc(var(--film, 0) * 100%); width: 3px; height: 11px; margin-left: -1px; background: var(--signal); }
+.hud-ruler li { position: absolute; top: 0; left: calc(var(--x, 0) * 100%); padding: 12px 0 0 0; color: var(--hud-dim); white-space: nowrap; transition: color .3s; }
+.hud-ruler li::before { content: ""; position: absolute; left: 0; top: -4px; width: 1px; height: 9px; background: currentColor; }
+.hud-ruler li b { font-weight: 500; margin-right: 8px; opacity: .7; }
+.hud-ruler li.is-done { color: var(--hud-ink); }
+.hud-ruler li.is-now::before { background: var(--signal); width: 3px; margin-left: -1px; }
+.hud-ruler li.is-end { translate: -100% 0; text-align: right; }   /* a label that ends the ruler, e.g. Lights at x = 1 */
+.hud-ruler li.is-end::before { left: auto; right: 0; }
+@media (max-width: 1180px) { .hud-ruler li:not(.is-now):not(.is-end) span { display: none; } }
+
+/* captions: one per stage, a mono kicker over one line in the site's own type */
+.hud-cap { right: calc(var(--hud-pad) + 30px); bottom: calc(var(--hud-pad) + 74px); display: grid; gap: 10px; max-width: min(30ch, 40vw); text-align: right; justify-items: end; }
+.hud-cap b { font-weight: 500; color: var(--hud-dim); }
+.hud-cap span { font: 400 clamp(24px, 2.4vw, 38px)/1.08 var(--hud-cap-font); letter-spacing: -.01em; text-transform: none; text-wrap: balance; }
+
+/* a callout on one part of the picture, in frame units: style="--u: .6; --v: .3; --uw: .12; --vh: .2" */
+.hud-callout { left: calc(var(--fx) + var(--fw) * var(--u)); top: calc(var(--fy) + var(--fh) * var(--v)); width: calc(var(--fw) * var(--uw)); height: calc(var(--fh) * var(--vh)); border: 1px solid var(--hud-ink); }
+.hud-callout em { position: absolute; left: -1px; bottom: calc(100% + 6px); padding: 5px 8px 4px; background: var(--hud-ink); color: #111; font-style: normal; white-space: nowrap; }
+
+/* a phone: the film is a band near the top; the counter and the ruler sit on the blurred ground below it */
+@media (max-width: 759.98px) {   /* the engine's phone: narrower than 760 */
+  .hud { --hud-pad: var(--ch-hud-pad, 14px); letter-spacing: .06em; }
+  .hud-tl, .hud-tr { top: calc(var(--hud-top) + 6px); }
+  .hud-tl { left: calc(var(--hud-pad) + 14px); } .hud-tr { right: calc(var(--hud-pad) + 14px); }
+  .hud-count { left: calc(var(--hud-pad) + 14px); bottom: calc(var(--hud-pad) + 58px); }
+  .hud-num { font-size: 64px; }
+  .hud-segs { width: 200px; height: 8px; }
+  .hud-ruler { left: calc(var(--hud-pad) + 14px); right: calc(var(--hud-pad) + 14px); }
+  .hud-ruler li:not(.is-now):not(.is-end) b { display: none; }
+  .hud-cap { left: calc(var(--hud-pad) + 14px); right: auto; bottom: calc(var(--hud-pad) + 190px); text-align: left; justify-items: start; max-width: 32ch; }
+  .hud-cap span { font-size: 24px; }
+}

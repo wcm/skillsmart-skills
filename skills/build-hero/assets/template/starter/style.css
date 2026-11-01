@@ -1,0 +1,24 @@
+/* WRITE: the page's look: one bold idea, its own fonts and colours, one signature readout on top of the shared HUD. */
+:root { --ink: #f5f4ef; --paper: #101114; --signal: #ff4b1f; --ch-bg: #101114; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.5 Geist, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.nav { position: fixed; z-index: 5; inset: 0 0 auto; display: flex; justify-content: space-between; align-items: center; padding: clamp(14px, 2vw, 24px) clamp(16px, 3vw, 40px); }
+.mark { font-weight: 600; letter-spacing: -.02em; text-decoration: none; }
+.btn { display: inline-block; padding: 10px 18px; border-radius: 99px; background: var(--ink); color: var(--paper); font-weight: 500; font-size: 15px; text-decoration: none; }
+/* a soft shade so words read over the film; no blur or filter on the words themselves */
+.shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, .5), transparent 34%, transparent 56%, rgba(0, 0, 0, .68)); pointer-events: none; }
+/* the title reads first: the scaffold's readouts come in as it leaves (--k is the scaffold going up, from data-ch-bar on .hud) */
+.hud-count, .hud-ruler, .hud-chip, .hud-mark { opacity: var(--scaffold, 1); }
+.hud { --scaffold: var(--k, 0); }
+.intro { position: absolute; left: clamp(16px, 4vw, 64px); bottom: clamp(72px, 12vh, 120px); max-width: min(760px, calc(100vw - 32px)); }
+.intro h1 { margin: 0 0 12px; font-weight: 500; font-size: clamp(40px, 6.4vw, 96px); line-height: .98; letter-spacing: -.04em; }
+.intro em { font-style: normal; opacity: .86; }
+.intro p { margin: 0; font-size: clamp(16px, 1.4vw, 20px); }
+.hint { position: absolute; right: clamp(16px, 4vw, 64px); bottom: clamp(24px, 4vh, 40px); margin: 0; font: 500 13px/1 "Geist Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
+.end { position: absolute; left: clamp(16px, 4vw, 64px); bottom: clamp(32px, 8vh, 72px); }
+.end-line { margin: 0 0 16px; font-weight: 500; font-size: clamp(36px, 5vw, 72px); line-height: 1; letter-spacing: -.04em; }
+.after { padding: clamp(64px, 12vw, 160px) clamp(16px, 4vw, 64px); max-width: 900px; }
+.after h2 { margin: 0 0 16px; font-weight: 500; font-size: clamp(32px, 5vw, 64px); line-height: 1; letter-spacing: -.03em; }
+/* a phone: the ruler is short, so the end's label waits until it's the one showing */
+@media (max-width: 759.98px) { .hud-ruler .is-end:not(.is-now) span { opacity: 0; } }

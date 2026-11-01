@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WRITE: the brand · what it does</title>
+<meta name="description" content="WRITE: one sentence for search and link previews.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101114'/%3E%3Cpath d='M8 25V13l8-6 8 6v12z' fill='%23ff4b1f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap">
+<link rel="preload" as="image" href="frames/0001.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="frames-phone/0001.webp" media="(max-width: 759.98px)">
+<link rel="stylesheet" href="../engine/chantier.css">
+<link rel="stylesheet" href="../engine/hud.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="mark" href="#top">WRITE: Brand</a>
+  <a class="btn" href="#contact">WRITE: the one action</a>
+</header>
+
+<main id="top">
+  <!-- the build: one scroll plays the film, then evening falls and the lights come on -->
+  <section class="ch" id="build" aria-label="WRITE: what is built as you scroll">
+    <div class="ch-stage">
+      <div class="shade" aria-hidden="true"></div>
+
+      <!-- the first screen: the title reads first; it leaves on the first scroll -->
+      <div class="intro" data-ch-in="0 0.012" data-ch-fade="0.035 0.026">
+        <h1>WRITE: the headline, <em>in about six words.</em></h1>
+        <p>WRITE: one sentence on what this is.</p>
+      </div>
+      <p class="hint" data-ch-hint>Scroll to build</p>
+
+      <!-- the scaffold: goes up as the build starts, comes down as evening falls. Keep each caption to about five words -->
+      <div class="hud" data-ch-bar="0.01 0.05">
+        <i class="hud-mark tl"></i><i class="hud-mark tr"></i><i class="hud-mark bl"></i><i class="hud-mark br"></i>
+        <p class="hud-chip hud-tr">WRITE: Day <span data-ch-count data-from="0" data-to="120" data-at="0.04 0.74" data-format="pad3">000</span></p>
+        <div class="hud-count">
+          <p class="hud-label">WRITE: what you count</p>
+          <p class="hud-num"><span data-ch-count data-from="0" data-to="12" data-at="0.04 0.74" data-format="pad2">00</span><small>/12</small></p>
+          <i class="hud-segs" style="--n: 12" data-ch-bar="0.04 0.74"></i>
+        </div>
+        <!-- set each data-ch-step and caption to where its stage starts in your film: p = 0.04 + film share × 0.7 -->
+        <ol class="hud-ruler">
+          <li data-ch-step="0.04"><b>01</b><span>WRITE</span></li>
+          <li data-ch-step="0.27"><b>02</b><span>WRITE</span></li>
+          <li data-ch-step="0.5"><b>03</b><span>WRITE</span></li>
+          <li class="is-end" data-ch-step="0.76" style="--x: 1"><span>Lights</span></li>
+        </ol>
+        <p class="hud-cap" data-ch-in="0.05 0.27"><b>01 / 03 · WRITE</b><span>WRITE: five words.</span></p>
+        <p class="hud-cap" data-ch-in="0.27 0.5"><b>02 / 03 · WRITE</b><span>WRITE: five words.</span></p>
+        <p class="hud-cap" data-ch-in="0.5 0.74"><b>03 / 03 · WRITE</b><span>WRITE: five words.</span></p>
+      </div>
+
+      <!-- the end: over the lit place -->
+      <div class="end" data-ch-in="0.92">
+        <p class="end-line">WRITE: the closing line.</p>
+        <a class="btn" href="#contact">WRITE: the one action</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="after" id="contact">
+    <h2 data-reveal>WRITE: what comes next.</h2>
+    <p data-reveal>WRITE: a short section or two below the hero. Keep the page short.</p>
+  </section>
+</main>
+<script type="module" src="main.js"></script>
+</body>
+</html>

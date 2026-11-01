@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kebun · Pools and gardens for Singapore homes</title>
+<meta name="description" content="Kebun builds pools and tropical gardens for landed homes in Singapore. Scroll once to watch one go in, from red earth to the lights at dusk.">
+<meta name="theme-color" content="#F2EEE4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E8C7A'/%3E%3Cpath d='M6 19c3.3-2.7 6.7-2.7 10 0s6.7 2.7 10 0' fill='none' stroke='%23F2EEE4' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="frames/0001.webp" media="(min-width: 760px)">
+<link rel="preload" as="image" href="frames-phone/0001.webp" media="(max-width: 759px)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300..700;1,400&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../engine/chantier.css">
+<link rel="stylesheet" href="../engine/hud.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#process">Skip the film</a>
+
+<header class="nav">
+  <a class="nav-id" href="#build" aria-label="Kebun, back to the top">
+    <span class="nav-coord mono">1.33° N <span class="wide">· Singapore</span></span>
+    <span class="nav-logo">Kebun</span>
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#process">How we build</a>
+    <a href="#projects">Projects</a>
+    <a href="#garden">Gardens</a>
+  </nav>
+  <a class="btn btn--go nav-cta" href="#plan">Plan your pool</a>
+</header>
+
+<main>
+  <!-- the build: one scroll plays a pool and tropical garden going in, then dusk falls and the pool lights come on -->
+  <section class="ch" id="build" aria-label="A pool and tropical garden being built as you scroll, from red earth to the lights at dusk">
+    <div class="ch-stage">
+
+      <!-- the first screen: the name on paper, the film in a rounded window under it (the window opens on the first scroll) -->
+      <div class="intro">
+        <h1 class="wordmark"><span>Kebun</span></h1>
+        <div class="intro-row">
+          <p class="intro-tag">Pools and gardens for Singapore homes.</p>
+          <p class="intro-est mono">Est. 2011 · Bukit Timah</p>
+        </div>
+        <div class="intro-window"></div>
+      </div>
+
+      <!-- the scaffold (and its shade) is up by p 0.04, before the first caption comes in at 0.044 -->
+      <div class="hud" data-ch-bar="0.008 0.04">
+        <i class="hud-mark tl"></i><i class="hud-mark tr"></i><i class="hud-mark bl"></i><i class="hud-mark br"></i>
+        <p class="hud-chip hud-tl"><b class="hud-live"></b><span>No. 14 · Bukit Timah</span></p>
+
+        <!-- the readout: three glazed depth-marker tiles in a row, grouted and seated on a strip of granite edging,
+             like the markers set into a pool's edge. Film [0.04, 0.72], 80 frames (8 fps): frame i is at
+             p = 0.04 + (i - 1) / 79 * 0.68. In the Seedance take the trench is cut at frame 3, the walls rise from
+             frame 4 and the floor is poured by frame 15; green stone goes on from frame 20, the water comes in over
+             frames 25–33 while the granite edge is laid (28–37); the camera is down at its low view by frame 45,
+             and the garden fills in to frame 80 (loungers at 73). Depth counts while the pit is cut and walled
+             (frames 3–11), water while the pool fills (25–33), days across the whole film. -->
+        <div class="tiles" aria-label="Day, water and depth">
+          <div class="tile tile--day">
+            <p class="tile-label"><span>Day</span><span>/60</span></p>
+            <p class="tile-num"><span data-ch-count data-from="1" data-to="60" data-at="0.04 0.72" data-format="pad2">01</span></p>
+          </div>
+          <div class="tile tile--water" data-ch-bar="0.246 0.315">
+            <i class="tile-fill" aria-hidden="true"></i>
+            <p class="tile-label"><span>Water</span><span>L</span></p>
+            <p class="tile-num"><span data-ch-count data-from="0" data-to="48000" data-at="0.246 0.315" data-format="comma">0</span></p>
+          </div>
+          <div class="tile tile--depth">
+            <p class="tile-label"><span>Depth</span></p>
+            <p class="tile-num"><span data-ch-count data-from="0" data-to="1.4" data-at="0.057 0.126" data-format="dec1">0.0</span><small>m</small></p>
+          </div>
+        </div>
+
+        <!-- ticks where each stage starts in the film: stake f1, dig f3 (the cut, then the first course of the walls),
+             shell f8 (the walls at full height, the floor about to be poured), stone f20, fill f25, garden f39 (the
+             granite edge done, the camera coming down over the turf rolls). Stone and Garden are also where the
+             second and third captions start. -->
+        <ol class="hud-ruler">
+          <li data-ch-step="0.04"><span>Stake out</span></li>
+          <li data-ch-step="0.057"><span>Dig</span></li>
+          <li data-ch-step="0.1"><span>Shell</span></li>
+          <li data-ch-step="0.204"><span>Stone</span></li>
+          <li data-ch-step="0.246"><span>Fill</span></li>
+          <li data-ch-step="0.366"><span>Garden</span></li>
+          <li class="is-end" data-ch-step="0.76" style="--x: 1"><span>Light</span></li>
+        </ol>
+
+        <!-- four captions, one at a time (main.js fades each in over the first 0.017 of its data-cap span and out over
+             the last 0.013, with a short, slower rise of its own). Each spans what the film shows and gets 0.16 of p
+             or more, so it reads for about 0.37 s or more in the 3 s glide: the strings, the cut and the concrete
+             shell (f1–19), the green stone, the water and the granite edge (f20–39), the lawn and the beds as the
+             camera comes down (f39–58), then the frangipani in flower, the ferns and the loungers (f58–80). The kickers
+             name the stages the ruler shows meanwhile. The last one sits low, over the lawn, so it never covers the
+             frangipani it names. -->
+        <p class="hud-cap" data-cap="0.044 0.204"><b>01–03 · Stake out, dig, shell</b><span>Strung out, dug, cast in concrete.</span></p>
+        <p class="hud-cap" data-cap="0.204 0.366"><b>04–05 · Stone, fill</b><span>Green stone, water, a granite edge.</span></p>
+        <p class="hud-cap" data-cap="0.366 0.528"><b>06 · Garden · Lawn</b><span>Turf rolls out, beds go in.</span></p>
+        <p class="hud-cap hud-cap--low" data-cap="0.528 0.755"><b>06 · Garden · Planting</b><span>Frangipani, ferns, two loungers.</span></p>
+      </div>
+
+      <div class="end" data-ch-in="0.885">
+        <p class="end-kicker mono">No. 14 · Bukit Timah · 19:30</p>
+        <h2 class="end-title">Swim by <span class="june">June.<svg class="squiggle" viewBox="0 0 320 34" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2.5 24.8C9 19.6 17.5 15.2 27 17.4c9.8 2.3 14 10.5 25.6 9.7C66 26.2 74.4 13.6 92.8 12.9c17.7-.7 24.2 12.7 45.6 13 21.8.3 32.9-10.1 58.1-9.5 22.5.6 33.1 6.4 55.6 5.7 19.3-.6 37.9-2.7 65.4-3.5"/><path pathLength="1" d="M6.2 28.1c6.4-6.5 14.2-11.3 22.9-9.5 9.4 2 14.2 10.2 25.1 9.5 13.1-.8 22-13.2 39.2-14 17.5-.8 24.8 12.5 45.7 12.7 21.3.2 32.9-9.7 57.8-9.2 22.5.5 33.5 6 55.7 5.4 20-.5 36.6-5.2 61.7-7.6"/></svg></span></h2>
+        <p class="end-text">Start in March, and the pool, the garden and the lights are ready for the June holidays.</p>
+        <div class="end-actions">
+          <a class="btn btn--go" href="#plan">Plan your pool</a>
+          <a class="btn btn--glass" href="#process">How we build</a>
+        </div>
+      </div>
+
+      <p class="hint mono" data-ch-hint><span>Scroll to build</span><i aria-hidden="true"></i></p>
+    </div>
+  </section>
+
+  <!-- 1 · how we build: six steps, each a still from the film in an arch -->
+  <section class="steps" id="process" aria-labelledby="steps-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <p class="kicker mono" data-reveal>How we build · 01—06</p>
+          <h2 class="h2" id="steps-title" data-reveal style="--delay:.06s">Red earth to first swim, <em>in six steps.</em></h2>
+        </div>
+        <p class="lede" data-reveal style="--delay:.12s">One crew does it all, from the first stake to the last fern, so nothing waits for anyone else. A pool and garden like this one takes sixty working days, about twelve weeks.</p>
+      </header>
+      <ol class="arches">
+        <li data-reveal style="--i:0">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0002.webp"><img src="frames/0002.webp" alt="Bare red earth behind a white house, the pool marked out with stakes and string" loading="lazy" decoding="async" style="--x: 58%"></picture></figure>
+          <p class="mono">01</p><h3>Stake out</h3><p class="step-line">We string the pool out on the ground and walk it with you.</p>
+        </li>
+        <li data-reveal style="--i:1; --delay:.06s">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0005.webp"><img src="frames/0005.webp" alt="The pool cut into the red earth, the first course of its concrete walls going in round the edge" loading="lazy" decoding="async" style="--x: 55%"></picture></figure>
+          <p class="mono">02</p><h3>Dig</h3><p class="step-line">A small digger spares the rain tree&rsquo;s roots, then the first walls go in.</p>
+        </li>
+        <li data-reveal style="--i:2; --delay:.12s">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0016.webp"><img src="frames/0016.webp" alt="The pit cast in a smooth grey concrete shell" loading="lazy" decoding="async" style="--x: 56%"></picture></figure>
+          <p class="mono">03</p><h3>Shell</h3><p class="step-line">The walls, then the floor, cured for a week.</p>
+        </li>
+        <li data-reveal style="--i:3; --delay:.18s">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0023.webp"><img src="frames/0023.webp" alt="Green stone going onto the walls of the concrete shell" loading="lazy" decoding="async" style="--x: 56%"></picture></figure>
+          <p class="mono">04</p><h3>Stone</h3><p class="step-line">Green stone, the reason the water looks jade.</p>
+        </li>
+        <li data-reveal style="--i:4; --delay:.24s">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0038.webp"><img src="frames/0038.webp" alt="Clear water to the brim, pale granite slabs edging the pool" loading="lazy" decoding="async" style="--x: 62%"></picture></figure>
+          <p class="mono">05</p><h3>Fill</h3><p class="step-line">Filled in a day, then edged in pale granite.</p>
+        </li>
+        <li data-reveal style="--i:5; --delay:.3s">
+          <figure class="arch"><picture><source media="(max-width: 759px)" srcset="frames-phone/0080.webp"><img src="frames/0080.webp" alt="The finished jade pool among frangipani, palms and heliconia, two loungers by the house" loading="lazy" decoding="async" style="--x: 50%"></picture></figure>
+          <p class="mono">06</p><h3>Garden</h3><p class="step-line">Palms, frangipani and ferns from growers in Lim Chu Kang.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 2 · projects: a numbered strip; the last one turns from day to night as it passes -->
+  <section class="projects" id="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <header class="proj-head">
+        <h2 class="proj-title" id="projects-title" data-reveal>Projects</h2>
+        <p class="lede" data-reveal style="--delay:.08s">Recent pools and gardens for landed homes, from Sentosa Cove to Bukit Timah.</p>
+      </header>
+      <ol class="strip">
+        <li class="proj proj--12" data-reveal>
+          <figure class="proj-pic"><img src="img/edge.webp" alt="A pale granite edge over clear jade water and green stone, a frangipani flower floating" loading="lazy" decoding="async"></figure>
+          <div class="proj-cap"><b class="proj-n">12.</b><p><strong>Sentosa Cove, 2024</strong><span>Green stone, granite edge</span><span class="mono">1.24° N · 103.84° E</span></p></div>
+        </li>
+        <li class="proj proj--13" data-reveal style="--delay:.08s">
+          <figure class="proj-pic"><img src="img/terrace.webp" alt="A covered stone terrace with a daybed, a tropical garden and a jade pool beyond in the rain" loading="lazy" decoding="async"></figure>
+          <div class="proj-cap"><b class="proj-n">13.</b><p><strong>Holland Road, 2025</strong><span>A terrace for the rain, a pool beyond</span><span class="mono">1.31° N · 103.79° E</span></p></div>
+        </li>
+        <li class="proj proj--14" data-reveal style="--delay:.16s">
+          <figure class="proj-pic">
+            <img src="img/end.webp" alt="The finished pool at Bukit Timah in afternoon sun, frangipani and palms round it" loading="lazy" decoding="async">
+            <img class="proj-night" src="img/lit.webp" alt="" loading="lazy" decoding="async">
+            <span class="proj-tag mono"><i></i><span class="day">Day</span><span class="night">Night</span></span>
+          </figure>
+          <div class="proj-cap"><b class="proj-n">14.</b><p><strong>Bukit Timah, 2026</strong><span>The pool in the film, 12 × 3 m</span><span class="mono">1.33° N · 103.80° E</span></p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3 · pool and garden together -->
+  <section class="together" id="garden" aria-labelledby="together-title">
+    <div class="wrap together-grid">
+      <figure class="u-pic" data-reveal><img src="frames/0062.webp" alt="A frangipani in flower over new lawn, the granite edge and the jade water of the pool below it, potted plants waiting by the beds" loading="lazy" decoding="async"></figure>
+      <div class="together-copy">
+        <p class="kicker mono" data-reveal>Pool and garden</p>
+        <h2 class="h2" id="together-title" data-reveal style="--delay:.06s">Drawn together, <em>built together.</em></h2>
+        <p class="body" data-reveal style="--delay:.12s">Most pools are dropped into a lawn. Ours are drawn with the garden around them: where the rain tree throws its shade at four, where the frangipani drops its flowers, where the afternoon storm runs off. The same crew lays the stone and plants the beds, so the pool looks as if it was always there.</p>
+        <ul class="plants" data-reveal style="--delay:.18s" aria-label="Planted at Bukit Timah">
+          <li><span>Frangipani <i class="mono">Plumeria rubra</i></span><b class="mono">×2</b></li>
+          <li><span>Traveller's palm <i class="mono">Ravenala madagascariensis</i></span><b class="mono">×1</b></li>
+          <li><span>Heliconia <i class="mono">Heliconia psittacorum</i></span><b class="mono">×36</b></li>
+          <li><span>Bird's-nest fern <i class="mono">Asplenium nidus</i></span><b class="mono">×24</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · plan your pool, on moving water light -->
+  <section class="plan" id="plan" aria-labelledby="plan-title">
+    <div class="water" aria-hidden="true">
+      <svg class="caustics c1" viewBox="0 0 1200 800" preserveAspectRatio="none"><filter id="cau1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="turbulence" baseFrequency="0.0058 0.0094" numOctaves="2" seed="11"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3.1 0 0 0 1.12"/><feComponentTransfer><feFuncA type="table" tableValues="0 0 0.06 0.42 0.9"/></feComponentTransfer></filter><rect width="1200" height="800" filter="url(#cau1)"/></svg>
+      <svg class="caustics c2" viewBox="0 0 1200 800" preserveAspectRatio="none"><filter id="cau2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="turbulence" baseFrequency="0.0082 0.0125" numOctaves="1" seed="29"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3.4 0 0 0 1.1"/><feComponentTransfer><feFuncA type="table" tableValues="0 0 0.05 0.36 0.8"/></feComponentTransfer></filter><rect width="1200" height="800" filter="url(#cau2)"/></svg>
+    </div>
+    <div class="wrap plan-inner">
+      <p class="kicker mono" data-reveal>Plan your pool</p>
+      <h2 class="h2 plan-title" id="plan-title" data-reveal style="--delay:.06s">Tell us the pool. <em>We'll walk the garden.</em></h2>
+      <form class="quote" id="quote" data-reveal style="--delay:.12s" novalidate>
+        <label class="q-field"><span class="mono">Size</span>
+          <select name="size">
+            <option value="plunge">Plunge, 5 × 2.5 m</option>
+            <option value="lap" selected>Lap, 12 × 3 m</option>
+            <option value="family">Family, 8 × 4 m</option>
+            <option value="long">Long lap, 18 × 3 m</option>
+          </select>
+        </label>
+        <label class="q-field"><span class="mono">Finish</span>
+          <select name="finish">
+            <option value="green" selected>Green stone</option>
+            <option value="terrazzo">Pale terrazzo</option>
+            <option value="mosaic">Blue glass mosaic</option>
+            <option value="basalt">Black basalt</option>
+          </select>
+        </label>
+        <label class="q-field"><span class="mono">Start</span>
+          <select name="start">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2" selected>March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+        </label>
+        <button class="btn btn--go q-go" type="submit">Plan your pool <i class="arrow" aria-hidden="true"></i></button>
+      </form>
+      <p class="q-out" data-reveal style="--delay:.18s"><span class="q-est" aria-live="polite"><span>About 12 weeks, garden included</span><b>Swim by 24 May</b></span><span class="q-note mono">This is a demo; nothing is sent.</span></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <p class="foot-mark">Kebun</p>
+    <p class="foot-line">Pools and gardens for Singapore homes, since 2011.</p>
+    <dl class="foot-facts">
+      <div><dt class="mono">Studio</dt><dd>Bukit Timah, Singapore</dd></div>
+      <div><dt class="mono">In Singapore now</dt><dd><span data-clock="Asia/Singapore">--:--</span></dd></div>
+      <div><dt class="mono">Visits</dt><dd>By appointment</dd></div>
+    </dl>
+    <nav class="foot-links" aria-label="Footer"><a href="#process">How we build</a><a href="#projects">Projects</a><a href="#garden">Gardens</a><a href="#plan">Plan your pool</a></nav>
+    <p class="foot-small mono">© 2026 Kebun · A demo site; the business is made up.</p>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+/* Misura · a kitchen maker. Paper and ink with one butter. "Drawn, then built": the film plays inside a working
+   drawing (dimension lines along the top and left of the picture, a title block bottom right), which pulls back
+   when the lights come on and leaves only the kitchen. */
+
+:root {
+  --paper: #F6F3EC; --ink: #15171A; --butter: #F2CF5B; --oak: #E6D6BB; --stone: #D9D3C7; --pencil: #6B675F;
+  --paper-a: 246, 243, 236; --ink-a: 21, 23, 26; --night: #121419;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --gut: clamp(16px, 2.6vw, 40px);
+  --nav-h: 64px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --slow: cubic-bezier(.45, 0, .2, 1);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: clip; }
+::selection { background: var(--butter); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: 1680px; margin: 0 auto; padding: 0 var(--gut); }
+.eyebrow { margin: 0; display: flex; gap: 14px; align-items: baseline; font: 500 13px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.eyebrow b { font-weight: 500; color: var(--ink); }
+.h2 { margin: 0; font: 600 clamp(40px, 4.9vw, 86px)/.92 var(--sans); letter-spacing: -.055em; }
+
+/* —— buttons: outline pills and the round butter arrow —— */
+.pill { display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border: 1px solid currentColor; border-radius: 999px; font: 500 15px/1 var(--sans); letter-spacing: -.005em; white-space: nowrap; transition: background-color .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease); }
+.pill:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.round { display: inline-flex; align-items: center; gap: 16px; cursor: pointer; }
+.round-label { font: 500 13px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.round-dot { display: grid; place-items: center; flex: none; width: 64px; aspect-ratio: 1; border-radius: 50%; background: var(--butter); color: var(--ink); transition: transform .7s var(--ease); }
+.round-dot svg { width: 40%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: square; overflow: visible; transition: transform .7s var(--ease); }
+.round:hover .round-dot svg { transform: rotate(45deg); }
+.round-lg .round-dot { width: clamp(84px, 8.4vw, 136px); }
+.round-lg .round-dot svg { stroke-width: 1.4; }
+
+/* —— nav: small and fixed; ink on the sunny room and the paper, paper once evening falls —— */
+.nav { position: fixed; z-index: 40; inset: 0 0 auto; height: var(--nav-h); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: 0 var(--gut); color: var(--ink); pointer-events: none; transition: color .35s var(--ease); }
+.nav > * { pointer-events: auto; }
+.nav-mark { justify-self: start; font: 600 24px/1 var(--sans); letter-spacing: -.06em; opacity: 0; transform: translateY(8px); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.nav.has-mark .nav-mark { opacity: 1; transform: none; }
+.nav-links { display: flex; gap: clamp(20px, 2.4vw, 36px); font: 500 15px/1 var(--sans); }
+.nav-links a { display: inline-flex; gap: 8px; align-items: baseline; padding: 8px 0 7px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .6s var(--ease); }
+.nav-links a:hover { background-size: 100% 1px; }
+.nav-links i { font: 500 13px/1 var(--mono); font-style: normal; letter-spacing: .02em; opacity: .55; }
+.nav-end { justify-self: end; display: flex; align-items: center; gap: 22px; }
+.nav-clock { margin: 0; font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nav-clock span { opacity: .6; }
+.nav-cta { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 17px 0 14px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 500 15px/1 var(--sans); white-space: nowrap; transition: background-color .6s var(--ease), color .6s var(--ease); }
+.nav-cta::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--butter); }
+/* ::before is the solid bar (paper over the sections, night while the lit hero scrolls away under it);
+   ::after is the soft dark shade the paper type sits on once evening has fallen on the film */
+.nav::before, .nav::after { content: ""; position: absolute; z-index: -1; pointer-events: none; opacity: 0; }
+.nav::before { inset: 0; background: var(--paper); box-shadow: 0 1px 0 var(--stone); transition: opacity .35s var(--ease); }
+.nav::after { inset: 0 0 -34px; background: linear-gradient(180deg, rgba(14, 15, 18, .62) 0%, rgba(14, 15, 18, .34) 58%, rgba(14, 15, 18, 0) 100%); transition: opacity .6s var(--ease); }
+.nav.is-solid::before { opacity: 1; }
+.nav.is-night { color: var(--paper); }
+.nav.is-night::after { opacity: 1; }
+.nav.is-out::before { opacity: 1; background: var(--night); box-shadow: 0 1px 0 rgba(var(--paper-a), .14); }
+.nav.is-out::after { opacity: 0; }
+.nav.is-night .nav-cta { background: var(--paper); color: var(--ink); }
+.nav.is-night .nav-clock span, .nav.is-night .nav-links i { opacity: .75; }
+
+/* ———————————————————— the build ———————————————————— */
+.ch { --ch-length: 500vh; --ch-bg: var(--paper); --ch-rise: 56px;
+  /* the part of the frame that is on screen, in stage px */
+  --vx0: max(var(--fx, 0px), 0px);
+  --vy0: max(var(--fy, 0px), 0px);
+  --vx1: max(100% - var(--fx, 0px) - var(--fw, 100%), 0px);
+  --dim-top: max(var(--vy0) + 10px, var(--nav-h) + 16px);
+  /* the finished kitchen's wall of units, measured off the last frame (1600 × 900): left and right ends (32, 1417),
+     the top of the tall units on the left (79) and the floor under their plinth (602) */
+  --uL: calc(var(--fx, 0px) + var(--fw, 100vw) * .02);
+  --uR: calc(var(--fx, 0px) + var(--fw, 100vw) * .8856);
+  --uT: calc(var(--fy, 0px) + var(--fh, 100vh) * .0878);
+  --uB: calc(var(--fy, 0px) + var(--fh, 100vh) * .6689);
+  /* the units nearly fill the frame, so the 4 800 line runs in the strip between the nav and their top, 12 px above
+     them where there is room and never up in the nav's strip; the 2 700 line in the strip left of them */
+  --dim-ln: clamp(var(--nav-h), var(--uT) - 12px, var(--nav-h) + 14px);
+  --dim-x0: max(14px, var(--uL) - 16px);
+  --tb-w: clamp(380px, 31vw, 470px);
+}
+.ch .ch-stage { background: var(--paper); }
+/* the HUD and the drawing line up with the nav and the titles (hud.css sets its own --hud-pad on .hud) */
+.ch .hud, .ch .dwg { --hud-pad: var(--gut); }
+
+/* the drawing: the wall run along the top (4 800) and its height down the left (2 700), with extension lines that
+   stop just short of the units, 45° ticks on the ends, a chain tick on every door joint and the mm figures. They draw
+   in during Measure; at dusk the figures go first, then each line folds back into its middle. */
+.dwg { position: absolute; inset: 0; pointer-events: none; color: var(--ink);
+  --pull: min(1, var(--dusk, 0) * 1.8); --ext: calc(1 - min(1, var(--dusk, 0) * 4)); }
+.dim { position: absolute; }
+.dim-ln { position: absolute; background: currentColor; }
+.dim-ln::before, .dim-ln::after { content: ""; position: absolute; width: 1.5px; height: 13px; background: currentColor; }
+.dim::before, .dim::after { content: ""; position: absolute; background: currentColor; }
+.dim-fig { position: absolute; padding: 4px 9px 3px; background: var(--paper); font: 500 13px/1 var(--mono); letter-spacing: .06em; font-variant-numeric: tabular-nums; white-space: nowrap; opacity: calc(min(1, var(--k, 0) * 6) * (1 - min(1, var(--dusk, 0) * 3))); }
+
+.dim-x { left: max(var(--uL), 14px); right: max(100% - var(--uR), 14px); top: calc(var(--dim-ln) - 12px); height: max(16px, var(--uT) - var(--dim-ln) + 8px); }
+.dim-x::before, .dim-x::after { top: 6px; bottom: 0; width: 1px; }
+.dim-x::before { left: 0; opacity: calc(min(1, var(--k, 0) * 30) * var(--ext)); }
+.dim-x::after { right: 0; opacity: calc(clamp(0, (var(--k, 0) - .97) * 34, 1) * var(--ext)); }
+.dim-x .dim-ln { left: -8px; right: -8px; top: 12px; height: 1px; clip-path: inset(-8px calc((1 - var(--k, 0)) * (100% + 8px) + var(--pull) * 50%) -8px calc(var(--pull) * (50% + 8px) - 8px)); }
+.dim-x .dim-ln::before, .dim-x .dim-ln::after { top: -6px; transform: rotate(45deg); }
+.dim-x .dim-ln::before { left: 7.25px; }
+.dim-x .dim-ln::after { right: 7.25px; }
+/* the figure sits a quarter of the way along, in the nav's empty stretch between the name and the links */
+.dim-x .dim-fig { left: 25%; top: 12px; transform: translate(-50%, -50%); }
+.dim-chain { position: absolute; left: 0; right: 0; top: 8px; height: 9px; opacity: .6; clip-path: inset(0 calc((1 - var(--k, 0)) * 100% + var(--pull) * 50%) 0 calc(var(--pull) * 50%)); }
+.dim-chain i { position: absolute; top: 0; bottom: 0; left: calc(var(--s) * 100%); width: 1px; background: currentColor; }
+
+/* its extension lines reach to just short of the units; when the wall starts off screen they shrink to a stub */
+.dim-y { left: calc(var(--dim-x0) - 6px); top: var(--uT); bottom: calc(100% - var(--uB)); width: max(12px, var(--uL) - var(--dim-x0) + 2px); }
+.dim-y::before, .dim-y::after { left: 0; right: 0; height: 1px; }
+.dim-y::before { top: 0; opacity: calc(min(1, var(--k, 0) * 30) * var(--ext)); }
+.dim-y::after { bottom: 0; opacity: calc(clamp(0, (var(--k, 0) - .97) * 34, 1) * var(--ext)); }
+.dim-y .dim-ln { top: -8px; bottom: -8px; left: 6px; width: 1px; clip-path: inset(calc(var(--pull) * (50% + 8px) - 8px) -8px calc((1 - var(--k, 0)) * (100% + 8px) + var(--pull) * 50%) -8px); }
+.dim-y .dim-ln::before, .dim-y .dim-ln::after { left: -6px; width: 13px; height: 1.5px; transform: rotate(-45deg); }
+.dim-y .dim-ln::before { top: 7.25px; }
+.dim-y .dim-ln::after { bottom: 7.25px; }
+.dim-y .dim-fig { left: 6px; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
+
+/* the scaffold HUD, in ink on the sunny room */
+.ch .hud { --hud-ink: var(--ink); --hud-dim: var(--pencil); --hud-line: rgba(var(--ink-a), .4); --hud-glass: rgba(var(--paper-a), .9);
+  --signal: var(--butter); --hud-font: var(--mono); --hud-cap-font: var(--sans); --hud-top: calc(var(--nav-h) + 12px);
+  /* hud.css drops to 11px on phones; the HUD never goes under 13px */
+  font-size: 13px; letter-spacing: .08em; }
+/* the scaffold comes down in the first half of dusk, so the evening isn't seen through half-faded type */
+.ch .hud > * { opacity: calc(var(--k, 1) * (1 - min(1, var(--dusk, 0) * 1.6))); }
+/* a small shade in the corner under the counter (which has its own, below) and a low band for the ruler, so the
+   finished island and its first stool stay clear */
+.ch .hud-veil { left: 0; right: 0; bottom: 0; height: 360px; background:
+  radial-gradient(420px 260px at 0% 100%, rgba(var(--paper-a), .7) 0%, rgba(var(--paper-a), .46) 45%, rgba(var(--paper-a), 0) 100%),
+  linear-gradient(0deg, rgba(var(--paper-a), .7) 0, rgba(var(--paper-a), .42) 46px, rgba(var(--paper-a), 0) 96px); }
+/* the engine lowers the HUD by up to 14px at dusk: the top veil reaches above the stage so no bare strip shows */
+.ch .hud-veil-top { top: -18px; bottom: auto; height: 158px; background: linear-gradient(180deg, rgba(var(--paper-a), .74) 0%, rgba(var(--paper-a), .74) 18px, rgba(var(--paper-a), .42) 70px, rgba(var(--paper-a), 0) 100%); }
+
+.ch .hud-count { left: var(--hud-pad); bottom: calc(var(--hud-pad) + 46px); gap: 10px; }
+/* a soft paper shade of its own: the butter boards hinge up right behind it */
+.ch .hud-count::before { content: ""; position: absolute; inset: -34px -70px -14px -40px; z-index: -1; background: rgba(var(--paper-a), .66);
+  --feather: linear-gradient(90deg, transparent, #000 36px, #000 calc(100% - 120px), transparent), linear-gradient(180deg, transparent, #000 34px, #000 calc(100% - 12px), transparent);
+  -webkit-mask: var(--feather); -webkit-mask-composite: source-in;
+  mask: var(--feather); mask-composite: intersect; }
+.ch .hud-label { color: var(--pencil); }
+.ch .hud-num { gap: 0; font: 600 clamp(64px, 11vh, 132px)/.78 var(--sans); letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.ch .hud-num small { align-self: flex-start; margin: .1em 0 0 .7em; font: 500 13px/1 var(--mono); letter-spacing: .08em; color: var(--pencil); }
+.ch .hud-segs { width: clamp(220px, 21vw, 330px); height: 8px; margin-top: 8px; background: linear-gradient(90deg, var(--ink) calc(var(--k, 0) * 100%), rgba(var(--ink-a), .14) 0); }
+
+.ch .hud-ruler { left: var(--hud-pad); right: calc(var(--hud-pad) + var(--tb-w) + 44px); bottom: calc(var(--hud-pad) - 8px); height: 34px; }
+.ch .hud-ruler::after { top: -4px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: var(--butter); box-shadow: 0 0 0 1.5px var(--ink); }
+.ch .hud-ruler li { padding-top: 13px; color: var(--pencil); }
+.ch .hud-ruler li::before { top: -4px; height: 9px; }
+.ch .hud-ruler li.is-done { color: var(--ink); }
+.ch .hud-ruler li.is-now::before { background: var(--ink); width: 2px; margin-left: 0; }
+.ch .hud-ruler li.is-now span { background: var(--butter); box-shadow: 0 0 0 3px var(--butter); }
+.ch .hud-ruler li b { opacity: 1; margin-right: 7px; }
+
+/* captions: a drawing note under the top dimension, top right, on a soft paper shade that hugs the words (a
+   rectangle with feathered edges, so it fogs as little of the picture as it can). main.js sets their opacity and
+   rise: from the scroll at a reading pace, by time in a fast pass, where these transitions do the fading (they
+   only soften the scroll-driven fades). It stays visible until it has faded out. */
+.ch .hud-cap { top: calc(var(--dim-top) + 54px); bottom: auto; left: auto; right: calc(var(--vx1) + var(--hud-pad)); text-align: right; justify-items: end; width: max-content; max-width: min(470px, 34vw); gap: 12px; opacity: 0; visibility: hidden; will-change: opacity, transform;
+  transition: opacity .17s linear, transform .3s var(--ease), visibility 0s linear .3s; }
+.ch .hud-cap.is-on { visibility: visible; transition-delay: 0s; }
+.ch .hud-cap::before { content: ""; position: absolute; inset: -24px -30px -26px -46px; z-index: -1; background: rgba(var(--paper-a), .84);
+  --feather: linear-gradient(90deg, transparent, #000 42px, #000 calc(100% - 26px), transparent), linear-gradient(180deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+  -webkit-mask: var(--feather); -webkit-mask-composite: source-in;
+  mask: var(--feather); mask-composite: intersect; }
+.ch .hud-cap b { color: rgba(var(--ink-a), .78); }
+.ch .hud-cap span { font: 600 clamp(28px, 2.6vw, 44px)/1 var(--sans); letter-spacing: -.045em; color: var(--ink); }
+/* Carcass: panels fly across the whole wall, the right tall unit too, so a lighter, tighter shade */
+.ch .hud-cap.cap-carcass::before { inset: -16px -22px -18px -34px; background: rgba(var(--paper-a), .78); }
+@media (min-width: 760px) {
+  /* Fronts: the doors swing on the wall cabinets and both tall units, so the note goes on the bare wall between the
+     wall cabinets and the counter (frame y .345 → .47, x .19 → .74 through the whole stage), on one line */
+  .ch .hud-cap.cap-wall { top: calc(var(--fy, 0px) + var(--fh, 100vh) * .357); left: max(var(--hud-pad), calc(var(--fx, 0px) + var(--fw, 100vw) * .205)); right: auto;
+    text-align: left; justify-items: start; max-width: min(calc(var(--fw, 100vw) * .52), 100% - 2 * var(--hud-pad)); gap: 10px; }
+  .ch .hud-cap.cap-wall::before { inset: -20px -34px -22px -34px;
+    --feather: linear-gradient(90deg, transparent, #000 30px, #000 calc(100% - 30px), transparent), linear-gradient(180deg, transparent, #000 18px, #000 calc(100% - 18px), transparent); }
+}
+
+/* the title block, bottom right: who, which drawing, the scale, and the build's own clock */
+.ch .tblock { right: var(--hud-pad); bottom: var(--hud-pad); width: var(--tb-w); background: var(--paper); border: 1px solid var(--ink); font: 500 13px/1.15 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.tb-head { margin: 0; display: grid; grid-template-columns: 1fr auto auto; border-bottom: 1px solid var(--ink); }
+.tb-head > * { padding: 10px 13px 9px; }
+.tb-head > * + * { border-left: 1px solid var(--stone); }
+.tb-head b { font: 600 18px/1 var(--sans); letter-spacing: -.04em; text-transform: none; }
+.tb-head span { align-self: center; }
+.tb-cells { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tb-cells > div { padding: 9px 13px 12px; display: grid; gap: 8px; }
+.tb-cells > div + div { border-left: 1px solid var(--stone); }
+.tb-cells dt { color: var(--pencil); }
+.tb-cells dd { margin: 0; font: 500 18px/1 var(--mono); letter-spacing: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tb-cells dd small { font-size: 13px; color: var(--pencil); }
+.tb-fit { background: rgba(242, 207, 91, var(--k, 0)); }
+.tb-fit dt { color: rgba(var(--ink-a), calc(.66 + .34 * var(--k, 0))); }
+.tb-fit dd { display: grid; }
+.tb-fit dd > * { grid-area: 1 / 1; }
+.tb-no { opacity: calc(1 - var(--k, 0)); }
+.tb-yes { opacity: var(--k, 0); }
+
+/* the first screen: the giant name over the empty room, a hairline, one line, two pills and the round button */
+.intro { position: absolute; inset: 0; padding: calc(var(--nav-h) - 4px) var(--gut) 0; pointer-events: none; transform: translateY(calc(var(--p, 0) * -900px)); }
+.intro::before { content: ""; position: absolute; inset: 0 0 auto; height: 66%; z-index: -1; background: linear-gradient(180deg, rgba(var(--paper-a), .93) 0%, rgba(var(--paper-a), .84) 34%, rgba(var(--paper-a), .42) 66%, rgba(var(--paper-a), 0) 100%); }
+.intro a { pointer-events: auto; }
+.intro-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.intro-title { margin: 0 0 0 -.06em; font: 600 clamp(120px, 21.5vw, 360px)/.74 var(--sans); letter-spacing: -.068em; }
+.intro-top .round { margin-bottom: .4vw; }
+.intro-rule { display: block; height: 1px; margin-top: clamp(20px, 2.4vw, 34px); background: var(--ink); transform-origin: 0 50%; }
+.intro-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: clamp(16px, 1.6vw, 24px); }
+.intro-line { margin: 0; max-width: 34ch; font: 500 clamp(17px, 1.32vw, 21px)/1.35 var(--sans); letter-spacing: -.012em; text-wrap: balance; }
+.intro-pills { display: flex; gap: 10px; margin: 0; }
+
+/* on load: the hairline draws, the name settles */
+@keyframes rule-in { from { transform: scaleX(0); } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(26px); } }
+.intro-rule { animation: rule-in 1.5s var(--slow) .15s both; }
+.intro-title { animation: rise-in 1.1s var(--ease) both; }
+.intro-row, .intro-top .round { animation: rise-in 1.1s var(--ease) .25s both; }
+
+/* lights on: "Fitted." over the lit floor, under the island's plinth (y .80 of the frame: the title is sized by the
+   screen's height too, and on screens wider than 16:9 main.js eases the frame up at dusk); the drawing's kicker sits
+   over the buttons, clear of the island */
+.end { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 var(--gut) clamp(24px, 4.4vh, 48px); display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: end; gap: 16px 32px; color: var(--paper); pointer-events: none; }
+.end::before { content: ""; position: absolute; inset: auto 0 0; height: 56%; z-index: -1; background: linear-gradient(0deg, rgba(14, 15, 18, .66) 0%, rgba(14, 15, 18, .34) 48%, rgba(14, 15, 18, 0) 100%); }
+.end.is-in a { pointer-events: auto; }
+.end-kick { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; display: flex; gap: 22px; font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: rgba(var(--paper-a), .82); }
+.end-title { grid-column: 1; grid-row: 1 / span 2; margin: 0 0 0 -.06em; font: 600 clamp(88px, min(10.8vw, 16.5vh), 196px)/.76 var(--sans); letter-spacing: -.068em; }
+.end-act { grid-column: 2; grid-row: 2; display: flex; align-items: center; gap: 22px; padding-bottom: 6px; }
+.end .pill-light { color: var(--paper); }
+.end .pill-light:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+
+.hint { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); margin: 0; display: flex; align-items: center; gap: 12px; padding: 11px 16px 10px; border-radius: 999px; background: rgba(var(--paper-a), .9); font: 500 13px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.hint i { width: 34px; height: 1px; background: currentColor; transform-origin: 0 50%; animation: hint 2.6s var(--slow) infinite; }
+@keyframes hint { 0% { transform: scaleX(0); opacity: 1; } 60% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+
+/* ———————————————————— below the hero ———————————————————— */
+section:not(.ch) { position: relative; background: var(--paper); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 26px clamp(24px, 4vw, 72px); align-items: end; padding-bottom: clamp(34px, 5vh, 60px); }
+.sec-head .eyebrow { grid-column: 1 / -1; }
+.sec-note { margin: 0 0 6px; max-width: 38ch; justify-self: end; font: 400 clamp(16px, 1.15vw, 18px)/1.5 var(--sans); color: var(--pencil); text-wrap: pretty; }
+
+/* process: three numbers in hairline cells */
+.process { padding: clamp(84px, 13vh, 150px) 0 clamp(64px, 9vh, 110px); }
+.figs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--stone); }
+.figs li { display: grid; align-content: space-between; gap: clamp(28px, 4vh, 48px); padding: clamp(22px, 3vh, 34px) clamp(18px, 2.4vw, 36px) clamp(26px, 3.6vh, 40px); }
+.figs li:first-child { padding-left: 0; }
+.figs li + li { border-left: 1px solid var(--stone); }
+.fig { margin: 0; display: flex; align-items: flex-start; gap: 12px; }
+.fig-n { font: 600 clamp(112px, 13.4vw, 240px)/.78 var(--sans); letter-spacing: -.075em; font-variant-numeric: tabular-nums; margin-left: -.04em; }
+.tag { position: relative; top: .3em; padding: 6px 9px 5px; border-radius: 3px; background: var(--butter); color: var(--ink); font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; vertical-align: baseline; white-space: nowrap; }
+.fig-t { margin: 0; max-width: 27ch; font: 400 17px/1.45 var(--sans); }
+/* a dimension line across each cell, as on the drawing: extension lines, 45° end ticks, a tick per module or day,
+   and the figure in mono on paper. It draws in from the left when the cell comes into view. */
+.fig-dim { position: relative; height: 26px; margin: 0; color: var(--ink); clip-path: inset(-12px 100% -12px -12px); transition: clip-path 1.6s var(--slow) calc(var(--delay, 0s) + .35s); }
+.figs li.is-shown .fig-dim { clip-path: inset(-12px -12px -12px -12px); }
+.fig-dim::before, .fig-dim::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: currentColor; }
+.fig-dim::before { left: 0; }
+.fig-dim::after { right: 0; }
+.fd-ln { position: absolute; left: -7px; right: -7px; top: 13px; height: 1px; background: currentColor; }
+.fd-ln::before, .fd-ln::after { content: ""; position: absolute; top: -6px; width: 1.5px; height: 13px; background: currentColor; transform: rotate(45deg); }
+.fd-ln::before { left: 6.25px; }
+.fd-ln::after { right: 6.25px; }
+.fd-segs { position: absolute; left: 0; right: 0; top: 9px; height: 9px; opacity: .55; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px calc(100% / var(--n, 1))); }
+.fig-dim b { position: absolute; left: 50%; top: 13px; transform: translate(-50%, -50%); padding: 4px 9px 3px; background: var(--paper); font: 500 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* finishes: one at a time */
+.finishes { padding: clamp(64px, 10vh, 120px) 0 clamp(64px, 10vh, 120px); border-top: 1px solid var(--stone); }
+.fin-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; padding-bottom: clamp(32px, 5vh, 56px); }
+.fin-head .h2 { flex: 1 1 auto; text-align: right; font-size: clamp(32px, 3.4vw, 56px); text-wrap: balance; }
+.fin { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 4.4vw, 80px); align-items: start; }
+.fin-pics { position: relative; aspect-ratio: 1; width: min(100%, 66vh); overflow: hidden; background: var(--oak); }
+.fin-pic { position: absolute; inset: 0; background: var(--pic) var(--pos) / var(--size) no-repeat; opacity: 0; transform: scale(1.035); transition: opacity 1s var(--slow), transform 1.8s var(--ease); }
+.fin-pic.is-on { opacity: 1; transform: none; }
+/* the sample's title block, like the hero's: which drawing, which finish, full size */
+.fin-tb { position: absolute; left: 14px; bottom: 14px; z-index: 1; margin: 0; display: flex; background: var(--paper); border: 1px solid var(--ink); font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.fin-tb > * { padding: 9px 11px 8px; }
+.fin-tb > * + * { border-left: 1px solid var(--stone); }
+.fin-tb b { font-weight: 500; }
+.fin-tb em { font-style: normal; font-variant-numeric: tabular-nums; }
+.fin-body { display: flex; flex-direction: column; min-width: 0; align-self: stretch; }
+.fin-bar { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--ink); }
+.fin-count { margin: 0; font: 500 13px/1 var(--mono); letter-spacing: .08em; color: var(--pencil); font-variant-numeric: tabular-nums; }
+.fin-count b { font-weight: 500; color: var(--ink); }
+.fin-arrows { display: flex; gap: 8px; margin: 0; }
+.sq { display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid var(--ink); border-radius: 0; background: transparent; cursor: pointer; transition: background-color .4s var(--ease), color .4s var(--ease); }
+.sq svg { width: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; }
+.sq:hover { background: var(--ink); color: var(--paper); }
+.fin-texts { display: grid; }
+.fin-text { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity .7s var(--ease), transform .9s var(--ease), visibility 0s .7s; }
+.fin-text.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: .12s, .12s, 0s; }
+.fin-name { margin: clamp(22px, 3.6vh, 44px) 0 18px; font: 600 clamp(56px, 7.2vw, 128px)/.84 var(--sans); letter-spacing: -.065em; text-wrap: balance; }
+.fin-line { margin: 0 0 clamp(26px, 4vh, 40px); max-width: 36ch; font: 400 clamp(16px, 1.2vw, 19px)/1.45 var(--sans); color: var(--pencil); }
+.specs { margin: 0; border-top: 1px solid var(--stone); }
+.specs > div { display: grid; grid-template-columns: minmax(110px, 1fr) 2fr; gap: 16px; padding: 15px 0 14px; border-bottom: 1px solid var(--stone); }
+.specs dt { font: 500 13px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.specs dd { margin: 0; font: 500 15px/1.4 var(--mono); letter-spacing: .01em; }
+.fin-tabs { display: flex; gap: 10px; margin: auto 0 0; padding-top: 30px; }
+.fin-tabs button { width: 58px; height: 58px; padding: 0; border: 0; border-radius: 0; cursor: pointer; background: var(--pic) var(--pos) / var(--size) no-repeat; box-shadow: inset 0 0 0 1px rgba(var(--ink-a), .1); transition: box-shadow .4s var(--ease); }
+.fin-tabs button[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--ink); }
+
+/* book a design visit: three steps, the four layouts drawn as plans */
+.visit { padding: clamp(64px, 10vh, 120px) 0 clamp(64px, 9vh, 110px); border-top: 1px solid var(--stone); }
+.book { border-top: 1px solid var(--ink); }
+.step { display: grid; grid-template-columns: minmax(150px, 2.6fr) 9.4fr; gap: 24px; padding: clamp(18px, 2.6vh, 28px) 0; border-bottom: 1px solid var(--stone); }
+.step-k { margin: 6px 0 0; display: flex; gap: 14px; align-items: baseline; font: 500 13px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.step-k b { font-weight: 500; color: var(--ink); }
+.sizes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 36px); }
+.field { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: 14px; padding: 10px 0 9px; border-bottom: 1px solid var(--ink); cursor: text; }
+.field:focus-within { box-shadow: 0 1px 0 var(--ink); }
+.field span, .field em { font: 500 13px/1 var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.field input { min-width: 0; width: 100%; padding: 0; border: 0; outline: 0; background: transparent; font: 500 clamp(22px, 2vw, 30px)/1.15 var(--mono); letter-spacing: -.02em; color: var(--ink); }
+.field input::placeholder { color: rgba(var(--ink-a), .26); }
+.plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.plan { position: relative; display: grid; gap: 12px; padding: 30px 14px 13px 32px; border: 1px solid var(--stone); cursor: pointer; transition: border-color .4s var(--ease), background-color .4s var(--ease); }
+.plan:hover { border-color: rgba(var(--ink-a), .5); }
+.plan input { position: absolute; inset: 0; z-index: 1; opacity: 0; margin: 0; cursor: pointer; }
+.plan-pic { position: relative; display: block; }
+.plan svg { display: block; width: 100%; height: auto; overflow: visible; }
+.plan svg path { fill: none; stroke: var(--ink); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-linejoin: miter; }
+.plan .wall { fill: var(--ink); stroke: none; }
+.plan .gap { fill: var(--paper); stroke: none; }
+.plan .unit { fill: var(--paper); transition: fill .5s var(--ease); }
+.plan .mod { stroke: rgba(var(--ink-a), .5); }
+.plan .door { stroke: rgba(var(--ink-a), .55); }
+.plan-name { display: flex; gap: 9px; align-items: center; font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.plan-name i { width: 13px; height: 13px; border: 1px solid var(--ink); border-radius: 50%; transition: background-color .3s, box-shadow .3s; }
+.plan:has(input:checked) { border-color: var(--ink); }
+.plan:has(input:checked) .unit { fill: var(--butter); }
+.plan:has(input:checked) .plan-name i { background: var(--ink); box-shadow: inset 0 0 0 2.5px var(--paper); }
+/* the chosen plan is dimensioned: the room's width along the top, its depth down the side, live from step 01 */
+.plan .dimln, .plan-fig { opacity: 0; transition: opacity .5s var(--ease); }
+.plan:has(input:checked) .dimln, .plan:has(input:checked) .plan-fig { opacity: 1; }
+.plan-fig { position: absolute; padding: 3px 6px 2px; background: var(--paper); font: 500 13px/1 var(--mono); letter-spacing: .04em; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--pencil); pointer-events: none; }
+.plan-fig.is-typed { color: var(--ink); }
+.plan-w { left: 50%; top: calc(-6 / 112 * 100%); transform: translate(-50%, -50%); }
+.plan-d { left: calc(-6 / 160 * 100%); top: 50%; transform: translate(-50%, -50%) rotate(-90deg); }
+.plan:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 3px; }
+.days { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(16px, 2.4vw, 36px); align-items: end; }
+.day-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.day { display: grid; gap: 7px; justify-items: start; min-width: 86px; padding: 12px 14px 12px; border: 1px solid var(--stone); border-radius: 0; background: transparent; cursor: pointer; text-align: left; transition: border-color .4s var(--ease), box-shadow .4s var(--ease); }
+.day:hover { border-color: rgba(var(--ink-a), .5); }
+.day small { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--pencil); }
+.day b { font: 600 26px/.9 var(--sans); letter-spacing: -.04em; }
+.day[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 -5px 0 var(--butter); }
+.field-wide { align-self: end; }
+.book-send { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 24px; padding-top: clamp(24px, 3.4vh, 36px); }
+.demo-note { grid-column: 1; margin: 0; font: 400 15px/1.4 var(--sans); color: var(--pencil); }
+.demo-note::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 10px; border-radius: 50%; background: var(--butter); box-shadow: 0 0 0 1px rgba(var(--ink-a), .5); vertical-align: 1px; }
+.book-out { grid-column: 1; margin: 0; min-height: 1.4em; font: 500 16px/1.4 var(--sans); }
+.round-send { grid-column: 2; grid-row: 1 / span 2; padding: 0; border: 0; background: none; }
+.round-send .round-dot { width: 72px; }
+
+/* footer: a hairline grid on pale oak, the address and the time in Milano */
+.foot { background: var(--oak); color: var(--ink); }
+.foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+.foot-cell { display: grid; align-content: start; gap: 14px; padding: clamp(28px, 4vh, 44px) clamp(16px, 1.8vw, 28px) clamp(36px, 5vh, 56px); border-left: 1px solid rgba(var(--ink-a), .22); }
+.foot-cell:first-child { padding-left: 0; border-left: 0; }
+.foot-cell p { margin: 0; font: 400 16px/1.5 var(--sans); }
+.foot-cell .eyebrow { font: 500 13px/1.2 var(--mono); color: rgba(var(--ink-a), .62); }
+.foot-cell .foot-mark { font: 600 clamp(36px, 3.4vw, 54px)/.9 var(--sans); letter-spacing: -.06em; }
+.foot-brand p:last-child { max-width: 24ch; }
+.foot-cell .foot-clock { font: 600 clamp(44px, 4.6vw, 76px)/.86 var(--sans); letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+.foot-base { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding-top: 18px; padding-bottom: 22px; border-top: 1px solid rgba(var(--ink-a), .22); }
+.foot-base p { margin: 0; font: 400 15px/1.4 var(--sans); }
+.foot-base a { white-space: nowrap; border-bottom: 1px solid currentColor; font: 500 13px/1.35 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+/* ———————————————————— laptops and tablets ———————————————————— */
+/* the title block shortens the ruler: from here down only the current stage (and Light, at the end) is named, so
+   neighbouring labels never run together */
+@media (min-width: 760px) and (max-width: 1480px) {
+  .ch .hud-ruler li:not(.is-now):not(.is-end) { color: transparent; }
+  .ch .hud-ruler li:not(.is-now):not(.is-end)::before { background: var(--pencil); }
+  .ch .hud-ruler li.is-done:not(.is-now):not(.is-end)::before { background: var(--ink); }
+  .ch .hud-ruler li:not(.is-now):not(.is-end) span { display: none; }
+}
+/* laptops: a shorter nav button, so the 4 800 line (at the nav's foot when the units' top is close under it) keeps
+   clear of it */
+@media (min-width: 760px) and (max-width: 1439.98px) {
+  .nav-cta { height: 36px; }
+}
+@media (min-width: 760px) and (max-width: 1180px) {
+  .ch { --tb-w: 360px; }
+  .tb-cells > div { padding: 9px 10px 11px; }
+  .tb-cells dd { font-size: 16px; }
+}
+/* tablets: a three-cell title block, and the current label slides along so it stays inside the ruler */
+@media (min-width: 760px) and (max-width: 1100px) {
+  .ch { --tb-w: 300px; }
+  .tb-cells { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tb-cells > div:nth-child(1) { display: none; }
+  .tb-cells > div:nth-child(2) { border-left: 0; }
+  .ch .hud-ruler li { translate: calc(var(--x, 0) * -100%) 0; }
+  .ch .hud-ruler li::before { left: calc(var(--x, 0) * 100%); }
+  .ch .hud-ruler li.is-end { translate: -100% 0; }
+  .ch .hud-ruler li.is-end::before { left: auto; right: 0; }
+}
+
+/* ———————————————————— phones: the film is a band near the top, everything else on paper ———————————————————— */
+@media (max-width: 759.98px) {
+  :root { --nav-h: 56px; }
+  .nav { grid-template-columns: 1fr auto; gap: 12px; }
+  .nav-links { display: none; }
+  .nav-mark { font-size: 22px; }
+  .nav-end { gap: 14px; }
+  .nav-cta { height: 36px; padding: 0 14px 0 12px; font-size: 15px; }
+
+  /* evening falls on the sheet too: it stays paper while the film dims, then turns to night between dusk .3 and .7 */
+  .ch { --ch-length: 450vh; --below: calc(var(--fy, 101px) + var(--fh, 298px)); }
+  .ch .ch-stage { background: color-mix(in oklab, var(--paper), var(--night) calc(clamp(0, (var(--dusk, 0) - .3) * 2.5, 1) * 100%)); }
+  .ch.ch-band .ch-back { display: none; }
+
+  /* the wall runs past both sides of the band, so the 4 800 line spans the screen; the 2 700 still lands on the
+     units' top and plinth */
+  .ch { --dim-ln: max(calc(var(--fy, 101px) + 18px), calc(var(--nav-h) + 20px)); }
+  .dim-x { left: 16px; right: 16px; }
+  .dim-x .dim-fig { left: 50%; }
+  .dim-y { left: 10px; width: 22px; }
+  .dim-chain { display: none; }
+
+  .ch .hud-veil { display: none; }
+  /* on a phone the readouts share the paper with the title: they rise once it has left, and go early at dusk */
+  .ch .hud > :not(.hud-cap) { opacity: calc(clamp(0, (var(--p, 0) - .045) * 30, 1) * (1 - min(1, var(--dusk, 0) * 2.2))); }
+  .ch .hud-cap { top: calc(var(--below) + 6px); bottom: auto; left: var(--hud-pad); right: var(--hud-pad); width: auto; max-width: none; text-align: left; justify-items: start; gap: 10px; }
+  .ch .hud-cap::before, .ch .hud-count::before { display: none; }
+  .ch .hud-cap span { font-size: clamp(26px, 7.6vw, 32px); }
+  .ch .hud-count { top: auto; bottom: 64px; left: var(--hud-pad); gap: 8px; }
+  .ch .hud-num { font-size: 66px; }
+  .ch .hud-segs { width: 150px; height: 7px; }
+  .ch .tblock { top: auto; bottom: 64px; right: var(--hud-pad); width: min(196px, 52vw); }
+  .tb-head { grid-template-columns: 1fr auto; }
+  .tb-head > :last-child { display: none; }
+  .tb-head > * { padding: 8px 10px 7px; }
+  .tb-head b { font-size: 16px; }
+  .tb-cells { grid-template-columns: 1fr 1fr; }
+  .tb-cells > div { padding: 8px 10px 9px; gap: 6px; }
+  .tb-cells > div:nth-child(1) { display: none; }
+  .tb-cells > div:nth-child(2) { border-left: 0; }
+  .tb-cells > div:nth-child(4) { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--stone); grid-template-columns: auto 1fr; align-items: baseline; }
+  .tb-cells dd { font-size: 16px; }
+  .ch .hud-ruler { left: var(--hud-pad); right: var(--hud-pad); bottom: 10px; }
+  /* labels slide left as they near the end, so they stay inside the ruler */
+  .ch .hud-ruler li { translate: calc(var(--x, 0) * -100%) 0; }
+  .ch .hud-ruler li::before { left: calc(var(--x, 0) * 100%); }
+  .ch .hud-ruler li.is-end { translate: -100% 0; }
+  .ch .hud-ruler li.is-end:not(.is-now) span { visibility: hidden; }
+
+  .intro { inset: auto 0 0; top: calc(var(--below) + 2px); padding: 0 var(--gut); transform: none; }
+  .intro::before { display: none; }
+  .intro-title { font-size: clamp(84px, 25vw, 130px); }
+  .intro-top .round { margin-bottom: 2px; }
+  .intro-top .round-label { display: none; }
+  .intro-top .round-dot { width: 56px; }
+  .intro-top .round-dot svg { stroke-width: 1.6; }
+  .intro-rule { margin-top: 18px; }
+  .intro-row { display: grid; gap: 18px; margin-top: 16px; }
+  .intro-line { font-size: 17px; max-width: 30ch; }
+  .intro-pills .pill { height: 42px; padding: 0 18px; }
+
+  .end { top: calc(var(--below) + 8px); bottom: auto; grid-template-columns: 1fr; grid-template-rows: none; padding: 0 var(--gut); gap: 14px; }
+  .end-kick, .end-title { grid-column: 1; grid-row: auto; justify-self: start; }
+  .end::before { display: none; }
+  .end-title { font-size: clamp(88px, 28vw, 140px); }
+  .end-act { grid-column: 1; grid-row: auto; flex-wrap: wrap; gap: 16px 18px; padding: 10px 0 0; }
+  .hint { bottom: 18px; }
+
+  .h2 { font-size: 37px; text-wrap: balance; }
+  #visit-title br { display: none; }
+  .sec-head { grid-template-columns: 1fr; gap: 18px; padding-bottom: 28px; }
+  .sec-note { justify-self: start; font-size: 16px; }
+  .process { padding: 64px 0 44px; }
+  .finishes, .visit { padding: 52px 0; }
+  /* the numbers as compact rows: the numeral, then its tag and line beside it, the dimension underneath */
+  .figs { grid-template-columns: 1fr; }
+  .figs li { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "n tag" "n t" "dim dim"; align-content: start; align-items: start; gap: 8px 18px; padding: 18px 0 18px; }
+  .figs li + li { border-left: 0; border-top: 1px solid var(--stone); }
+  .figs li:first-child { padding-left: 0; }
+  .fig { display: contents; }
+  .fig-n { grid-area: n; align-self: center; min-width: 1.1em; font-size: 84px; }
+  .tag { grid-area: tag; justify-self: start; top: 0; }
+  .fig-t { grid-area: t; font-size: 15px; }
+  .fig-dim { grid-area: dim; margin-top: 10px; }
+  .fin-head { padding-bottom: 24px; }
+  .fin-head .h2 { text-align: left; }
+  .fin { grid-template-columns: 1fr; gap: 6px; }
+  .fin-pics { width: 100%; aspect-ratio: 4 / 3; max-height: 46vh; }
+  .fin-name { margin: 18px 0 12px; font-size: 52px; }
+  .fin-line { margin-bottom: 20px; }
+  .specs > div { grid-template-columns: 112px 1fr; padding: 11px 0 10px; }
+  .fin-tabs { padding-top: 20px; }
+  .fin-tabs button { width: 52px; height: 52px; }
+  .step { grid-template-columns: 1fr; gap: 14px; padding: 16px 0; }
+  /* the three sizes side by side, each label over its figure */
+  .sizes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .sizes .field { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l u" "i i"; gap: 8px 6px; }
+  .sizes .field span { grid-area: l; }
+  .sizes .field em { grid-area: u; }
+  .sizes .field input { grid-area: i; font-size: 22px; }
+  .plans { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .plan { padding: 26px 10px 11px 28px; gap: 10px; }
+  .days { grid-template-columns: 1fr; }
+  .day-row { flex-wrap: nowrap; gap: 6px; }
+  .day { min-width: 0; flex: 1 1 0; padding: 11px 9px 11px; }
+  .day small span { display: none; }
+  .book-send { grid-template-columns: 1fr; }
+  .round-send { grid-column: 1; grid-row: auto; justify-self: start; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-cell { padding: 22px 0 26px; border-left: 0; border-top: 1px solid rgba(var(--ink-a), .22); }
+  .foot-cell:nth-child(even) { padding-left: 16px; border-left: 1px solid rgba(var(--ink-a), .22); }
+  .foot-cell:first-child { border-top: 0; }
+  .foot-cell:nth-child(2) { border-top: 0; }
+  .foot-base { flex-direction: column; gap: 10px; }
+}
+
+/* ?record (frame-by-frame capture): no wall-clock animations */
+.is-record .intro-rule, .is-record .intro-title, .is-record .intro-row, .is-record .intro-top .round { animation: none; }
+.is-record .nav, .is-record .nav-mark, .is-record .nav-cta, .is-record .nav::before, .is-record .nav::after { transition: none; }
+.is-record .fig-dim { transition: none; clip-path: none; }
+.is-record .ch .hud-cap { transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-rule, .intro-title, .intro-row, .intro-top .round, .hint i { animation: none; }
+  .fin-pic, .fin-text, .nav-mark, .round-dot svg, .fig-dim { transition: none; }
+  .intro { transform: none; }
+}

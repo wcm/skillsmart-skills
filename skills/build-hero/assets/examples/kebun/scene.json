@@ -1,0 +1,64 @@
+{
+  "shots": {
+    "end": {
+      "prompt": "Real architectural photograph for a pool and garden builder in Singapore. The garden of a contemporary tropical landed house in Singapore on a bright afternoon. A two-storey modern house in warm white render with deep, thin flat roof overhangs, slim dark bronze window frames and tall glass sliding doors opening onto a covered terrace with a stone floor. In front of it lies a lush tropical garden: a long rectangular swimming pool lined in green stone, so the water glows a clear jade green, with a wide edge of pale grey granite and a broad shallow step at the near end; a lawn of fine green grass; a frangipani tree with white flowers; a traveller's palm and a clump of tall slender palms; deep beds of heliconia, bird's-nest ferns, philodendron and ferns; a few stepping stones; two simple teak sun loungers with white cushions by the pool. The canopy of a big old rain tree spreads across the top left of the frame. The camera stands at the garden end of the pool, slightly above eye level, looking along the pool toward the house; the pool runs from the lower right toward the centre. The upper left of the frame is calm: sky with white tropical cumulus clouds and soft rain-tree leaves. Bright, warm, humid afternoon sun with crisp shadows; the water sparkles. No timber screens, no people."
+    },
+    "staged": {
+      "from": "end",
+      "prompt": "Edit this photograph: show the same garden before the pool and the garden are built. {same} Remove the pool, its water, granite edge and step, the lawn, the loungers, the stepping stones and every planted palm, frangipani, heliconia, fern and shrub, except the big old rain tree, which stays. In their place: bare, levelled reddish-brown laterite earth, with the outline of the future pool marked out by wooden stakes and taut white string lines; set neatly on the earth, pallets of green stone tiles and pale grey granite slabs, white bags of cement, a heap of sand, stacked rolls of turf, and the young palms, the frangipani tree and the shrubs waiting in black nursery pots and wrapped root balls. The house, its terrace, the rain tree, the sky and the bright afternoon light are exactly the same. No machinery, no people."
+    },
+    "start": {
+      "from": "staged",
+      "prompt": "Turn this into an aerial drone photograph of the very same place, taken from about twenty metres up and further back, looking down steeply at about fifty-five degrees onto the garden. From up here the staked-out rectangle of the future pool, the white string lines, the pallets of green stone and granite, the bags of cement, the rolls of turf and the potted palms and frangipani read clearly from above like a plan on the reddish-brown earth, with the white house and its flat roofs at the top of the frame and the rain tree's canopy at one side. Keep every object, the house, the rain tree, the sky and the bright afternoon light exactly the same. A realistic drone photograph, 16:9, no text, no people."
+    },
+    "dusk": {
+      "from": "film-last",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: it is now blue hour, about twenty minutes after sunset. {same} Change only the light. The sky becomes a deep tropical twilight blue with a last soft band of peach behind the clouds; the sun and its shadows are gone. Every light is still switched off: the pool is unlit and reflects the sky, the garden and the house are dark. Natural blue-hour photography, no haze, no stars."
+    },
+    "lit": {
+      "from": "dusk",
+      "size": {
+        "width": 3840,
+        "height": 2160
+      },
+      "prompt": "Edit this photograph: switch the lights on. {same} Change only the light. The pool's underwater lights glow, so the whole pool turns a luminous clear jade green with soft rippling light on its stone walls; warm uplights rise into the rain tree's canopy, the palms and the frangipani; low warm garden lights glow along the stepping stones and in the beds; the house's rooms, the terrace and the deep roof soffits glow warm. The twilight sky stays exactly the same. Realistic architectural night photography, no blown highlights, no lens flare."
+    },
+    "edge": {
+      "size": {
+        "width": 1600,
+        "height": 2000
+      },
+      "prompt": "Real close-up photograph: the edge of a swimming pool in a Singapore garden, where a pale grey granite edge meets clear jade-green water over green stone, caustic light patterns dancing on the stone, a single white frangipani flower floating on the water, the reflection of palm fronds. Bright tropical afternoon light. Vertical framing, 50 mm lens, shallow depth of field, no text."
+    },
+    "terrace": {
+      "size": {
+        "width": 2400,
+        "height": 1600
+      },
+      "prompt": "Real garden photograph in Singapore: a covered terrace of a contemporary tropical house with a pale stone floor and a low daybed with white cushions, looking out over a lush garden of palms, heliconia and ferns and a jade-green pool, a frangipani tree in flower, a warm tropical rain shower falling just beyond the deep roof overhang. Soft, bright, humid light. Eye level, 28 mm lens. No timber screens, no people, no text."
+    }
+  },
+  "film": {
+    "negative": "people, workers, machinery, text, logos, watermark, cuts, jump cuts, flicker, blur, distortion, melting, warping, morphing house, extra pools, cartoon",
+    "segments": {
+      "build": {
+        "start": "start",
+        "end": "end",
+        "duration": 10,
+        "prompt": "One continuous, unbroken cinematic drone shot of a pool and a tropical garden being built, like a satisfying construction timelapse. The drone starts high, looking down at the staked-out reddish-brown earth in front of the white house, and glides smoothly down and forward in a gentle arc, settling just above eye level at the garden end of the finished pool, looking along it toward the house. As the camera moves: the earth inside the string lines sinks away into a neat rectangular pit, its walls and floor turn into a smooth concrete shell, the shell is lined with green stone, the pale granite slabs lift off their pallets and settle one by one into a wide edge round the pool, clear water rises from the floor and fills the pool to the brim, turning jade green; the turf rolls out into a lawn, the palms, the frangipani and the shrubs step out of their pots and plant themselves in deep beds, ferns spread, the stepping stones settle and the two loungers slide into place. Smooth, calm, precise motion. The white house, its terrace, the big rain tree, the sky and the bright afternoon light stay exactly the same throughout."
+      }
+    }
+  },
+  "frames": {
+    "fps": 10
+  },
+  "web": {
+    "edge": 1400,
+    "terrace": 2000,
+    "end": 2400
+  }
+}
