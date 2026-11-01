@@ -1,0 +1,160 @@
+/* Lueur: five lamps, objects by day, the room's light by night */
+:root {
+  --paper-day: #f6efe7; --paper-night: #0e0b09;
+  --ink-day: #1d1915; --ink-night: #f2e6d3;
+  --accent: #e8a04b;
+  --brass: #b08a4e;
+  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --pad: clamp(18px, 3.2vw, 52px);
+  /* main.js: mid-dusk (the far-left wall, a phone's band of page), the lamps' shades, the sunlit floor */
+  --flip-mid: 0; --flip-lamps: 0; --flip-floor: 0;
+}
+body { font-family: var(--sans); }
+/* text follows --flip (the wall behind the title and the nav, which darkens first); the tokens live on the stage so a
+   phone can swap in its own flip */
+.jn-stage {
+  --ink: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip) * 100%));
+  --hair: color-mix(in oklab, var(--ink) 22%, transparent);
+  --ink-lamps: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip-lamps) * 100%));
+  --ink-floor: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip-floor) * 100%));
+  /* cards and chips: warm white by day, dark glass at night */
+  --glass: color-mix(in oklab, rgb(251 247 241 / .96), rgb(14 11 9 / .55) calc(var(--flip) * 100%));
+  --edge: rgb(242 230 211 / calc(.13 * var(--flip)));
+  --shade: rgb(29 25 21 / calc(.08 * (1 - var(--flip))));
+  --frost: color-mix(in oklab, rgb(246 239 231 / .78), rgb(14 11 9 / .42) calc(var(--flip) * 100%));
+  --inverse: color-mix(in oklab, var(--paper-day), var(--paper-night) calc(var(--flip) * 100%));
+  color: var(--ink);
+}
+
+/* --- nav --- */
+.nav { position: absolute; z-index: 5; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 34px; padding: calc(var(--pad) * .6) var(--pad); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+.mark { text-decoration: none; font-weight: 600; font-size: 12px; letter-spacing: .46em; }
+.links { display: flex; gap: 30px; margin-left: auto; }
+.links a, .bag { text-decoration: none; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.links a:hover, .bag:hover { text-decoration-line: underline; }
+.bag { font-variant-numeric: tabular-nums; }
+/* the Lights switch sits over the window, so it gets the cards' glass to stay readable on the glare */
+.lights { margin: -8px -14px -8px 6px; padding: 8px 14px 8px 16px; border-radius: 999px; letter-spacing: .22em; font-weight: 500; background: var(--frost); border: 1px solid var(--edge); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 4px 18px var(--shade); }
+.lights .name { margin-right: 4px; }
+.lights .pill { width: 34px; height: 18px; }
+.lights .pill::after { top: 3px; left: 3px; width: 10px; height: 10px; background: var(--brass); box-shadow: none; }
+.lights[aria-checked="true"] .pill::after { transform: translateX(16px); background: var(--accent); box-shadow: none; }
+.nav a:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
+
+/* --- the title, fitted into the calm wall left of the lantern (main.js sets left, top and size) --- */
+.copy { position: absolute; z-index: 3; left: var(--pad); top: 96px; width: max-content; pointer-events: none; }
+.title { margin: 0; width: max-content; font: 300 clamp(52px, 6.6vw, 118px) / .95 var(--serif); letter-spacing: -.02em; }
+.title > span { white-space: nowrap; }
+.title .ln { display: block; width: max-content; }
+.lede { margin-top: .9em; font-size: 15px; line-height: 1.45; font-weight: 500; letter-spacing: .005em; }
+.lede p { margin: 0; text-wrap: balance; }
+/* the swap: the old line fades where it stands, in its own ink, while the new one rises in, in its own: the slot is
+   never empty and never shows a washed-out line. The lede follows the title by a beat. */
+.copy .day { color: var(--ink-day); }
+.copy .night { color: var(--ink-night); }
+.jn-swap > * { transition: opacity .22s var(--ease), transform 0s linear .24s; }
+html[data-mode="night"] .jn-swap > .night, html[data-mode="day"] .jn-swap > .day { transition: opacity .5s var(--ease) .1s, transform .7s var(--ease) .1s; }
+html[data-mode="night"] .lede > .night, html[data-mode="day"] .lede > .day { transition-delay: .2s; }
+html[data-mode="day"] .jn-swap > .night, html[data-mode="night"] .jn-swap > .day { transform: translateY(8px); }
+
+/* --- hotspots: a small cream dot that breathes, its number beside it; amber once the lamp is lit --- */
+.spots { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.spot { pointer-events: auto; }
+.spot > button { touch-action: manipulation; }
+.spot > button::before { width: 7px; height: 7px; background: #fbf5ea; box-shadow: 0 0 0 1px rgb(29 25 21 / .16), 0 1px 4px rgb(29 25 21 / .22); transition: transform .3s var(--ease), background-color .5s, box-shadow .5s; }
+.spot > button::after { inset: 8px; border-color: #fbf5ea; animation-duration: 3.2s; }
+/* lit: an amber point with a hairline of cream, no dark rim, so it never reads as a speck on a glowing shade */
+.spot.lit > button::before { width: 6px; height: 6px; background: var(--accent); box-shadow: 0 0 0 1px rgb(251 245 234 / .55); }
+.spot.lit > button::after { border-color: var(--accent); animation-duration: 4.4s; }
+.spot.open > button::after { animation: none; opacity: 0; }
+.spot > button:focus-visible { outline: 1px solid #fbf5ea; outline-offset: 2px; }
+.spot .n { position: absolute; left: 13px; top: -16px; font: 500 10px/1 var(--sans); letter-spacing: .12em; font-variant-numeric: tabular-nums; color: var(--ink-lamps); pointer-events: none; transition: opacity .3s; }
+.spot.left .n { left: auto; right: 13px; }
+.spot[data-id="mushroom"] .n { color: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip-mid) * 100%)); }
+.spot.above .n { left: var(--lx); right: auto; top: var(--ly); transform: translate(-50%, -50%); }
+.chip { position: absolute; left: var(--chip-x, 20px); top: var(--chip-y, -15px); display: flex; align-items: center; gap: 10px; white-space: nowrap; padding: 7px 11px 7px 10px; border-radius: 2px; background: var(--glass); color: var(--ink); border: 1px solid var(--edge); box-shadow: 0 6px 22px var(--shade); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); font: 500 11px/1 var(--sans); letter-spacing: .04em; opacity: 0; transform: translateY(3px); transition: opacity .3s var(--ease), transform .4s var(--ease); pointer-events: none; }
+.chip b { font: 400 16px/1 var(--serif); letter-spacing: 0; }
+.chip span { font-variant-numeric: tabular-nums; opacity: .8; }
+.chip em { font-style: normal; opacity: .45; margin: 0 -2px; }
+.spot:hover .chip, .spot.hover .chip, .spot > button:focus-visible + .chip { opacity: 1; transform: none; }
+.spot:hover .n, .spot.hover .n, .spot.open .n, .spot.lit .n { opacity: 0; }
+.hit { position: absolute; pointer-events: auto; cursor: pointer; border-radius: 6px; }
+.hit:focus { outline: none; }
+.spot.open .chip { opacity: 0; }
+
+/* --- the product card: beside its lamp; warm white by day, dark glass at night --- */
+.card { position: absolute; z-index: 6; left: 0; top: 0; width: 276px; padding: 14px 16px 16px 18px; color: var(--ink); background: var(--glass); border: 1px solid var(--edge); border-radius: 3px; box-shadow: 0 18px 44px -10px var(--shade), 0 2px 6px var(--shade); backdrop-filter: blur(18px) saturate(1.05); -webkit-backdrop-filter: blur(18px) saturate(1.05); opacity: 0; transform: translate3d(var(--cx, 0), calc(var(--cy, 0) + 10px), 0); transition: opacity .25s var(--ease), transform .3s var(--ease); pointer-events: none; }
+.card.show { opacity: 1; transform: translate3d(var(--cx, 0), var(--cy, 0), 0); transition: opacity .42s var(--ease), transform .5s var(--ease); pointer-events: auto; }
+.card.jump { transition: none; }
+.card[hidden] { display: none; }
+.card-head { display: flex; align-items: center; justify-content: space-between; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; font-weight: 500; }
+.idx { opacity: .62; font-variant-numeric: tabular-nums; }
+.close { width: 26px; height: 26px; margin: -6px -8px -6px 0; display: grid; place-items: center; border-radius: 50%; opacity: .7; transition: opacity .2s, background-color .2s; }
+.close:hover { opacity: 1; background: color-mix(in oklab, currentColor 8%, transparent); }
+.card h2 { margin: 10px 0 7px; font: 400 30px/1 var(--serif); letter-spacing: -.01em; }
+.meta { margin: 0; display: grid; gap: 4px; font-size: 10px; line-height: 1.3; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; opacity: .68; }
+.card-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.card-row:not(.actions) { margin-top: 14px; padding-top: 11px; border-top: 1px solid var(--hair); }
+.price { font-size: 15px; font-weight: 500; letter-spacing: .02em; font-variant-numeric: tabular-nums lining-nums; }
+.mini { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; font-weight: 500; padding: 4px 0; }
+.mini i { position: relative; width: 26px; height: 14px; border-radius: 7px; border: 1px solid color-mix(in oklab, currentColor 45%, transparent); }
+.mini i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: currentColor; transition: transform .3s var(--ease), background-color .3s; }
+.mini[aria-checked="true"] i::after { transform: translateX(12px); background: var(--accent); }
+.actions { margin-top: 12px; }
+.add { flex: 1; padding: 10px 12px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; background: var(--ink); color: var(--inverse); border-radius: 2px; transition: opacity .2s; }
+.add:hover { opacity: .88; }
+.view { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; text-decoration: none; white-space: nowrap; padding: 8px 0; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.view:hover { border-color: currentColor; }
+.card button:focus-visible, .card a:focus-visible, .lights:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+/* a shorter screen: a tighter card, so it still finds room on the upper wall beside its lamp */
+@media (max-height: 820px) {
+  .card { width: 256px; padding: 12px 14px 13px 16px; }
+  .card h2 { margin: 7px 0 6px; font-size: 26px; }
+  .meta { gap: 3px; }
+  .card-row:not(.actions) { margin-top: 10px; padding-top: 9px; }
+  .actions { margin-top: 9px; }
+  .add { padding: 9px 10px; }
+  .view { padding: 6px 0; }
+}
+
+/* --- bottom edge: a hairline, the count, and a clock that follows the sun. Each corner takes the ink that reads on the
+   floor under it: the count sits on the console's shadow (cream all day), the clock on the sunlit boards (ink until
+   that patch darkens, last of all); the hairline runs from one to the other --- */
+.base { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); bottom: calc(var(--pad) * .5); display: flex; justify-content: space-between; align-items: center; padding-top: 12px; font-size: 10.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; pointer-events: none; }
+.base::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, rgb(242 230 211 / .3), color-mix(in oklab, var(--ink-floor) 34%, transparent)); }
+.count { color: rgb(242 230 211 / .92); }
+.count i { display: inline-block; width: 6px; height: 6px; margin-right: 11px; border-radius: 50%; vertical-align: 1px; background: color-mix(in oklab, currentColor, var(--accent) calc(min(1, var(--lit) * 4) * 100%)); }
+.clock { font-variant-numeric: tabular-nums; letter-spacing: .16em; color: var(--ink-floor); }
+
+/* no WebGL: the day picture, and the night one crossfaded by the switch */
+.no-gl .spots { display: none; }
+
+@media (max-width: 760px), (max-aspect-ratio: 21/20) {
+  /* a phone or a tall window: the photo is framed between a band of page that holds the title (the lantern would sit
+     under it otherwise) and a foot for the count and the clock; at night the page goes dark and the frame melts away.
+     Text on the band turns cream as the band passes mid-grey. */
+  .jn-stage { --flip: var(--flip-mid); --foot: 54px; background: color-mix(in oklab, var(--paper-day), var(--paper-night) calc(var(--sun) * 100%)); }
+  .jn-stage > img, .jn-stage > canvas { top: var(--band, 30%); height: calc(100% - var(--band, 30%) - var(--foot)); }
+  .spots { top: var(--band, 30%); bottom: var(--foot); }
+  .nav { gap: 18px; }
+  .links { display: none; }
+  .bag { margin-left: auto; }
+  .lights { margin: 0; padding: 8px 0; background: none; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .lights .lbl { display: none; }
+  .copy { left: var(--pad); right: var(--pad); width: auto; }
+  .copy .day, .copy .night { color: inherit; }     /* the band, not the wall: both lines follow its flip */
+  .title { font-size: clamp(38px, 11vw, 76px); }
+  .lede { font-size: 14px; margin-top: .7em; }
+  .base { bottom: 0; height: var(--foot); padding-top: 0; }
+  .base::before { display: none; }
+  .count, .clock { color: inherit; }
+  .card { left: 12px; right: 12px; top: auto; bottom: calc(var(--foot) + 12px); width: auto; max-width: 380px; margin: 0 auto; transform: translate3d(0, 10px, 0); }
+  .card.show { transform: none; }
+  .chip { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card.show, .chip { transition-duration: .01s; }
+  .jn-swap > *, html[data-mode] .jn-swap > .day, html[data-mode] .jn-swap > .night { transition: none; }
+}

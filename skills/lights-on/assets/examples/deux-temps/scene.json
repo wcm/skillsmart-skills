@@ -1,0 +1,38 @@
+{
+  "brand": "Deux Temps",
+  "solos": [
+    "pendants",
+    "candles",
+    "bar",
+    "stage"
+  ],
+  "shots": {
+    "day": {
+      "prompt": "Real editorial photograph inside a small, elegant neighbourhood café that becomes a jazz bar at night, at nine in the morning. A three-quarter view along the room from near the entrance, camera at eye level on a tripod. Tall arched steel-framed windows on the left look onto a tree-lined street, and the early sun is veiled by thin haze: pale, wide, gentle light with only faint, very soft-edged shadows on the terrazzo floor and the small round marble tables, low contrast and peaceful. A honed travertine bar with a fluted oak front and a brass foot rail runs from the right edge diagonally toward the back; behind it, oak shelves hold cups, coffee bags and a few glasses, and an unbranded chrome espresso machine sits on the counter. In the back-left corner, a small low wooden stage holds an upright piano, a double bass on its stand and one vintage microphone, empty and sunlit. Bentwood chairs, chrome-banded marble café tables, an oxblood leather banquette along the wall, opal globe pendant lamps (switched off) hanging from a dark-painted ceiling, and an unlit votive glass on each table. Quiet and airy: a barista at the machine, one guest reading with a cortado by the window, croissants under a glass cloche on the bar. The top quarter of the frame is a calm band of plaster wall and dark ceiling. Warm plaster walls, about 5200 K daylight with real bounce light, Portra 400 feel. No readable text, no logos, no signage anywhere."
+    },
+    "night": {
+      "from": "day",
+      "prompt": "Edit this photograph: it is now half past nine at night and the café has become a lively jazz bar. Keep the camera, the framing, the architecture, the windows, the bar, the shelves, the stage, the furniture and every lamp exactly where and as they are; only the light and the people change. The windows are deep blue-black with soft bokeh of city lights. All the lights are on at 2700 K: the opal globe pendants glow, a lit votive candle glows on every table, warm amber light rises along the back-bar shelves, which now hold bottles, and a warm spotlight falls on the stage, where a jazz trio plays: piano, double bass and a singer at the vintage microphone. The room is full: guests at every table and along the bar, talking and laughing with cocktails in coupe glasses; several people walking past are softly motion-blurred from a slow shutter, so it reads as busy without many sharp faces; the bartender pours mid-motion. Amber, copper and oxblood against the blue windows, slight halation around the lamps, deep blacks with detail, fine film grain. No readable text, no signage."
+    },
+    "dark": {
+      "from": "night",
+      "prompt": "Edit this photograph: switch off every light in the bar: the globe pendants, the candles, the back-bar lighting and the stage spotlight are all off. Keep the camera, the room, the people, the band and every object exactly where and as they are; change only the light. The room falls into near-darkness, lit only by the deep-blue city glow through the windows on the left, the people and the band dim silhouettes with a little detail. Natural night photography, fine film grain."
+    },
+    "solo-pendants": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the opal globe pendant lamps hanging from the ceiling; the candles, the back-bar lighting and the stage spotlight stay off. {keep} The pendants glow warm at 2700 K and light the tables and the people below them softly, falling off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-candles": {
+      "from": "dark",
+      "prompt": "Edit this photograph: light only the votive candles on the tables; the pendants, the back-bar lighting and the stage spotlight stay off. {keep} Each candle glows warm and small, lighting the marble tabletop, the glasses and the faces and hands closest to it, falling off quickly into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-bar": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the back-bar lighting: warm amber light rises along the oak shelves behind the bar and glows through the bottles; the pendants, candles and stage spotlight stay off. {keep} It rims the bartender and the people along the bar, falling off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-stage": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the warm spotlight on the stage; the pendants, candles and back-bar lighting stay off. {keep} It lights the trio, the piano, the double bass and the singer at the vintage microphone in a soft warm pool, falling off naturally into the dark room. Natural night photography, fine film grain."
+    }
+  }
+}

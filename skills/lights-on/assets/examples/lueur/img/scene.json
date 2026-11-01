@@ -1,0 +1,111 @@
+{
+  "width": 3840,
+  "height": 2160,
+  "shots": {
+    "night": {
+      "ncc_before": 0.7905,
+      "ncc_after": 0.7908,
+      "moved_px": 3.66,
+      "drift_p95": 29.16
+    },
+    "dark": {
+      "ncc_before": 0.7689,
+      "ncc_after": 0.7728,
+      "moved_px": 8.93,
+      "fitted": true,
+      "drift_p95": 34.85
+    },
+    "solo-mushroom": {
+      "ncc_before": 0.7362,
+      "ncc_after": 0.7413,
+      "moved_px": 11.85,
+      "fitted": true,
+      "drift_p95": 36.11
+    },
+    "solo-pendant": {
+      "ncc_before": 0.727,
+      "ncc_after": 0.7324,
+      "moved_px": 11.13,
+      "fitted": true,
+      "drift_p95": 35.86
+    },
+    "solo-sconce": {
+      "ncc_before": 0.74,
+      "ncc_after": 0.7465,
+      "moved_px": 11.15,
+      "fitted": true,
+      "drift_p95": 35.02
+    },
+    "solo-arc": {
+      "ncc_before": 0.7416,
+      "ncc_after": 0.7463,
+      "moved_px": 10.42,
+      "fitted": true,
+      "drift_p95": 36.53
+    },
+    "solo-column": {
+      "ncc_before": 0.7487,
+      "ncc_after": 0.7525,
+      "moved_px": 11.55,
+      "fitted": true,
+      "drift_p95": 37.88
+    }
+  },
+  "lights": [
+    {
+      "id": "mushroom",
+      "x": 0.051,
+      "y": 0.5111,
+      "box": [
+        0.0,
+        0.4148,
+        0.0958,
+        0.9981
+      ]
+    },
+    {
+      "id": "pendant",
+      "x": 0.4333,
+      "y": 0.2296,
+      "box": [
+        0.325,
+        0.1204,
+        0.4896,
+        0.9778
+      ]
+    },
+    {
+      "id": "sconce",
+      "x": 0.6021,
+      "y": 0.3259,
+      "box": [
+        0.5646,
+        0.25,
+        0.6229,
+        0.3981
+      ]
+    },
+    {
+      "id": "arc",
+      "x": 0.7,
+      "y": 0.3963,
+      "box": [
+        0.599,
+        0.3685,
+        0.8313,
+        0.9981
+      ]
+    },
+    {
+      "id": "column",
+      "x": 0.9688,
+      "y": 0.4815,
+      "box": [
+        0.9281,
+        0.3185,
+        0.9833,
+        0.987
+      ]
+    }
+  ]
+}

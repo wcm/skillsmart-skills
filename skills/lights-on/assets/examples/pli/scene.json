@@ -1,0 +1,53 @@
+{
+  "brand": "Pli",
+  "solos": [],
+  "shots": {
+    "day": {
+      "prompt": "Real editorial interior photograph for a made-to-measure curtain atelier. Straight-on, one-point-perspective view of a calm room: a 3 m high off-white lime-plaster wall; a wide window, about 2.6 m, fills the centre-right of the frame and is completely covered, floor to ceiling, by a closed double-width ripple-fold curtain in natural oat-coloured linen hung from a slim ceiling track, with a 1 cm break at the pale oak floor. It is about 8:30 in the morning: low sun is behind the curtain, slightly from the right, and the room is lit only by the daylight passing through the fabric. The linen glows warm and even, its slub weave and the shading of every fold visible, with soft light on the floor in front. Left of the window: a low cream bouclé sofa, a travertine side table with a small ceramic table lamp, and a tall paper floor lamp at the front left, both lamps switched off. The left third of the frame is calm wall. Minimal, airy, no clutter."
+    },
+    "day-voile": {
+      "from": "day",
+      "prompt": "Edit this photograph: replace the curtain fabric with an ivory voile sheer: fine, translucent and airy. Keep the camera, the room, the furniture, the track and the curtain's size, position and folds exactly the same. Far more daylight now passes through: the sheer glows almost white, the window frame bars and the soft shape of a tree outside show faintly through it, and the room is brighter and airier, with soft sun patches on the floor. Natural colour, fine film grain."
+    },
+    "day-dimout": {
+      "from": "day",
+      "prompt": "Edit this photograph: replace the curtain fabric with a heavy sage-green cotton dim-out fabric: dense, matte and tightly woven. Keep the camera, the room, the furniture, the track and the curtain's size, position and folds exactly the same. Very little daylight passes through now: the curtain is a muted, softly glowing sage plane, and the room falls into soft shade, lit mostly by a bright line of sunlight along the top track gap and the side edges of the curtain. Natural colour, fine film grain, honest exposure."
+    },
+    "day-blackout": {
+      "from": "day",
+      "prompt": "Edit this photograph: replace the curtain fabric with a midnight-blue blackout velvet: thick and fully opaque, with a soft sheen along the folds. Keep the camera, the room, the furniture, the track and the curtain's size, position and folds exactly the same. No daylight passes through the fabric now: the room is dim, with only a thin halo of morning light at the very edges of the curtain and a sliver on the floor, and a little ambient light so the room's shapes are still readable. Natural colour, fine film grain, honest exposure."
+    },
+    "night": {
+      "from": "day",
+      "prompt": "Edit this photograph: it is now night, about 21:00. {keep} The curtain stays closed; the window behind it is black. The room is lit only by its two lamps, now switched on at 2700 K: the tall paper floor lamp at the front left glows and rakes warm light across the curtain's folds, showing the linen's slub weave and its true oat colour, and the small ceramic table lamp pools warm light on the wall and the side table. Deep warm shadows in the fold valleys; the far right falls into darkness. Natural night interior photography, fine film grain, no blown whites."
+    },
+    "night-voile": {
+      "from": "day-voile",
+      "prompt": "Edit this photograph: it is now night, about 21:00. {keep} The sheer stays closed and has become translucent: the black window, its frame bars and two or three distant city lights show faintly through it. The room is lit only by its two lamps, now switched on at 2700 K: the tall paper floor lamp at the front left glows and rakes warm light across the sheer's soft folds, and the small ceramic table lamp pools warm light on the wall and the side table; a faint reflection of the lamp sits in the dark glass. Deep warm shadows; the far right falls into darkness. Natural night interior photography, fine film grain, no blown whites."
+    },
+    "night-dimout": {
+      "from": "day-dimout",
+      "prompt": "Edit this photograph: it is now night, about 21:00. {keep} The curtain stays closed; no light comes from the window. The room is lit only by its two lamps, now switched on at 2700 K: the tall paper floor lamp at the front left glows and rakes warm light across the dim-out curtain's folds, showing its dense matte weave and its true sage-green colour, and the small ceramic table lamp pools warm light on the wall and the side table. Deep warm shadows in the fold valleys; the far right falls into darkness. Natural night interior photography, fine film grain, no blown whites."
+    },
+    "night-blackout": {
+      "from": "day-blackout",
+      "prompt": "Edit this photograph: it is now night, about 21:00. {keep} The curtain stays closed; no light comes from the window. The room is lit only by its two lamps, now switched on at 2700 K: the tall paper floor lamp at the front left glows and rakes warm light across the blackout velvet's folds, showing its rich midnight-blue colour and the soft sheen on every fold, and the small ceramic table lamp pools warm light on the wall and the side table. Deep warm shadows in the fold valleys; the far right falls into darkness. Natural night interior photography, fine film grain, no blown whites."
+    },
+    "dark": {
+      "from": "night",
+      "prompt": "Edit this photograph: switch off both lamps. {keep} Remove all of their light, glow and reflections. The room is almost dark, the closed curtain a dim shape, lit only by a faint cool ambient night glow; deep shadows with a little detail. Natural night photography, fine film grain."
+    },
+    "dark-voile": {
+      "from": "night-voile",
+      "prompt": "Edit this photograph: switch off both lamps. {keep} Remove all of their light, glow and reflections. The room is almost dark; the sheer is a dim veil with the black window and a few distant city lights faintly behind it; deep shadows with a little detail. Natural night photography, fine film grain."
+    },
+    "dark-dimout": {
+      "from": "night-dimout",
+      "prompt": "Edit this photograph: switch off both lamps. {keep} Remove all of their light, glow and reflections. The room is almost dark, the closed curtain a dim shape, lit only by a faint cool ambient night glow; deep shadows with a little detail. Natural night photography, fine film grain."
+    },
+    "dark-blackout": {
+      "from": "night-blackout",
+      "prompt": "Edit this photograph: switch off both lamps. {keep} Remove all of their light, glow and reflections. The room is almost dark, the closed curtain a dim shape, lit only by a faint cool ambient night glow; deep shadows with a little detail. Natural night photography, fine film grain."
+    }
+  }
+}

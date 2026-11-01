@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pli · Curtains made to measure</title>
+  <meta name="description" content="Curtains made to measure in four fabrics: see how much morning each lets in, then how each holds the lamplight.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- the lens sharpens what it magnifies, so the weave reads -->
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+    <filter id="crisp" color-interpolation-filters="sRGB"><feConvolveMatrix order="3" kernelMatrix="0 -.55 0 -.55 3.2 -.55 0 -.55 0" edgeMode="duplicate" preserveAlpha="true"/></filter>
+  </svg>
+  <main class="jn-stage" id="stage">
+    <img class="still" src="img/day-1600.webp" sizes="max(100vw, 177svh)"
+      alt="A closed oat-linen curtain across a wide window, a bouclé sofa and two paper lamps, in morning light" fetchpriority="high">
+    <canvas id="jn" aria-hidden="true"></canvas>
+
+    <header class="nav">
+      <nav class="links" aria-label="Main"><a href="#">Fabrics</a><a href="#">Made to measure</a><a href="#">Journal</a></nav>
+      <a class="mark" href="#" aria-label="Pli, home">Pli</a>
+      <a class="bag" href="#">Swatches <span>(<b id="count">0</b>)</span></a>
+    </header>
+
+    <section class="copy">
+      <h1 class="swap">
+        <span class="day">Choose how much <em>morning</em> comes in.</span>
+        <span class="night">Then see how it holds the <em>lamplight</em>.</span>
+      </h1>
+      <div class="swap lede">
+        <p class="day">Four fabrics, cut to your window. Draw one across and watch the room change.</p>
+        <p class="night">After dark the weave shows: its slub, its sheen, its true colour.</p>
+      </div>
+      <div class="when">
+        <button class="toggle" id="switch" aria-label="Night">
+          <span class="t-day">Morning</span><span class="t-dot" aria-hidden="true">·</span><span class="t-night">Night</span><i aria-hidden="true"></i>
+        </button>
+        <span class="clock" id="clock" role="timer" aria-live="off">08:40</span>
+      </div>
+    </section>
+
+    <section class="fabrics" aria-label="Fabrics">
+      <span class="label">Light through</span>
+      <span class="counter" id="counter" aria-live="polite">[ 02 / 04 ]</span>
+      <div class="meter">
+        <span class="pct"><b id="pct">38</b><small>%</small></span>
+        <span class="bar" aria-hidden="true"><i id="fill"></i></span>
+      </div>
+      <div class="tags" role="radiogroup" aria-label="Fabric"></div>
+      <span class="kind"><span id="kind">Light filtering</span><button class="link" id="more" aria-controls="sheet" aria-expanded="false" aria-label="Fabric details">( Details )</button></span>
+    </section>
+
+    <!-- the curtain itself opens the details (the ( Details ) link does the same from the keyboard) -->
+    <button class="cloth-hit" id="cloth" tabindex="-1" aria-label="Linen, details" aria-controls="sheet" aria-expanded="false"></button>
+    <div class="lens" id="lens" aria-hidden="true"><div class="glass"><span class="plate a"><i></i><i class="n"></i></span><span class="plate b"><i></i><i class="n"></i></span></div></div>
+
+    <aside class="sheet" id="sheet" role="dialog" aria-labelledby="d-name" hidden>
+      <div class="slot"></div>
+      <div class="sheet-body">
+        <p class="kicker"><span id="d-num">02 / 04</span><span id="d-kind">Light filtering</span></p>
+        <h2 id="d-name">Linen</h2>
+        <dl class="specs">
+          <div><dt>Composition</dt><dd id="d-comp"></dd></div>
+          <div><dt>Colour</dt><dd id="d-colour"></dd></div>
+          <div><dt>Weight</dt><dd id="d-weight"></dd></div>
+          <div><dt>Light through</dt><dd id="d-through"></dd></div>
+        </dl>
+        <p class="note"><span class="caps">After dark</span><span id="d-note"></span></p>
+        <div class="actions"><button class="link" id="order">( Order a swatch )</button><button class="link" id="close">( Close )</button></div>
+      </div>
+    </aside>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

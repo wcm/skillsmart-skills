@@ -1,0 +1,24 @@
+{
+  "brand": "Noble Gas",
+  "solos": [
+    "neon",
+    "rest"
+  ],
+  "shots": {
+    "day": {
+      "prompt": "Real architectural photograph of the showroom of a high-end neon studio: a calm, gallery-like room in soft morning daylight. Straight-on view of one large warm-white lime-plaster wall with a faint trowel texture; a pale polished concrete floor fills the lower quarter of the frame. Sunlight from a tall steel window just out of frame on the left rakes across the wall and casts a long, soft-edged window-frame shadow. On the right half of the wall, at eye height, hangs a bespoke hand-bent neon piece: the single word \"encore\" in an elegant flowing script, about 1.6 m wide, made of real 12 mm glass tubes, switched off and unlit: milky white phosphor-coated glass with crisp highlights on every bend, black-painted blockout where the tube doubles back, small electrode housings at the ends, clear acrylic standoffs, and a thin black cable running down to a small transformer on the floor. At the far right, a tall freestanding light box leans against the wall on the floor: a slim brushed-aluminium frame around a 1 × 1.6 m opal acrylic face, switched off, a soft off-white. A low travertine bench stands under the neon. The left 40% of the frame is calm, empty wall and floor. Nothing else in the room."
+    },
+    "night": {
+      "from": "day",
+      "prompt": "Edit this photograph: it is now late at night. {keep} The daylight and the window-frame shadow are completely gone; the room is dark, lit only by its two lights, which are now switched on. The neon word \"encore\" glows a saturated warm red-orange, like classic neon, with a tight realistic halo on the plaster and a long soft red reflection on the polished concrete floor. The light box glows an even, cool opal white across its whole face with no hotspots, throwing a soft pale wash onto the floor and the end of the bench. Everything else falls into deep, rich shadow; the plaster texture shows only inside the glow; a faint blue moonlight touches the far left of the wall. Exposed for the glow: tube cores just short of clipping, deep but not crushed blacks. Natural night photography, fine film grain, no haze, no smoke, no lens flare."
+    },
+    "dark": {
+      "from": "night",
+      "prompt": "Edit this photograph: switch off both lights. {keep} The neon sign is now unlit (pale glass tubes just visible in the dark) and the light box is off (a pale grey opal panel). Remove all of their glow, halo and reflections from the wall, bench and floor. The room is dark and quiet, lit only by faint blue moonlight from the window on the left; deep shadows, the plaster texture barely visible. Natural night photography, fine film grain."
+    },
+    "solo-neon": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the neon sign. {keep} The word \"encore\" glows a saturated warm red-orange, like classic neon, with a tight realistic halo on the plaster and a long soft red reflection on the polished concrete floor. The light box at the right stays switched off. Natural night photography, fine film grain, no haze."
+    }
+  }
+}

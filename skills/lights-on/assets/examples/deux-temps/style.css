@@ -1,0 +1,192 @@
+/* Deux Temps: a café by day, a jazz bar by night. Scroll is the clock. */
+:root {
+  --paper-day: #f3eee5; --night-warm: #120b07; --night-blue: #0b0c12;
+  --paper-night: color-mix(in oklab, var(--night-blue), var(--night-warm) calc(var(--warm) * 100%));   /* blue hour, then the lamps warm it */
+  --ink-day: #2b1d14; --ink-night: #fef1c7;
+  --accent: #b16735;            /* copper: the open-now dot, link underlines, sound on; it glows at night */
+  --live: #ca5c4a;              /* vermilion: the Live tonight tag, nothing else */
+  --gold-paper: #efdcbb;        /* the page at golden hour */
+  --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --pad: clamp(16px, 2.4vw, 48px);
+  /* three sizes in the hero: the wordmark, --say (the serif lines) and --label (everything small) */
+  --say: clamp(20px, 1.72vw, 30px);
+  --label: clamp(11px, .62vw, 13px);
+  /* main.js writes these from the scroll */
+  --gold: 0;          /* golden hour on the page */
+  --page: 0;          /* how far the night has come (copper glow, the page behind it all) */
+  --edge: -200px;     /* where the night has reached, falling down the page (px from the top) */
+  --soft: 14px;       /* the dusk either side of it: a horizon, not a smudge */
+  --wdth: 125; --wght: 300; --lsb: .1125em;
+  --seg: 0; --card: 0; --veil: 0; --warm: 1; --cue: 1;
+  --mark-size: 12.2vw;
+  --day: color-mix(in oklab, var(--paper-day), var(--gold-paper) calc(var(--gold) * 100%));
+  --copper: color-mix(in oklab, var(--accent), #e7a064 calc(var(--page) * 55%));
+}
+html { background: color-mix(in oklab, var(--paper-day), var(--paper-night) calc(var(--page) * 100%)); }
+body { font-family: var(--mono); background: none; }
+
+/* the scroll: a tall track, the hero pinned inside it */
+.track { position: relative; height: 300vh; }
+.hero { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; grid-template-rows: auto minmax(0, 1fr); grid-template-columns: minmax(0, 1fr); overflow: clip;
+  /* the night line: a soft horizon falling down the page, after the room's own dusk */
+  background: linear-gradient(to bottom in oklab,
+    var(--paper-night) calc(var(--edge) - var(--soft)),
+    color-mix(in oklab, var(--paper-night) 80%, var(--day)) calc(var(--edge) - var(--soft) * .3),
+    color-mix(in oklab, var(--paper-night) 20%, var(--day)) calc(var(--edge) + var(--soft) * .3),
+    var(--day) calc(var(--edge) + var(--soft))); }
+
+/* the wordmark is cut by the night line: night ink above it, day ink below, exactly where it passes (main.js sets
+   --y, its top in the hero). Small words turn over whole, crisply, as the line passes their middle (.nite): cut in two
+   at 11px they would read as a glitch. Words that only ever show at night are plain cream. */
+.mark {
+  color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(to bottom, var(--ink-night) calc(var(--edge) - var(--y, 0px)), var(--ink-day) calc(var(--edge) - var(--y, 0px)));
+}
+.links a, .now time, .sound > *, .facts .flip > *, .tagline.day > span, .more.day, .seg button { color: var(--ink-day); transition: color .2s ease; }
+:is(.links a, .now time, .sound > *, .facts .flip > *, .tagline.day > span, .more.day, .seg button).nite,
+.tagline.night, .more.night, .tonight { color: var(--ink-night); }
+
+/* --- the band: nav, wordmark, facts ---------------------------------------------------------------------------- */
+.band { position: relative; z-index: 2; min-width: 0; padding: 0 var(--pad); }
+
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 0 0; font-size: var(--label); line-height: 1; letter-spacing: .14em; text-transform: uppercase; }
+.links { display: flex; gap: 28px; }
+.links a { display: inline-block; padding: 4px 0; text-decoration: none; opacity: .8; transition: opacity .3s; }
+.links a:hover { opacity: 1; }
+.links a:focus-visible, .more:focus-visible, .sound:focus-visible { outline: 1px solid var(--copper); outline-offset: 5px; }
+.end { justify-self: end; display: flex; align-items: center; gap: clamp(20px, 2.2vw, 36px); }
+.now { display: flex; align-items: center; gap: 10px; margin: 0; font-variant-numeric: tabular-nums; }
+.now time { display: inline-block; padding: 4px 0; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copper); box-shadow: 0 0 calc(var(--page) * 12px) calc(var(--page) * 1.5px) color-mix(in oklab, var(--copper) 75%, transparent); }
+
+/* room sound: a quiet word; on, its note takes the copper and the word its underline */
+.sound { display: inline-flex; align-items: baseline; gap: 7px; font: 400 var(--label)/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; opacity: .62; transition: opacity .3s; }
+.sound i { font-style: normal; font-family: var(--serif); font-size: 1.25em; line-height: 0; }
+.sound .lbl { display: inline-block; padding: 4px 0; box-shadow: inset 0 -1px transparent; transition: box-shadow .4s; }
+.sound:hover, .sound[aria-pressed="true"] { opacity: 1; }
+.sound[aria-pressed="true"] > i, .sound[aria-pressed="true"] > i.nite { color: var(--copper); }
+.sound[aria-pressed="true"] .lbl { box-shadow: inset 0 -1px var(--copper); }
+
+/* Café | Bar: the thumb slides over when the clock reaches 18:00; under it the labels are drawn again in the page
+   colour, clipped to it */
+.seg { position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--ink-day) 26%, transparent); transition: border-color .2s ease; }
+.seg:has(.nite) { border-color: color-mix(in oklab, var(--ink-night) 26%, transparent); }
+.seg button, .seg .thumb > span { padding: 9px 16px 8px; white-space: nowrap; letter-spacing: inherit; text-transform: inherit; text-align: center; }
+.seg button { border-radius: 999px; }
+.seg button:focus-visible { outline: 1px solid var(--copper); outline-offset: 3px; }
+.seg .thumb { position: absolute; inset: 3px; display: grid; grid-template-columns: 1fr 1fr; border-radius: 999px; pointer-events: none; background: var(--ink-day);
+  clip-path: inset(0 calc((1 - var(--seg)) * 50%) 0 calc(var(--seg) * 50%) round 999px); transition: clip-path .5s var(--ease), background-color .2s ease; }
+.seg .thumb > span { color: var(--day); transition: color .2s ease; }
+.seg:has(.nite) .thumb { background: var(--ink-night); }
+.seg:has(.nite) .thumb > span { color: var(--paper-night); }
+
+/* the wordmark: wide and light by day, condensed and heavy by night (Archivo's width and weight axes) */
+.markrow { display: grid; align-items: last baseline; margin-top: clamp(14px, 2.2vw, 40px); }
+.markrow > * { grid-area: 1 / 1; }
+.mark { margin: 0 0 0 calc(var(--lsb) * -1); font-family: var(--sans); font-size: var(--mark-size); font-weight: var(--wght); font-stretch: calc(var(--wdth) * 1%);
+  line-height: .8; letter-spacing: -.012em; text-transform: uppercase; white-space: nowrap; }
+
+/* wide screens, at night: the evening's lines and Tonight take the room the wordmark gives up as it condenses */
+.evening { justify-self: end; display: grid; grid-auto-flow: column; align-items: last baseline; column-gap: clamp(36px, 4vw, 80px); }
+.evening[hidden] { display: none; }
+.evening.compact { grid-auto-flow: row; }
+.evening.compact > * { grid-area: 1 / 1; }
+.evening.compact .say { opacity: calc(1 - var(--card)); }
+.say { display: grid; justify-items: start; gap: clamp(12px, 1.1vw, 18px); }
+
+/* Tonight: it arrives once the stage is lit */
+.tonight { display: grid; justify-items: end; gap: 10px; text-align: right; white-space: nowrap;
+  opacity: var(--card); transform: translateY(calc((1 - var(--card)) * 8px)); pointer-events: none; }
+.tonight::before { content: ""; width: 44px; border-top: 1px solid color-mix(in oklab, var(--ink-night) 45%, transparent); margin-bottom: 4px; }
+.tonight p { margin: 0; }
+.tonight .tag { font-size: var(--label); line-height: 1; letter-spacing: .14em; text-transform: uppercase; }
+.tonight .tag b { font-weight: 400; color: var(--live); }
+.tonight .act { font: italic 400 var(--say)/1 var(--serif); letter-spacing: -.005em; }
+
+/* facts under the wordmark; each line turns over on its own */
+.facts { list-style: none; margin: clamp(12px, 1.6vw, 30px) 0 0; padding: 0 0 clamp(16px, 2.2vw, 40px); display: flex; justify-content: space-between; gap: 16px;
+  font-size: var(--label); line-height: 1.5; letter-spacing: .13em; text-transform: uppercase; }
+.facts li { display: grid; justify-items: start; }
+.facts li:last-child, .facts li:last-child .flip > * { justify-items: end; justify-self: end; }
+
+/* a slot with a day line and a night line; .on shows the night one (a short rise and fade) */
+.flip { display: inline-grid; }
+.flip > * { grid-area: 1 / 1; transition: opacity .42s var(--ease), transform .55s var(--ease); }
+.flip > :last-child, .flip.on > :first-child { opacity: 0; pointer-events: none; }
+.flip > :last-child { transform: translateY(7px); }
+.flip.on > :first-child { transform: translateY(-7px); }
+.flip.on > :last-child { opacity: 1; transform: none; pointer-events: auto; transition-delay: .07s; }
+
+/* lines that are up for a stretch of the day (data-show): they rise in, and leave upward */
+.slot { display: grid; }
+.slot > * { grid-area: 1 / 1; }
+[data-show] { transition: opacity .42s var(--ease), transform .55s var(--ease); }
+[data-show]:not(.in) { opacity: 0; transform: translateY(7px); pointer-events: none; }
+[data-show].past { transform: translateY(-7px); }
+[data-show].in { transition-delay: .07s; }
+
+/* --- the photograph: framed on the page by day, full bleed by night (main.js draws its outline) ---------------- */
+.jn-stage { height: auto; min-height: 0; background: transparent; }
+.jn-stage > img { object-position: 45% 0; }
+.jn-stage > img, .jn-stage > canvas { will-change: clip-path;
+  /* at night the ceiling melts into the page */
+  -webkit-mask-image: linear-gradient(rgb(0 0 0 / calc(1 - var(--veil) * .75)), #000 clamp(28px, 5vh, 56px));
+  mask-image: linear-gradient(rgb(0 0 0 / calc(1 - var(--veil) * .75)), #000 clamp(28px, 5vh, 56px)); }
+
+/* the two bottom corners are cut out of the photo, so the words there sit on the page, not on a face or a light */
+.corner { position: absolute; bottom: 0; z-index: 3; }
+.corner.left { left: 0; padding: 18px 34px calc(var(--pad) * .85) var(--pad); }
+.corner.right { right: 0; padding: 18px var(--pad) calc(var(--pad) * .85) 30px; display: grid; justify-items: end; }
+
+.tagline { margin: 0; display: grid; font: 400 var(--say)/1.14 var(--serif); letter-spacing: -.005em; }
+.tagline > span { padding: 0 .12em .12em 0; margin: 0 -.12em -.12em 0; }   /* room for italic overhang and descenders */
+.tagline.night { font-style: italic; }
+.tagline.night > span:last-child { transition-delay: .16s; }   /* the second line follows the first */
+
+.more { justify-self: start; font-size: var(--label); line-height: 1; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 3px 0 7px; box-shadow: inset 0 -1px var(--copper); }
+.corner.right .more { justify-self: end; }
+.more:hover { box-shadow: inset 0 -1px var(--ink-night); }
+.more.day:hover { box-shadow: inset 0 -1px currentColor; }
+
+/* first screen only: the scroll is the clock */
+.cue { position: absolute; z-index: 3; left: 50%; bottom: 0; height: var(--pad); margin: 0; display: flex; align-items: center; transform: translateX(-50%);
+  font-size: var(--label); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-day); white-space: nowrap; opacity: calc(var(--cue) * .6); pointer-events: none; }
+
+/* --- the end of the night ------------------------------------------------------------------------------------- */
+.foot { position: relative; background: var(--night-warm); color: var(--ink-night); padding: clamp(48px, 7vw, 120px) var(--pad) var(--pad); }
+.foot .cols { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 32px; align-items: start; }
+.foot p, .foot dl { margin: 0; }
+.where, .hours dd, .reach { font: 400 clamp(17px, 1.3vw, 21px)/1.45 var(--serif); }
+.where b { font-weight: 400; }
+.hours { display: grid; gap: 4px; }
+.hours div { display: grid; grid-template-columns: 6em 1fr; align-items: baseline; }
+.hours dt { font-size: var(--label); letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+.hours dd { margin: 0; }
+.reach { justify-self: end; text-align: right; }
+.reach a { text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; }
+.reach a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+.fine { margin-top: clamp(48px, 6vw, 96px) !important; font-size: var(--label); letter-spacing: .14em; text-transform: uppercase; opacity: .55; }
+
+/* narrower screens keep their corners at night: Tonight joins the tagline there, and the cut grows round it */
+.corner.left .tonight { position: absolute; left: var(--pad); bottom: calc(100% - 8px); justify-items: start; text-align: left; }
+
+@media (max-width: 760px) {
+  .nav { grid-template-columns: auto 1fr; padding-top: 12px; }
+  .markrow { margin-top: 26px; }
+  .links { display: none; }
+  .seg button, .seg .thumb > span { padding: 8px 12px 7px; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .facts li:nth-child(even), .facts li:nth-child(even) .flip > * { justify-items: end; justify-self: end; }
+  .corner.left { padding-right: 22px; display: grid; justify-items: start; }
+  .corner.right { display: none; }
+  .corner.left .links-row { display: flex; align-items: baseline; gap: 26px; margin-top: 16px; }
+  .cue { display: none; }
+  .foot .cols { grid-template-columns: 1fr; }
+  .reach { justify-self: start; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip > *, [data-show], .seg .thumb { transition: none; }
+}

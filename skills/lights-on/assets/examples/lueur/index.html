@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lueur · Lamps</title>
+  <meta name="description" content="Designer lamps, beautiful even switched off. Click one and the evening falls.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="jn-stage" id="stage">
+    <img src="img/day-tall-1600.webp"
+      alt="A sunlit dining room with five lamps, all switched off: an amber glass mushroom lamp, a paper lantern over a walnut table, an alabaster sconce, a brass arc lamp over a bouclé chair and a pleated paper column by the window" fetchpriority="high">
+    <canvas id="jn" aria-hidden="true"></canvas>
+
+    <header class="nav">
+      <a class="mark" href="#">Lueur</a>
+      <nav class="links" aria-label="Main">
+        <a href="#">Lamps</a><a href="#">Rooms</a><a href="#">Journal</a>
+      </nav>
+      <a class="bag" href="#">Bag (<span id="bag">0</span>)</a>
+      <button class="jn-switch lights" id="lights" aria-label="Lights">
+        <span class="name" aria-hidden="true">Lights</span><span class="lbl day">Off</span><span class="pill"></span><span class="lbl night">On</span>
+      </button>
+    </header>
+
+    <section class="copy" id="copy">
+      <h1 class="jn-swap title"><span class="day"><span class="ln">Beautiful, even</span> <span class="ln">switched off.</span></span><span class="night" aria-hidden="true"><span class="ln">And then,</span> <span class="ln">the evening.</span></span></h1>
+      <div class="jn-swap lede">
+        <p class="day">Five lamps, each a sculpture by day.</p>
+        <p class="night" aria-hidden="true">Each one lights the room its own way.</p>
+      </div>
+    </section>
+
+    <div class="spots" id="spots"></div>
+
+    <article class="card" id="card" role="dialog" aria-labelledby="card-name" hidden>
+      <header class="card-head">
+        <span class="idx" id="card-idx"></span>
+        <button class="close" id="card-close" aria-label="Close">
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.1"/></svg>
+        </button>
+      </header>
+      <h2 id="card-name"></h2>
+      <p class="meta"><span id="card-material"></span><span id="card-maker"></span></p>
+      <div class="card-row">
+        <span class="price" id="card-price"></span>
+        <button class="mini" id="card-lamp" role="switch" aria-checked="false"><span>Light</span><i></i></button>
+      </div>
+      <div class="card-row actions">
+        <button class="add" id="card-add">Add to bag</button>
+        <a class="view" href="#" id="card-view">View piece <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <footer class="base">
+      <span class="count"><i></i>5 pieces in this room</span>
+      <span class="clock" id="clock">11:40</span>
+    </footer>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

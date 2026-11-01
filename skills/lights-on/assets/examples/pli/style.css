@@ -1,0 +1,195 @@
+/* Pli: an atelier page. The photograph gives the colour; the interface reads the room (0 ink, 1 cream), so type
+   turns cream whenever what sits behind it goes dim: at night, or behind a heavy cloth in the morning. Each patch has
+   its own moment (the window side goes dark last): --tone the wall behind the title, --tone-head the curtain's heading
+   behind the wordmark and Swatches, --tone-low the floor under the readouts.
+   main.js writes those, --dark-k and --night-k (the tags' dark and lamplit crops), the picture's scale (--imgw), the
+   wall's column (--wall-x, --wall-w) and the title size that fits it (--title). */
+@property --feather { syntax: "<percentage>"; inherits: true; initial-value: 90%; }
+@property --bw { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --bh { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --bx { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --by { syntax: "<length>"; inherits: true; initial-value: 0px; }
+
+:root {
+  --paper-day: #f3efe8; --paper-night: #14110e;
+  --ink-day: #2a2622; --ink-night: #f2ede4;
+  --sage: #7d8466; --amber: #e2b06e;
+  --accent: color-mix(in oklab, color-mix(in oklab, var(--sage), #3f4632 35%), var(--amber) calc(var(--night) * 100%));
+  --serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --pad: clamp(18px, 3.2vw, 52px);
+  --top: calc(var(--pad) * .6);
+  --tone: 0; --tone-head: 0; --tone-low: 0;
+  --ink: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--tone) * 100%));
+  --veil: color-mix(in oklab, color-mix(in oklab, #f1ebe2, #120f0c calc(var(--tone) * 100%)) 34%, transparent);
+  --veil-head: color-mix(in oklab, color-mix(in oklab, #f1ebe2, #120f0c calc(var(--tone-head) * 100%)) 34%, transparent);
+  --veil-low: color-mix(in oklab, color-mix(in oklab, #efe7dc, #120f0c calc(var(--tone-low) * 100%)) 46%, transparent);
+  --imgw: max(100vw, 177.78svh);
+  --wall-x: calc(var(--imgw) * .094);
+  --wall-w: calc(var(--imgw) * .244);
+  --drawn: cubic-bezier(.65, 0, .35, 1);
+  --tag: clamp(54px, calc(var(--imgw) * .036), 72px);
+}
+body { font-family: var(--sans); }
+.jn-stage { color: var(--ink); overflow: clip; }   /* clip: focus or a pointer never scrolls the stage */
+.jn-stage > img.still { object-position: 0% 55%; }
+/* a soft veil under the corner labels, the colour of the page behind the ink, so they read over the curtain's heading
+   (the wall's tone on the left, the heading's on the right) */
+.jn-stage::after { content: ""; position: absolute; z-index: 3; inset: 0 0 auto; height: calc(var(--top) * 2 + 64px); pointer-events: none;
+  background: linear-gradient(to right, var(--veil) 30%, var(--veil-head) 44%);
+  -webkit-mask: linear-gradient(#000, #0000); mask: linear-gradient(#000, #0000); }
+/* and a breath of the same under the readouts, so the small type never fights the rug's weave */
+.jn-stage::before { content: ""; position: absolute; z-index: 3; right: 0; bottom: 0; width: min(100%, max(640px, 58%)); height: 34%; pointer-events: none;
+  background: radial-gradient(farthest-side at 70% 100%, var(--veil-low), transparent); }
+/* the wordmark, Swatches and the readouts follow their own patch of the room */
+.mark, .bag, .fabrics { --ink: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--t) * 100%)); color: var(--ink); }
+.mark, .bag { --t: var(--tone-head); }
+.fabrics { --t: var(--tone-low); }
+
+.caps, .nav, .label, .counter, .link, .kicker, .specs dt { font: 500 11px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+.link { display: inline-block; padding: 6px 0; white-space: nowrap; text-decoration: none; transition: opacity .3s; }
+.link:hover { opacity: .62; }
+:where(a, button):focus-visible { outline: 1px solid currentColor; outline-offset: 5px; border-radius: 2px; }
+
+/* corners */
+.nav { position: absolute; z-index: 5; inset: 0 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: var(--top) var(--pad); }
+.links { display: flex; gap: clamp(18px, 2vw, 30px); }
+.nav a { text-decoration: none; }
+.links a:hover, .bag:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.mark { justify-self: center; font: 500 26px/1 var(--serif); letter-spacing: .32em; margin-right: -.32em; }
+.bag { justify-self: end; }
+.bag b { font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* the title hangs on the wall, between the paper lamp and the curtain */
+.copy { position: absolute; z-index: 4; left: var(--wall-x); top: calc(var(--top) + clamp(54px, 7.4vh, 84px)); width: var(--wall-w); }
+h1 { margin: 0; font: 400 var(--title, clamp(36px, calc(var(--imgw) * .0435), 100px))/.98 var(--serif); letter-spacing: -.014em; text-wrap: balance; }
+h1 em { font-style: italic; }
+
+/* day and night lines share a slot. The night lines arrive once the paper lamp has caught, the day lines at mid-dawn
+   (html[data-copy], main.js): the old line leaves quickly, then the new one rises, so the two never overlap */
+.swap { display: grid; }
+.swap > * { grid-area: 1 / 1; transition: opacity .5s ease .14s, transform .7s var(--ease) .14s; }
+html:not([data-copy="night"]) .swap > .night, html[data-copy="night"] .swap > .day {
+  opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s ease, transform .3s ease; }
+.lede { margin-top: clamp(14px, 2.2vh, 24px); max-width: 25em; font-size: clamp(14px, calc(var(--imgw) * .0092), 17px); line-height: 1.5; }
+.lede p { margin: 0; text-wrap: pretty; }
+.when { display: flex; align-items: baseline; gap: clamp(18px, 1.8vw, 28px); margin-top: clamp(14px, 2.6vh, 28px); font: 400 clamp(19px, calc(var(--imgw) * .0128), 25px)/1 var(--serif); }
+
+/* Morning · Night: a text switch with a sliding hairline */
+.toggle { position: relative; display: inline-flex; align-items: baseline; gap: .42em; padding: 6px 0 10px; font: inherit; }
+.toggle span { opacity: .5; transition: opacity .45s var(--ease); }
+.toggle[aria-checked="false"] .t-day, .toggle[aria-checked="true"] .t-night { opacity: 1; }
+.toggle:hover span { opacity: .85; }
+.toggle i { position: absolute; left: 0; bottom: 2px; width: var(--w, 3.6em); height: 1px; background: color-mix(in oklab, var(--accent), currentColor calc((1 - var(--night)) * 55%)); transform: translateX(var(--x, 0)); transition: transform .55s var(--drawn), width .55s var(--drawn); }
+.clock { display: inline-flex; font-variant-numeric: lining-nums tabular-nums; letter-spacing: .01em; }
+.clock .d { display: inline-block; height: 1.1em; line-height: 1.1; overflow: hidden; }
+.clock .d > span { display: block; }
+.clock .d > span > span { display: block; height: 1.1em; }
+
+/* the fabrics: the light-through meter and four hang-tags, standing on the floor */
+.fabrics { position: absolute; z-index: 4; right: var(--pad); bottom: calc(var(--pad) * .8); display: grid; grid-template-columns: 150px auto;
+  grid-template-areas: "label counter" "meter tags" "kind ."; column-gap: clamp(34px, 3.6vw, 64px); row-gap: 14px; align-items: end; }
+.label { grid-area: label; }
+.counter { grid-area: counter; justify-self: end; font-variant-numeric: tabular-nums; }
+.meter { grid-area: meter; display: grid; gap: 14px; }
+.pct { font: 400 clamp(48px, calc(var(--imgw) * .037), 78px)/.8 var(--serif); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.02em; }
+.pct small { font-size: .46em; margin-left: .08em; vertical-align: .9em; letter-spacing: 0; }
+.bar { position: relative; width: 140px; height: 1px; background: color-mix(in oklab, var(--ink) 28%, transparent); }
+.bar i { position: absolute; left: 0; top: -.5px; width: 100%; height: 2px; background: var(--accent); transform-origin: left; transform: scaleX(.38); }
+.kind { grid-area: kind; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; white-space: nowrap; font: italic 400 clamp(17px, calc(var(--imgw) * .0112), 22px)/1.2 var(--serif); }
+.kind .link { font-style: normal; padding: 0; }
+.tags { grid-area: tags; display: flex; gap: clamp(14px, 1.3vw, 22px); }
+.tag { position: relative; width: var(--tag); transition: transform .5s var(--ease); }
+.tag .swatch { display: block; filter: drop-shadow(0 1px 1px rgba(24, 19, 14, .28)) drop-shadow(0 7px 9px rgba(24, 19, 14, .16)); transition: filter .5s var(--ease); }
+.tag .card { display: block; height: calc(var(--tag) * .28); border-radius: 1.5px 1.5px 0 0; --card: color-mix(in oklab, color-mix(in oklab, #fbf9f5, #a7a29b calc(var(--dark-k, 0) * 100%)), #d8c7ad calc(var(--night-k, 0) * 100%));
+  background: radial-gradient(circle at 50% calc(var(--tag) * .14), rgba(0, 0, 0, 0) 2.5px, rgba(60, 50, 40, .3) 2.9px, var(--card) 3.6px); }
+.tag .cloth { position: relative; display: block; height: calc(var(--tag) * 1.06); background: var(--day) var(--pos) / 1600px 900px no-repeat, #8a8070;
+  --z: 3.5px;
+  -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--z)) no-repeat, conic-gradient(from -45deg at 50% 100%, #000 90deg, #0000 0) bottom / calc(var(--z) * 2) var(--z) repeat-x;
+  mask: linear-gradient(#000 0 0) top / 100% calc(100% - var(--z)) no-repeat, conic-gradient(from -45deg at 50% 100%, #000 90deg, #0000 0) bottom / calc(var(--z) * 2) var(--z) repeat-x; }
+.tag .cloth::before, .tag .cloth::after { content: ""; position: absolute; inset: 0; background: var(--dark) var(--pos) / 1600px 900px no-repeat; opacity: var(--dark-k, 0); }
+.tag .cloth::after { background-image: var(--night); opacity: var(--night-k, 0); }
+.tag .name { position: absolute; left: 50%; top: calc(100% + 16px); transform: translate(-50%, -4px); white-space: nowrap; font: 400 clamp(17px, calc(var(--imgw) * .0108), 21px)/1 var(--serif); opacity: 0; transition: opacity .4s var(--ease), transform .5s var(--ease); pointer-events: none; }
+.tag:hover { transform: translateY(-2px); }
+.tag[aria-checked="true"] { transform: translateY(-4px); }
+.tag[aria-checked="true"] .swatch { filter: drop-shadow(0 1px 1px rgba(24, 19, 14, .3)) drop-shadow(0 12px 14px rgba(24, 19, 14, .2)); }
+.tag[aria-checked="true"] .name { opacity: 1; transform: translate(-50%, 0); transition-delay: .12s; }
+.tag:focus-visible { outline-offset: 6px; }
+
+/* the curtain is a button: the lens follows the pointer over it, a click opens the fabric */
+.cloth-hit { position: absolute; z-index: 2; border-radius: 0; }
+.cloth-hit:focus-visible { outline: 1px dashed currentColor; outline-offset: -14px; }
+html.lensed .cloth-hit { cursor: none; }
+
+.lens { position: absolute; z-index: 7; left: 0; top: 0; width: 180px; height: 180px; border-radius: 50%; pointer-events: none; opacity: 0; scale: .92;
+  box-shadow: 0 2px 4px rgba(24, 19, 14, .16), 0 16px 34px -8px rgba(24, 19, 14, .34);
+  transition: opacity .35s var(--ease), scale .5s var(--ease); }
+.lens.on { opacity: 1; scale: 1; }
+.lens .glass { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; filter: url(#crisp) contrast(1.04);
+  -webkit-mask: radial-gradient(closest-side, #000 var(--feather), #0000 calc(var(--feather) + 9%));
+  mask: radial-gradient(closest-side, #000 var(--feather), #0000 calc(var(--feather) + 9%)); }
+.lens .plate { position: absolute; inset: 0; }
+.lens .plate.b { opacity: var(--ob, 0); }
+.lens i { position: absolute; inset: 0; background-repeat: no-repeat; background-size: var(--bw) var(--bh); background-position: calc(50% + var(--bx)) calc(50% + var(--by)); }
+.lens i.n { opacity: var(--night); filter: brightness(1.15); }   /* the raw night photo lacks the engine's halo */
+
+/* details: a quiet sheet; the lens opens into its swatch */
+.sheet { position: absolute; z-index: 6; right: var(--pad); top: calc(var(--top) + 52px); width: clamp(300px, 25vw, 380px);
+  --k: var(--flip);
+  color: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--k) * 100%));
+  background: color-mix(in oklab, color-mix(in oklab, #f6f2ec, rgb(20 17 14) calc(var(--k) * 100%)) calc(94% - var(--k) * 26%), transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.06); backdrop-filter: blur(18px) saturate(1.06);
+  box-shadow: 0 1px 2px rgba(24, 19, 14, .08), 0 30px 70px -28px rgba(24, 19, 14, calc(.32 + var(--k) * .3));
+  opacity: 0; translate: 0 10px; visibility: hidden; transition: opacity .45s var(--ease), translate .6s var(--ease), visibility 0s .6s; }
+.sheet.open { opacity: 1; translate: 0 0; visibility: visible; transition: opacity .5s var(--ease) .12s, translate .7s var(--ease) .12s, visibility 0s; }
+.slot { height: clamp(140px, 20vh, 220px); }
+.sheet-body { padding: 20px 26px 22px; transition: opacity .3s var(--ease); }
+.sheet-body.dim { opacity: 0; }
+.kicker { display: flex; justify-content: space-between; margin: 0; opacity: .7; }
+.sheet h2 { margin: 12px 0 16px; font: 400 clamp(34px, 2.7vw, 44px)/1 var(--serif); letter-spacing: -.01em; }
+.specs { margin: 0; }
+.specs div { display: grid; grid-template-columns: 112px 1fr; gap: 14px; padding: 9px 0 8px; border-top: 1px solid color-mix(in oklab, currentColor 16%, transparent); }
+.specs dt { font-size: 10px; opacity: .62; padding-top: 2px; }
+.specs dd { margin: 0; font-size: 14px; line-height: 1.4; }
+.note { display: grid; gap: 8px; margin: 0; padding-top: 14px; border-top: 1px solid color-mix(in oklab, currentColor 16%, transparent); font: italic 400 18px/1.32 var(--serif); }
+.note .caps { font-style: normal; font-size: 10px; opacity: .62; }
+#d-note { text-wrap: pretty; }
+.actions { display: flex; justify-content: space-between; margin-top: 16px; }
+
+html.no-gl .lens, html.no-gl .cloth-hit, html.no-gl #more { display: none; }
+.jn-stage > img.jn-night { object-position: 0% 55%; }
+
+@media (max-width: 760px) {
+  :root { --tag: 44px; }
+  .links { display: none; }
+  .nav { grid-template-columns: 1fr auto; }
+  .mark { justify-self: start; margin-right: 0; --t: var(--tone); }   /* on a phone it hangs on the wall */
+  .copy { top: calc(var(--top) + 62px); }
+  .lede { display: none; }
+  .when { font-size: 19px; }
+  .jn-stage::before { width: 100%; height: 30%; background: linear-gradient(to top, var(--veil-low) 30%, transparent); }
+  .fabrics { left: 16px; right: 16px; bottom: 18px; grid-template-columns: 112px 1fr; column-gap: 12px; row-gap: 12px; }
+  .bar { width: 104px; }
+  .counter { display: none; }
+  .kind { display: contents; }
+  #kind { grid-area: kind; }
+  .kind .link { grid-area: counter; justify-self: end; font-style: normal; }
+  .tags { gap: 8px; justify-self: end; }
+  .tag .name { font-size: 16px; top: calc(100% + 13px); }
+  .sheet { left: 12px; right: 12px; top: auto; bottom: 12px; width: auto; }
+  .slot { height: 112px; }
+  .sheet-body { padding: 16px 20px 18px; }
+  .sheet h2 { margin: 8px 0 10px; font-size: 32px; }
+  .specs div { grid-template-columns: 104px 1fr; padding: 7px 0 6px; }
+  .note { font-size: 16px; }
+}
+
+/* short screens: the readouts tighten so they stay on the floor, clear of the curtain's hem */
+@media (min-width: 761px) and (max-height: 800px) {
+  .fabrics { row-gap: 9px; bottom: calc(var(--pad) * .5); }
+  .meter { gap: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag, .tag .name, .toggle i, .sheet, .lens, .swap > * { transition-duration: .01s; transition-delay: 0s; }
+}
