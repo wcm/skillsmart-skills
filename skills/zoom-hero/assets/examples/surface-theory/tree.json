@@ -1,0 +1,81 @@
+{
+  "brand": "Surface Theory — skincare, measured. One drop of serum, followed from the bathroom mirror down to the molecule.",
+  "style": "Calm, clinical, luminous: soft white morning daylight, pale stone, frosted glass, cool silver-blue shadows, clean and airy, with one warm golden note: the serum.",
+  "nodes": {
+    "portrait": {
+      "span": 0.9,
+      "prompt": "Editorial beauty photograph for a skincare lab, in a calm, minimal bathroom of pale honed limestone, soft white morning daylight. Eye-level medium close-up. The left 45% of the frame is a calm, softly and evenly lit pale limestone wall: keep it completely empty, nothing on it and nothing in front of it. In the right half, in front of a large frosted window, a woman in her early thirties, framed from the top of her head down to her chest, seen in three-quarter profile with her face turned slightly toward the left, eyes softly lowered, calm and serene; her face is large, in the upper right part of the frame. Dark brown hair in a low, loose bun; a simple white top with thin straps. Real, natural, unretouched skin: visible pores, a light dusting of freckles across her nose and cheeks, fine peach fuzz catching the light, a healthy dewy glow, no heavy makeup. She raises her hand and gently touches the tip of her middle finger to her cheekbone, the other fingers relaxed (a natural hand with one thumb and four fingers); on her cheekbone, right beside the fingertip, sits a single round drop of golden serum, glossy and glistening, clearly visible. She stands behind a pale limestone vanity ledge at the height of her chest: its flat top crosses the whole frame about 70% of the way down, and its plain front face fills the bottom of the frame. On the ledge, a little right of the centre of the frame, just left of her shoulder and seen against the bright window, stands a small frosted-glass serum bottle with its cap off, golden serum glowing inside, a blank white label; its slim glass dropper with a white rubber bulb lies on the ledge just left of the bottle, its glass tip pointing at the bottle's base, a round bead of golden serum at the tip. Clean, luminous, airy, high-key; quietly luxurious and scientific. No text."
+    },
+    "cheek": {
+      "parent": "portrait",
+      "rect": [
+        0.725,
+        0.33,
+        0.18
+      ],
+      "span": 0.16,
+      "prompt": "her cheekbone up close, a beauty macro: real, unretouched skin with fine pores, soft freckles and fine peach fuzz catching the window light; her lowered eyelid and lashes at the top left, her relaxed fingertips with short natural nails resting on the cheek at the right; in the middle, a single round drop of golden serum sitting on the skin, glossy and glistening, with a tiny reflection of the window in it. Soft, clean and luminous."
+    },
+    "drop": {
+      "parent": "cheek",
+      "rect": [
+        0.498,
+        0.452,
+        0.21
+      ],
+      "span": 0.01,
+      "prompt": "the drop of serum on the skin at macro scale: a clear golden dome of serum resting on the fine micro-relief of the skin, its rim just starting to spread and wick into the fine criss-cross skin lines around it, a few fine vellus hairs, the window reflected as a soft bright highlight on its glossy surface, golden light glowing through it onto the skin. Clinical macro photograph, very clean, shallow depth of field."
+    },
+    "cells": {
+      "parent": "drop",
+      "rect": [
+        0.335,
+        0.54,
+        0.12
+      ],
+      "span": 0.0006,
+      "prompt": "the skin's surface at cellular scale, right where the edge of the drop of serum meets the skin: the outermost skin cells are flat, thin, overlapping, roughly hexagonal flakes like pale translucent tiles of frosted glass, with fine channels between them. On the right, the cells lie under the clear golden serum of the drop; from its edge, golden serum seeps out into the channels between the cells on the left, glistening. Scientific microscope image, soft pastel light, very clean and beautiful.",
+      "medium": "micro"
+    },
+    "molecule": {
+      "parent": "cells",
+      "rect": [
+        0.45,
+        0.655,
+        0.1
+      ],
+      "span": 2e-8,
+      "prompt": "the golden serum between two skin cells, magnified down to the scale of molecules: one molecule of the active ingredient, a glossy ball-and-stick molecule made of polished golden glass spheres joined by slim clear glass rods, floating among soft pale layers of lipid that look like stacked translucent ribbons, following the flow of the golden serum. At this scale the cells are no longer seen as flakes: their pale areas become many thin, pale, translucent lipid ribbons lying in parallel, gently curving, with soft out-of-focus depth. The molecule is big and sits left of centre, where the golden serum runs; the right third of the frame stays calm and empty, only soft, blurred, pale translucent lipid layers, no glints, no bubbles. Elegant, clean scientific 3D render with soft studio light.",
+      "medium": "render",
+      "focus": [
+        0.27,
+        0.4
+      ]
+    },
+    "bottle": {
+      "parent": "portrait",
+      "rect": [
+        0.55,
+        0.71,
+        0.27
+      ],
+      "span": 0.24,
+      "prompt": "the serum bottle up close on the pale limestone ledge: a small bottle of thick frosted glass, softly translucent with gentle reflections and a crisp clear glass neck, golden serum glowing inside, a blank white label with no lettering, its cap off; beside it lies its slim glass dropper with a white rubber bulb, golden serum inside the glass, a round bead of golden serum at its tip; her bare shoulder softly behind, the bright frosted window. Soft daylight. Product photograph."
+    },
+    "dropper": {
+      "parent": "bottle",
+      "rect": [
+        0.54,
+        0.81,
+        0.12
+      ],
+      "span": 0.012,
+      "prompt": "the dropper's slim glass tip at macro scale, lying on the pale honed limestone ledge: thick clear glass with golden serum inside, and a round drop of golden serum gathering at its very end, glossy and clear, the window light refracted through the drop and the glass, a soft golden glow on the stone beneath. Product macro photograph, very clean.",
+      "focus": [
+        0.64,
+        0.55
+      ]
+    }
+  },
+  "titleBand": "left 45% (the pale stone wall): no spots left of x = 0.46"
+}

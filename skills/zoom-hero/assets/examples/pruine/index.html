@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pruine · Natural wine, nothing added</title>
+  <meta name="description" content="Natural wine from one limestone hill. Everything that makes it is already in the vineyard: look closer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="lp-stage" id="stage">
+    <img class="lp-first" src="img/estate-1600.webp" alt="Autumn vineyard hills at golden hour, an old vine heavy with grapes, a limestone bank and a stone barn" fetchpriority="high">
+    <canvas id="loupe" aria-hidden="true"></canvas>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a class="mark" href="#">Pruine</a>
+      <nav class="links" aria-label="Main">
+        <a href="#">Wines</a><a href="#">Domaine</a><a href="#">Visit</a><a href="#">Journal</a>
+      </nav>
+      <a class="cta" href="#">Book a tasting</a>
+    </header>
+
+    <div class="hero">
+      <p class="note left">Natural wine,<br><em>nothing added.</em></p>
+      <h1 class="word" aria-label="Pruine"><span>P</span><span>r</span><span>u</span><span>i</span><span>n</span><span>e</span></h1>
+      <p class="note right">Est. 1962<br>Luberon, France</p>
+    </div>
+
+    <nav class="crumbs" data-lp="crumbs" aria-label="Where you are"></nav>
+
+    <section class="copy" data-lp="copy" aria-live="polite"></section>
+
+    <div class="ruler" data-lp="ruler" data-orient="h" aria-hidden="true"></div>
+
+    <div class="hud">
+      <button class="back" data-lp="back" type="button"><span class="minus" aria-hidden="true"></span>Zoom out<kbd>Esc</kbd></button>
+      <dl class="readout">
+        <div><dt>Field</dt><dd data-lp="span"></dd></div>
+        <div><dt>Zoom</dt><dd data-lp="mag"></dd></div>
+        <div><dt>Level</dt><dd data-lp="depth"></dd></div>
+      </dl>
+    </div>
+
+    <p class="hint" data-lp="hint"><span class="dot" aria-hidden="true"></span>Click a dot to look closer · scroll to dive</p>
+
+    <aside class="shop" id="shop" aria-hidden="true">
+      <img src="img/bloom-thumb.webp" alt="">
+      <div>
+        <p class="shop-k">Pruine 2025 · Grenache</p>
+        <p class="shop-t">Fermented by the yeast you're looking at.</p>
+        <p class="shop-p">€32 · 12.5% · 1,840 bottles</p>
+        <div class="shop-b"><a href="#" class="buy">Shop the vintage</a><a href="#">Book a tasting</a></div>
+      </div>
+    </aside>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

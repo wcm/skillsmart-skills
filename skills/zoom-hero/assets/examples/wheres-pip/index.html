@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where’s Pip? · A seek-and-find book from Moonfold Press</title>
+  <meta name="description" content="Pip is hiding somewhere in this harbour town. Follow the clues, dive into the picture and find Pip.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='17' cy='17' r='12' fill='%23ff4fa3'/%3E%3Ccircle cx='15' cy='15' r='12' fill='none' stroke='%231f2a6e' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="lp-stage" id="stage">
+    <img class="lp-first" src="img/town-1600.webp" alt="A harbour town drawn in pink, yellow and navy ink: houses along a quay, fishing boats, a striped lighthouse on the rocks" fetchpriority="high">
+    <canvas id="loupe" aria-hidden="true"></canvas>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a class="mark" href="#"><span class="moon" aria-hidden="true"></span>Moonfold Press</a>
+      <nav class="links" aria-label="Main">
+        <a href="#">Books</a><a href="#">Activity sheets</a><a href="#">For schools</a><a href="#">Shops</a>
+      </nav>
+      <a class="cta" href="#order">Pre-order</a>
+    </header>
+
+    <div class="hero">
+      <h1 class="title" aria-label="Where’s Pip?">
+        <span class="plate pink" aria-hidden="true">Where’s Pip?</span>
+        <span class="plate yellow" aria-hidden="true">Where’s Pip?</span>
+        <span class="plate navy" aria-hidden="true">Where’s Pip?</span>
+      </h1>
+      <p class="sub">A seek-and-find book. Pip is hiding somewhere in this town. Follow the clues.</p>
+    </div>
+
+    <nav class="crumbs" data-lp="crumbs" aria-label="Where you are"></nav>
+
+    <section class="copy" data-lp="copy" aria-live="polite"></section>
+
+    <div class="scale" aria-hidden="true"><div class="ruler" data-lp="ruler" data-orient="h"></div></div>
+
+    <p class="hint" data-lp="hint"><span class="dot" aria-hidden="true"></span>Click the lit window to start</p>
+
+    <div class="hud">
+      <div class="tracker" id="tracker" aria-live="polite">
+        <span class="slots" aria-hidden="true"><i class="slot" data-slot="note"></i><i class="slot" data-slot="scarf"></i><i class="slot pip" data-slot="pip"></i></span>
+        <span class="tracker-t">Clues <b id="count">0</b>/2</span>
+        <button class="again" id="again" type="button">Play again</button>
+      </div>
+      <div class="hud-row">
+        <button class="back" data-lp="back" type="button"><span class="up" aria-hidden="true"></span><span class="label">Zoom out</span><kbd>Esc</kbd></button>
+        <dl class="readout">
+          <div><dt>View</dt><dd data-lp="span"></dd></div>
+          <div><dt>Zoom</dt><dd data-lp="mag"></dd></div>
+          <div><dt>Level</dt><dd data-lp="depth"></dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <aside class="clue" id="clue" aria-hidden="true">
+      <div class="clue-pic"><i class="tape" aria-hidden="true"></i></div>
+      <div class="clue-body">
+        <p class="clue-k"></p>
+        <p class="clue-t"></p>
+        <p class="clue-s"></p>
+        <button class="clue-b" type="button"><span class="up" aria-hidden="true"></span>Back to town</button>
+      </div>
+    </aside>
+
+    <div class="found" id="found" aria-hidden="true">
+      <div class="confetti" id="confetti"></div>
+      <p class="found-t">
+        <span class="plate pink" aria-hidden="true">You found Pip!</span>
+        <span class="plate navy">You found Pip!</span>
+      </p>
+    </div>
+
+    <aside class="order" id="order" aria-hidden="true">
+      <div class="book" aria-hidden="true">
+        <div class="book-cover"><span class="book-t">Where’s Pip?</span><span class="book-by">Moonfold</span></div>
+      </div>
+      <div class="order-body">
+        <p class="order-k">New · Pre-order</p>
+        <p class="order-t"><b>Where’s Pip?</b> · Hardback, 32&nbsp;pages · £14.99</p>
+        <p class="order-s">Fifteen more towns to search, and Pip is hiding in every one.</p>
+        <div class="order-b"><a href="#" class="buy">Pre-order</a><a href="#">Peek inside</a></div>
+      </div>
+    </aside>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

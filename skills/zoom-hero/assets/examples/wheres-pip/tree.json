@@ -1,0 +1,72 @@
+{
+  "medium": "riso",
+  "brand": "Where's Pip? — a seek-and-find picture book about a harbour town, from a small children's publisher.",
+  "style": "Charming, detailed picture-book illustration full of tiny stories, like a seek-and-find book, drawn in the same three risograph inks throughout. Every page of the book is drawn by the same illustrator in the same hand, whatever the scale: fine navy outlines of the same weight, the same small round halftone dots, the same grainy flat ink and paper texture; a closer view is a fresh, more detailed drawing, never an enlargement with thick lines or big dots.",
+  "nodes": {
+    "town": {
+      "span": 400,
+      "prompt": "A wide illustration seen from a little above: a tiny harbour town spread low along a sunny bay, one page of a seek-and-find picture book. SKY: the whole upper 40% of the picture, from the left edge to the right edge, is calm, empty sky: plain warm paper with a soft pale pink halftone glow near the horizon, two small drawn clouds and three gulls, nothing else. The town is built on low, nearly flat ground, so even its highest roofs, chimneys and trees stay below the upper 40% of the picture; nothing rises into the sky but the gulls. TOWN (from the left edge to about 70% across, between 40% and 64% down): tall, narrow houses in pink, yellow, pale navy-tint blue and paper white, with pitched roofs, chimneys and rows of little windows, packed close; washing lines strung between them, little stairs and alleys, a small market square with striped awnings, potted trees, and tiny people doing funny things (a man chasing his hat, a girl on a bike, a cat on a roof, a baker with a tray of buns, a painter at an easel). THE DINNER HOUSE (the very centre of the town, about 47% across and 50% down): one house a little bigger than its neighbours, facing us squarely, with one big open window, its shutters thrown wide and the room inside glowing warm yellow; through it a family can just be seen at a dinner table under a hanging lamp. HARBOUR (across the lower middle, about 64% to 80% down): a long stone quay with bollards, crates of fish, barrels, coiled nets and fishermen, and small fishing boats in navy and yellow moored along it. THE RED BOAT (near the centre of the quay, about 50% across and 72% down, right below the dinner house): a small fishing boat, only about one tenth of the picture wide, the brightest one, red (pink ink printed over yellow), with a little wheelhouse and a short mast, and a long yellow scarf tied halfway up the mast, fluttering out sideways in the wind. LIGHTHOUSE (on the right, about 82% across): a rocky point juts into the sea and on it stands a stout lighthouse with bold pink and white stripes, a little iron balcony and a round glass lamp room at the top; it is only about one fifth of the picture's height: its lamp room about 43% down, its foot among rocks and splashing waves about 62% down. SEA (the bottom fifth): calm navy water with little drawn waves, a rowing boat and a few ducks; the bottom left and bottom right corners are quiet water. Dense and delightful, but clean: every shape clear and readable at a glance, nothing muddled. Signs and flags carry only little pictures (a fish, a teacup, a loaf), never letters or numbers."
+    },
+    "window": {
+      "parent": "town",
+      "rect": [
+        0.465,
+        0.445,
+        0.19
+      ],
+      "span": 6,
+      "prompt": "the house with the big open window, up close: inside the warmly lit yellow room, the family at dinner round a table with a white cloth under a hanging lamp: the father, two small children and the mother, laughing and passing dishes; a cat sitting on a chair, a teapot, plates and cups on the table, and among them a small folded white paper note; pictures on the wall behind them, curtains, the pink shutters thrown open, flower boxes on the sill, the whitewashed wall and roof edge around the window. Charming picture-book detail."
+    },
+    "note": {
+      "parent": "window",
+      "rect": [
+        0.513,
+        0.722,
+        0.14
+      ],
+      "span": 0.8,
+      "prompt": "the dinner table up close, laid exactly as in the picture: in the middle the round yellow teapot; on the left a stack of white plates, a plate of food and a yellow bowl on a saucer; on the right yellow cups, a slice of cake and a plate; behind the table the two children's arms in their patterned sleeves (pink with navy spots on the left, orange with pink dots on the right); the front edge of the table, and below it the white tablecloth hanging down with a light scattering of little pink flowers; in the bottom left corner the father's navy trouser leg. In front of the teapot lies the small folded paper note, open, with a child's doodle on it in navy and pink ink: a little fishing boat with a wheelhouse and a mast with a scarf, on little waves, and an arrow pointing to it. The note carries only this drawing: no letters, no words, no numbers, no lines of writing. Every outline, near and far, is redrawn as a fine, thin pen line with small, crisp halftone dots, like every other page of the book: the thick, soft outlines and blotches in the blurry picture come only from the enlargement."
+    },
+    "boat": {
+      "parent": "town",
+      "rect": [
+        0.45,
+        0.675,
+        0.28
+      ],
+      "span": 10,
+      "prompt": "the red fishing boat at the quay, up close: its red hull with fenders and a life ring, the little white wheelhouse, coiled ropes, nets, crates of fish on deck, a gull perched on the wheelhouse roof, and the long yellow scarf tied to the top of the mast, fluttering out sideways in the wind, with a small white paper tag tied to it. Behind it, the stone quay wall and the busy quayside with people and potted plants."
+    },
+    "scarf": {
+      "parent": "boat",
+      "rect": [
+        0.59,
+        0.18,
+        0.11
+      ],
+      "span": 1,
+      "prompt": "the top of the red mast up close: the long yellow scarf knotted round it and streaming out sideways in the wind, and the small white paper tag tied to the knot with a string, showing a little drawing in pink and navy ink of a striped lighthouse with a round glass lamp room at the top. The tag carries only this drawing: no letters, no words, no numbers. The pale quayside behind."
+    },
+    "lighthouse": {
+      "parent": "town",
+      "rect": [
+        0.83,
+        0.405,
+        0.34
+      ],
+      "span": 12,
+      "prompt": "the striped lighthouse on its rocky point, up close: bold pink and white stripes, little windows, the iron balcony and the round glass lamp room glowing at the top, and inside it, in the middle behind the glass panes, a tiny figure in a yellow raincoat and a pink bobble hat can just be glimpsed, waving (nobody outside on the balcony); the keeper's cottage and a fence at its foot, rocks and splashing waves below, the calm sea (the same pale navy-blue halftone as in the picture) and a sailing boat on the right, the last houses of the town on the left."
+    },
+    "pip": {
+      "parent": "lighthouse",
+      "rect": [
+        0.562,
+        0.205,
+        0.15
+      ],
+      "span": 2,
+      "prompt": "the round glass lamp room at the top of the lighthouse up close: through its big glass panes we see Pip inside, a small child in a yellow raincoat and a pink bobble hat, beaming and waving at us with one hand and holding a little glowing lantern in the other, a tiny scruffy dog beside them with its front paws up on the sill. Pip stands in the middle, right behind the glass, big, bright and clearly the star; nothing crosses their face. The domed roof above, the iron balcony rail in front, the pink sky on both sides."
+    }
+  },
+  "titleBand": "top 30% (the sky): no spots above y = 0.32"
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "zoom-hero",
+  "name": "Zoom Hero",
+  "tagline": "A hero you can dive into: click a spot in one wide scene and the camera zooms into a tiny detail, then closer still.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["zoom", "deep zoom", "infinite zoom", "powers of ten", "hero section", "landing page", "interactive", "WebGL", "macro", "storytelling", "product story", "craft", "seek and find"],
+  "youSay": "/zoom-hero A natural-wine estate: from the hill down to the wild yeast on a grape",
+  "whatYouGet": [
+    "One wide scene with spots to click: the camera dives into a tiny detail until it fills the screen, then dives again, and zooms back out in one go",
+    "A tree of matched pictures, each close-up made from a crop of the level above and measured to sit exactly over it, so detail comes into focus with no jump",
+    "A viewfinder interface: size labels on the spots, brackets that grow with each dive, live readouts of field width and zoom, a scale from kilometres to nanometres, breadcrumbs, pinned notes",
+    "Words, type and colours chosen for your subject, a layout for phones, a headless check and a dive video, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Brands whose reason to buy is too small to see: craft, ingredients, materials, wildlife, science",
+    "Stories that go deep in a few steps, and playful pages such as a seek-and-find game"
+  ],
+  "notFor": [
+    "Pages that must be very light: each level is a large picture, drawn in WebGL",
+    "Exact product detail: generated close-ups are imagined, so don't use them to prove a real specification"
+  ],
+  "youBring": [
+    "The business or subject, and what is hidden in it",
+    "Optional: your own photo for the first level, the brand's name, colours and tone"
+  ],
+  "needs": [
+    "Skillsmart credits (20 a picture)",
+    "Node 18+",
+    "Python 3",
+    "Chrome or Edge, for the check and the video",
+    "ffmpeg, for the video"
+  ],
+  "generates": { "models": ["nano-banana-pro"], "estimate": "20 a picture: about 320 for 8 levels with two takes each" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.15 a picture",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai", "rest.fal.ai"]
+  },
+  "network": [
+    { "host": "registry.npmjs.org", "purpose": "the tools' sharp and playwright-core packages, installed once" }
+  ],
+  "testedIn": ["Claude Code"]
+}

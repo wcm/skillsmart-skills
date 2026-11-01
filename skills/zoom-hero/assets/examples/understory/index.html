@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Understory · Look closer</title>
+  <meta name="description" content="Understory is a rainforest trust. Every square metre of cloud forest hides a world: dive in, then protect one.">
+  <meta name="theme-color" content="#0c241a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%230c241a'/%3E%3Ccircle cx='12' cy='12' r='6' fill='none' stroke='%23d4ff3a' stroke-width='1.6'/%3E%3Ccircle cx='14.2' cy='9.8' r='1.7' fill='%23d4ff3a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="lp-stage" id="stage">
+    <img class="lp-first" src="img/canopy-1600.webp" alt="Dawn over a cloud forest: mist above the treetops, a sloth in a pale cecropia tree, a mossy branch and a river far below" fetchpriority="high">
+    <canvas id="loupe" aria-hidden="true"></canvas>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="haze" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a class="mark" href="#" aria-label="Understory, home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.25"/><circle cx="12" cy="12" r="5.25"/><circle class="pupil" cx="14.2" cy="9.8" r="1.6"/></svg>
+        <span>Understory</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="#">Our forests</a><a href="#">Science</a><a href="#">Field notes</a>
+      </nav>
+      <p class="count"><span class="live" aria-hidden="true"></span><b data-m2>48,210</b> m² protected</p>
+      <a class="cta" href="#"><span class="sq" aria-hidden="true"></span>Protect 1 m²</a>
+    </header>
+
+    <div class="hero">
+      <div class="title-wrap">
+        <h1 class="title" aria-label="Look closer."><span class="w" aria-hidden="true"><span style="--i:0">L</span><span style="--i:1">o</span><span style="--i:2">o</span><span style="--i:3">k</span></span> <span class="w" aria-hidden="true"><span style="--i:4">c</span><span style="--i:5">l</span><span style="--i:6">o</span><span style="--i:7">s</span><span style="--i:8">e</span><span style="--i:9">r</span><span class="dot" style="--i:10">.</span></span></h1>
+        <div class="fog" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+      <p class="lede">Every square metre of cloud forest hides a world. <span>Dive in, then protect one.</span></p>
+    </div>
+
+    <nav class="crumbs" data-lp="crumbs" aria-label="Where you are"></nav>
+
+    <section class="copy" data-lp="copy" aria-live="polite"></section>
+
+    <div class="ruler" data-lp="ruler" data-orient="h" aria-hidden="true"></div>
+
+    <div class="hud">
+      <button class="back" data-lp="back" type="button"><span class="minus" aria-hidden="true"></span>Zoom out<kbd>Esc</kbd></button>
+      <dl class="readout">
+        <div><dt>Field</dt><dd data-lp="span"></dd></div>
+        <div><dt>Zoom</dt><dd data-lp="mag"></dd></div>
+        <div><dt>Level</dt><dd data-lp="depth"></dd></div>
+      </dl>
+    </div>
+
+    <p class="hint" data-lp="hint"><span class="dot" aria-hidden="true"></span>Click a dot to look closer · scroll to dive</p>
+
+    <aside class="give" id="give" aria-hidden="true" aria-label="Protect one square metre">
+      <ol class="give-path" aria-label="Your dive">
+        <li><img src="img/canopy-thumb.webp" alt=""><span>Canopy</span></li>
+        <li><img src="img/branch-thumb.webp" alt=""><span>Branch</span></li>
+        <li><img src="img/frog-thumb.webp" alt=""><span>Frog</span></li>
+        <li><img src="img/eye-thumb.webp" alt=""><span>Eye</span></li>
+      </ol>
+      <p class="give-t">Everything you just saw lives in one square metre.</p>
+      <p class="give-p">Protect one for <b>$5</b>.</p>
+      <div class="give-b"><a class="buy" href="#"><span class="sq" aria-hidden="true"></span>Protect 1 m²</a><a href="#">Adopt a hectare</a></div>
+      <p class="give-f"><span class="live" aria-hidden="true"></span><span><b data-m2>48,210</b> m² protected so far</span></p>
+    </aside>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

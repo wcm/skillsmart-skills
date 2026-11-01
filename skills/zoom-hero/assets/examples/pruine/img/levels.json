@@ -1,0 +1,144 @@
+{
+  "size": [
+    3200,
+    1800
+  ],
+  "root": "estate",
+  "nodes": {
+    "estate": {
+      "parent": null,
+      "rect": null,
+      "span": 900,
+      "src": [
+        "estate-1600.webp"
+      ],
+      "thumb": "estate-thumb.webp"
+    },
+    "vine": {
+      "parent": "estate",
+      "rect": [
+        0.88498,
+        0.42017,
+        0.17876
+      ],
+      "span": 2.4,
+      "tint": [
+        0.986,
+        1.018,
+        0.912
+      ],
+      "src": [
+        "vine-1600.webp"
+      ],
+      "thumb": "vine-thumb.webp"
+    },
+    "grape": {
+      "parent": "vine",
+      "rect": [
+        0.76424,
+        0.31326,
+        0.17952
+      ],
+      "span": 0.12,
+      "tint": [
+        0.933,
+        0.915,
+        0.951
+      ],
+      "src": [
+        "grape-1600.webp"
+      ],
+      "thumb": "grape-thumb.webp"
+    },
+    "bloom": {
+      "parent": "grape",
+      "rect": [
+        0.46518,
+        0.41981,
+        0.10009
+      ],
+      "span": 0.004,
+      "tint": [
+        1,
+        1.048,
+        1.073
+      ],
+      "src": [
+        "bloom-1600.webp"
+      ],
+      "thumb": "bloom-thumb.webp"
+    },
+    "soil": {
+      "parent": "estate",
+      "rect": [
+        0.40012,
+        0.77985,
+        0.11906
+      ],
+      "span": 1.8,
+      "tint": [
+        0.953,
+        0.987,
+        0.929
+      ],
+      "src": [
+        "soil-1600.webp"
+      ],
+      "thumb": "soil-thumb.webp"
+    },
+    "fossil": {
+      "parent": "soil",
+      "rect": [
+        0.52997,
+        0.63007,
+        0.10013
+      ],
+      "span": 0.09,
+      "tint": [
+        0.889,
+        0.935,
+        1.04
+      ],
+      "src": [
+        "fossil-1600.webp"
+      ],
+      "thumb": "fossil-thumb.webp"
+    },
+    "cellar": {
+      "parent": "estate",
+      "rect": [
+        0.62523,
+        0.54507,
+        0.12013
+      ],
+      "span": 6,
+      "tint": [
+        0.597,
+        0.659,
+        0.755
+      ],
+      "src": [
+        "cellar-1600.webp"
+      ],
+      "thumb": "cellar-thumb.webp"
+    },
+    "barrel": {
+      "parent": "cellar",
+      "rect": [
+        0.57003,
+        0.60003,
+        0.10918
+      ],
+      "span": 0.5,
+      "tint": [
+        0.763,
+        0.77,
+        0.723
+      ],
+      "src": [
+        "barrel-1600.webp"
+      ],
+      "thumb": "barrel-thumb.webp"
+    }
+  }
+}

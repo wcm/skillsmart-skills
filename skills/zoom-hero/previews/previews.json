@@ -1,0 +1,48 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Pruine — a natural-wine estate: from the hill to one grape to the wild yeast on its skin, and back out in one go",
+      "prompt": "/zoom-hero A natural-wine estate: from the hill down to the wild yeast on a grape",
+      "url": "https://demos.skillsmart.io/zoom-hero/pruine/"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Understory — a rainforest trust: from the canopy to a glass frog to the forest reflected in its eye",
+      "prompt": "/zoom-hero A rainforest trust: every square metre hides a world. Canopy, branch, a glass frog, its eye",
+      "url": "https://demos.skillsmart.io/zoom-hero/understory/"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Surface Theory — skincare: one drop of serum followed from the cheek through skin cells to a molecule",
+      "prompt": "/zoom-hero A skincare lab: follow one drop of serum from the cheek down to the molecule",
+      "url": "https://demos.skillsmart.io/zoom-hero/surface-theory/"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Where's Pip? — a picture book as a game: each clue in the drawing unlocks the next dive, until you find Pip",
+      "prompt": "/zoom-hero A seek-and-find picture book about a harbour town, in risograph inks: clues lead you to Pip",
+      "url": "https://demos.skillsmart.io/zoom-hero/wheres-pip/"
+    }
+  ]
+}
