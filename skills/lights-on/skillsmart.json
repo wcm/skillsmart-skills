@@ -1,0 +1,46 @@
+{
+  "slug": "lights-on",
+  "name": "Lights On",
+  "tagline": "A website hero where one real-looking photo goes from day to night: the sun drains away, then each light comes on.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["day night", "day to night", "lights on", "light switch", "hero section", "interactive", "WebGL", "toggle", "scroll animation", "lighting", "neon", "lamps", "curtains", "café", "bar", "hotel", "restaurant", "interior", "landing page"],
+  "youSay": "/lights-on A café by day that turns into a jazz bar by night",
+  "whatYouGet": [
+    "A hero built on one photographed place in two lights: nothing in the frame moves, the sun drains toward the window, then each lamp, sign or candle comes on by itself",
+    "Four ways to play it: a single switch, click an object to light it, pick a material and see it morning and night, or scroll through the whole day",
+    "Real light, not a crossfade: each light's share is measured from a photo of it alone, with a warm-up for lamps, a strike for neon and a flicker for candles; words and colours change with the room",
+    "A full page around it with copy and type for your subject, a phone layout, a fallback without WebGL, a headless check and a video, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Places and things that change after dark: cafés that become bars, hotels, restaurants, signs, lamps, curtains, candles, shopfronts",
+    "Brands that want to show both sides of what they sell, and a hero people play with"
+  ],
+  "notFor": [
+    "A place with no real change between day and night",
+    "Scenes where people or objects must move: the frame stays still and only the light changes"
+  ],
+  "youBring": [
+    "The place or product, and what should change at night",
+    "Optional: the brand's name, colours and tone, and room sound for the day and night"
+  ],
+  "needs": [
+    "Skillsmart credits (40 a picture: about 320 for a room with three lights)",
+    "Node 18+",
+    "Python 3, with OpenCV and NumPy",
+    "Chrome or Edge",
+    "ffmpeg, for the video"
+  ],
+  "generates": { "models": ["nano-banana-pro"], "estimate": "40 a picture: about 320 for a room with three lights" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.30 a picture",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai", "rest.fal.ai"]
+  },
+  "network": [
+    { "host": "registry.npmjs.org", "purpose": "sharp, and playwright-core for the headless check, installed once" },
+    { "host": "pypi.org", "purpose": "OpenCV and NumPy for lining the pictures up, installed once" }
+  ],
+  "testedIn": ["Claude Code"]
+}

@@ -1,0 +1,51 @@
+{
+  "width": 3840,
+  "height": 2160,
+  "shots": {
+    "night": {
+      "ncc_before": 0.6651,
+      "ncc_after": 0.6674,
+      "moved_px": 8.59,
+      "fitted": true,
+      "drift_p95": 23.77
+    },
+    "dark": {
+      "ncc_before": 0.6413,
+      "ncc_after": 0.6504,
+      "moved_px": 15.96,
+      "fitted": true,
+      "drift_p95": 28.27
+    },
+    "solo-neon": {
+      "ncc_before": 0.6037,
+      "ncc_after": 0.6145,
+      "moved_px": 17.43,
+      "fitted": true,
+      "drift_p95": 33.92
+    }
+  },
+  "lights": [
+    {
+      "id": "neon",
+      "x": 0.6469,
+      "y": 0.3389,
+      "box": [
+        0.4344,
+        0.2981,
+        0.7531,
+        0.9981
+      ]
+    },
+    {
+      "id": "rest",
+      "x": 0.901,
+      "y": 0.6704,
+      "box": [
+        0.8396,
+        0.3389,
+        0.9781,
+        0.9981
+      ]
+    }
+  ]
+}

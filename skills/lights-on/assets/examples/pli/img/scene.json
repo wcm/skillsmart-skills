@@ -1,0 +1,83 @@
+{
+  "width": 3840,
+  "height": 2160,
+  "shots": {
+    "day-voile": {
+      "ncc_before": 0.8568,
+      "ncc_after": 0.8595,
+      "moved_px": 3.86,
+      "fitted": true,
+      "drift_p95": 30.87
+    },
+    "day-dimout": {
+      "ncc_before": 0.6715,
+      "ncc_after": 0.6696,
+      "moved_px": 3.15,
+      "drift_p95": 58.74
+    },
+    "day-blackout": {
+      "ncc_before": 0.6205,
+      "ncc_after": 0.6518,
+      "moved_px": 18.17,
+      "fitted": true,
+      "drift_p95": 70.55
+    },
+    "night": {
+      "ncc_before": 0.7519,
+      "ncc_after": 0.7555,
+      "moved_px": 5.64,
+      "fitted": true,
+      "drift_p95": 17.17
+    },
+    "night-voile": {
+      "ncc_before": 0.6772,
+      "ncc_after": 0.6815,
+      "moved_px": 5.73,
+      "fitted": true,
+      "drift_p95": 70.65
+    },
+    "night-dimout": {
+      "ncc_before": 0.8518,
+      "ncc_after": 0.8567,
+      "moved_px": 3.31,
+      "fitted": true,
+      "drift_p95": 134.32
+    },
+    "night-blackout": {
+      "ncc_before": 0.8034,
+      "ncc_after": 0.8574,
+      "moved_px": 17.14,
+      "fitted": true,
+      "drift_p95": 113.85
+    },
+    "dark": {
+      "ncc_before": 0.6847,
+      "ncc_after": 0.6931,
+      "moved_px": 7.61,
+      "fitted": true,
+      "drift_p95": 23.73
+    },
+    "dark-voile": {
+      "ncc_before": 0.6532,
+      "ncc_after": 0.667,
+      "moved_px": 9.49,
+      "fitted": true,
+      "drift_p95": 69.29
+    },
+    "dark-dimout": {
+      "ncc_before": 0.8012,
+      "ncc_after": 0.8122,
+      "moved_px": 2.84,
+      "fitted": true,
+      "drift_p95": 157.24
+    },
+    "dark-blackout": {
+      "ncc_before": 0.7556,
+      "ncc_after": 0.7951,
+      "moved_px": 17.3,
+      "fitted": true,
+      "drift_p95": 212.39
+    }
+  },
+  "lights": []
+}

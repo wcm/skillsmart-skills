@@ -1,0 +1,43 @@
+{
+  "brand": "Lueur",
+  "solos": [
+    "mushroom",
+    "pendant",
+    "sconce",
+    "arc",
+    "column"
+  ],
+  "shots": {
+    "day": {
+      "prompt": "Real editorial interior photograph for a high-end lighting design shop. Straight-on, one-point-perspective view of a serene living and dining room; the back wall is parallel to the frame. Warm limewash plaster walls, a pale oak floor, and a tall steel-framed window on the right third with late-morning sun raking in, casting crisp mullion shadows across the floor and the back wall. Five designer lamps, all switched off, each a beautiful sculptural object, spread across the frame at different heights with space between them: on the left, an amber mouth-blown glass mushroom table lamp on a low travertine console beside a stoneware vase of dry branches; in the centre, a large white washi-paper lantern pendant hanging low over a solid walnut dining table with four woven chairs; centre-right, an alabaster wall sconce on the back wall; on the right, a slim brushed-brass arc floor lamp curving over a cream bouclé lounge chair; in the far right corner by the window, a tall pleated-paper column floor lamp. The upper-left third of the back wall is calm and empty. Linen and a few ceramics, no clutter."
+    },
+    "night": {
+      "from": "day",
+      "prompt": "Edit this photograph: it is now night, two hours after sunset. {keep} The window shows deep blue night with a few distant warm city lights; the sunlight and its shadows are completely gone. All five lamps are switched on at 2700 K: the amber glass mushroom lamp glows rich honey-gold and casts an amber pool on the console; the washi-paper pendant glows evenly with its fibres visible and pours light onto the walnut table; the alabaster sconce washes the wall above and below it; the brass arc lamp throws a soft pool over the bouclé chair; the pleated paper column glows softly in the corner. Each lamp makes its own pool of light; the ceiling, the corners and the upper-left wall fall into deep warm darkness, so most of the frame is dark. The lamps reflect faintly in the window glass. Natural night interior photography exposed for the shades: no blown whites, deep blacks with detail, fine film grain, no haze, no light beams."
+    },
+    "dark": {
+      "from": "night",
+      "prompt": "Edit this photograph: switch off all five lamps. {keep} Remove every glow, pool of light and reflection the lamps made; the shades are unlit and pale. The room is dark, lit only by the faint deep-blue night coming through the window on the right; deep shadows with a little detail. Natural night photography, fine film grain."
+    },
+    "solo-mushroom": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the amber glass mushroom table lamp on the console at the left; every other lamp stays off. {keep} It glows rich honey-gold at 2700 K and casts a warm amber pool on the console, the vase and the wall behind it, falling off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-pendant": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the washi-paper lantern pendant over the dining table; every other lamp stays off. {keep} It glows evenly at 2700 K with its paper fibres visible and pours warm light onto the walnut table and chairs, falling off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-sconce": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the alabaster wall sconce on the back wall; every other lamp stays off. {keep} It glows softly at 2700 K, its stone veining lit from within, and washes the wall above and below it with warm light that falls off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-arc": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the brushed-brass arc floor lamp over the bouclé chair; every other lamp stays off. {keep} Its shade throws a soft warm 2700 K pool of light over the chair and the floor around it, with a glint on the brass, falling off naturally into the dark room. Natural night photography, fine film grain."
+    },
+    "solo-column": {
+      "from": "dark",
+      "prompt": "Edit this photograph: switch on only the tall pleated-paper column floor lamp in the right corner by the window; every other lamp stays off. {keep} It glows softly and evenly at 2700 K through its pleats, lighting the corner, the window frame and the floor around it, falling off naturally into the dark room. Natural night photography, fine film grain."
+    }
+  }
+}

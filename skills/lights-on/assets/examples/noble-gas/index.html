@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noble Gas · Neon &amp; light boxes</title>
+  <meta name="description" content="Hand-bent neon and light boxes, made to look right switched off.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22%23ff4a26%22/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="jn-stage" id="stage">
+    <img src="img/day-1600.webp"
+      alt="A hand-bent neon sign reading “encore” and a tall light box in a sunlit gallery room" fetchpriority="high">
+    <canvas id="jn" aria-hidden="true"></canvas>
+
+    <header class="nav">
+      <a class="mark" href="#">Noble&nbsp;Gas</a>
+      <nav class="links" aria-label="Main">
+        <a href="#">Works</a><a href="#">Studio</a><a href="#">Commissions</a>
+      </nav>
+      <button class="jn-switch" id="switch" aria-label="Nuit">
+        <span class="lbl day" aria-hidden="true">Jour</span><span class="pill"></span><span class="lbl night" aria-hidden="true">Nuit</span>
+      </button>
+    </header>
+
+    <button class="sign" id="sign" aria-label="Switch the sign on"></button>
+
+    <section class="copy">
+      <h1>Light, <br>drawn <br>in glass.</h1>
+      <div class="swap lede">
+        <p class="day">Neon and light boxes for hotels, galleries and stores, made to look right switched off.</p>
+        <p class="night">And to own the room the moment they’re on.</p>
+      </div>
+      <a class="cta" href="#">Commission a piece <span aria-hidden="true">→</span></a>
+    </section>
+
+    <aside class="placard">
+      <b>Nº 07 · Encore</b>
+      <span class="swap"><span class="day">Hand-bent glass, 12 mm</span><span class="night">Neon, clear red · 3 kV</span></span>
+      <span class="swap"><span class="day">160 × 48 cm</span><span class="night">Light box, opal · 5600 K</span></span>
+    </aside>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deux Temps · Café by day, bar by night</title>
+  <link rel="icon" href="data:,">
+  <meta name="description" content="A café from 07:30, a cocktail bar from 18:00, a live trio at 21:00. One room, two times.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../engine/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="track" id="track">
+    <div class="hero">
+      <header class="band">
+        <nav class="nav" aria-label="Main">
+          <div class="links"><a href="#">Menu</a><a href="#">Live</a><a href="#">Visit</a></div>
+          <div class="seg" id="seg" role="radiogroup" aria-label="Café or bar">
+            <button role="radio" aria-checked="true" data-to="0" aria-label="Café, from 07:30">Café · 07:30</button>
+            <button role="radio" aria-checked="false" data-to="1" aria-label="Bar, from 18:00" tabindex="-1">Bar · 18:00</button>
+            <span class="thumb" aria-hidden="true"><span>Café · 07:30</span><span>Bar · 18:00</span></span>
+          </div>
+          <div class="end">
+            <button class="sound" id="sound" type="button"><i aria-hidden="true">♪</i><span class="lbl">Sound</span></button>
+            <p class="now"><i class="dot" aria-hidden="true"></i><time id="clock" aria-label="Time of day in the page">07:30</time></p>
+          </div>
+        </nav>
+
+        <div class="markrow" id="markrow">
+          <h1 class="mark" id="mark">Deux Temps</h1>
+          <!-- wide screens: the evening's words take the room the wordmark gives up as it condenses (main.js) -->
+          <div class="evening" id="evening"><div class="say" id="say"></div></div>
+          <aside class="tonight" id="tonight" aria-label="Tonight" aria-hidden="true">
+            <p class="tag"><b>Live tonight</b> · 21:00 <span aria-hidden="true">♪</span></p>
+            <p class="act">The Bernard Trio</p>
+          </aside>
+        </div>
+
+        <ul class="facts">
+          <li><span class="flip" data-at=".815"><span>Open from</span><span>Live set</span></span>
+              <span class="flip" data-at=".835"><span>07:30</span><span>21:00</span></span></li>
+          <li><span class="flip" data-at=".715"><span>Specialty</span><span>Signature</span></span>
+              <span class="flip" data-at=".735"><span>coffee</span><span>cocktails</span></span></li>
+          <li><span class="flip" data-at=".625"><span>Homemade</span><span>Late</span></span>
+              <span class="flip" data-at=".645"><span>pastry</span><span>kitchen</span></span></li>
+          <li><span class="flip" data-at=".545"><span>Quiet</span><span>Standing</span></span>
+              <span class="flip" data-at=".565"><span>tables</span><span>room</span></span></li>
+        </ul>
+      </header>
+
+      <main class="jn-stage" id="stage">
+        <img src="img/day-1600.webp"
+          alt="A café in morning sun: arched windows, a man reading at a marble table, a barista at the espresso machine, an empty stage with a piano and a double bass" fetchpriority="high">
+        <canvas id="jn" aria-hidden="true"></canvas>
+
+        <p class="cue" aria-hidden="true">Scroll for the evening</p>
+
+        <!-- day and night lines share a slot in the corner; data-show is the stretch of the day (scroll 0..1) each one
+             is up; data-wide, on wide screens, where the corners close at dusk and the night lines move up to the band -->
+        <div class="corner left" id="cornerL">
+          <div class="slot" id="tagSlot">
+            <p class="tagline day">
+              <span data-show="0 .455" data-wide="0 .17">Coffee, slowly.</span>
+              <span data-show="0 .475" data-wide="0 .18">Warm pastry, the morning papers.</span>
+            </p>
+            <p class="tagline night" id="tagNight">
+              <span data-show=".455 2">Cocktails &amp; a live trio.</span>
+              <span data-show=".475 2">Small plates late, the band at nine.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="corner right" id="cornerR">
+          <div class="slot" id="moreSlot">
+            <a class="more day" href="#" data-show="0 .745" data-wide="0 .175">Coffee menu</a>
+            <a class="more night" href="#" id="moreNight" data-show=".745 2">Cocktail list</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="cols">
+      <p class="where"><b>Deux Temps</b><br>38 rue de Lancry<br>Paris 10e</p>
+      <dl class="hours">
+        <div><dt>Café</dt><dd>Monday — Sunday, 07:30 to 18:00</dd></div>
+        <div><dt>Bar</dt><dd>Tuesday — Saturday, 18:00 to 01:00</dd></div>
+        <div><dt>Live</dt><dd>Thursday — Saturday, from 21:00</dd></div>
+      </dl>
+      <p class="reach"><a href="#">Book a table</a><br><a href="#">Private hire</a><br><a href="#">Instagram</a></p>
+    </div>
+    <p class="fine">Deux Temps · café, bar, live · since 2019</p>
+  </footer>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

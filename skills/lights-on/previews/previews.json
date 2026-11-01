@@ -1,0 +1,48 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Noble Gas — one switch: the sun drains from the gallery, the neon strikes, the light box swells in, then all of it off in one go",
+      "prompt": "/lights-on A neon and light box studio: good-looking switched off, a totally different mood at night",
+      "url": "https://demos.skillsmart.io/lights-on/noble-gas/"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Lueur — click a lamp and the evening falls: four lamps come on one at a time, each with its card, and one switch brings back the morning",
+      "prompt": "/lights-on A lighting design shop: lamps as beautiful objects by day, click one to light it",
+      "url": "https://demos.skillsmart.io/lights-on/lueur/"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Pli — fabrics drawn across the window show how much morning each lets in, then the lamps rake the folds at night",
+      "prompt": "/lights-on A made-to-measure curtain shop: how much light each fabric lets through by morning, and its texture under lamps at night",
+      "url": "https://demos.skillsmart.io/lights-on/pli/"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Deux Temps — scroll is the clock: a quiet café at 07:30 turns into a full jazz bar by 23:00, light by light, and one click glides back to morning",
+      "prompt": "/lights-on A café by day, peaceful and classy, that turns into a lively jazz bar by night",
+      "url": "https://demos.skillsmart.io/lights-on/deux-temps/"
+    }
+  ]
+}

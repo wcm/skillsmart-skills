@@ -1,0 +1,58 @@
+/* Jour / Nuit: what every demo shares. Each page sets its own fonts and these tokens:
+   --paper-day / --paper-night   page colour behind the photo
+   --ink-day / --ink-night       text
+   --accent                      the one accent (lit things only)
+   The engine writes --sun, --lit, --night and --flip on <html> (engine/ui.js bindTheme). */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, canvas { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+
+:root {
+  --sun: 0; --lit: 0; --night: 0; --flip: 0;
+  --paper: color-mix(in oklab, var(--paper-day), var(--paper-night) calc(var(--night) * 100%));
+  --ink: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip) * 100%));
+  --hair: color-mix(in oklab, var(--ink) 22%, transparent);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+/* the photograph: full-bleed, the canvas over a plain picture that shows first (and stays if WebGL is missing) */
+.jn-stage { position: relative; width: 100%; height: 100svh; overflow: hidden; background: #0d0c0b; isolation: isolate; }
+.jn-stage > img, .jn-stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.jn-stage > img { object-fit: cover; }
+.jn-stage > canvas { opacity: 0; transition: opacity .6s ease; }
+.jn-stage > canvas.ready { opacity: 1; }
+.jn-stage > .jn-night { opacity: 0; transition: opacity 1.4s ease; }   /* fallback only */
+html[data-mode="night"] .jn-stage > .jn-night { opacity: 1; }
+
+/* switch: DAY (o-) NIGHT, labels outside the pill */
+.jn-switch { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; line-height: 1; padding: 8px 0; }
+.jn-switch .pill { position: relative; width: 40px; height: 22px; border-radius: 11px; border: 1px solid color-mix(in oklab, currentColor 45%, transparent); transition: border-color .3s; }
+.jn-switch .pill::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: currentColor; transition: transform .32s var(--ease), background-color .3s, box-shadow .3s; }
+.jn-switch[aria-checked="true"] .pill::after { transform: translateX(18px); background: var(--accent); box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 70%, transparent); }
+.jn-switch .lbl { opacity: .42; transition: opacity .3s; }
+.jn-switch[aria-checked="false"] .lbl.day, .jn-switch[aria-checked="true"] .lbl.night { opacity: 1; }
+.jn-switch:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; border-radius: 4px; }
+
+/* hotspots: a dot with a slow breathing ring; JS sets transform */
+.jn-spot { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 3; }
+.jn-spot[hidden] { display: none; }
+.jn-spot > button { position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; }
+.jn-spot > button::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fbf7f0; box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 1px 6px rgba(0,0,0,.25); transition: transform .3s var(--ease); }
+.jn-spot > button::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; border: 1px solid #fbf7f0; opacity: 0; animation: jn-breathe 2.8s ease-out infinite; }
+.jn-spot > button:hover::before, .jn-spot.open > button::before { transform: scale(1.35); }
+@keyframes jn-breathe { 0% { transform: scale(.6); opacity: .55; } 100% { transform: scale(1.9); opacity: 0; } }
+
+/* line swaps: day and night copy share one slot */
+.jn-swap { display: grid; }
+.jn-swap > * { grid-area: 1 / 1; transition: opacity .5s var(--ease), transform .6s var(--ease); }
+html[data-mode="day"] .jn-swap > .night, html[data-mode="night"] .jn-swap > .day { opacity: 0; transform: translateY(10px); pointer-events: none; }
+html[data-mode="night"] .jn-swap > .night { transition-delay: .12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jn-spot > button::after { animation: none; }
+  .jn-swap > * { transition: none; }
+}

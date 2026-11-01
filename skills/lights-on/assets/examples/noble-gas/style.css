@@ -1,0 +1,70 @@
+/* Noble Gas: a gallery by day, one red line and one white plane by night */
+:root {
+  --paper-day: #eee9e1; --paper-night: #0b0a09;
+  --ink-day: #141414; --ink-night: #f2ede4;
+  --accent: #ff4a26;
+  --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --pad: clamp(20px, 3.4vw, 56px);
+  --flip-left: 0; --neon: 0;
+}
+body { font-family: var(--sans); }
+.jn-stage { color: var(--ink); }
+
+/* the window side darkens last, so the title and wordmark turn cream later than the rest */
+.mark, .copy {
+  --ink: color-mix(in oklab, var(--ink-day), var(--ink-night) calc(var(--flip-left) * 100%));
+  --hair: color-mix(in oklab, var(--ink) 22%, transparent);
+  color: var(--ink);
+}
+
+.nav { position: absolute; z-index: 4; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 40px; padding: calc(var(--pad) * .7) var(--pad); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+.mark { text-decoration: none; font-weight: 500; letter-spacing: .3em; }
+.links { display: flex; gap: 28px; margin-left: auto; }
+.links a { text-decoration: none; opacity: .8; }
+.links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.jn-switch { margin-left: 12px; }
+.jn-switch .lbl { opacity: .62; }
+/* the knob moves at the click but only lights with the neon */
+.jn-switch .pill::after { background: currentColor; }
+.jn-switch[aria-checked="true"] .pill::after {
+  background: color-mix(in oklab, var(--accent) calc(var(--neon) * 100%), currentColor);
+  box-shadow: 0 0 calc(var(--neon) * 10px) color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+.copy { position: absolute; z-index: 3; left: var(--pad); bottom: calc(var(--pad) * 1.1); max-width: min(60vw, 900px); }
+h1 { margin: 0 0 clamp(18px, 2vw, 28px); font-weight: 400; font-size: clamp(52px, 6.4vw, 124px); line-height: .92; letter-spacing: -.045em; }
+.lede { max-width: 25em; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.45; font-weight: 300; }
+.lede p { margin: 0; }
+.cta { display: inline-block; margin-top: clamp(16px, 1.8vw, 26px); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; padding-bottom: 6px; border-bottom: 1px solid var(--hair); transition: border-color .3s; }
+.cta:hover { border-color: currentColor; }
+
+.placard { position: absolute; z-index: 3; right: var(--pad); top: calc(var(--pad) * 0.7 + 72px); display: grid; gap: 4px; font: 12px/1.5 var(--mono); padding-top: 14px; min-width: 278px; }
+.placard::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; border-top: 1px solid currentColor; opacity: .6; }
+.placard b { font-weight: 400; }
+.placard .swap { opacity: .85; }
+
+/* day and night lines share a slot; the night ones arrive with the neon's first strike (html[data-lit]) */
+.swap { display: grid; }
+.swap > * { grid-area: 1 / 1; transition: opacity .2s ease, transform .45s var(--ease); }
+.swap > .night, html[data-lit] .swap > .day { opacity: 0; transform: translateY(8px); pointer-events: none; }
+html[data-lit] .swap > .night { opacity: 1; transform: none; pointer-events: auto; transition: opacity .45s ease .22s, transform .6s var(--ease) .22s; }
+html:not([data-lit]) .swap > .day { transition: opacity .45s ease .22s, transform .6s var(--ease) .22s; }
+
+/* the sign is a switch too */
+.sign { position: absolute; z-index: 2; border-radius: 12px; cursor: pointer; }
+.sign:focus-visible { outline: 1px dashed currentColor; outline-offset: 8px; }
+
+/* phone: the photo is a band at the top, the words below on paper that goes dark with the room */
+@media (max-width: 760px) {
+  .jn-stage { background: var(--paper); }
+  .jn-stage > img, .jn-stage > canvas { height: 64svh; bottom: auto; }
+  .jn-stage > img { object-position: 61% 50%; }
+  .links { display: none; }
+  .jn-switch { margin-left: auto; }
+  .mark, .copy { --flip-left: var(--flip); }
+  .copy { right: var(--pad); max-width: none; bottom: calc(var(--pad) * 1.2); }
+  h1 { font-size: clamp(44px, 12.5vw, 64px); }
+  h1 br:first-child { display: none; }
+  .placard { display: none; }
+}

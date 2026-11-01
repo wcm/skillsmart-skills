@@ -1,0 +1,94 @@
+{
+  "width": 3840,
+  "height": 2160,
+  "shots": {
+    "night": {
+      "ncc_before": 0.4867,
+      "ncc_after": 0.4888,
+      "moved_px": 5.84,
+      "fitted": true,
+      "drift_p95": 79.6
+    },
+    "dark": {
+      "ncc_before": 0.4756,
+      "ncc_after": 0.478,
+      "moved_px": 3.74,
+      "fitted": true,
+      "drift_p95": 81.04
+    },
+    "solo-pendants": {
+      "ncc_before": 0.4731,
+      "ncc_after": 0.4763,
+      "moved_px": 2.96,
+      "fitted": true,
+      "drift_p95": 80.86
+    },
+    "solo-candles": {
+      "ncc_before": 0.45,
+      "ncc_after": 0.4551,
+      "moved_px": 3.47,
+      "fitted": true,
+      "drift_p95": 96.29
+    },
+    "solo-bar": {
+      "ncc_before": 0.4609,
+      "ncc_after": 0.4647,
+      "moved_px": 3.58,
+      "fitted": true,
+      "drift_p95": 80.59
+    },
+    "solo-stage": {
+      "ncc_before": 0.4563,
+      "ncc_after": 0.4601,
+      "moved_px": 3.22,
+      "fitted": true,
+      "drift_p95": 80.72
+    }
+  },
+  "lights": [
+    {
+      "id": "pendants",
+      "x": 0.3094,
+      "y": 0.0741,
+      "box": [
+        0.0,
+        0.0389,
+        0.6552,
+        0.9981
+      ]
+    },
+    {
+      "id": "candles",
+      "x": 0.0417,
+      "y": 0.8759,
+      "box": [
+        0.0,
+        0.4778,
+        0.9479,
+        0.9556
+      ]
+    },
+    {
+      "id": "bar",
+      "x": 0.999,
+      "y": 0.1352,
+      "box": [
+        0.8313,
+        0.0,
+        0.999,
+        0.3519
+      ]
+    },
+    {
+      "id": "stage",
+      "x": 0.451,
+      "y": 0.4704,
+      "box": [
+        0.4052,
+        0.0704,
+        0.5219,
+        0.9981
+      ]
+    }
+  ]
+}
