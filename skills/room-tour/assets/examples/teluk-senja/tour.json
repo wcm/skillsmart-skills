@@ -1,0 +1,611 @@
+{
+  "version": 1,
+  "site": "hotel",
+  "meta": {
+    "title": "Teluk Senja · Twelve villas, one bay",
+    "description": "Teluk Senja, twelve villas on a private bay: walk from the door to the terrace of Villa 12. Twelve villas, one bay, the sea at dusk.",
+    "lang": "en"
+  },
+  "theme": {
+    "material": "night",
+    "grain": 0.04,
+    "frame": {
+      "kind": "none"
+    },
+    "label": {
+      "brackets": false
+    },
+    "hotspot": {
+      "icon": "plus",
+      "leader": false,
+      "plate": "none",
+      "opens": "pill",
+      "halo": "off"
+    },
+    "rail": {
+      "skin": "strip",
+      "hideOnTitle": true,
+      "pop": "Our photo {n} of {of} · {label} · {time}"
+    },
+    "ruler": {
+      "style": "profile",
+      "summits": [
+        2,
+        10,
+        20,
+        30
+      ],
+      "profile": [
+        0.16,
+        0.22,
+        0.3,
+        0.24,
+        0.18,
+        0.15,
+        0.16,
+        0.2,
+        0.28,
+        0.36,
+        0.42,
+        0.34,
+        0.26,
+        null,
+        null,
+        null,
+        null,
+        0.24,
+        0.34,
+        0.44,
+        0.56,
+        0.46,
+        0.36,
+        0.3,
+        0.28,
+        0.32,
+        0.42,
+        0.56,
+        0.72,
+        0.88,
+        1.0,
+        0.8,
+        0.52,
+        0.3
+      ]
+    },
+    "walkbar": {
+      "layout": "left-ruler",
+      "right": "layer",
+      "hideOnTitle": true,
+      "counter": "number"
+    },
+    "caption": {
+      "place": "bottom-left",
+      "rule": false,
+      "case": "upper"
+    },
+    "map": null,
+    "end": {
+      "arrive": "card",
+      "frame": "keep",
+      "screens": 0.55,
+      "pin": 0,
+      "at": 0.92
+    },
+    "cursor": {
+      "on": true,
+      "verbs": {
+        "hotspot": "",
+        "button": "Open"
+      }
+    }
+  },
+  "brand": {
+    "name": "Teluk Senja"
+  },
+  "nav": {
+    "left": "wordmark",
+    "center": "none",
+    "right": [
+      {
+        "chip": "hide"
+      },
+      {
+        "button": "Book",
+        "do": "end",
+        "primary": true
+      }
+    ]
+  },
+  "title": {
+    "blocks": [
+      {
+        "id": "kicker",
+        "lines": [
+          "Villas · A small island · A private bay"
+        ],
+        "class": "t-hint",
+        "align": "right",
+        "valign": "bottom",
+        "space": "frame",
+        "box": [
+          0.05,
+          0.335,
+          0.36,
+          0.04
+        ],
+        "stack": [
+          0.04,
+          0.1,
+          0.92,
+          0.22
+        ],
+        "hidden": {
+          "phone": true
+        },
+        "exit": {
+          "dx": "-6vw"
+        }
+      },
+      {
+        "id": "teluk",
+        "lines": [
+          "Teluk"
+        ],
+        "class": "t-title",
+        "align": "right",
+        "valign": "bottom",
+        "space": "frame",
+        "box": [
+          0.05,
+          0.36,
+          0.36,
+          0.135
+        ],
+        "stack": [
+          0.04,
+          0.1,
+          0.92,
+          0.22
+        ],
+        "size": {
+          "desktop": "9vw",
+          "phone": "24vw",
+          "max": "150px",
+          "stack": "24vw"
+        },
+        "exit": {
+          "dx": "-6vw"
+        }
+      },
+      {
+        "id": "senja",
+        "lines": [
+          "Senja"
+        ],
+        "class": "t-title",
+        "align": "left",
+        "valign": "bottom",
+        "space": "frame",
+        "box": [
+          0.59,
+          0.36,
+          0.36,
+          0.135
+        ],
+        "stack": [
+          0.04,
+          0.1,
+          0.92,
+          0.22
+        ],
+        "size": {
+          "desktop": "9vw",
+          "phone": "24vw",
+          "max": "150px",
+          "stack": "24vw"
+        },
+        "exit": {
+          "dx": "6vw"
+        }
+      },
+      {
+        "id": "line",
+        "lines": [
+          "Twelve villas, one bay, the sea at dusk."
+        ],
+        "class": "t-statement",
+        "align": "left",
+        "valign": "bottom",
+        "space": "frame",
+        "box": [
+          0.59,
+          0.335,
+          0.36,
+          0.04
+        ],
+        "stack": [
+          0.04,
+          0.1,
+          0.92,
+          0.22
+        ],
+        "exit": {
+          "dx": "6vw"
+        }
+      }
+    ],
+    "gradients": [
+      {
+        "edge": "top",
+        "color": "#0A0F1E",
+        "opacity": {
+          "desktop": [
+            0.35,
+            0
+          ],
+          "phone": [
+            0.65,
+            0
+          ]
+        },
+        "extent": {
+          "desktop": 0.22,
+          "phone": 0.45
+        },
+        "start": {
+          "desktop": 0.35,
+          "phone": 0.65
+        },
+        "rest": {
+          "desktop": 0.3,
+          "phone": 0.5
+        }
+      },
+      {
+        "edge": "bottom",
+        "color": "#0A0F1E",
+        "opacity": {
+          "desktop": [
+            0.6,
+            0
+          ],
+          "phone": [
+            0.72,
+            0
+          ]
+        },
+        "extent": {
+          "desktop": 0.36,
+          "phone": 0.42
+        },
+        "start": 0,
+        "rest": {
+          "desktop": 0.6,
+          "phone": 0.72
+        }
+      }
+    ],
+    "occluder": {
+      "masks": "img/occ/{n}.webp",
+      "frames": [
+        1,
+        1
+      ],
+      "feather": 1.5
+    },
+    "exit": {
+      "mode": "drift",
+      "screens": 0.3
+    }
+  },
+  "walk": [
+    "entrance",
+    "move-1",
+    "lobby",
+    "cut-1",
+    "villa",
+    "move-2",
+    "terrace"
+  ],
+  "stops": {
+    "entrance": {
+      "n": "1",
+      "name": "Entrance",
+      "focus": [
+        0.5,
+        0.55
+      ],
+      "screens": 0,
+      "sharp": false,
+      "photo": {
+        "n": 1,
+        "of": 4,
+        "label": "Entrance",
+        "time": "19:02",
+        "thumb": "img/thumb-1.webp",
+        "thumbLg": "img/thumb-1-lg.webp"
+      }
+    },
+    "lobby": {
+      "n": "2",
+      "name": "Lobby",
+      "focus": [
+        0.4,
+        0.55
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "photo": {
+        "n": 2,
+        "of": 4,
+        "label": "Lobby",
+        "time": "19:05",
+        "thumb": "img/thumb-2.webp",
+        "thumbLg": "img/thumb-2-lg.webp"
+      },
+      "caption": {
+        "heading": "The lanterns are lit",
+        "body": "Sandals off by the door, cold lime on the bench, dinner at seven."
+      },
+      "hotspots": [
+        {
+          "id": "h-lantern",
+          "at": [
+            0.495,
+            0.135
+          ],
+          "label": "Lantern",
+          "pill": "Woven on the island. Lit at six, every evening."
+        },
+        {
+          "id": "h-seat",
+          "at": [
+            0.295,
+            0.555
+          ],
+          "label": "Rattan seat",
+          "pill": "Rattan, re-woven here every second year."
+        },
+        {
+          "id": "h-bench",
+          "at": [
+            0.77,
+            0.625
+          ],
+          "label": "Bench",
+          "pill": "Cold lime and a cool cloth here when you arrive."
+        }
+      ]
+    },
+    "villa": {
+      "n": "3",
+      "name": "Villa 12",
+      "focus": [
+        0.38,
+        0.46
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "photo": {
+        "n": 3,
+        "of": 4,
+        "label": "Villa 12",
+        "time": "19:11",
+        "thumb": "img/thumb-3.webp",
+        "thumbLg": "img/thumb-3-lg.webp"
+      },
+      "caption": {
+        "place": "split",
+        "heading": "Villa 12 · *Karang*",
+        "body": "Pale linen, a rain shower under the sky and the sea through the open shutters.",
+        "row": [
+          [
+            "Size",
+            "64 m²"
+          ],
+          [
+            "Bed",
+            "King"
+          ],
+          [
+            "View",
+            "The bay"
+          ],
+          [
+            "Shower",
+            "Outdoor"
+          ]
+        ],
+        "price": {
+          "pre": "from",
+          "amount": "S$ 780",
+          "unit": "/ night",
+          "note": "Breakfast included",
+          "link": {
+            "label": "Villa details →",
+            "do": "card:villa-12"
+          }
+        }
+      },
+      "hotspots": [
+        {
+          "id": "h-bed",
+          "at": [
+            0.31,
+            0.575
+          ],
+          "label": "Bed",
+          "pill": "King bed · four-poster · pale linen."
+        },
+        {
+          "id": "h-shutters",
+          "at": [
+            0.745,
+            0.42
+          ],
+          "label": "Shutters",
+          "pill": "They fold right back. The terrace is level with the floor."
+        },
+        {
+          "id": "h-shower",
+          "at": [
+            0.15,
+            0.34
+          ],
+          "label": "Shower",
+          "pill": "Through this door: a rain shower, open to the sky."
+        }
+      ]
+    },
+    "terrace": {
+      "n": "4",
+      "name": "Terrace",
+      "focus": [
+        0.2,
+        0.5
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "photo": {
+        "n": 4,
+        "of": 4,
+        "label": "Terrace",
+        "time": "19:14",
+        "thumb": "img/thumb-4.webp",
+        "thumbLg": "img/thumb-4-lg.webp"
+      },
+      "caption": {
+        "heading": "The whole bay",
+        "body": "Your own boards over the water, a stone fire bowl, and nothing on the horizon."
+      },
+      "hotspots": [
+        {
+          "id": "h-bowl",
+          "at": [
+            0.09,
+            0.72
+          ],
+          "label": "Fire bowl",
+          "pill": "Lit at dusk, on request."
+        },
+        {
+          "id": "h-daybed",
+          "at": [
+            0.17,
+            0.58
+          ],
+          "label": "Daybed",
+          "pill": "Linen daybed. Room for two."
+        },
+        {
+          "id": "h-headland",
+          "at": [
+            0.25,
+            0.27
+          ],
+          "label": "Headland",
+          "pill": "The bay's north end. Forest down to the rocks."
+        }
+      ]
+    }
+  },
+  "moves": {
+    "move-1": {
+      "from": "entrance",
+      "to": "lobby",
+      "clips": [
+        "frames/move-1"
+      ],
+      "screens": 2.6,
+      "rec": 7.4
+    },
+    "move-2": {
+      "from": "villa",
+      "to": "terrace",
+      "clips": [
+        "frames/move-2"
+      ],
+      "screens": 2.2,
+      "rec": 7.0
+    }
+  },
+  "cuts": {
+    "cut-1": {
+      "from": "lobby",
+      "to": "villa",
+      "screens": 0.9,
+      "rec": 1.4,
+      "sheet": "frames/move-2:first",
+      "line": "Along the shore · Villa 12 · The far end",
+      "note": "The last villa on the bay, four minutes along the sand.",
+      "title": [
+        "VILLA 12",
+        "*Karang*"
+      ]
+    }
+  },
+  "cards": {
+    "villa-12": {
+      "type": "facts",
+      "name": "Villa 12 · *Karang*",
+      "rows": [
+        [
+          "Size",
+          "64 m²"
+        ],
+        [
+          "Place",
+          "The last villa, at the far end of the bay"
+        ],
+        [
+          "Bed",
+          "King, four-poster, pale linen"
+        ],
+        [
+          "Guests",
+          "2"
+        ],
+        [
+          "View",
+          "The whole bay and the horizon"
+        ],
+        [
+          "Shower",
+          "Outdoor rain shower, stone floor"
+        ],
+        [
+          "Terrace",
+          "Private, over the water, daybed and stone fire bowl"
+        ],
+        [
+          "Breakfast",
+          "7:30–10:30 in the pavilion"
+        ]
+      ],
+      "price": "from S$ 780 / night · breakfast included",
+      "button": {
+        "label": "Check availability",
+        "do": "end"
+      }
+    }
+  },
+  "end": {
+    "id": "end"
+  },
+  "record": {
+    "fps": 30,
+    "hold": 0.9,
+    "speed": 1.1,
+    "end": 2.4,
+    "frames": "-rec",
+    "beats": [
+      {
+        "at": "villa",
+        "after": 0.4,
+        "do": "open",
+        "target": "hotspot:h-shower",
+        "hold": 1.2
+      }
+    ]
+  }
+}

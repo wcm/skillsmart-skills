@@ -1,0 +1,48 @@
+{
+  "slug": "room-tour",
+  "name": "Room Tour",
+  "tagline": "A website you walk through as you scroll: the camera moves room to room, with materials, products and artworks to click.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["room tour", "virtual tour", "walkthrough", "house tour", "scroll animation", "scroll-driven", "interior design", "architecture", "real estate", "new homes", "property developer", "hotel", "resort", "booking", "furniture", "shop the room", "e-commerce", "art gallery", "showroom", "AI video", "landing page"],
+  "youSay": "/room-tour A walk-through for our new tropical house with a pool, sold before it's built",
+  "whatYouGet": [
+    "A walk you scroll through: three or four real viewpoints of the place, each joined to the next by one continuous camera move through a doorway, across a room or out onto a terrace",
+    "Things to click on the way: material tags that open spec cards, facts and a booking card, products with prices, colours and a cart, or a gallery's exact artworks that lift off the wall",
+    "A title that reads first, captions that rise as the camera settles, a rail of stops and a map with a red rippling you-are-here marker",
+    "The whole page with its own look and words and an ending that asks for the next step, a headless check on desktop and phone, and a video of the walk, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Interior designers and architects, new homes sold before they're built, hotels, resorts and venues, furniture shops, galleries and showrooms",
+    "Pages where walking through the place is the reason to enquire, book or buy"
+  ],
+  "notFor": [
+    "Exact surveys of real buildings: the walk is generated, so a real place should be rebuilt from its own photographs",
+    "Pages that must be very light: each walk is around 15–20 MB of frames"
+  ],
+  "youBring": [
+    "The place, who it's for and what they should do at the end",
+    "Optional: the brand's name, colours and tone, product photos, or a gallery's real artwork images"
+  ],
+  "needs": [
+    "Skillsmart credits: about 600 for a three-stop page",
+    "Node 18+",
+    "Python 3",
+    "ffmpeg",
+    "Chrome or Edge",
+    "Optional: OpenCV for Python, for labels that follow objects and exact artworks"
+  ],
+  "generates": { "models": ["nano-banana-pro", "kling-v3-pro", "sam-3"], "estimate": "about 600 a page: 20 a picture, 15 a second of video, 2 a cut-out" },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $6 a page",
+    "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai", "rest.fal.ai"]
+  },
+  "network": [
+    { "host": "registry.npmjs.org", "purpose": "sharp for the tools; playwright-core for the headless check (installed once)" },
+    { "host": "api.fontshare.com", "purpose": "the Zodiak font in the Teluk Senja example" },
+    { "host": "cdn.fontshare.com", "purpose": "the Zodiak font files in the Teluk Senja example" }
+  ],
+  "testedIn": ["Claude Code"]
+}

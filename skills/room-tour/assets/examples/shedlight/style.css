@@ -1,0 +1,191 @@
+/* Shedlight · Half Light. Tokens (design-system.md 7, direction 3) and the site's own pieces: the wall text, the
+   labels, the lift and the visit sheet. Archivo across its width axis: 900 at wdth 62 for the big words, 300–600 at
+   wdth 100 for the facts. Black on cool white; violet only for state, and once as a surface (the opening night). */
+
+:root {
+  --paper: #F3F4F5; --paper-2: #E6E8EB;
+  --ink: #0B0C0E; --ink-2: #6B6F76;
+  --on-photo: #0B0C0E; --on-photo-2: rgba(11, 12, 14, .72);
+  --line: rgba(11, 12, 14, .22); --line-photo: #0B0C0E;
+  --plate: rgba(243, 244, 245, .92); --plate-ink: #0B0C0E;
+  --accent: #0B0C0E; --accent-ink: #F3F4F5;
+  --signal: #6B2BFF;
+  --scrim: rgba(11, 12, 14, .42);
+  --dot: #0B0C0E; --dot-ring: rgba(11, 12, 14, .55);
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-text: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-label: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --label-size: 14px; --label-case: uppercase; --label-tracking: .04em; --label-weight: 500;
+  --display-weight: 900; --display-wdth: 62; --display-tracking: -.01em; --display-case: uppercase;
+  --radius-plate: 0px; --radius-card: 0px; --radius-button: 0px;
+  --grain: 0;
+  --title-ink: #0B0C0E; --caption-ink: #0B0C0E; --caption-ink-2: #3D4046;
+  --nav-ink-photo: #0B0C0E; --nav-ink-sheet: #0B0C0E; --bar-ink: #0B0C0E; --rail-ink: #0B0C0E;
+  --map-bg: rgba(243, 244, 245, .94); --map-ink: #0B0C0E; --map-fill: #6B2BFF; --map-fill-o: .30;
+  --cursor-ink: #0B0C0E;
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+
+html, body { background: var(--paper); color: var(--ink); }
+body { font-family: var(--font-text); font-variation-settings: "wdth" 100; -webkit-font-smoothing: antialiased; }
+.t-num { font-variant-numeric: tabular-nums; }
+
+/* ——— the title: two corners, heavy and condensed ——— */
+.tt-block.t-title { font-stretch: 62%; line-height: .82; letter-spacing: -.01em; word-spacing: .14em; }
+.tt-block.t-hint { font-weight: 500; color: var(--ink); }
+
+/* ——— nav ——— */
+.tn-brand { font-family: var(--font-ui); font-weight: 800; font-variation-settings: "wdth" 100; font-size: 18px; letter-spacing: -.01em; text-transform: none; }
+.tn-line { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; font-variation-settings: "wdth" 62; font-size: 18px; letter-spacing: -.01em; word-spacing: .14em; text-transform: uppercase; }
+.tn-link, .tn-button, .tn-chip { font-family: var(--font-ui); font-weight: 500; font-size: 15px; }
+.tn-button { background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 0; letter-spacing: .04em; }
+.tn-chip { border-radius: 0; }
+
+/* ——— the wall text (stop captions, centred in the upper third) ——— */
+.tc-center { top: 20%; }
+.tc-center[data-stop="side"] { top: 23%; }
+.tc-center[data-stop="hall"] { top: 19.5%; }
+.tc-heading { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; font-variation-settings: "wdth" 62;
+  font-size: clamp(44px, 4.1vw, 62px); line-height: .86; letter-spacing: -.01em; word-spacing: .1em; }
+.tc-body { font-family: var(--font-text); font-weight: 400; font-size: 18px; line-height: 1.4; margin-top: 12px; }
+
+/* ——— works strip under the nav ——— */
+.tr-works .tr-row { gap: 16px; }
+.tr-work .tr-num { font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+.tr-work .tr-img img { box-shadow: 0 0 0 1px rgba(11, 12, 14, .12); }
+.tr-work::after { height: 2px; top: 61px; background: var(--ink); }
+
+/* ——— walk bar ——— */
+.tour-walkbar { font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.tw-name { text-transform: none; letter-spacing: 0; font-family: var(--font-ui); font-size: 15px; }
+.tw-meta { font-variant-numeric: tabular-nums; }
+
+/* ——— wall labels (the art layer) and the plaster's label (a wall-plate hotspot) ——— */
+.ta-label { gap: 2px; max-width: 220px; }
+.ta-n, .th-wn { font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+.ta-title, .th-wt { font-family: var(--font-text); font-weight: 600; font-size: 16px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.ta-meta, .th-wm { font-size: 14px; color: var(--ink-2); }
+.ta-size em, .th-ws em { font-style: italic; font-weight: 400; }
+.th-ws { display: flex; align-items: center; gap: 8px; margin-top: 4px; font-size: 14px; color: var(--ink-2); }
+.th[data-hotspot="o-07"] .th-ring, .th[data-hotspot="o-07"] .th-core { display: none; }
+.th[data-hotspot="o-07"] .th-hit { left: var(--hit-l, -22px); top: var(--hit-t, -22px); width: var(--hit-w, 44px); height: var(--hit-h, 44px); border-radius: 0; }
+.th[data-hotspot="o-07"] .th-leader path { stroke: var(--ink); stroke-dasharray: none; }
+
+/* the tracked tag on the plaster during move 2: a wall label, not a plate */
+.tour-tags .tg { padding: 0; background: none; color: var(--ink); font-weight: 600; }
+
+/* ——— the map: hairline axonometric, crop marks, violet room ——— */
+/* bottom-left: the engine's wall labels stack down the right column to 140 px above the bottom, where a br map sits */
+.tour-map { width: 372px; height: 254px; background: var(--map-bg); }
+.tm-svg { left: 14px; right: 14px; top: 12px; bottom: 40px; }
+.tm-room { stroke: none; }
+.tm-dot { --map-here-ring: #F3F4F5; }
+.tm-plan .mw { stroke-width: 1.1; }
+.tm-plan .mu, .tm-plan .mz { stroke-opacity: .45; }
+.tm-plan .ml { stroke-opacity: .55; }
+.tm-plan .mt { stroke-width: 3; stroke-linecap: butt; }
+.tm-plan .mo { stroke-width: 1.1; fill: var(--map-bg); }
+.tm-plan text { font-family: var(--font-label); font-weight: 600; font-stretch: 75%; font-variation-settings: "wdth" 75; font-size: 14px; font-variant-numeric: tabular-nums; }
+.tm-plan .mr text { font-weight: 900; font-stretch: 62%; font-variation-settings: "wdth" 62; font-size: 15px; }
+.tm-plan #stops circle { fill: var(--map-ink); }
+.tm-label { gap: 8px; height: 36px; padding: 0 14px; font-size: 15px; letter-spacing: .01em; text-transform: none; }
+.tm-label::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--map-here, #E2382B); }
+
+/* ——— the lift: the page takes the work's tint ——— */
+.tl-title { font-weight: 300; font-stretch: 100%; font-variation-settings: "wdth" 100; font-size: clamp(44px, 5vw, 72px); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.tour-lift[aria-label^="18:20"] .tl-title { font-size: clamp(40px, 3.6vw, 56px); }
+.tl-row { border-top-color: rgba(11, 12, 14, .18); }
+.tl-k { font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); opacity: .62; }
+.tl-v { font-size: 17px; }
+.tl-v em { white-space: nowrap; }
+.tl-enquire { display: inline-flex; align-items: center; justify-self: start; height: 40px; padding: 0 16px; border: 1px solid var(--ink);
+  font-family: var(--font-ui); font-weight: 500; font-size: 15px; text-decoration: none; letter-spacing: .02em; }
+.tl-note { margin: 4px 0 0 108px; font-size: 15px; line-height: 1.4; color: var(--ink); }
+.tl-nav button { font-weight: 500; letter-spacing: .02em; }
+.tl-side { font-family: var(--font-label); font-weight: 500; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); opacity: .7; }
+.tl-year { font-stretch: 62%; }
+.tl-close { border-radius: 0; border-color: var(--ink); }
+
+/* ——— the visit sheet ——— */
+.tour-end { background: var(--paper); color: var(--ink); box-sizing: border-box; padding: 0; }
+.v-wrap { padding: 120px 40px 104px; max-width: 1520px; margin: 0 auto; box-sizing: border-box; }
+.v-head { padding-bottom: 28px; border-bottom: 1px solid var(--ink); }
+.v-dates { display: flex; align-items: flex-start; gap: 18px; margin: 0; font-family: var(--font-display); font-weight: 900; font-stretch: 62%;
+  font-variation-settings: "wdth" 62; font-size: 11vw; line-height: .8; letter-spacing: -.015em; }
+.v-range { white-space: nowrap; }
+.v-year { margin-top: .5em; font-family: var(--font-label); font-size: 15px; line-height: 1; letter-spacing: .04em; font-weight: 500; font-stretch: 100%; }
+.v-live { display: flex; align-items: center; gap: 10px; margin: 26px 0 0; font-family: var(--font-label); font-weight: 500; font-size: 15px; letter-spacing: .04em; }
+.v-dot { flex: none; width: 9px; height: 9px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid var(--ink); }
+.v-live.is-open .v-dot { background: var(--signal); border-color: var(--signal); }
+
+.v-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; padding-top: 40px; }
+.v-info { grid-column: 1 / span 7; margin: 0; }
+.v-row { display: grid; grid-template-columns: 2fr 5fr; column-gap: 24px; padding: 16px 0 18px; border-bottom: 1px solid var(--line); }
+.v-row:first-child { padding-top: 0; }
+.v-row dt { font-weight: 600; font-size: 15px; line-height: 1.5; }
+.v-row dd { margin: 0; font-size: 17px; line-height: 1.5; font-weight: 400; }
+.v-row dd em { font-style: italic; }
+.v-works { grid-column: 9 / span 4; }
+.v-works-h { margin: 0 0 6px; font-family: var(--font-display); font-weight: 900; font-stretch: 62%; font-variation-settings: "wdth" 62;
+  font-size: 40px; line-height: .9; text-transform: uppercase; letter-spacing: -.01em; }
+.v-works-h sup { font-family: var(--font-label); font-size: 14px; font-weight: 500; font-stretch: 100%; vertical-align: top; position: relative; top: .1em; margin-left: 2px; letter-spacing: .04em; }
+.v-list { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.v-work { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; column-gap: 12px; row-gap: 2px; width: 100%; padding: 12px 0 13px;
+  border: 0; border-bottom: 1px solid var(--line); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.v-work .v-n { grid-row: 1 / span 2; padding-top: 3px; }
+.v-work .v-t { font-size: 17px; font-weight: 400; font-variant-numeric: tabular-nums; }
+.v-work .v-p { font-size: 15px; text-align: right; }
+.v-work .v-m { grid-column: 2 / span 2; font-size: 14px; color: var(--ink-2); }
+.v-work .v-m .t-label { font-size: 14px; color: var(--ink-2); text-transform: none; letter-spacing: .02em; }
+
+.v-band { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 48px; padding: 44px 40px 48px; background: var(--signal); color: #F3F4F5; }
+.v-band p { margin: 0; }
+.v-band-date { font-family: var(--font-display); font-weight: 900; font-stretch: 62%; font-variation-settings: "wdth" 62; font-size: 13vw; line-height: .78; letter-spacing: -.02em; }
+.v-band-text p { font-size: 20px; line-height: 1.45; font-weight: 400; }
+.v-band-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.v-rsvp { height: 56px; padding: 0 36px; border: 0; border-radius: 0; background: var(--accent); color: var(--accent-ink); font-family: var(--font-ui);
+  font-weight: 500; font-size: 16px; letter-spacing: .06em; cursor: pointer; }
+.v-note { font-size: 15px; max-width: 22em; text-align: right; }
+
+.tour-footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; background: var(--paper); color: var(--ink); font-family: var(--font-ui);
+  font-size: 14px; line-height: 1.5; padding: 24px 40px 40px; border-top: 0; }
+.tour-footer p { margin: 0; }
+.tour-footer .f-demo { color: var(--ink-2); text-align: right; }
+
+/* ——— phone ——— */
+.tour-phone .tc-heading { font-size: 40px; }
+.tour-phone .tc-body { font-size: 16px; }
+.tour-phone .v-wrap { padding: 88px 16px 64px; }
+.tour-phone .v-dates { font-size: 22vw; flex-wrap: wrap; gap: 8px; }
+.tour-phone .v-grid { display: block; padding-top: 28px; }
+.tour-phone .v-row { grid-template-columns: 1fr; row-gap: 4px; }
+.tour-phone .v-works { margin-top: 48px; }
+.tour-phone .v-band { grid-template-columns: 1fr; row-gap: 20px; padding: 36px 16px 40px; }
+.tour-phone .v-band-date { font-size: 34vw; }
+.tour-phone .v-band-cta { align-items: stretch; }
+.tour-phone .v-rsvp { width: 100%; }
+.tour-phone .v-note { text-align: left; }
+.tour-phone .tour-footer { grid-template-columns: 1fr; gap: 4px; padding: 20px 16px 32px; }
+.tour-phone .tour-footer .f-demo { text-align: left; }
+.tour-phone .tl-note { margin-left: 0; }
+@media (max-width: 767px) {
+  .v-wrap { padding: 88px 16px 64px; }
+  .v-grid { display: block; }
+  .v-band { grid-template-columns: 1fr; padding: 36px 16px 40px; }
+  .tour-footer { grid-template-columns: 1fr; }
+}
+
+/* hover only where there is a pointer that hovers (a tapped button on a phone keeps its colours) */
+@media (hover: hover) {
+  .tn-button:hover { background: var(--ink); color: var(--paper); }
+  .tl-enquire:hover { background: var(--ink); color: var(--paper); }
+  .v-work:hover .v-t { text-decoration: underline 1px; text-underline-offset: 4px; }
+  .v-work:hover .v-n { color: var(--signal); }
+  .v-rsvp:hover { background: #F3F4F5; color: var(--ink); }
+}
+
+
+/* moving text gets its own layer in ?record (wall labels, the plaster label) */
+.tour-record .ta-label, .tour-record .th-plate, .tour-record .tr-work { will-change: transform, opacity; }

@@ -1,0 +1,263 @@
+/* Tembusu · Teduh House — tokens and the site's own pieces.
+   Engine rules sit in @layer enfilade, so everything here wins. Nothing here filters, blurs or shadows text. */
+
+:root {
+  /* colour */
+  --paper: #F1EDE4; --paper-2: #E7E1D4; --ink: #12291F; --ink-2: #55645B;
+  --on-photo: #F6F3EC; --on-photo-2: rgba(246, 243, 236, .82);
+  --line: rgba(18, 41, 31, .18); --line-photo: rgba(246, 243, 236, .6);
+  --plate: #F1EDE4; --plate-ink: #12291F;
+  --accent: #1E4634; --accent-ink: #F1EDE4;
+  --signal: #4F9A78; --pool: #2F6B55;
+  --scrim: rgba(12, 28, 21, .42);
+  --dot: #F6F3EC; --dot-ring: rgba(246, 243, 236, .8);
+  /* type */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-text: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-ui: "Host Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Spline Sans Mono", ui-monospace, monospace;
+  --font-mono: "Spline Sans Mono", ui-monospace, monospace;
+  --label-size: 14px; --label-case: uppercase; --label-tracking: .05em; --label-weight: 400;
+  --display-weight: 200; --display-wdth: 100; --display-tracking: -.035em; --display-case: none;
+  /* shape */
+  --radius-plate: 999px; --radius-card: 2px; --radius-button: 0px; --grain: .03; --card-blur: 0px;
+  /* engine knobs */
+  --nav-ink-photo: #F6F3EC; --rail-ink: #F6F3EC; --nav-ink-sheet: #F1EDE4;
+  --map-bg: #F1EDE4; --map-ink: #12291F; --map-line: rgba(18, 41, 31, .35); --map-fill: #4F9A78; --map-fill-o: .2;
+  --card-bg: #F1EDE4; --cursor-ink: #F6F3EC;
+  --caption-ink: #12291F; --caption-ink-2: rgba(18, 41, 31, .78); --bar-ink: #12291F;
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+}
+
+html { background: var(--accent); }
+body.tour { background: #16140F; color: var(--ink); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+/* ——— the first screen ——— */
+.tt-block.t-title { font-weight: 200; line-height: .8; letter-spacing: -.035em; font-optical-sizing: auto; }
+.tour .tt-kicker.t-label {
+  font-family: var(--font-ui); font-size: 15px; font-weight: 400; letter-spacing: .01em; text-transform: none; font-variant-caps: normal;
+  margin: 0 0 40px .04em; color: var(--on-photo); align-self: flex-start;
+}
+.tour-phone .tt-kicker.t-label { margin: 14px 0 0; font-size: 14px; }
+.tt-block.t-statement { font-family: var(--font-text); font-weight: 300; font-size: 32px; line-height: 1.15; letter-spacing: -.012em; font-variation-settings: "opsz" 36; }
+.tt-block.t-statement em { font-style: italic; font-weight: 300; }
+.tour-phone .tt-block.t-statement { font-size: 24px; }
+
+/* ——— nav ——— */
+.tn-brand { font-weight: 300; font-size: 22px; letter-spacing: -.02em; font-variation-settings: "opsz" 36; }
+.tn-button {
+  background: transparent; color: inherit; border: 1px solid currentColor; font-weight: 500; letter-spacing: .005em;
+  padding: 0 18px; gap: 10px;
+}
+.tn-button:hover { background: var(--on-photo); color: var(--ink); border-color: var(--on-photo); }
+.tn-chip { border-radius: 0; }
+.tr-index { gap: 28px; }
+.tr-stop { gap: 8px; }
+.tr-n { opacity: .72; }
+
+/* ——— captions: a FIG. line under a light serif statement ——— */
+.tc-heading { font-family: var(--font-text); font-weight: 300; font-size: 44px; line-height: 1.04; letter-spacing: -.018em; font-variation-settings: "opsz" 36; }
+.tc-body { font-family: var(--font-text); font-weight: 300; font-size: 17px; line-height: 1.5; font-variation-settings: "opsz" 36; max-width: 30em; }
+.tc-label { margin-top: 18px; color: var(--caption-ink); opacity: .86; }
+.tc-rule { opacity: .55; margin-top: 18px; }
+.tc-bottom-left { bottom: 104px; }
+/* the pool deck has no calm surface up top, and the map holds the bottom left: its caption sits on a paper card */
+.tc[data-stop="deck"] { background: color-mix(in srgb, var(--paper) calc(var(--in, 1) * 100%), transparent); padding: 22px 26px 20px; width: 620px; }
+
+/* ——— hotspots: dot + bone pill (code in mono, name in Host Grotesk) ——— */
+.th-plate { height: 32px; padding: 0 14px 0 12px; gap: 9px; font-size: 15px; letter-spacing: .005em; }
+.th-code { font-size: 14px; letter-spacing: .04em; opacity: .66; }
+.th-dimtext { font-family: var(--font-label); font-size: 14px; letter-spacing: .05em; padding: 0 10px; text-transform: none; }
+
+/* ——— the tracked tag ——— */
+.tg { padding: 7px 12px; font-size: 14px; background: var(--plate); }
+
+/* ——— the walk bar: counter left, the material legend right ——— */
+.tour-walkbar { bottom: 22px; }
+.tw-n { opacity: .8; }
+.lg { position: relative; width: 100%; height: 56px; color: var(--bar-ink); }
+.lg-labels { position: absolute; left: 0; right: 0; bottom: 18px; height: 0; }
+.lg-lab { position: absolute; left: 0; bottom: 0; white-space: nowrap; opacity: 0; line-height: 1; will-change: transform, opacity; }
+.lg-name { opacity: .9; }
+.lg-pc { opacity: .62; }
+.lg-bar { position: absolute; left: 0; right: 0; bottom: 6px; height: 6px; }
+.lg-track { position: absolute; inset: 2.5px 0; height: 1px; background: var(--bar-ink); opacity: .3; }
+.lg-seg { position: absolute; left: 0; top: 0; height: 6px; width: 0; background: var(--bar-ink); opacity: .92; }
+.lg-seg.is-new { background: var(--signal); opacity: 1; }
+.tour-phone .tw-right[data-phone] { width: 132px; }
+.tour-phone .lg { height: 48px; }
+.tour-phone .lg-bar { bottom: 10px; }
+.tour-phone .lg-labels { bottom: 22px; }
+
+/* ——— mini-map: a bone title block ——— */
+.tour-map { width: 324px; height: 300px; }
+.tm-svg { left: 18px; right: 18px; top: 16px; bottom: 50px; }
+.tm-label { height: 36px; padding: 0 14px; font-size: 14px; }
+.tm-dot { --map-here-ring: var(--paper); }
+
+/* ——— the material card (paper) ——— */
+.tour-card { width: 440px; box-shadow: 0 30px 80px -40px rgba(12, 28, 21, .55); }
+.tk-body { padding: 32px 32px 30px; }
+.tk-swatch { margin: -32px -32px 26px; position: relative; }
+.tk-swatch img { height: 210px; }
+.tk-code { letter-spacing: .05em; }
+.tk-name { font-family: var(--font-display); font-weight: 300; font-size: 48px; line-height: 1; letter-spacing: -.025em; margin: 10px 48px 16px 0; font-variation-settings: "opsz" 48; }
+.tk-line { font-weight: 300; font-size: 17px; line-height: 1.5; font-variation-settings: "opsz" 24; }
+.tk-row { font-family: var(--font-ui); font-size: 15px; grid-template-columns: 112px minmax(0, 1fr); }
+.tk-row dt { letter-spacing: .05em; }
+.tk-status { display: flex; align-items: center; gap: 8px; }
+.tk-close { background: var(--paper); }
+.tk-next { margin-top: 24px; font-size: 15px; padding: 6px 0; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s var(--ease-out); }
+.tk-next:hover { background-size: 100% 1px; }
+.tour-phone .tk-swatch img { height: 168px; }
+.tour-phone .tk-name { font-size: 40px; }
+
+/* ——— the end sheet: deep green, drawn in bone ——— */
+.tour-end { background: var(--accent); color: var(--paper); box-sizing: border-box; }
+.es { position: relative; max-width: 1360px; margin: 0 auto; padding: 132px 40px 0; }
+.es-lines { position: absolute; inset: 0 40px; pointer-events: none; }
+.es-lines i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--paper); opacity: .2; }
+.es-lines i:first-child { left: 0; }
+.es-lines i:last-child { left: calc((100% - 11 * 24px) / 12 * 7 + 7 * 24px); }
+.es-row1 { display: flex; justify-content: space-between; align-items: flex-end; padding: 0 0 18px 20px; border-bottom: 1px solid rgba(241, 237, 228, .2); margin-bottom: 40px; }
+.es-kicker { margin: 0; font-family: var(--font-ui); font-size: 15px; letter-spacing: .01em; }
+.es-scale { display: flex; align-items: flex-end; gap: 14px; }
+.sb { display: flex; height: 6px; border: 1px solid var(--paper); width: 120px; box-sizing: border-box; }
+.sb i { display: block; height: 100%; }
+.sb i:nth-child(1) { width: 20%; background: var(--paper); }
+.sb i:nth-child(2) { width: 20%; }
+.sb i:nth-child(3) { width: 60%; background: linear-gradient(90deg, var(--paper) 33.3%, transparent 33.3% 66.6%, var(--paper) 66.6%); opacity: .5; }
+.sb-n { position: relative; width: 120px; height: 18px; order: -1; display: none; }
+.es-scale { position: relative; padding-top: 24px; }
+.es-scale .sb-n { display: block; position: absolute; left: 0; top: 0; width: 120px; }
+.sb-n span { position: absolute; top: 0; transform: translateX(-50%); }
+.sb-n span:nth-child(1) { left: 0; }
+.sb-n span:nth-child(2) { left: 20%; }
+.sb-n span:nth-child(3) { left: 100%; transform: translateX(-30%); white-space: nowrap; }
+.na { width: 18px; height: 27px; margin-left: 30px; }
+.na path:first-child { fill: none; stroke: var(--paper); stroke-width: 1.2; stroke-linejoin: round; }
+.na path:last-child { fill: none; stroke: var(--paper); stroke-width: 1.2; }
+.na-n { line-height: 1; }
+
+.es-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+.es-plan { grid-column: 1 / 8; margin: 0; padding-left: 0; }
+.plan-host { width: 100%; aspect-ratio: 776 / 576; }
+.plan-svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--paper); --draw: 0; }
+.plan-svg .dr { stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--draw)); }
+.plan-svg .pw { fill: none; stroke: var(--paper); stroke-width: 1.25; stroke-linecap: square; }
+.plan-svg .pf { fill: none; stroke: var(--paper); stroke-width: 1; opacity: .78; }
+.plan-svg .pd { fill: none; stroke: var(--paper); stroke-width: 1; opacity: .4; }
+.plan-svg .pb { fill: none; stroke: var(--paper); stroke-width: 1; stroke-dasharray: 2 4; opacity: calc(.4 * var(--draw)); }
+.plan-svg .pool { fill: var(--pool); opacity: var(--draw); }
+.plan-svg .pool-grid { fill: url(#tile); color: var(--paper); opacity: calc(.3 * var(--draw)); }
+.plan-svg .route { fill: none; stroke: var(--signal); stroke-width: 1.5; stroke-dasharray: 5 4; opacity: clamp(0, calc(var(--draw) * 2 - 1), 1); }
+.plan-svg .stop circle { fill: var(--accent); stroke: var(--paper); stroke-width: 1; }
+.plan-svg .stop text { font-family: var(--font-label); font-size: 14px; fill: var(--paper); }
+.plan-svg .stop, .plan-svg .g-labels, .plan-svg .g-block text { opacity: clamp(0, calc(var(--draw) * 2.5 - 1.5), 1); }
+.plan-svg .pl { fill: var(--paper); }
+.plan-svg .pl-name { font-family: var(--font-ui); font-size: 14.5px; }
+.plan-svg .pl-size { font-family: var(--font-label); font-size: 14px; letter-spacing: .05em; opacity: .72; }
+.plan-svg .pt { font-family: var(--font-label); font-size: 14px; letter-spacing: .05em; fill: var(--paper); }
+
+.es-side { grid-column: 9 / 13; padding-top: 4px; }
+.es-rooms { margin: 0 0 28px; font-family: var(--font-display); font-weight: 200; font-size: 64px; line-height: .9; letter-spacing: -.035em; }
+.es-rooms sup { font-size: 14px; letter-spacing: .05em; vertical-align: top; position: relative; top: .35em; margin-left: 6px; opacity: .8; }
+.es-table { width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: 15px; line-height: 1.35; }
+.es-table th { text-align: left; font-weight: 400; padding: 0 12px 10px 0; opacity: .7; }
+.es-table td { padding: 11px 12px 11px 0; border-top: 1px solid rgba(241, 237, 228, .2); vertical-align: baseline; }
+.es-table td:nth-child(2), .es-table th:nth-child(2) { font-family: var(--font-label); font-size: 14px; letter-spacing: .05em; text-align: right; padding-right: 20px; white-space: nowrap; }
+.es-table td:nth-child(3) { color: rgba(241, 237, 228, .74); }
+.es-table tfoot td { border-top: 1px solid var(--paper); font-family: var(--font-label); font-size: 14px; letter-spacing: .05em; padding-top: 14px; }
+.t-label .u, .t-label.u { text-transform: none; }
+
+.es-mats { margin-top: 48px; }
+.es-mk { margin: 0 0 4px; font-family: var(--font-ui); font-size: 15px; opacity: .74; }
+.es-mt { margin: 0 0 18px; font-family: var(--font-text); font-weight: 300; font-size: 28px; line-height: 1.1; letter-spacing: -.01em; }
+.es-strips { display: flex; gap: 0; width: 100%; }
+.es-strips figure { margin: 0; flex: var(--w) 1 0; min-width: 0; }
+.es-strips img { display: block; width: 100%; height: 120px; object-fit: cover; }
+.es-strips figcaption { margin-top: 10px; padding-right: 6px; line-height: 1.3; display: flex; flex-direction: column; gap: 2px; white-space: nowrap; }
+/* the two narrow strips: Rattan's label drops a row, Sukabumi's right-aligns at the bar's end */
+.es-strips figure:nth-child(4) figcaption { margin-top: 50px; }
+.es-strips figure:nth-child(5) figcaption { align-items: flex-end; padding-right: 0; }
+.es-strips figcaption .t-num { opacity: .7; }
+
+.es-dev { margin: 72px 0 0; padding: 18px 0; border-top: 1px solid rgba(241, 237, 228, .35); border-bottom: 1px solid rgba(241, 237, 228, .35); text-align: center; line-height: 1.6; }
+
+.es-ask { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; min-height: 340px; box-sizing: border-box; padding: 72px 0 80px; border-bottom: 1px solid rgba(241, 237, 228, .2); }
+.es-ask-h { grid-column: 1 / 8; margin: 0; font-family: var(--font-display); font-weight: 200; font-size: 96px; line-height: .92; letter-spacing: -.035em; padding-left: 20px; }
+.es-ask-h em { font-style: italic; font-weight: 200; }
+.es-ask-r { grid-column: 9 / 13; }
+.es-ask-p { margin: 0 0 28px; font-family: var(--font-text); font-weight: 300; font-size: 19px; line-height: 1.45; font-variation-settings: "opsz" 24; }
+.es-ask-a { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.es-button {
+  display: inline-flex; align-items: center; height: 56px; padding: 0 26px; background: var(--paper); color: var(--accent);
+  border-radius: 0; text-decoration: none; font-family: var(--font-ui); font-size: 16px; font-weight: 500; letter-spacing: .005em;
+  transition: background-color .25s var(--ease-out);
+}
+.es-button:hover { background: #fff; }
+.es-link { color: var(--paper); text-decoration: none; font-family: var(--font-ui); font-size: 16px; padding: 8px 0;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; transition: background-size .3s var(--ease-out); }
+.es-link:hover { background-size: 0 1px; background-position: 100% 100%; }
+.es-note { margin: 18px 0 0; font-family: var(--font-label); font-size: 14px; letter-spacing: .03em; line-height: 1.5; color: rgba(241, 237, 228, .8); }
+
+.tour-footer { background: var(--accent); color: rgba(241, 237, 228, .72); font-family: var(--font-ui); font-size: 14px; line-height: 1.6; padding: 28px 40px 44px; }
+.tour-footer p { margin: 0; max-width: 1280px; margin-inline: auto; }
+.tour-footer p:first-child { color: var(--paper); }
+
+/* the paper grain, flat surfaces only */
+.tour-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply; border-radius: inherit;
+}
+
+/* ——— phone ——— */
+.tour-phone .es { padding: 96px 16px 0; }
+.tour-phone .es-lines { inset: 0 16px; }
+.tour-phone .es-lines i:last-child { display: none; }
+.tour-phone .es-row1 { padding-left: 14px; flex-wrap: wrap; gap: 16px; }
+.tour-phone .es-grid, .tour-phone .es-ask { grid-template-columns: minmax(0, 1fr); }
+.tour-phone .es-plan, .tour-phone .es-side, .tour-phone .es-ask-h, .tour-phone .es-ask-r { grid-column: 1 / -1; }
+.tour-phone .es-plan-scroll { overflow-x: auto; overscroll-behavior-x: contain; margin: 0 -16px; padding: 0 16px; }
+.tour-phone .plan-host { width: 776px; }
+.tour-phone .es-side { padding-top: 40px; }
+.tour-phone .es-rooms { font-size: 52px; }
+.tour-phone .es-table { font-size: 15px; }
+.tour-phone .es-strips figcaption { font-size: 14px; }
+.tour-phone .es-strips { flex-wrap: wrap; row-gap: 18px; }
+.tour-phone .es-strips figure { flex-basis: 30%; }
+.tour-phone .es-dev { margin-top: 48px; text-align: left; }
+.tour-phone .es-ask { padding: 56px 0 64px; min-height: 0; row-gap: 28px; }
+.tour-phone .es-ask-h { font-size: 60px; padding-left: 14px; }
+.tour-phone .es-ask-a { gap: 20px; }
+.tour-phone .es-button { height: 52px; }
+.tour-phone .tour-footer { padding: 24px 16px 40px; }
+/* phone: the ask's button stays at the bottom of the viewport while the sheet is in view (its sticky box is the sheet) */
+.tour-phone .es-ask, .tour-phone .es-ask-r, .tour-phone .es-ask-a { display: contents; }
+.tour-phone .es-ask-h { display: block; margin: 0; padding: 56px 0 24px 14px; border-top: 0; }
+.tour-phone .es-ask-p { padding-left: 14px; }
+.tour-phone .es-button { display: flex; justify-content: center; position: sticky; bottom: 16px; z-index: 2; margin: 0 0 18px; }
+.tour-phone .es-link { display: inline-block; margin: 0 0 0 14px; }
+.tour-phone .es-note { padding: 0 0 0 14px; }
+.tour-phone .es::after { content: ""; display: block; height: 56px; border-bottom: 1px solid rgba(241, 237, 228, .2); }
+/* ?record: hotspots re-raster at their exact place every frame, so a frame's pixels never depend on the frames drawn
+   before it (a promoted layer keeps the sub-pixel phase it was first rastered at) */
+.tour-record .th, .tour-record .tg { will-change: auto; }
+/* phone captions: one-line headings where they fit, so the caption stays on the floor below the opening */
+.tour-phone .tc-bottom-left { bottom: 72px; }
+.tour-phone .tc-heading { font-size: 30px; line-height: 1.08; }
+.tour-phone .tc-rule { margin-top: 12px; }
+.tour-phone .tc-body { margin-top: 10px; font-size: 16px; line-height: 1.45; }
+.tour-phone .tc-label { margin-top: 12px; }
+.plan-svg .ko { fill: var(--accent); }
+/* the statement and hint sit on the pale entry paving: green-black keeps them readable */
+.tt-block.t-statement, .tt-block.t-hint { color: var(--ink); }
+/* phone: the tracked tag centres over its point, so it never runs off the narrow slice */
+.tour-phone .tg { translate: calc(-50% - 52px) -6px; }
+/* the rail keeps its own ink: it sits on the teak ceiling while the wordmark and buttons sit on pale walls (site.js inks) */
+.tn-center { color: color-mix(in srgb, var(--rail-ink), var(--nav-ink-sheet) calc(var(--nav-k, 0) * 100%)); }
+/* phone: the slice has no calm surface for a caption, so it sits on a paper panel */
+.tour-phone .tc { background: color-mix(in srgb, var(--paper) calc(var(--in, 1) * 100%), transparent); padding: 14px 16px 12px; }
+/* this file's desktop card width beats the engine's layer, so the phone's full-width sheet is restated here */
+.tour-phone .tour-card { width: auto; }

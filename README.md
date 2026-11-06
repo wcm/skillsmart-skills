@@ -10,6 +10,7 @@ Free visual skills for AI agents (Claude Code, Codex, Cursor and others), publis
 | [puff-hero](skills/puff-hero) | A hero whose word is in puffy, overinflated 3D letters that pop when touched |
 | [exploded-view](skills/exploded-view) | A scroll page that lifts your product out of a real photo and takes it apart, with a label on every part |
 | [build-hero](skills/build-hero) | A hero where one scroll builds the place from bare ground, then evening falls and the lights come on |
+| [room-tour](skills/room-tour) | A website you walk through as you scroll: the camera moves room to room, with materials, products and artworks to click |
 | [wave-shader](skills/wave-shader) | A hero over a live, wavy gradient: silk, an aurora, a sunset sea or a silky ribbon |
 | [fluid-shader](skills/fluid-shader) | A hero around a gentle liquid you can touch: dye, chrome, marbled ink or a soap film |
 | [glass-shader](skills/glass-shader) | A hero with glass over the page: reeded, fogged, beaded with drops or frosted into tiles |

@@ -1,0 +1,28 @@
+{
+  "about": "WRITE one line: the place, its light and time of day, and the route (three stops, two moves).",
+  "style": "WRITE the shared look for every picture: the place, materials, light, season and time of day, in one sentence. {style} in a prompt is replaced by it.",
+  "shots": {
+    "two": {
+      "prompt": "WRITE the most important stop first, as a full description: where the camera stands and looks, the room, its materials, the furniture, what is seen beyond. {style}"
+    },
+    "one": {
+      "from": "two",
+      "prompt": "{same} WRITE where the camera now stands for the first stop, a clearly different viewpoint (for example outside the open door, looking in), and anything that must show there (the door open, the title's calm wall). {style}"
+    },
+    "three": {
+      "from": "two",
+      "prompt": "{same} WRITE the third viewpoint, clearly different again, and what must agree with the walk (doors the camera passes stay open, the same sky). {style}"
+    }
+  },
+  "moves": {
+    "move-1": {
+      "start": "one", "end": "two", "duration": 7,
+      "prompt": "{move} WRITE the camera's path in plain words: where it walks, where it turns and by about how much, where it comes to rest (as in the last picture)."
+    },
+    "move-2": {
+      "start": "two", "end": "three", "duration": 7,
+      "prompt": "{move} WRITE the camera's path: through which opening, which way it turns once through, where it comes to rest (as in the last picture)."
+    }
+  },
+  "frames": { "q": 64 }
+}

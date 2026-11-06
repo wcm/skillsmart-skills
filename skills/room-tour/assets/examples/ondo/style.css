@@ -1,0 +1,266 @@
+/* ondo — shop the room. Tokens and the site's overrides of the engine's component CSS.
+   The page starts in rust; a pick at stop 3 cross-fades the colour tokens (ctx.setTokens) to oat or plum, so every
+   colour below that should follow the pick is written with var(). */
+
+:root {
+  /* colourway: rust (oat and plum arrive through tour.json's swatch themes) */
+  --paper: #F3E6D0; --paper-2: #EAD7B8;
+  --ink: #4A1422; --ink-2: #7A4A50;
+  --accent: #B4441F; --accent-ink: #FFF7EA;
+  --dot-ring: #B4441F;
+  --scrim: rgba(74, 20, 34, .28);
+  /* fixed in every colourway */
+  --on-photo: #FFF7EA; --on-photo-2: rgba(255, 247, 234, .8);
+  --line: #B9B4AE; --line-photo: rgba(255, 247, 234, .8);
+  --plate: var(--paper); --plate-ink: var(--ink); --signal: var(--accent); --dot: #FFF7EA;
+  /* type */
+  --font-display: "Anybody", "Arial Black", system-ui, sans-serif;
+  --font-text: "Anybody", system-ui, sans-serif;
+  --font-ui: "Anybody", system-ui, sans-serif;
+  --font-label: "Anybody", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --label-size: 15px; --label-case: lowercase; --label-tracking: 0em; --label-weight: 600;
+  --display-weight: 900; --display-wdth: 150; --display-tracking: -.03em; --display-case: lowercase;
+  /* shape and material: solid cream and colour, no glass, no blur */
+  --radius-plate: 999px; --radius-card: 10px; --radius-button: 0px; --grain: .02; --card-blur: 0px;
+  /* engine knobs: the picture's top is cream wall, so the nav, captions and rail speak in ink */
+  --title-ink: var(--accent);
+  --nav-ink-photo: var(--ink); --nav-ink-sheet: var(--ink);
+  --caption-ink: var(--ink); --caption-ink-2: var(--ink-2);
+  --bar-ink: var(--ink); --rail-ink: var(--ink);
+  --card-bg: var(--paper); --cursor-ink: var(--ink);
+  --e-out: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: light;
+}
+
+html { background: var(--paper); }
+body.tour { background: var(--paper); color: var(--ink); font-variation-settings: "wdth" 100; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* 2 % grain on flat paper only (the end sheet's cart, the card, the footer), never on the picture or on text */
+.cart, .tour-footer { position: relative; }
+.cart::before, .tour-footer::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.cart > *, .tour-footer > * { position: relative; z-index: 1; }
+
+/* ——— title: "ondo" on the cream wall, the tagline top-left ——— */
+.tt-block.t-title { color: var(--title-ink); font-variation-settings: "wdth" 150; font-weight: 900; letter-spacing: -.03em; line-height: .78; }
+.tt-block.t-tagline {
+  font-family: var(--font-text); font-weight: 600; font-variation-settings: "wdth" 112; font-size: 30px; line-height: 1.1;
+  letter-spacing: -.01em; color: var(--ink);
+}
+.tour-phone .tt-block.t-tagline { font-size: 22px; }
+
+/* ——— nav: tiny lowercase UI, the brand in extended black ——— */
+.tour-nav { font-weight: 600; }
+.tn-brand { font-size: 20px; color: var(--accent); letter-spacing: -.03em; }
+.tn-chip { border-color: color-mix(in srgb, var(--ink) 30%, transparent); background: var(--paper); }
+.tn-hide { color: var(--ink); }
+.tr-index { gap: 28px; }
+.tr-stop { font-weight: 600; opacity: .76; }
+.tr-stop:hover { opacity: .9; }
+.tr-stop.is-current { opacity: 1; }
+.tr-n { font-variant-numeric: tabular-nums; margin-right: 2px; }
+
+/* the cart (cart.js) in the nav's layer slot: a flat block; the count sits in an ink circle once above zero */
+.cart-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; box-sizing: border-box; border: 0; border-radius: 0;
+  background: var(--accent); color: var(--accent-ink); font: inherit; font-size: 15px; font-weight: 600; line-height: 1; cursor: pointer; white-space: nowrap;
+}
+.cart-btn:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+.cart-paren { font-variant-numeric: tabular-nums; }
+.cart-circle {
+  display: none; position: relative; width: 22px; height: 22px; border-radius: 50%; overflow: hidden;
+  background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-weight: 500; font-size: 14px;
+}
+.cart-btn.has-items .cart-paren { display: none; }
+.cart-btn.has-items .cart-circle { display: inline-block; }
+.cart-d { position: absolute; inset: 0; display: grid; place-items: center; line-height: 1; padding-top: 1px; }
+
+/* ——— captions: top-left, lowercase, heading in the accent ——— */
+.tc-top-left { top: 100px; width: min(600px, calc(100% - 80px)); }
+.tc-heading { font-family: var(--font-display); font-weight: 900; font-variation-settings: "wdth" 150; letter-spacing: -.03em; font-size: 52px; line-height: .98; color: var(--accent); }
+.tc-body { font-weight: 500; font-size: 19px; line-height: 1.42; margin-top: 14px; color: var(--ink); max-width: 30em; }
+.tc[data-stop="corner"] { top: 178px; width: 820px; }
+.tc[data-stop="corner"] .tc-heading { font-size: 46px; }
+.tc[data-stop="corner"] .tc-body { max-width: 31em; }
+.tour-phone .tc[data-stop="corner"] { top: 72px; width: calc(100% - 32px); }
+.tour-phone .tc[data-stop="corner"] .tc-heading { font-size: 30px; }
+.tour-phone .tc-top-left { top: 72px; left: 16px; width: calc(100% - 32px); }
+.tour-phone .tc-heading { font-size: 30px; }
+.tour-phone .tc-body { font-size: 16px; margin-top: 8px; }
+
+/* ——— the walk bar: solid cream plates (the bottom of the picture is rug and floor) ——— */
+.tw-left, .tw-meta, .tw-ruler { pointer-events: auto; }
+.tw-count {
+  background: var(--paper); padding: 0 18px; height: 40px; align-content: center; border-radius: 999px; font-weight: 600;
+}
+.tw-meta { background: var(--paper); padding: 0 18px; height: 40px; display: inline-flex; align-items: center; border-radius: 999px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tw-ruler { background: var(--paper); height: 40px; border-radius: 999px; padding: 0 20px; box-sizing: border-box; }
+.tw-segs { gap: 12px; }
+.tw-snum { opacity: .78; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tw-snum.is-on, .tw-snum.is-current { opacity: 1; }
+.tw-seg { height: 2px; background: color-mix(in srgb, var(--ink) 18%, transparent); }
+.tw-fill { background: var(--accent); }
+.tour-phone .tw-count, .tour-phone .tw-ruler { height: 36px; padding: 0 14px; }
+
+/* ——— hotspots: cream dot in a colour ring; tag plates in cream ——— */
+.th-plate { font-weight: 600; font-variant-numeric: tabular-nums; }
+.th-plate .th-sep { opacity: .5; }
+.th-ring { border-width: 1.5px; }
+.th-core { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent); }
+.tour-phone .th[data-hotspot="p04"] { display: none; }
+
+/* ——— product card: cream portrait, huge name, numerals with superscript units; fits 96–800 without scrolling ——— */
+.tour-card { background: var(--card-bg); color: var(--ink); }
+.tk-product .tk-body { padding: 22px 30px 20px; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 16px; }
+.tk-product .tk-body > * { flex: 0 0 100%; min-width: 0; }
+.tk-close { border-color: color-mix(in srgb, var(--ink) 28%, transparent); color: var(--ink); background: var(--paper); }
+.tk-close:focus-visible, .tour-card :focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; }
+.tk-head { align-items: baseline; margin-right: 52px; }
+.tk-no { color: var(--ink-2); }
+.tk-no::before { content: "object no. "; }
+.tk-kind { display: none; }
+.tk-product .tk-name { font-size: 64px; line-height: .86; letter-spacing: -.04em; margin: 8px 52px 0 0; color: var(--accent); }
+.tk-product .tk-sub { margin: 8px 0 0; color: var(--ink-2); }
+.tk-pic { background: var(--paper-2); border-radius: 6px; aspect-ratio: 1 / .46; margin: 14px 0 14px; }
+.tk-ghost { font-size: 250px; color: color-mix(in srgb, var(--accent) 12%, transparent); right: -.05em; bottom: -.27em; }
+.tk-img { left: 12%; top: 5%; width: 76%; height: 90%; }
+.tk-line { font-size: 17px; font-weight: 500; line-height: 1.38; margin: 0 0 12px; }
+.tk-sizes { gap: 18px; align-items: flex-end; margin: 0 0 14px; }
+.tk-size { flex-direction: row; align-items: flex-start; gap: 1px; }
+.tk-num { font-size: 38px; letter-spacing: -.03em; color: var(--ink); }
+.tk-num sup { display: none; }
+.tk-axis { font-size: 15px; font-weight: 700; line-height: 1; margin-top: 1px; }
+.tk-sizes::after { content: "cm"; align-self: flex-end; font-family: var(--font-label); font-size: 15px; font-weight: 600; color: var(--ink-2); padding-bottom: 3px; }
+.tk-mat { margin: 0 0 8px; color: var(--ink); }
+.tk-swatches { gap: 14px; margin: 0 0 14px; }
+.tk-sw { min-width: 48px; gap: 6px; }
+.tk-chip { width: 30px; height: 30px; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent); outline-width: 1.5px; }
+.tk-sw.is-picked .tk-chip { outline-color: var(--ink); }
+.tk-swname { color: var(--ink); }
+.tk-buy { height: 56px; }
+.tk-stepper { border-color: var(--ink); background: var(--paper-2); border-right: 0; }
+.tk-step { position: relative; font-size: 20px; color: transparent; }
+.tk-step::before, .tk-step[data-step="1"]::after { content: ""; position: absolute; left: 50%; top: 50%; width: 13px; height: 1.5px; background: var(--ink); transform: translate(-50%, -50%); }
+.tk-step[data-step="1"]::after { width: 1.5px; height: 13px; }
+.tk-qty { font-weight: 600; font-size: 17px; }
+.tk-add { font-weight: 600; font-size: 17px; justify-content: flex-start; gap: 6px; }
+.tk-add.is-added { background: var(--ink); color: var(--paper); }
+.tk-product .tk-ship { flex: 1 1 auto; margin: 12px 0 0; color: var(--ink-2); }
+.tk-product .tk-next { flex: 0 0 auto; margin: 12px 0 0; font-weight: 600; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding: 0 0 3px; }
+.tour-phone .tk-product .tk-body { padding: 22px 16px 20px; }
+.tour-phone .tk-product .tk-name { font-size: 48px; }
+.tour-phone .tk-pic { aspect-ratio: 1 / .5; margin: 12px 0; }
+.tour-phone .tk-ghost { font-size: 180px; }
+.tour-phone .tk-line { font-size: 16px; margin-bottom: 12px; }
+.tour-phone .tk-num { font-size: 32px; }
+.tour-phone .tk-product .tk-ship { flex-basis: 100%; }
+
+/* ——— the colour row (colourway.js), under the sofa's caption ——— */
+.colour-row { position: absolute; left: 40px; top: 0; pointer-events: none; visibility: hidden; }
+.colour-row .cr-clip { overflow: clip; padding: 4px 6px 6px 4px; margin: -4px -6px -6px -4px; }
+.cr-ln { display: flex; align-items: center; gap: 22px; }
+.cr-label { display: block; margin: 0; color: var(--ink); white-space: nowrap; }
+.cr-list { display: flex; gap: 22px; }
+.cr-sw { display: flex; align-items: center; gap: 10px; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; cursor: pointer; }
+.cr-sw .cr-disc { position: relative; width: 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; }
+.cr-sw .cr-disc::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1.5px solid var(--ink); opacity: 0; }
+.cr-sw:hover .cr-disc::after { opacity: .3; }
+.cr-sw.is-picked .cr-disc::after { opacity: 1; }
+.cr-sw .cr-name { font-family: var(--font-label); font-size: 15px; font-weight: 600; }
+.tour-phone .colour-row { left: 16px; }
+.tour-phone .cr-sw .cr-disc { width: 44px; height: 44px; }
+.tour-phone .cr-list { gap: 16px; }
+.tour-phone .cr-ln { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+/* ——— the loupe (loupe.js) on the corduroy ——— */
+.loupe { position: absolute; left: 0; top: 0; width: 200px; pointer-events: none; visibility: hidden; }
+.lp-ring { position: relative; width: 200px; height: 200px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px var(--on-photo); background: var(--paper-2); }
+.lp-pic { position: absolute; inset: -40px; background-size: 520px 520px; background-repeat: repeat; }
+.lp-cap { position: absolute; left: 50%; top: calc(100% + 12px); transform: translateX(-50%); white-space: nowrap; padding: 7px 14px 8px; border-radius: 999px; background: var(--paper); color: var(--ink); }
+.tour-phone .loupe, .tour-phone .lp-ring { width: 128px; height: 128px; }
+.tour-phone .lp-pic { background-size: 360px 360px; }
+.tour-phone .lp-cap { left: auto; right: 0; top: auto; bottom: calc(100% + 10px); transform: none; }
+
+/* ——— the end: the room through the letters, then the cart ——— */
+.tour-end { background: none; color: var(--ink); display: flex; flex-direction: column; }
+/* the knockout rests for half a screen (sticky), then scrolls away while the stage stays pinned (end.pin) */
+.knock { position: relative; height: 150svh; flex: none; }
+.knock-svg { position: sticky; top: 0; width: 100%; height: 100svh; display: block; }
+.cart { flex: 1 0 auto; }
+.knock-sheet { fill: var(--paper); }
+.knock-text { font-family: var(--font-display); font-weight: 900; font-variation-settings: "wdth" 150; letter-spacing: -.03em; }
+
+.cart { background: var(--paper); padding: 40px 40px 72px; }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+  background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.tile { position: relative; display: flex; flex-direction: column; padding: 16px 18px 22px; min-width: 0; border-left: 1px solid var(--line); }
+.tile:first-child { border-left: 0; }
+.tile-no { position: absolute; left: 18px; top: 16px; color: var(--ink-2); }
+.tile-pic { display: block; aspect-ratio: 1 / 1; margin: 18px 0 14px; }
+.tile-pic img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.tile-name { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 125; font-size: 24px; letter-spacing: -.02em; line-height: 1; color: var(--ink); }
+.tile-kind { margin-top: 6px; color: var(--ink-2); min-height: 2.6em; }
+.tile-price { margin-top: auto; padding-top: 10px; font-weight: 700; font-size: 20px; color: var(--ink); }
+.tile-add {
+  position: absolute; right: 14px; top: 12px; width: 40px; height: 40px; padding: 0; border-radius: 50%; border: 1.5px solid var(--accent);
+  background: transparent; color: var(--accent); cursor: pointer; display: grid; place-items: center; z-index: 2;
+}
+.tile-add i { position: relative; width: 14px; height: 14px; }
+.tile-add i::before, .tile-add i::after { content: ""; position: absolute; left: 50%; top: 50%; background: currentColor; transform: translate(-50%, -50%); }
+.tile-add i::before { width: 14px; height: 1.5px; }
+.tile-add i::after { width: 1.5px; height: 14px; }
+.tile-add:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.tile-add.is-added { background: var(--accent); color: var(--accent-ink); }
+.tile-add.is-added i::before { width: 6px; height: 1.5px; transform: translate(-95%, 1px) rotate(45deg); }
+.tile-add.is-added i::after { width: 1.5px; height: 12px; transform: translate(1px, -55%) rotate(45deg); }
+
+.total { display: flex; justify-content: space-between; align-items: baseline; margin: 28px 0 24px;
+  font-family: var(--font-display); font-weight: 900; font-variation-settings: "wdth" 150; letter-spacing: -.03em; font-size: 40px; line-height: 1; }
+.bar-wrap { bottom: 0; }
+.bar {
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 72px; border: 0; border-radius: 0; padding: 0 24px;
+  background: var(--accent); color: var(--accent-ink); font-family: var(--font-ui); font-weight: 600; font-size: 20px; cursor: pointer;
+}
+.bar:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)); }
+.bar.is-added { background: var(--ink); color: var(--paper); }
+.note { margin: 16px 0 0; font-size: 18px; font-weight: 500; color: var(--ink); }
+.small { margin: 20px 0 0; color: var(--ink-2); }
+
+.tour-footer { background: var(--paper); color: var(--ink); padding: 56px 40px 0; overflow: hidden; border-top: 1px solid var(--line); }
+.demo { margin: 0 0 32px; font-size: 15px; font-weight: 500; color: var(--ink-2); }
+.wordmark-crop { height: calc(var(--wm-size, 25vw) * .62); overflow: hidden; }
+.wordmark { display: inline-block; font-family: var(--font-display); font-weight: 900; font-variation-settings: "wdth" 150; letter-spacing: -.04em;
+  font-size: var(--wm-size, 25vw); line-height: .74; color: var(--accent); white-space: nowrap; margin-left: -.04em; }
+
+/* phone */
+.tour-phone .cart { padding: 24px 16px 40px; }
+.tour-phone .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tour-phone .tile { border-left: 1px solid var(--line); border-top: 1px solid var(--line); padding: 12px 12px 16px; }
+.tour-phone .tile:nth-child(odd) { border-left: 0; }
+.tour-phone .tile:nth-child(-n+2) { border-top: 0; }
+.tour-phone .tile-no { left: 12px; top: 12px; }
+.tour-phone .tile-add { right: 8px; top: 8px; }
+.tour-phone .tile-name { font-size: 22px; }
+.tour-phone .tile-price { font-size: 18px; }
+.tour-phone .total { font-size: 26px; white-space: nowrap; }
+.tour-phone .bar { height: 60px; font-size: 16px; }
+.tour-phone .bar-wrap { position: sticky; bottom: 0; margin: 0 -16px; }
+.tour-phone .tour-footer { padding: 40px 16px 0; }
+.tour-record .colour-row, .tour-record .loupe, .tour-record .cr-ln { will-change: transform, opacity; }
+/* on the burgundy rug the colour ring disappears: the rug's dots wear a cream ring */
+.th[data-hotspot="p05"] .th-ring, .th[data-hotspot="p05"] .th-halo, .th[data-hotspot="p05-sofa"] .th-ring, .th[data-hotspot="p05-sofa"] .th-halo { border-color: var(--on-photo); }
+
+/* the fixed top layer (end-mask.js): the nav stays above the end sheet; a cream band behind it over the sheet */
+.f-top { position: fixed; left: 0; top: 0; width: 100%; height: 100svh; z-index: 5; pointer-events: none; }
+.f-band { position: absolute; left: 0; right: 0; top: 0; height: 92px; background: var(--paper); visibility: hidden; border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+.tour-phone .f-band { height: 64px; }
+.f-top .tour-nav a, .f-top .tour-nav button, .f-top .tn-layer { pointer-events: auto; }
+.f-top > .tour-cursor { z-index: 7; }
+/* the stage's UI fades out under the end sheet, so the letters show only the room */
+.tour-ui > :not(.tour-nav), .tour-lines { opacity: calc(var(--g, 1) * var(--o, 1) * var(--tour-ui-k, 1) * var(--f-ui, 1)); }
+.tour-record .f-top { will-change: transform; isolation: isolate; }
+.tour-phone .tw-name { display: none; }

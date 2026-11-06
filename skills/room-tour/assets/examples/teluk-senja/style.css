@@ -1,0 +1,224 @@
+/* Teluk Senja: dusk-sea night palette, Zodiak only. Labels: Zodiak has no true small caps (checked: the
+   smcp feature changes nothing), so they are set in uppercase at 14 px, tracking .08em, and nothing is synthesised. */
+
+:root {
+  --paper: #0A0F1E; --paper-2: #141B30;
+  --ink: #F2EFE9; --ink-2: #A6AEC4;
+  --on-photo: #F2EFE9; --on-photo-2: #CBD0DE;
+  --line: rgba(242, 239, 233, .24); --line-photo: rgba(242, 239, 233, .5);
+  --plate: rgba(10, 15, 30, .58); --plate-ink: #F2EFE9;
+  --accent: #F2EFE9; --accent-ink: #0A0F1E;
+  --signal: #F3B76A;
+  --scrim: rgba(4, 7, 16, .5);
+  --dot: #F2EFE9; --dot-ring: rgba(242, 239, 233, .55);
+  --card-blur: 18px;
+  --card-bg: rgba(10, 15, 30, .66); --card-ink: #F2EFE9; --card-ink-2: #AEB5CA;
+  --cursor-ink: #F2EFE9;
+
+  --font-display: "Zodiak", "Times New Roman", serif;
+  --font-text: "Zodiak", "Times New Roman", serif;
+  --font-ui: "Zodiak", "Times New Roman", serif;
+  --font-label: "Zodiak", "Times New Roman", serif;
+  --label-size: 14px; --label-case: uppercase; --label-tracking: .08em; --label-weight: 400;
+  --display-weight: 400; --display-wdth: 100; --display-tracking: -.01em; --display-case: uppercase;
+  --radius-plate: 0px; --radius-card: 4px; --radius-button: 0px;
+  --grain: .04;
+  --title-ink: #F2EFE9;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+html { background: var(--paper); }
+body.tour { font-synthesis: none; font-weight: 300; font-kerning: normal; }
+.tour em { font-style: italic; }
+.tour ::selection { background: rgba(243, 183, 106, .35); color: var(--ink); }
+
+/* ——— the name at the door ——— */
+.tt-block.t-title {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: -.01em; text-transform: uppercase;
+  line-height: .82; color: var(--title-ink);
+}
+.tt-block.t-hint {
+  font-family: var(--font-label); font-weight: 400; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+  line-height: 1.2; color: var(--on-photo);
+}
+.tt-block.t-statement { font-family: var(--font-text); font-weight: 300; font-size: 22px; line-height: 1.2; letter-spacing: 0; color: var(--on-photo); }
+.tour-phone .tt-block.t-statement { font-size: 18px; margin-top: 10px; }
+.tour-phone .tt-block.t-title { line-height: .86; }
+
+/* ——— nav ——— */
+.tn-brand { font-size: 20px; letter-spacing: .04em; font-weight: 400; }
+.tn-button {
+  height: 40px; padding: 0 20px; border-radius: 0; background: var(--accent); color: var(--accent-ink);
+  font-family: var(--font-label); font-weight: 400; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+}
+.tn-button:hover { background: #fff; }
+.tn-chip { border-radius: 0; border-color: rgba(242, 239, 233, .38); }
+.tour-phone .tn-button { height: 36px; padding: 0 16px; }
+
+/* ——— the photo strip (rail) ——— */
+.tr-strip { gap: 10px; }
+.tr-img { width: 64px; height: 40px; outline-offset: 3px; }
+.tr-thumb { gap: 7px; opacity: .55; }
+.tr-thumb.is-current { opacity: 1; }
+.tr-num { font-family: var(--font-label); font-size: 14px; letter-spacing: .08em; }
+.tr-fill { background: var(--signal); }
+.tr-line { color: var(--on-photo); }
+.tr-pop { top: 70px; width: 320px; gap: 10px; padding: 0; }
+.tr-pop img { width: 320px; height: 200px; }
+.tr-pop-t { color: var(--on-photo); white-space: nowrap; }
+
+/* ——— walk bar: counter + coast profile at the left, the booking line at the right ——— */
+.tour-walkbar { bottom: 22px; }
+.tw-n { font-size: 14px; letter-spacing: .08em; }
+.tw-plabel { top: -12px; font-size: 14px; opacity: .66; }
+.tw-ptick { opacity: .38; }
+.tw-ptick.is-passed { background: var(--signal); opacity: .9; }
+
+/* the booking line (booking-line.js): one ruled sentence between two hairlines */
+.bl { display: flex; justify-content: flex-end; visibility: hidden; }
+.bl-clip { overflow: clip; padding: 4px 0; margin: -4px 0; }
+.bl-line {
+  position: relative; display: flex; align-items: center; gap: 14px; padding: 10px 0; white-space: nowrap; color: var(--on-photo);
+}
+.bl-line::before, .bl-line::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--line-photo); }
+.bl-line::before { top: 0; }
+.bl-line::after { bottom: 0; }
+.bl-dash { opacity: .55; }
+.bl-go {
+  padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
+  background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0 1px;
+}
+.bl-go:hover { background-size: 100% 1px; }
+
+/* the frosted sheet that grows from the line into the card */
+.bl-morph {
+  position: absolute; left: 0; top: 0; width: 0; height: 0; visibility: hidden; pointer-events: none;
+  background: rgba(10, 15, 30, calc(.66 * var(--bg, 0)));
+  -webkit-backdrop-filter: blur(calc(18px * var(--bg, 0))); backdrop-filter: blur(calc(18px * var(--bg, 0)));
+}
+.bl-morph::before, .bl-morph::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--line-photo); opacity: var(--hl, 1); }
+.bl-morph::before { top: 0; }
+.bl-morph::after { bottom: 0; }
+
+/* ——— captions ——— */
+.tc-heading { font-size: 44px; line-height: 1; letter-spacing: -.01em; }
+.tc-body { font-weight: 300; font-size: 18px; line-height: 1.45; margin-top: 14px; color: var(--on-photo); }
+.tc-label, .tc-fact-k, .tc-price-pre, .tc-price-note { color: var(--on-photo-2); }
+/* Villa 12: the cut's two title lines read as one heading, "VILLA 12 · KARANG" */
+.tc-split .tc-head { flex-direction: row; flex-wrap: wrap; align-items: flex-start; column-gap: .28em; }
+.tc-split .tc-head > .tc-clip + .tc-clip .tc-ln::before { content: "·"; margin-right: .28em; font-style: normal; }
+.tc-row { margin-top: 22px; gap: 0 28px; flex-wrap: nowrap; }
+.tc-fact { gap: 6px; padding-top: 10px; border-top: 1px solid var(--line-photo); min-width: 92px; }
+.tc-fact-v { font-weight: 300; font-size: 17px; white-space: nowrap; }
+.tc-side { padding-bottom: 2px; }
+.tc-price-main { font-size: 56px; line-height: 1; letter-spacing: -.01em; margin-top: 4px; }
+.tc-unit { font-family: var(--font-text); font-weight: 300; font-size: 18px; letter-spacing: 0; }
+.tc-price-note { margin-top: 8px; }
+.tc-link {
+  display: inline-block; margin-top: 14px; font-family: var(--font-text); font-weight: 400; font-size: 16px;
+  text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 3px;
+}
+.tc-link:hover { background-size: 0 1px; background-position: 100% 100%; }
+
+/* ——— the cut's words ——— */
+.tcut-line { color: var(--on-photo); }
+.tcut-note { font-weight: 300; font-size: 18px; color: var(--on-photo); }
+
+/* ——— hotspots: + dots and their one-line pills ——— */
+.th[data-icon="plus"] .th-ring { background: rgba(10, 15, 30, .42); border: 1px solid rgba(242, 239, 233, .55); }
+.th-pill { text-transform: none; letter-spacing: 0; font-variant-caps: normal; font-family: var(--font-text); font-weight: 300; font-size: 15px; line-height: 1.25; padding: 10px 14px; background: var(--plate); color: var(--plate-ink); }
+
+/* ——— the facts card (Room details →): night, solid ——— */
+.tour-card { background: var(--paper); color: var(--ink); }
+.tour-card .tk-close { background: var(--paper); border-radius: 0; }
+.tk-name { font-size: 34px; letter-spacing: -.01em; text-transform: uppercase; margin-top: 4px; }
+.tk-row { grid-template-columns: 104px minmax(0, 1fr); font-weight: 300; font-size: 15px; padding: 12px 0; }
+.tk-row dt { font-family: var(--font-label); font-weight: 400; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+.tk-price { font-family: var(--font-text); font-weight: 300; font-size: 18px; line-height: 1.4; margin: 22px 0 20px; }
+.tk-button { font-family: var(--font-label); font-weight: 400; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; border-radius: 0; }
+.tk-button:hover { background: #fff; }
+
+/* ——— the booking card (the end) ——— */
+.tour-ui > .tour-end-card { padding: 32px 32px 26px; min-height: 0; background: var(--card-bg); }
+.tour-ui > .tour-end-card.bl-manual { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tour-ui > .tour-end-card.bl-manual.is-open { background: var(--card-bg); -webkit-backdrop-filter: blur(var(--card-blur)); backdrop-filter: blur(var(--card-blur)); }
+.bk { color: var(--card-ink); }
+.bk-name { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
+.bk-sub { margin: 12px 0 22px; color: var(--card-ink-2); }
+.bk-rows { display: flex; flex-direction: column; }
+.bk-row {
+  display: grid; grid-template-columns: 104px minmax(0, 1fr) 10px; align-items: baseline; gap: 12px; width: 100%;
+  padding: 13px 0 12px; border: 0; border-bottom: 1px solid var(--line); background: none; color: inherit; text-align: left;
+  font: inherit; font-weight: 300; font-size: 16px; line-height: 1.3;
+}
+button.bk-row { cursor: pointer; }
+button.bk-row:hover { border-bottom-color: var(--line-photo); }
+button.bk-row:hover .bk-chev { transform: translateX(2px); }
+.bk-k { color: var(--card-ink-2); }
+.bk-chev { width: 10px; height: 10px; align-self: center; transition: transform .2s var(--ease-out); }
+.bk-chev path { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.bk-price { margin: 22px 0 6px; font-weight: 300; font-size: 18px; }
+.bk-amt { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: -.01em; }
+.bk-total { margin: 10px 0 0; }
+.bk-tax { margin: 6px 0 22px; color: var(--card-ink-2); }
+.bk-button {
+  display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 0; background: var(--accent); color: var(--accent-ink);
+  font-family: var(--font-label); font-weight: 400; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+}
+.bk-button:hover { background: #fff; }
+.bk-note { margin: 12px 0 0; font-size: 15px; font-weight: 400; color: var(--ink); }
+.bk-cancel { margin: 12px 0 0; font-size: 15px; font-weight: 300; color: var(--card-ink-2); }
+/* rolling characters */
+.roll { display: inline-block; white-space: pre; }
+.rl-c { display: inline-block; }
+.rl-roll { display: inline-grid; overflow: clip; vertical-align: bottom; }
+.rl-roll > i { grid-area: 1 / 1; font-style: normal; text-align: center; }
+.tour-phone .tour-ui > .tour-end-card { padding: 24px 16px 0; }
+.tour-phone .bk-name { font-size: 32px; }
+.tour-phone .bk-amt { font-size: 44px; }
+.tour-phone .bk-button { position: sticky; bottom: 0; margin: 0 -16px; }
+.tour-phone .bk-cancel { padding-bottom: 16px; }
+
+/* ——— footer ——— */
+.tour-footer { background: var(--paper); color: var(--ink); padding: 96px 40px 64px; position: relative; z-index: 2; }
+.ft-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 40px; max-width: 1360px; margin: 0 auto; align-items: end; border-top: 1px solid var(--line); padding-top: 32px; }
+.ft-brand { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
+.ft-cols p { margin: 0 0 8px; }
+.ft-line { margin-bottom: 14px !important; color: var(--ink); }
+.ft-text { font-weight: 300; font-size: 16px; line-height: 1.5; }
+.ft-quiet { color: var(--ink-2); }
+.tour-phone .tour-footer { padding: 64px 16px 48px; }
+.tour-phone .ft-inner { grid-template-columns: 1fr; gap: 24px; }
+.tour-phone .ft-brand { font-size: 40px; }
+
+/* ——— spacing: captions sit a step above the coast profile's labels ——— */
+.tc-bottom-left, .tc-split { bottom: 108px; }
+.tc-split .tc-main { width: min(680px, 58%); }
+.tc-bottom-left { width: min(760px, calc(100% - 80px)); }
+
+/* the terrace: the caption clears the fire bowl, on the empty boards */
+.tour:not(.tour-phone) .tc-bottom-left[data-stop="terrace"] { left: 19.5vw; width: auto; }
+
+/* ——— phone: the villa's caption stays compact ——— */
+.tour-phone .tc-bottom-left, .tour-phone .tc-split { bottom: 72px; }
+.tour-phone .tc-split .tc-main { width: auto; }
+.tour-phone .tc-heading { font-size: 30px; }
+.tour-phone .tc-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 12px; margin-top: 14px; }
+.tour-phone .tc-fact { min-width: 0; padding-top: 8px; gap: 4px; }
+.tour-phone .tc-fact-v { font-size: 15px; white-space: normal; }
+.tour-phone .tc-split { gap: 14px; }
+.tour-phone .tc-side .tc-price { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: baseline; }
+.tour-phone .tc-side .tc-price > .tc-clip.tc-price-note, .tour-phone .tc-side .tc-price > .tc-price-link-clip { grid-column: 1 / -1; }
+.tour-phone .tc-price-note { margin-top: 4px; }
+.tour-phone .tc-price-main { font-size: 30px; margin-top: 0; }
+.tour-phone .tc-link { margin-top: 8px; }
+
+/* ——— small polish ——— */
+.bk-sub, .bk-total, .bk-tax, .tc-body, .tcut-note, .tk-price { text-wrap: balance; }
+.tr-strip:has(.tr-thumb:hover) .tr-line { opacity: 0; }
+.tr-pop-t { padding-top: 2px; }
+
+/* ?record: captions are painted, not cached as transform layers (a cached layer kept the sub-pixel raster of the
+   frame it was first drawn in, so the same frame number differed by visiting order) */
+.tour-record .tc, .tour-record .tc-ln { will-change: auto; }
+.tour-phone .th-pill { white-space: normal; width: max-content; max-width: 196px; text-wrap: balance; }

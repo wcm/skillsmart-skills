@@ -1,0 +1,516 @@
+{
+  "version": 1,
+  "site": "gallery",
+  "meta": {
+    "title": "Ines Moll — Half Light · Shedlight",
+    "description": "Ines Moll, Half Light. Six paintings and a plaster, two rooms. Shedlight, Antwerpen, 13 November – 20 December 2026.",
+    "lang": "en"
+  },
+  "theme": {
+    "material": "wall",
+    "grain": 0,
+    "frame": {
+      "kind": "none"
+    },
+    "label": {
+      "brackets": false
+    },
+    "hotspot": {
+      "plate": "wall",
+      "halo": "off",
+      "leader": true
+    },
+    "rail": {
+      "skin": "works",
+      "hideOnTitle": true
+    },
+    "ruler": {
+      "style": "ticks",
+      "count": 40,
+      "works": true
+    },
+    "walkbar": {
+      "layout": "center-ruler",
+      "right": "meta",
+      "meta": "{seen} / {works} seen",
+      "hideOnTitle": true
+    },
+    "caption": {
+      "place": "center",
+      "rule": false,
+      "case": "upper"
+    },
+    "map": {
+      "svg": "img/map.svg",
+      "corner": "bl",
+      "frame": "crop",
+      "cone": false,
+      "from": "ui",
+      "label": "you are here · 01–07 works"
+    },
+    "end": {
+      "arrive": "sheet",
+      "frame": "dim",
+      "screens": 1.2,
+      "pin": 0
+    },
+    "cursor": {
+      "on": true,
+      "verbs": {
+        "art": "Lift"
+      }
+    }
+  },
+  "brand": {
+    "name": "Shedlight",
+    "cover": true
+  },
+  "nav": {
+    "left": "wordmark",
+    "center": "INES MOLL — HALF LIGHT",
+    "right": [
+      {
+        "link": "Visit",
+        "do": "end"
+      },
+      {
+        "button": "RSVP",
+        "do": "end#opening",
+        "primary": true
+      },
+      {
+        "chip": "hide"
+      }
+    ]
+  },
+  "title": {
+    "blocks": [
+      {
+        "id": "a",
+        "lines": [
+          "INES MOLL"
+        ],
+        "class": "t-title",
+        "slot": "nav-center",
+        "part": 0,
+        "align": "left",
+        "valign": "top",
+        "box": {
+          "desktop": [
+            0.028,
+            0.105,
+            0.6,
+            0.17
+          ],
+          "phone": [
+            0.04,
+            0.14,
+            0.92,
+            0.09
+          ]
+        },
+        "size": {
+          "desktop": "12vw",
+          "phone": "16vw",
+          "max": "200px"
+        }
+      },
+      {
+        "id": "b",
+        "lines": [
+          "HALF LIGHT"
+        ],
+        "class": "t-title",
+        "slot": "nav-center",
+        "part": 1,
+        "align": "right",
+        "valign": "bottom",
+        "box": {
+          "desktop": [
+            0.4,
+            0.735,
+            0.572,
+            0.17
+          ],
+          "phone": [
+            0.04,
+            0.68,
+            0.92,
+            0.09
+          ]
+        },
+        "size": {
+          "desktop": "12vw",
+          "phone": "16vw",
+          "max": "200px"
+        }
+      },
+      {
+        "id": "statement",
+        "lines": [
+          "13.11 — 20.12.2026 · Opening night Thu 12.11"
+        ],
+        "class": "t-hint",
+        "box": {
+          "desktop": [
+            0.028,
+            0.8,
+            0.34,
+            0.04
+          ],
+          "phone": [
+            0.04,
+            0.85,
+            0.92,
+            0.04
+          ]
+        },
+        "exit": {
+          "dy": -24
+        }
+      }
+    ],
+    "gradients": [
+      {
+        "edge": "top",
+        "color": "#F3F4F5",
+        "opacity": [
+          0.85,
+          0
+        ],
+        "extent": 0.2,
+        "start": 0,
+        "rest": 0.85
+      },
+      {
+        "edge": "bottom",
+        "color": "#F3F4F5",
+        "opacity": [
+          0.6,
+          0
+        ],
+        "extent": 0.16,
+        "start": 0,
+        "rest": 0.6
+      }
+    ],
+    "occluder": null,
+    "window": {
+      "desktop": [
+        0.27,
+        0.315,
+        0.46,
+        0.41
+      ],
+      "phone": [
+        0.06,
+        0.33,
+        0.88,
+        0.3
+      ],
+      "radius": 0,
+      "grow": 0.45
+    },
+    "exit": {
+      "mode": "nav",
+      "screens": 0.45
+    }
+  },
+  "walk": [
+    "entrance",
+    "move-1",
+    "side",
+    "move-2",
+    "hall"
+  ],
+  "stops": {
+    "entrance": {
+      "n": "01",
+      "name": "North-light hall",
+      "bar": "Room 01 — North-light hall",
+      "frame": "move-1:first",
+      "focus": [
+        0.52,
+        0.48
+      ],
+      "screens": 0,
+      "sharp": false,
+      "map": {
+        "stop": "s1",
+        "room": "r1",
+        "heading": 45
+      }
+    },
+    "side": {
+      "n": "02",
+      "name": "East wall",
+      "bar": "Room 01 — North-light hall",
+      "frame": "move-1:last",
+      "focus": [
+        0.5,
+        0.44
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "caption": {
+        "heading": "ROOM 01 — NORTH-⁠LIGHT HALL",
+        "body": "Four hours of one day."
+      },
+      "map": {
+        "stop": "s2",
+        "room": "r1",
+        "heading": 90
+      }
+    },
+    "hall": {
+      "n": "03",
+      "name": "Top-lit hall",
+      "bar": "Room 02 — Top-lit hall",
+      "frame": "move-2:last",
+      "focus": [
+        0.5,
+        0.44
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "caption": {
+        "heading": "02 — TOP-LIT HALL",
+        "body": "Dusk at 4.65 metres wide, night at 45 centimetres.",
+        "at": 0.55
+      },
+      "map": {
+        "stop": "s3",
+        "room": "r2",
+        "heading": 90
+      },
+      "hotspots": [
+        {
+          "id": "o-07",
+          "at": [
+            0.7698,
+            0.5593
+          ],
+          "work": "w07",
+          "plate": "wall",
+          "side": "right",
+          "leader": true
+        }
+      ]
+    }
+  },
+  "moves": {
+    "move-1": {
+      "from": "entrance",
+      "to": "side",
+      "clips": [
+        "frames/move-1"
+      ],
+      "screens": 2.1,
+      "panels": {
+        "src": "frames/move-1/panels.json",
+        "map": {
+          "0": "w02",
+          "1": "w01",
+          "2": "w03",
+          "3": "w06",
+          "4": "w05",
+          "5": "w06",
+          "6": "w04"
+        }
+      }
+    },
+    "move-2": {
+      "from": "side",
+      "to": "hall",
+      "clips": [
+        "frames/move-2"
+      ],
+      "screens": 2.1,
+      "panels": {
+        "src": "frames/move-2/panels.json",
+        "map": {
+          "0": "w03",
+          "1": "w06",
+          "2": "w05",
+          "3": "w04"
+        }
+      }
+    }
+  },
+  "artworks": {
+    "w01": {
+      "n": "01",
+      "kind": "painting",
+      "title": "06:40",
+      "year": "2025",
+      "medium": "Oil on linen",
+      "size": [
+        "180",
+        "265"
+      ],
+      "price": "€24,000",
+      "src": "img/art/w01.webp",
+      "thumb": "img/art/w01-thumb.webp",
+      "tint": "#D1CFFF",
+      "tintInk": "#9795E4",
+      "wall": "Room 01, north wall",
+      "caption": "INES MOLL · 06:40 · 2025 · ROOM 01, NORTH WALL",
+      "at": {
+        "move": "move-1",
+        "t": 0.3
+      }
+    },
+    "w02": {
+      "n": "02",
+      "kind": "painting",
+      "title": "09:15",
+      "year": "2025",
+      "medium": "Oil on linen",
+      "size": [
+        "140",
+        "90"
+      ],
+      "price": "€16,500",
+      "src": "img/art/w02.webp",
+      "thumb": "img/art/w02-thumb.webp",
+      "tint": "#E3D48D",
+      "tintInk": "#AD9F06",
+      "wall": "Room 01, north wall",
+      "caption": "INES MOLL · 09:15 · 2025 · ROOM 01, NORTH WALL",
+      "at": {
+        "move": "move-1",
+        "t": 0.14
+      }
+    },
+    "w03": {
+      "n": "03",
+      "kind": "painting",
+      "title": "12:30",
+      "year": "2026",
+      "medium": "Oil on linen",
+      "size": [
+        "160",
+        "110"
+      ],
+      "price": "€18,000",
+      "src": "img/art/w03.webp",
+      "thumb": "img/art/w03-thumb.webp",
+      "tint": "#ECD18D",
+      "tintInk": "#BA9A0A",
+      "wall": "Room 01, east wall",
+      "caption": "INES MOLL · 12:30 · 2026 · ROOM 01, EAST WALL",
+      "stop": "side"
+    },
+    "w04": {
+      "n": "04",
+      "kind": "painting",
+      "title": "15:50",
+      "year": "2026",
+      "medium": "Oil on linen",
+      "size": [
+        "100",
+        "75"
+      ],
+      "price": "€11,000",
+      "src": "img/art/w04.webp",
+      "thumb": "img/art/w04-thumb.webp",
+      "tint": "#F5CBB8",
+      "tintInk": "#D18D6C",
+      "wall": "Room 01, east wall",
+      "caption": "INES MOLL · 15:50 · 2026 · ROOM 01, EAST WALL",
+      "stop": "side"
+    },
+    "w05": {
+      "n": "05",
+      "kind": "painting",
+      "title": "18:20 (Half light)",
+      "year": "2026",
+      "medium": "Oil on linen",
+      "size": [
+        "240",
+        "465"
+      ],
+      "price": "Enquire",
+      "src": "img/art/w05.webp",
+      "thumb": "img/art/w05-thumb.webp",
+      "tint": "#DCCEEE",
+      "tintInk": "#AC92C8",
+      "wall": "Room 02, east wall",
+      "caption": "INES MOLL · 18:20 · 2026 · ROOM 02, EAST WALL",
+      "stop": "hall",
+      "enquire": "end#opening"
+    },
+    "w06": {
+      "n": "06",
+      "kind": "painting",
+      "title": "21:05",
+      "year": "2026",
+      "medium": "Oil on linen",
+      "size": [
+        "60",
+        "45"
+      ],
+      "price": "€6,800",
+      "src": "img/art/w06.webp",
+      "thumb": "img/art/w06-thumb.webp",
+      "tint": "#CCD4E2",
+      "tintInk": "#919DB6",
+      "wall": "Room 02, east wall",
+      "caption": "INES MOLL · 21:05 · 2026 · ROOM 02, EAST WALL",
+      "stop": "hall"
+    },
+    "w07": {
+      "n": "07",
+      "kind": "object",
+      "title": "03:10",
+      "year": "2026",
+      "medium": "Cast plaster",
+      "size": [
+        "120",
+        "65",
+        "55"
+      ],
+      "price": "€9,500",
+      "cutout": "img/art/w07-cut.webp",
+      "thumb": "img/art/w07-thumb.webp",
+      "box": [
+        0.7255,
+        0.5574,
+        0.0792,
+        0.2556
+      ],
+      "stop": "hall",
+      "tint": "#EEEBE6",
+      "tintInk": "#B9B2A6",
+      "wall": "Room 02, floor",
+      "caption": "INES MOLL · 03:10 · 2026 · ROOM 02, FLOOR"
+    }
+  },
+  "end": {
+    "id": "end"
+  },
+  "record": {
+    "fps": 30,
+    "hold": 0.9,
+    "speed": 1.1,
+    "end": 3.6,
+    "frames": "-rec",
+    "beats": [
+      {
+        "at": "side",
+        "after": 0.3,
+        "do": "hover",
+        "target": "art:w04",
+        "hold": 0.8
+      },
+      {
+        "at": "hall",
+        "after": 0.35,
+        "do": "lift",
+        "target": "art:w05",
+        "hold": 1.8
+      }
+    ],
+    "endTo": "#opening"
+  }
+}

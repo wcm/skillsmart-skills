@@ -1,0 +1,610 @@
+{
+  "version": 1,
+  "site": "house",
+  "meta": {
+    "title": "Tembusu — Teduh House, the house that opens to the pool",
+    "description": "Tembusu, architecture and interiors, Singapore. Teduh House, shown before it is built: walk in through the pivot door, across the living room and out along the pool.",
+    "lang": "en"
+  },
+  "theme": {
+    "material": "paper",
+    "grain": 0.03,
+    "frame": {
+      "kind": "crop"
+    },
+    "label": {
+      "brackets": true
+    },
+    "rail": {
+      "skin": "index",
+      "case": "sentence",
+      "hideOnTitle": true
+    },
+    "ruler": {
+      "style": "none"
+    },
+    "walkbar": {
+      "layout": "no-ruler",
+      "right": "layer",
+      "hideOnTitle": true
+    },
+    "caption": {
+      "place": "bottom-left",
+      "rule": true,
+      "case": "sentence"
+    },
+    "hotspot": {
+      "icon": "dot",
+      "leader": false,
+      "plate": "pill",
+      "plateOn": "always",
+      "opens": "card",
+      "halo": "off"
+    },
+    "map": {
+      "svg": "img/map.svg",
+      "corner": "bl",
+      "frame": "title-block",
+      "cone": true,
+      "from": "ui",
+      "label": "TEDUH HOUSE · GF"
+    },
+    "end": {
+      "arrive": "sheet",
+      "frame": "dim",
+      "screens": 1.2,
+      "pin": 0
+    },
+    "cursor": {
+      "on": true,
+      "verbs": {
+        "hotspot": "Open"
+      }
+    }
+  },
+  "brand": {
+    "name": "Tembusu",
+    "wordmark": "Tembusu"
+  },
+  "nav": {
+    "left": "wordmark",
+    "center": "rail",
+    "right": [
+      {
+        "chip": "Plan",
+        "do": "end#plan"
+      },
+      {
+        "chip": "hide"
+      },
+      {
+        "button": "Start a project →",
+        "do": "end#ask",
+        "primary": true
+      }
+    ]
+  },
+  "title": {
+    "blocks": [
+      {
+        "id": "name",
+        "lines": [
+          "Tembusu"
+        ],
+        "class": "t-title",
+        "align": {
+          "desktop": "left",
+          "phone": "left"
+        },
+        "valign": {
+          "desktop": "bottom",
+          "phone": "top"
+        },
+        "space": {
+          "desktop": "frame",
+          "phone": "viewport"
+        },
+        "kicker": "Architecture & interiors · Singapore",
+        "kickerAt": {
+          "desktop": "above",
+          "phone": "below"
+        },
+        "box": {
+          "desktop": [
+            0.04,
+            0.098,
+            0.86,
+            0.302
+          ],
+          "phone": [
+            0.04,
+            0.11,
+            0.92,
+            0.13
+          ]
+        },
+        "size": {
+          "desktop": "max(19.8vw, 35.2vh)",
+          "phone": "23vw",
+          "stack": "22.5vw"
+        },
+        "exit": {
+          "dx": 0,
+          "dy": -56
+        },
+        "stack": {
+          "desktop": [
+            0.04,
+            0.1,
+            0.92,
+            0.255
+          ]
+        },
+        "stackAlign": "left"
+      },
+      {
+        "id": "statement",
+        "lines": [
+          "We draw the *shade* first."
+        ],
+        "class": "t-statement",
+        "box": {
+          "desktop": [
+            0.028,
+            0.895,
+            0.42,
+            0.05
+          ],
+          "phone": [
+            0.041,
+            0.885,
+            0.918,
+            0.045
+          ]
+        },
+        "exit": {
+          "dy": -24
+        }
+      },
+      {
+        "id": "hint",
+        "lines": [
+          "[ scroll — walk in ]"
+        ],
+        "class": "t-hint",
+        "align": {
+          "desktop": "center",
+          "phone": "left"
+        },
+        "box": {
+          "desktop": [
+            0.3,
+            0.915,
+            0.44,
+            0.03
+          ],
+          "phone": [
+            0.041,
+            0.945,
+            0.918,
+            0.03
+          ]
+        },
+        "exit": {
+          "dy": -24
+        }
+      }
+    ],
+    "gradients": [
+      {
+        "edge": "top",
+        "color": "#16140F",
+        "opacity": [
+          0.28,
+          0
+        ],
+        "extent": 0.42,
+        "start": 0.28,
+        "rest": 0
+      }
+    ],
+    "occluder": {
+      "masks": "img/occ/{n}.webp",
+      "frames": [
+        1,
+        1
+      ],
+      "feather": 1.5
+    },
+    "window": null,
+    "exit": {
+      "mode": "drift",
+      "screens": 0.3
+    }
+  },
+  "walk": [
+    "entry",
+    "move-1",
+    "living",
+    "move-2",
+    "deck"
+  ],
+  "stops": {
+    "entry": {
+      "n": "01",
+      "name": "Entry",
+      "frame": "move-1:first",
+      "sharp": false,
+      "focus": [
+        0.47,
+        0.6
+      ],
+      "screens": 0,
+      "caption": null,
+      "hotspots": [
+        {
+          "id": "m01",
+          "at": [
+            0.58,
+            0.6
+          ],
+          "label": "Teak",
+          "code": "M-01",
+          "card": "m01"
+        }
+      ],
+      "lines": [
+        {
+          "kind": "dim",
+          "from": [
+            0.328,
+            0.378
+          ],
+          "to": [
+            0.328,
+            0.875
+          ],
+          "text": "4.00 m"
+        }
+      ],
+      "map": {
+        "stop": "s1",
+        "room": "r-court",
+        "heading": 180
+      }
+    },
+    "living": {
+      "n": "02",
+      "name": "Living room",
+      "sharp": false,
+      "focus": [
+        0.393,
+        0.612
+      ],
+      "screens": 0.45,
+      "caption": {
+        "heading": "Seven metres of open wall.",
+        "body": "The doors stack behind the teak and the room becomes a verandah.",
+        "label": "FIG. 01 — Living room on completion · Q3 2027 · 15:20",
+        "place": "top-left"
+      },
+      "hotspots": [
+        {
+          "id": "m04",
+          "at": [
+            0.101,
+            0.5
+          ],
+          "label": "Limestone",
+          "code": "M-04",
+          "card": "m04"
+        },
+        {
+          "id": "m01",
+          "at": [
+            0.326,
+            0.387
+          ],
+          "label": "Teak",
+          "code": "M-01",
+          "card": "m01",
+          "side": "right"
+        },
+        {
+          "id": "m03",
+          "at": [
+            0.517,
+            0.747
+          ],
+          "label": "Rattan",
+          "code": "M-03",
+          "card": "m03"
+        },
+        {
+          "id": "m02",
+          "at": [
+            0.33,
+            0.88
+          ],
+          "label": "Terrazzo",
+          "code": "M-02",
+          "card": "m02"
+        }
+      ],
+      "map": {
+        "stop": "s2",
+        "room": "r-living",
+        "heading": 140
+      }
+    },
+    "deck": {
+      "n": "03",
+      "name": "Pool deck",
+      "sharp": false,
+      "focus": [
+        0.5,
+        0.6
+      ],
+      "screens": 0.45,
+      "caption": {
+        "heading": "Sixteen metres of water.",
+        "body": "Green Sukabumi stone. The screens shade it from three.",
+        "label": "FIG. 02 — Pool deck on completion · Q3 2027 · 15:26",
+        "place": "top-left"
+      },
+      "hotspots": [
+        {
+          "id": "m05",
+          "at": [
+            0.6,
+            0.68
+          ],
+          "label": "Sukabumi stone",
+          "code": "M-05",
+          "card": "m05"
+        },
+        {
+          "id": "m01",
+          "at": [
+            0.165,
+            0.4
+          ],
+          "label": "Teak",
+          "code": "M-01",
+          "card": "m01"
+        }
+      ],
+      "map": {
+        "stop": "s3",
+        "room": "r-deck",
+        "heading": 92
+      }
+    }
+  },
+  "moves": {
+    "move-1": {
+      "from": "entry",
+      "to": "living",
+      "clips": [
+        "frames/move-1"
+      ],
+      "screens": 2.2,
+      "rec": 7.2,
+      "events": [
+        {
+          "at": 0.24,
+          "name": "material",
+          "id": "teak"
+        },
+        {
+          "at": 0.42,
+          "name": "material",
+          "id": "terrazzo"
+        },
+        {
+          "at": 0.56,
+          "name": "material",
+          "id": "limestone"
+        },
+        {
+          "at": 0.74,
+          "name": "material",
+          "id": "rattan"
+        }
+      ],
+      "tags": [
+        {
+          "id": "t-teak",
+          "text": "M-01 TEAK PIVOT DOOR",
+          "offset": [
+            -212,
+            44
+          ],
+          "track": [
+            "tracks/move-1.json#door"
+          ],
+          "from": 0.1,
+          "to": 0.33
+        }
+      ]
+    },
+    "move-2": {
+      "from": "living",
+      "to": "deck",
+      "clips": [
+        "frames/move-2"
+      ],
+      "screens": 2.5,
+      "rec": 8.2,
+      "events": [
+        {
+          "at": 0.5,
+          "name": "material",
+          "id": "sukabumi"
+        }
+      ],
+      "tags": [
+        {
+          "id": "t-suka",
+          "text": "M-05 SUKABUMI",
+          "offset": [
+            40,
+            -40
+          ],
+          "track": [
+            "tracks/move-2.json#coping"
+          ],
+          "from": 0.6,
+          "to": 0.9
+        }
+      ]
+    }
+  },
+  "end": {
+    "id": "end"
+  },
+  "record": {
+    "fps": 30,
+    "hold": 0.9,
+    "speed": 1.1,
+    "end": 3.4,
+    "frames": "-rec",
+    "endTo": null,
+    "beats": [
+      {
+        "at": "living",
+        "after": 0.35,
+        "do": "open",
+        "target": "hotspot:m04",
+        "hold": 1.4
+      }
+    ]
+  },
+  "cards": {
+    "m01": {
+      "type": "material",
+      "code": "M-01",
+      "name": "Teak",
+      "swatch": "img/sw-teak.webp",
+      "line": "Plantation teak, quarter-sawn and oiled. It silvers in the rain and stays straight.",
+      "rows": [
+        [
+          "Finish",
+          "oiled, unstained"
+        ],
+        [
+          "Origin",
+          "Central Java, FSC plantation"
+        ],
+        [
+          "Size",
+          "door 2.4 × 4.0 m · louvres 45 × 145 mm · deck 140 × 28 mm"
+        ],
+        [
+          "Where",
+          "pivot door, screens either side of the opening, deck, pool-side facade"
+        ]
+      ]
+    },
+    "m02": {
+      "type": "material",
+      "code": "M-02",
+      "name": "Terrazzo",
+      "swatch": "img/sw-terrazzo.webp",
+      "line": "Cream terrazzo with grey-green chips, poured in place and honed. Cool underfoot all afternoon.",
+      "rows": [
+        [
+          "Finish",
+          "honed, sealed"
+        ],
+        [
+          "Origin",
+          "poured on site, Singapore"
+        ],
+        [
+          "Size",
+          "poured in 2.4 m bays"
+        ],
+        [
+          "Where",
+          "living, dining, kitchen"
+        ]
+      ]
+    },
+    "m03": {
+      "type": "material",
+      "code": "M-03",
+      "name": "Rattan",
+      "swatch": "img/sw-rattan.webp",
+      "line": "Hand-woven cane on teak frames. It breathes in the humidity.",
+      "rows": [
+        [
+          "Finish",
+          "natural, waxed"
+        ],
+        [
+          "Origin",
+          "Cirebon, West Java"
+        ],
+        [
+          "Size",
+          "lounge chair 74 × 82 × 70 cm"
+        ],
+        [
+          "Where",
+          "the two living-room lounge chairs"
+        ]
+      ]
+    },
+    "m04": {
+      "type": "material",
+      "code": "M-04",
+      "name": "Limestone",
+      "swatch": "img/sw-limestone.webp",
+      "line": "Pale limestone in long honed courses, full height. It stays cool through the afternoon.",
+      "rows": [
+        [
+          "Finish",
+          "honed"
+        ],
+        [
+          "Origin",
+          "Moleanos, Portugal"
+        ],
+        [
+          "Size",
+          "600 × 1200 × 30 mm"
+        ],
+        [
+          "Where",
+          "living-room wall, entry paving, guest bath"
+        ]
+      ]
+    },
+    "m05": {
+      "type": "material",
+      "code": "M-05",
+      "name": "Green Sukabumi stone",
+      "swatch": "img/sw-sukabumi.webp",
+      "line": "The green stone of tropical pools. Under water it turns the colour of a shallow sea.",
+      "rows": [
+        [
+          "Finish",
+          "honed, unsealed"
+        ],
+        [
+          "Origin",
+          "Sukabumi, West Java"
+        ],
+        [
+          "Size",
+          "100 × 100 × 15 mm"
+        ],
+        [
+          "Where",
+          "pool lining and steps"
+        ]
+      ]
+    }
+  }
+}
