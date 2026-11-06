@@ -4,7 +4,7 @@
   "tagline": "A website you walk through as you scroll: the camera moves room to room, with materials, products and artworks to click.",
   "category": "web",
   "tier": "free",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tags": ["room tour", "virtual tour", "walkthrough", "house tour", "scroll animation", "scroll-driven", "interior design", "architecture", "real estate", "new homes", "property developer", "hotel", "resort", "booking", "furniture", "shop the room", "e-commerce", "art gallery", "showroom", "AI video", "landing page"],
   "youSay": "/room-tour A walk-through for our new tropical house with a pool, sold before it's built",
   "whatYouGet": [
@@ -26,17 +26,17 @@
     "Optional: the brand's name, colours and tone, product photos, or a gallery's real artwork images"
   ],
   "needs": [
-    "Skillsmart credits: about 600 for a three-stop page",
+    "Skillsmart credits: about 500 for a three-stop page",
     "Node 18+",
     "Python 3",
     "ffmpeg",
     "Chrome or Edge",
     "Optional: OpenCV for Python, for labels that follow objects and exact artworks"
   ],
-  "generates": { "models": ["nano-banana-pro", "kling-v3-pro", "sam-3"], "estimate": "about 600 a page: 20 a picture, 15 a second of video, 2 a cut-out" },
+  "generates": { "models": ["nano-banana-pro", "h3-max-turbo", "sam-3"], "estimate": "about 500 a page: 20 a picture, 11 a second of video, 2 a cut-out" },
   "byoKey": {
     "service": "fal.ai",
-    "cost": "about $6 a page",
+    "cost": "about $4 a page",
     "domains": ["fal.ai", "fal.run", "fal.media", "queue.fal.run", "rest.alpha.fal.ai", "rest.fal.ai"]
   },
   "network": [

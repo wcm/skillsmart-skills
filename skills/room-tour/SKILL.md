@@ -58,8 +58,9 @@ Why it is built this way (each was learned the hard way, so keep it):
 | Chrome or Edge | `check.mjs` and `video.mjs` drive it headless | if there is none, check by hand (Step 7) |
 | OpenCV for Python (optional) | labels that follow an object through a move (`track.py`), artworks laid on canvases (`panels.py`) | `python3 -m pip install opencv-python-headless numpy` |
 
-**Cost in credits:** a picture is 20, a second of video 15, a cut-out 2. A three-stop page with two moves of 7 s, two
-takes of each move and a few picture retakes is about **600 credits** (about 180 for pictures, 420 for video). A gallery
+**Cost in credits:** a picture is 20, a second of video 11 (the moves are made with MiniMax H3 Max Turbo at 1080p), a
+cut-out 2. A three-stop page with two moves of 7 s, two takes of each move and a few picture retakes is about **500
+credits** (about 180 for pictures, 310 for video). A gallery
 adds its artworks; a shop its packshots. `node pictures.mjs <id> --cost` and `node moves.mjs <id> --cost` print exact
 figures. Tell the user before each paid step. Failed generations aren't charged.
 

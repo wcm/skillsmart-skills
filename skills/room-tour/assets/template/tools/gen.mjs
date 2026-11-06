@@ -8,6 +8,9 @@
 //
 // Models   nano-banana-pro  { prompt, images?: [file(…)], aspect_ratio?, resolution?: "1K" | "2K" | "4K", output_format?: "png" | "jpeg" | "webp" }
 //          kling-v3-pro     { prompt, start_image: file(…), end_image?: file(…), duration?: 3–15 (s), negative_prompt?, cfg_scale?: 0–1 }
+//          h3-max-turbo     { prompt, start_image: file(…), end_image?: file(…), duration?: 1–15 (s) } → a 1080p MP4 (1920 × 1080,
+//                           24 fps) that runs a little past the duration (up to about 0.7 s). MiniMax H3 Max Turbo: no
+//                           negative prompt, so say in the prompt what must stay still; the prompt is used as written
 //          birefnet-video   { video: file(….mp4, up to 30 s and 50 MB), variant?: "light" | "light-2k" | "heavy" | "matting" | "portrait"
 //                           | "dynamic" (default "heavy"), resolution?: "1K" | "2K" } → the subject's mask, frame by frame, as an MP4
 //          birefnet-image   { image: file(…), variant?: as for birefnet-video (default "heavy"), resolution?: "1K" | "2K" }
@@ -23,9 +26,10 @@
 //                           (716 × 1284 for a 9:16 photo, 24 fps; upscale it for 1080p)
 //          video-upscale    { video: file(….mp4, up to 60 s and 50 MB), fps?: the source's frame rate (default 30) }
 //                           → the video at 1080p, nothing else changed (tuned for generated video)
-// Prices   image 20 credits (4K: 40) · video 15 credits per second · video cut-out 2 credits per second · image cut-out or
-//          an object by name 2 credits · voice-over 10 credits per 1,000 characters (at least 1) · acting 14 credits per
-//          second of voice-over · upscale 1 credit per second · failed generations are never charged
+// Prices   image 20 credits (4K: 40) · video 15 credits per second (h3-max-turbo: 11) · video cut-out 2 credits per
+//          second · image cut-out or an object by name 2 credits · voice-over 10 credits per 1,000 characters (at least
+//          1) · acting 14 credits per second of voice-over · upscale 1 credit per second · failed generations are never
+//          charged
 // Errors   a failed generation throws and sets process.exitCode to the CLI's code: 3 = not enough credits (or the
 //          skill isn't on the account), 5 = a limit was reached, 1 = it failed. The CLI has already printed what to do.
 // Options  SKILLSMART_CLI replaces the command (default "npx --yes skillsmart@latest"); SKILLSMART_URL the service.
@@ -141,6 +145,16 @@ async function falRequest(model, i) {
       ...(i.negative_prompt ? { negative_prompt: i.negative_prompt } : {}),
       ...(i.cfg_scale != null ? { cfg_scale: i.cfg_scale } : {}),
       generate_audio: false,
+    }];
+  }
+  if (model === "h3-max-turbo") {
+    return ["minimax/h3-max-turbo/image-to-video", {
+      prompt: i.prompt,
+      image_url: await falUpload(i.start_image),
+      ...(i.end_image ? { end_image_url: await falUpload(i.end_image) } : {}),
+      duration: i.duration ?? 5,
+      resolution: "1080P",
+      prompt_expansion_mode: "disabled",
     }];
   }
   if (model === "omnihuman-v2") {
