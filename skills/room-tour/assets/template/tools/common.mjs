@@ -10,7 +10,7 @@ export const SITE = join(TOOLS, "..", "site");
 export const SKILL = "room-tour";
 export const PROMPTS = JSON.parse(readFileSync(join(TOOLS, "prompts.json"), "utf8"));
 export const SIZE = { width: 2560, height: 1440 };          // every picture, whatever the model returns
-export const CREDITS = { picture: 20, videoSecond: 15, cutout: 2 };
+export const CREDITS = { picture: 20, videoSecond: 11, cutout: 2 };
 
 /** a page's walk file: tools/walks/<id>.json (its pictures, moves and frame choices) */
 export function loadWalk(id) {

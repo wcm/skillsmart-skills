@@ -9,7 +9,7 @@ first, captions, a map with a red you-are-here marker, and things to click.
 - **Honest where it matters.** A place people book is made only from its own photographs, with a designed cut between rooms that can't see each other, never an invented corridor.
 - **The page around it.** Its own type and colours, a phone layout, a headless check, and a video of the walk in one command.
 
-Your agent generates the pictures and moves with your Skillsmart credits, about 600 for a three-stop page. Four example
+Your agent generates the pictures and moves with your Skillsmart credits, about 500 for a three-stop page. Four example
 pages ship in `assets/examples/`: *Tembusu* (a tropical house sold before it's built), *Teluk Senja* (a resort at
 dusk), *ondo* (a room you can shop) and *Shedlight* (a gallery show). See them live at
 [demos.skillsmart.io/room-tour](https://demos.skillsmart.io/room-tour/).
@@ -46,7 +46,7 @@ and the page, and checks it in a headless browser.
 
 **What you need**
 
-- Skillsmart credits: a picture is 20, a second of video 15, a cut-out 2; about 600 for a three-stop page. The agent tells you the cost before each step. (Or your own fal.ai key, as `FAL_KEY`.)
+- Skillsmart credits: a picture is 20, a second of video 11, a cut-out 2; about 500 for a three-stop page. The agent tells you the cost before each step. (Or your own fal.ai key, as `FAL_KEY`.)
 - Node 18+, Python 3, ffmpeg, and Chrome or Edge.
 - Optional: OpenCV for Python (`pip install opencv-python-headless numpy`) for labels that follow objects and for exact artworks.
 

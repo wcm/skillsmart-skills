@@ -1,5 +1,6 @@
-// The moves of a walk: one video clip per move, from one stop's picture to the next (15 credits a second; failed ones are
-// free). Each clip is a single continuous camera move, so the clips join into one walk at the stops.
+// The moves of a walk: one video clip per move, from one stop's picture to the next, made with MiniMax H3 Max Turbo at
+// 1080p (11 credits a second; failed ones are free). Each clip is a single continuous camera move, so the clips join
+// into one walk at the stops. H3 takes no negative prompt: the prompt says what must stay still ({move} does).
 //
 //   node moves.mjs <id> --cost                 what one take of every move costs, in credits
 //   node moves.mjs <id> move-1 --n 2           two takes: out/<id>/move-1-take1.mp4 (+ -strip.jpg, a contact sheet)
@@ -28,9 +29,11 @@ const tag = (W, text) => Buffer.from(`<svg width="${W}" height="40"><rect x="8" 
 
 /** n frames of a video, five to a row, each with its time */
 export async function strip(mp4, n = 10) {
-  const dur = probe(mp4).seconds || 5, W = 560, H = 315, tiles = [];
+  const p = probe(mp4), dur = p.seconds || 5, W = 560, H = 315, tiles = [];
+  // the last tile is the last frame: a file can run past it (an H3 clip by about 0.07 s), and a seek past it finds nothing
+  const last = p.count > 1 && p.fps ? (p.count - 1) / p.fps - 0.01 : dur - 0.2;
   for (let k = 0; k < n; k++) {
-    const t = Math.min(dur - 0.05, (dur * k) / (n - 1));
+    const t = Math.max(0, Math.min(last, (dur * k) / (n - 1)));
     tiles.push({ input: await sharp(grab(mp4, t, `scale=${W}:${H}`)).composite([{ input: tag(W, `${t.toFixed(1)}s`), left: 0, top: 0 }]).toBuffer(), left: (k % 5) * W, top: Math.floor(k / 5) * H });
   }
   const dest = mp4.replace(/\.mp4$/, n === 10 ? "-strip.jpg" : `-strip${n}.jpg`);
@@ -119,13 +122,12 @@ const input = {
   start_image: ref(startPic),
   end_image: ref(endPic),
   duration: mv.duration ?? 6,
-  negative_prompt: mv.negative ?? walk.negative ?? PROMPTS.negative,
-  cfg_scale: walk.cfg ?? 0.5,
 };
+if (mv.negative || walk.negative || walk.cfg != null) console.warn("note: H3 Max Turbo takes no negative prompt or cfg; say in the move's prompt what must stay still");
 const results = await Promise.allSettled(takes.map(async (t) => {
   const dest = join(dir, `${name}-take${t}.mp4`);
   try {
-    await generate("kling-v3-pro", input, { skill: SKILL, out: dest, label: `${id}/${name} #${t}` });
+    await generate("h3-max-turbo", input, { skill: SKILL, out: dest, label: `${id}/${name} #${t}` });
     writeFileSync(dest.replace(/\.mp4$/, ".txt"), `${basename(startPic)} → ${basename(endPic)}, ${input.duration} s\n${prompt}\n`);
     await strip(dest, 16);
   } finally { rmSync(join(dir, `${name}-take${t}.reserved`), { force: true }); }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 — 2026-11-06
+
+- Moves are made with MiniMax H3 Max Turbo at 1080p, the model behind the Tembusu and Teluk Senja walks, instead of
+  Kling v3 Pro: 11 credits a second instead of 15, so a three-stop page is about 500 credits.
+- H3 takes no negative prompt: what must stay still is said in the prompt, and `{move}` now also keeps the walls, the
+  furniture and the sky still. A walk file's `negative` and `cfg` are no longer used.
+- A take's contact sheet no longer fails when the clip's file runs past its last frame, as H3's do.
+
 ## 1.0.0 — 2026-11-06
 
 - First release: a scroll-driven walk through a place on a shared engine, with stops, one video move between each pair,

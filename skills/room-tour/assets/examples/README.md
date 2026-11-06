@@ -15,5 +15,5 @@ Teluk Senja is built in honest mode (`references/walks.md` §4): its four "photo
 photos that can see each other. Shedlight's works are laid onto blank canvases by the page (`references/gallery.md`).
 
 The demos' pictures were made with GPT Image 2.5 and nano-banana edits; Tembusu's and Teluk Senja's moves with MiniMax
-H3 Max Turbo, ondo's and Shedlight's with Kling v3 Pro. This skill's tools use nano-banana-pro and kling-v3-pro through
-Skillsmart credits; the prompts and the notes carry over.
+H3 Max Turbo, ondo's and Shedlight's with Kling v3 Pro. This skill's tools make pictures with nano-banana-pro and moves
+with H3 Max Turbo through Skillsmart credits; the prompts and the notes carry over.

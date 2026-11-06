@@ -1,6 +1,6 @@
 {
   "about": "ondo, a made-up furniture brand: one bold 70s room you can shop, a slow loop round it, warm afternoon light; every product is the same piece in its packshot and in the room, and the sofa takes the colour you pick.",
-  "made_with": "The demo's pictures were made with GPT Image 2.5 and nano-banana edits, its moves with Kling v3 Pro, as this skill's tools do.",
+  "made_with": "The demo's pictures were made with GPT Image 2.5 and nano-banana edits, its moves with Kling v3 Pro; this skill's tools make moves with MiniMax H3 Max Turbo, and the prompts carry over.",
   "shots": {
     "p01-dune": {
       "prompt": "A low modular sofa of four square modules side by side, about 320 cm wide, 105 cm deep and 64 cm high, upholstered in rust-coloured wide-wale cotton corduroy (#B4441F, 8 wales to the inch, the ridges running vertically), deep seats with rounded edges and plump rounded back cushions, on a recessed black plinth so it seems to float, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo.",
