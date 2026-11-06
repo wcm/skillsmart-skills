@@ -1,0 +1,661 @@
+{
+  "version": 1,
+  "site": "furniture",
+  "meta": {
+    "title": "ondo — shop the room",
+    "description": "Walk round one 70s room, pick the sofa's colour, shop the room.",
+    "lang": "en"
+  },
+  "theme": {
+    "material": "solid",
+    "grain": 0.02,
+    "frame": {
+      "kind": "inset",
+      "inset": 12,
+      "radius": 10
+    },
+    "label": {
+      "brackets": false
+    },
+    "rail": {
+      "skin": "index",
+      "case": "lower",
+      "hideOnTitle": true
+    },
+    "ruler": {
+      "style": "segments"
+    },
+    "walkbar": {
+      "layout": "center-ruler",
+      "right": "meta",
+      "meta": "6 pieces · €10,400",
+      "hideOnTitle": true
+    },
+    "caption": {
+      "place": "top-left",
+      "rule": false,
+      "case": "lower"
+    },
+    "map": null,
+    "end": {
+      "arrive": "sheet",
+      "frame": "mask",
+      "screens": 1.3,
+      "pin": 1.0
+    },
+    "hotspot": {
+      "icon": "dot",
+      "leader": true,
+      "plate": "tag",
+      "plateOn": "always",
+      "opens": "card",
+      "halo": "one"
+    },
+    "cursor": {
+      "on": true,
+      "verbs": {
+        "hotspot": "Open",
+        "add": "Add",
+        "swatch": ""
+      }
+    }
+  },
+  "brand": {
+    "name": "ondo"
+  },
+  "nav": {
+    "left": "wordmark",
+    "center": "rail",
+    "right": [
+      {
+        "layer": "cart",
+        "do": "end#cart",
+        "primary": true
+      },
+      {
+        "chip": "hide"
+      }
+    ]
+  },
+  "title": {
+    "blocks": [
+      {
+        "id": "name",
+        "lines": [
+          "ondo"
+        ],
+        "class": "t-title",
+        "align": {
+          "desktop": "center",
+          "phone": "left"
+        },
+        "space": {
+          "desktop": "frame",
+          "phone": "viewport"
+        },
+        "box": {
+          "desktop": [
+            0.075,
+            0.3156,
+            0.85,
+            0.345
+          ],
+          "phone": [
+            0.041,
+            0.36,
+            0.918,
+            0.2257
+          ]
+        },
+        "size": {
+          "desktop": "21.5vw",
+          "phone": "21.4vw",
+          "max": "440px"
+        },
+        "exit": {
+          "dy": -56
+        }
+      },
+      {
+        "id": "tagline",
+        "lines": [
+          "sit low, stay late."
+        ],
+        "class": "t-statement t-tagline",
+        "box": {
+          "desktop": [
+            0.028,
+            0.105,
+            0.42,
+            0.05
+          ],
+          "phone": [
+            0.041,
+            0.085,
+            0.9,
+            0.05
+          ]
+        },
+        "valign": "top",
+        "exit": {
+          "dy": -24
+        }
+      }
+    ],
+    "occluder": {
+      "masks": "img/occ/{n}.webp",
+      "frames": [
+        1,
+        13
+      ],
+      "feather": 1.5
+    },
+    "exit": {
+      "mode": "drift",
+      "screens": 0.18
+    }
+  },
+  "walk": [
+    "room",
+    "move-1",
+    "corner",
+    "move-2",
+    "sofa"
+  ],
+  "stops": {
+    "room": {
+      "n": "01",
+      "name": "the room",
+      "focus": [
+        0.52,
+        0.55
+      ],
+      "screens": 0,
+      "sharp": false,
+      "hotspots": [
+        {
+          "id": "p01",
+          "at": [
+            0.575,
+            0.665
+          ],
+          "label": "dune",
+          "price": "€4,860",
+          "card": "p01",
+          "plateOn": "hover",
+          "leader": false
+        },
+        {
+          "id": "p05",
+          "at": [
+            0.46,
+            0.905
+          ],
+          "label": "pill",
+          "price": "€1,150",
+          "card": "p05",
+          "plateOn": "hover",
+          "leader": false
+        },
+        {
+          "id": "p04",
+          "at": [
+            0.417,
+            0.715
+          ],
+          "label": "mesa",
+          "price": "€1,380",
+          "card": "p04",
+          "plateOn": "hover",
+          "leader": false
+        },
+        {
+          "id": "p02",
+          "at": [
+            0.672,
+            0.7
+          ],
+          "label": "gong",
+          "price": "€980",
+          "card": "p02",
+          "plateOn": "hover",
+          "leader": false
+        }
+      ]
+    },
+    "corner": {
+      "n": "02",
+      "name": "reading corner",
+      "focus": [
+        0.54,
+        0.55
+      ],
+      "screens": 0.45,
+      "sharp": false,
+      "caption": {
+        "heading": "the reading corner",
+        "body": "a cognac sling, a chrome dome, a fat little table. the corner as you see it: €3,010."
+      },
+      "hotspots": [
+        {
+          "id": "p03",
+          "at": [
+            0.504,
+            0.609
+          ],
+          "label": "lido",
+          "price": "€1,640",
+          "card": "p03"
+        },
+        {
+          "id": "p02-corner",
+          "at": [
+            0.368,
+            0.4
+          ],
+          "label": "gong",
+          "price": "€980",
+          "card": "p02",
+          "side": "left"
+        },
+        {
+          "id": "p06",
+          "at": [
+            0.742,
+            0.595
+          ],
+          "label": "stub",
+          "price": "€390",
+          "card": "p06",
+          "side": "right"
+        }
+      ]
+    },
+    "sofa": {
+      "n": "03",
+      "name": "the sofa",
+      "focus": [
+        0.48,
+        0.62
+      ],
+      "screens": 0.45,
+      "sharp": true,
+      "still": "img/still-sofa.webp",
+      "stillPhone": "img/still-sofa-phone.webp",
+      "caption": {
+        "heading": "the sofa",
+        "body": "dune: four low modules in rust corduroy, cut from one bolt."
+      },
+      "hotspots": [
+        {
+          "id": "p01-sofa",
+          "at": [
+            0.52,
+            0.645
+          ],
+          "label": "dune",
+          "price": "€4,860",
+          "card": "p01",
+          "side": "left"
+        },
+        {
+          "id": "p05-sofa",
+          "at": [
+            0.37,
+            0.895
+          ],
+          "label": "pill",
+          "price": "€1,150",
+          "card": "p05"
+        }
+      ]
+    }
+  },
+  "moves": {
+    "move-1": {
+      "from": "room",
+      "to": "corner",
+      "clips": [
+        "frames/move-1"
+      ],
+      "screens": 1.8,
+      "rec": 4.8
+    },
+    "move-2": {
+      "from": "corner",
+      "to": "sofa",
+      "clips": [
+        "frames/move-2"
+      ],
+      "screens": 1.8,
+      "rec": 4.8
+    }
+  },
+  "end": {
+    "id": "end"
+  },
+  "record": {
+    "fps": 30,
+    "hold": 0.9,
+    "speed": 1.1,
+    "end": 4.0,
+    "frames": "-rec",
+    "beats": [
+      {
+        "at": "corner",
+        "after": 0.35,
+        "do": "open",
+        "target": "hotspot:p03",
+        "hold": 0.7,
+        "then": "add"
+      },
+      {
+        "at": "sofa",
+        "after": 0.3,
+        "do": "swatch",
+        "target": "swatch:p01:plum",
+        "hold": 0.8,
+        "close": false
+      },
+      {
+        "at": "end",
+        "after": 3.45,
+        "do": "add",
+        "target": "el:#add-all",
+        "hold": 0.6
+      }
+    ],
+    "endTo": "#add-all"
+  },
+  "cards": {
+    "p01": {
+      "type": "product",
+      "no": "01",
+      "name": "dune",
+      "kind": "modular sofa",
+      "line": "four low modules on a hidden plinth. pull one out and it's a daybed.",
+      "price": "€4,860",
+      "sizes": [
+        [
+          "320",
+          "W"
+        ],
+        [
+          "105",
+          "D"
+        ],
+        [
+          "64",
+          "H"
+        ]
+      ],
+      "unit": "cm",
+      "material": "upholstery",
+      "img": "img/packshots/p01.webp",
+      "swatches": [
+        {
+          "name": "rust",
+          "hex": "#B4441F",
+          "img": "img/fabric/disc-rust.webp",
+          "packshot": "img/packshots/p01.webp",
+          "recolour": null,
+          "theme": {
+            "--paper": "#F3E6D0",
+            "--paper-2": "#EAD7B8",
+            "--ink": "#4A1422",
+            "--ink-2": "#7A4A50",
+            "--accent": "#B4441F",
+            "--accent-ink": "#FFF7EA",
+            "--dot-ring": "#B4441F",
+            "--scrim": "rgba(74,20,34,.28)"
+          }
+        },
+        {
+          "name": "oat",
+          "hex": "#D8C6A6",
+          "img": "img/fabric/disc-oat.webp",
+          "packshot": "img/packshots/p01-oat.webp",
+          "recolour": {
+            "src": "img/sofa-oat.webp",
+            "mask": "img/sofa-mask.webp",
+            "stop": "sofa"
+          },
+          "theme": {
+            "--paper": "#EFE6D6",
+            "--paper-2": "#E4D7C0",
+            "--ink": "#3B2A1E",
+            "--ink-2": "#6E5B4C",
+            "--accent": "#A88B62",
+            "--accent-ink": "#FFF9EE",
+            "--dot-ring": "#A88B62",
+            "--scrim": "rgba(59,42,30,.28)"
+          }
+        },
+        {
+          "name": "plum",
+          "hex": "#5A2232",
+          "img": "img/fabric/disc-plum.webp",
+          "packshot": "img/packshots/p01-plum.webp",
+          "recolour": {
+            "src": "img/sofa-plum.webp",
+            "mask": "img/sofa-mask.webp",
+            "stop": "sofa"
+          },
+          "theme": {
+            "--paper": "#F1E3E4",
+            "--paper-2": "#E6D0D2",
+            "--ink": "#3A1020",
+            "--ink-2": "#6E4652",
+            "--accent": "#5A2232",
+            "--accent-ink": "#FBEFF0",
+            "--dot-ring": "#5A2232",
+            "--scrim": "rgba(58,16,32,.28)"
+          }
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p02",
+      "nextLabel": "next ↗ gong floor lamp"
+    },
+    "p02": {
+      "type": "product",
+      "no": "02",
+      "name": "gong",
+      "kind": "floor lamp",
+      "line": "a polished chrome dome high on a slim stem. it throws the light down and keeps the glare off.",
+      "price": "€980",
+      "sizes": [
+        [
+          "165",
+          "H"
+        ],
+        [
+          "48",
+          "D"
+        ]
+      ],
+      "unit": "cm",
+      "material": "finish",
+      "img": "img/packshots/p02.webp",
+      "swatches": [
+        {
+          "name": "chrome",
+          "hex": "#C8CBCE"
+        },
+        {
+          "name": "brass",
+          "hex": "#B08A47"
+        },
+        {
+          "name": "cream enamel",
+          "hex": "#EDE1CB"
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p03",
+      "nextLabel": "next ↗ lido lounge chair"
+    },
+    "p03": {
+      "type": "product",
+      "no": "03",
+      "name": "lido",
+      "kind": "lounge chair",
+      "line": "one thick sling of saddle leather on a single bent chrome tube. it gives a little when you sit.",
+      "price": "€1,640",
+      "sizes": [
+        [
+          "72",
+          "W"
+        ],
+        [
+          "86",
+          "D"
+        ],
+        [
+          "70",
+          "H"
+        ]
+      ],
+      "unit": "cm",
+      "material": "leather",
+      "img": "img/packshots/p03.webp",
+      "swatches": [
+        {
+          "name": "cognac",
+          "hex": "#8A4A24"
+        },
+        {
+          "name": "oxblood",
+          "hex": "#5E1A22"
+        },
+        {
+          "name": "cream",
+          "hex": "#E8DAC2"
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p04",
+      "nextLabel": "next ↗ mesa coffee table"
+    },
+    "p04": {
+      "type": "product",
+      "no": "04",
+      "name": "mesa",
+      "kind": "coffee table",
+      "line": "one block of unfilled travertine, honed. heavy enough to stay where you put it.",
+      "price": "€1,380",
+      "sizes": [
+        [
+          "90",
+          "D"
+        ],
+        [
+          "32",
+          "H"
+        ]
+      ],
+      "unit": "cm",
+      "material": "stone",
+      "img": "img/packshots/p04.webp",
+      "swatches": [
+        {
+          "name": "travertine",
+          "hex": "#D8C8AC"
+        },
+        {
+          "name": "rosso levanto",
+          "hex": "#7E2F2A"
+        },
+        {
+          "name": "nero marquina",
+          "hex": "#2B2725"
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p05",
+      "nextLabel": "next ↗ pill rug"
+    },
+    "p05": {
+      "type": "product",
+      "no": "05",
+      "name": "pill",
+      "kind": "rug",
+      "line": "deep hand-tufted wool in a soft rounded rectangle. bare feet recommended.",
+      "price": "€1,150",
+      "sizes": [
+        [
+          "250",
+          "W"
+        ],
+        [
+          "350",
+          "L"
+        ]
+      ],
+      "unit": "cm",
+      "material": "wool",
+      "img": "img/packshots/p05.webp",
+      "swatches": [
+        {
+          "name": "burgundy",
+          "hex": "#5C1A2A"
+        },
+        {
+          "name": "rust",
+          "hex": "#A9441F"
+        },
+        {
+          "name": "cream",
+          "hex": "#EADBC2"
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p06",
+      "nextLabel": "next ↗ stub side table"
+    },
+    "p06": {
+      "type": "product",
+      "no": "06",
+      "name": "stub",
+      "kind": "side table",
+      "line": "a fat cylinder in glossy lacquer, the right height for a cup and a book.",
+      "price": "€390",
+      "sizes": [
+        [
+          "40",
+          "D"
+        ],
+        [
+          "45",
+          "H"
+        ]
+      ],
+      "unit": "cm",
+      "material": "lacquer",
+      "img": "img/packshots/p06.webp",
+      "swatches": [
+        {
+          "name": "burgundy",
+          "hex": "#5C1A2A"
+        },
+        {
+          "name": "rust",
+          "hex": "#B4441F"
+        },
+        {
+          "name": "chrome",
+          "hex": "#C8CBCE"
+        }
+      ],
+      "ship": "made to order in porto · ships in 6–8 weeks",
+      "add": "add to cart —",
+      "next": "p01",
+      "nextLabel": "next ↗ dune modular sofa"
+    }
+  }
+}

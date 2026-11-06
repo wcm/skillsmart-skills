@@ -1,0 +1,63 @@
+/* The page's tokens and its own pieces. Engine rules sit in @layer enfilade, so everything here wins.
+   Nothing here filters, blurs or shadows text. Pick a palette and two or three faces that belong to this business. */
+
+:root {
+  /* colour */
+  --paper: #F3F1EC; --paper-2: #E8E4DC; --ink: #151513; --ink-2: #5E5B55;
+  --on-photo: #F7F5F0; --on-photo-2: rgba(247, 245, 240, .82);
+  --line: rgba(21, 21, 19, .16); --line-photo: rgba(247, 245, 240, .6);
+  --plate: #F7F5F0; --plate-ink: #151513;
+  --accent: #151513; --accent-ink: #F7F5F0;
+  --signal: #C8553D;
+  --scrim: rgba(10, 10, 9, .42);
+  --dot: #F7F5F0; --dot-ring: rgba(247, 245, 240, .8);
+  /* type */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-text: "Instrument Serif", Georgia, serif;
+  --font-ui: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --label-size: 14px; --label-case: uppercase; --label-tracking: .06em; --label-weight: 500;
+  --display-weight: 400; --display-tracking: -.02em; --display-case: none;
+  /* shape */
+  --radius-plate: 999px; --radius-card: 4px; --radius-button: 999px; --grain: .02;
+  /* engine knobs */
+  --nav-ink-photo: #F7F5F0; --rail-ink: #F7F5F0; --nav-ink-sheet: #151513;
+  --card-bg: #F7F5F0; --cursor-ink: #F7F5F0;
+  --caption-ink: #F7F5F0; --caption-ink-2: rgba(247, 245, 240, .84); --bar-ink: #F7F5F0;
+  --map-bg: #F7F5F0; --map-ink: #151513; --map-line: rgba(21, 21, 19, .3);
+}
+
+html { background: var(--paper); }
+body.tour { background: #0E0E0C; color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ——— the first screen ——— */
+.tt-block.t-title { font-weight: 400; line-height: .86; letter-spacing: -.02em; color: var(--on-photo); }
+.tt-block.t-statement { font-family: var(--font-text); font-size: 28px; line-height: 1.15; color: var(--on-photo); }
+.tt-block.t-hint { font-family: var(--font-ui); font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--on-photo-2); }
+
+/* ——— captions ——— */
+.tc-heading { font-family: var(--font-text); font-size: 44px; line-height: 1.04; letter-spacing: -.01em; }
+.tc-body { font-family: var(--font-ui); font-size: 16px; line-height: 1.5; max-width: 30em; }
+.tc-label { margin-top: 16px; }
+
+/* ——— the end sheet ——— */
+.es { min-height: 100svh; box-sizing: border-box; padding: 120px 40px 64px; background: var(--paper); color: var(--ink);
+  display: grid; align-content: center; gap: 28px; }
+.es-kicker { margin: 0; font-family: var(--font-ui); font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.es-h { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(56px, 9vw, 140px); line-height: .9; letter-spacing: -.02em; }
+.es-row { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; }
+.es-p { margin: 0; max-width: 34em; font-family: var(--font-ui); font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+.es-button { display: inline-flex; align-items: center; min-height: 48px; padding: 0 26px; border-radius: var(--radius-button);
+  background: var(--accent); color: var(--accent-ink); font-family: var(--font-ui); font-size: 16px; text-decoration: none; }
+.es-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; margin: 24px 0 0; border-top: 1px solid var(--line); }
+.es-facts div { padding: 16px 16px 0 0; }
+.es-facts dt { font-family: var(--font-ui); font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.es-facts dd { margin: 6px 0 0; font-family: var(--font-text); font-size: 24px; }
+.tour-footer { background: var(--paper); color: var(--ink-2); font-family: var(--font-ui); font-size: 14px; padding: 24px 40px 40px; display: flex; flex-wrap: wrap; gap: 8px 32px; }
+.tour-footer p { margin: 0; }
+
+/* ——— phone ——— */
+.tour-phone .es { padding: 96px 20px 48px; }
+.tour-phone .tc-heading { font-size: 30px; }
+.tour-phone .tt-block.t-statement { font-size: 22px; }
+.tour-phone .tour-footer { padding: 20px; }

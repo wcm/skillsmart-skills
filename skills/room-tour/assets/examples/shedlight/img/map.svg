@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 142" fill="none" stroke="currentColor" stroke-width="1">
+  <!-- Shedlight, Werfkade 41 (made up): a 30° axonometric of the two rooms from the metric plan.
+       Room 01, north-light hall (sawtooth roof over its west wall); Room 02, top-lit hall (the lantern). -->
+  <g id="rooms">
+    <polygon data-room="r1" points="18.0,76.0 71.0,106.6 147.6,62.4 94.6,31.8"/>
+    <polygon data-room="r2" points="88.7,96.4 153.4,133.8 218.2,96.4 153.4,59.0"/>
+  </g>
+  <path class="mw" d="M18.0 76.0L94.6 31.8M94.6 31.8L147.6 62.4M18.0 76.0L35.7 86.2M47.4 93.0L71.0 106.6M71.0 106.6L112.2 82.8M129.9 72.6L153.4 59.0M88.7 96.4L153.4 133.8M153.4 133.8L218.2 96.4M153.4 59.0L218.2 96.4"/>
+  <path class="mz" d="M18.0 76.0L18.0 65.1M94.6 31.8L94.6 20.9M18.0 65.1L94.6 20.9M18.0 65.1 L33.3 50.8 L33.3 56.3 L48.6 42.0 L48.6 47.4 L63.9 33.2 L63.9 38.6 L79.2 24.3 L79.2 29.8 L94.6 15.5 L94.6 20.9"/>
+  <polygon class="ml" points="129.9,85.5 153.4,99.1 177.0,85.5 153.4,71.9"/>
+  <path class="mt" d="M116.9 44.7L123.4 48.5M128.1 51.2L142.3 59.3M132.2 71.2L139.3 67.2M105.2 86.9L109.9 84.2M175.2 121.2L196.4 109.0M204.1 104.6L206.4 103.2"/>
+  <circle class="mo" cx="145.8" cy="111.0" r="2.6"/>
+  <g class="mn" fill="currentColor" stroke="none">
+    <text x="116" y="41" text-anchor="end">02</text>
+    <text x="147" y="50" text-anchor="start">01</text>
+    <text x="127" y="66" text-anchor="end">03</text>
+    <text x="102" y="99" text-anchor="end">04</text>
+    <text x="193" y="125" text-anchor="start">05</text>
+    <text x="211" y="111" text-anchor="start">06</text>
+    <text x="151.8" y="116.0" text-anchor="start">07</text>
+  </g>
+  <g class="mr" fill="currentColor" stroke="none">
+    <text x="61.6" y="84.4" text-anchor="middle">01</text>
+    <text x="172.3" y="84.4" text-anchor="middle">02</text>
+  </g>
+  <path id="route" d="M75.4 56.5 L94.6 62.4 L124.6 79.7"/>
+  <g id="stops" fill="currentColor" stroke="none">
+    <circle data-stop="s1" cx="75.4" cy="56.5" r="2"/>
+    <circle data-stop="s2" cx="94.6" cy="62.4" r="2"/>
+    <circle data-stop="s3" cx="124.6" cy="79.7" r="2"/>
+  </g>
+</svg>

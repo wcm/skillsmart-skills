@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ondo — shop the room</title>
+<meta name="description" content="ondo: low, soft, heavy furniture made in Porto since 1974. Walk round the room, pick the sofa's colour, shop the room. A demo; everything is made up.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23B4441F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=DM+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../engine/tour.css">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="frames/move-1/0001.webp" media="(min-width: 901px)">
+<link rel="preload" as="image" href="frames/move-1-phone/0001.webp" media="(max-width: 900px)">
+</head>
+<body class="tour" data-site="furniture">
+  <main class="tour-scroll">
+    <div class="tour-stage"></div>
+  </main>
+
+  <section class="tour-end" id="end" aria-label="shop the room">
+    <!-- 1. the room through the letters: a cream sheet with the headline cut out (end-mask.js sizes it) -->
+    <div class="knock" id="knock">
+      <svg class="knock-svg" role="img" aria-label="shop the room" viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <defs>
+          <mask id="knock-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="900">
+            <rect class="knock-bg" x="0" y="0" width="1440" height="900" fill="#fff"/>
+            <text class="knock-text" fill="#000" x="40" y="400"><tspan class="knock-l" x="40" y="400">shop the</tspan><tspan class="knock-l" x="40" y="600">room</tspan></text>
+          </mask>
+        </defs>
+        <rect class="knock-sheet" x="0" y="0" width="1440" height="900" mask="url(#knock-mask)"/>
+      </svg>
+      <h2 class="sr-only">shop the room</h2>
+    </div>
+
+    <!-- 2. the cart -->
+    <div class="cart" id="cart">
+      <ol class="tiles" aria-label="the pieces in the room">
+        <li class="tile" data-id="p01">
+          <span class="tile-no t-label t-num">01</span>
+          <button type="button" class="tile-add" data-add="p01" data-verb="Add" aria-label="add dune to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p01-tile.webp" alt="dune modular sofa" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">dune</span>
+          <span class="tile-kind t-label">modular sofa, <span class="cw-fabric">rust corduroy</span></span>
+          <span class="tile-price t-num">€4,860</span>
+        </li>
+        <li class="tile" data-id="p02">
+          <span class="tile-no t-label t-num">02</span>
+          <button type="button" class="tile-add" data-add="p02" data-verb="Add" aria-label="add gong to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p02-tile.webp" alt="gong floor lamp" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">gong</span>
+          <span class="tile-kind t-label">floor lamp</span>
+          <span class="tile-price t-num">€980</span>
+        </li>
+        <li class="tile" data-id="p03">
+          <span class="tile-no t-label t-num">03</span>
+          <button type="button" class="tile-add" data-add="p03" data-verb="Add" aria-label="add lido to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p03-tile.webp" alt="lido lounge chair" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">lido</span>
+          <span class="tile-kind t-label">lounge chair</span>
+          <span class="tile-price t-num">€1,640</span>
+        </li>
+        <li class="tile" data-id="p04">
+          <span class="tile-no t-label t-num">04</span>
+          <button type="button" class="tile-add" data-add="p04" data-verb="Add" aria-label="add mesa to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p04-tile.webp" alt="mesa coffee table" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">mesa</span>
+          <span class="tile-kind t-label">coffee table</span>
+          <span class="tile-price t-num">€1,380</span>
+        </li>
+        <li class="tile" data-id="p05">
+          <span class="tile-no t-label t-num">05</span>
+          <button type="button" class="tile-add" data-add="p05" data-verb="Add" aria-label="add pill to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p05-tile.webp" alt="pill rug" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">pill</span>
+          <span class="tile-kind t-label">rug</span>
+          <span class="tile-price t-num">€1,150</span>
+        </li>
+        <li class="tile" data-id="p06">
+          <span class="tile-no t-label t-num">06</span>
+          <button type="button" class="tile-add" data-add="p06" data-verb="Add" aria-label="add stub to cart"><i aria-hidden="true"></i></button>
+          <span class="tile-pic"><img data-src="img/packshots/p06-tile.webp" alt="stub side table" width="600" height="600" decoding="async" fetchpriority="low"></span>
+          <span class="tile-name">stub</span>
+          <span class="tile-kind t-label">side table</span>
+          <span class="tile-price t-num">€390</span>
+        </li>
+      </ol>
+      <p class="total"><span>6 pieces</span><span class="t-num">€10,400</span></p>
+      <div class="bar-wrap tour-sticky-cta">
+        <button type="button" class="bar" id="add-all" data-verb="Add"><span class="bar-l">add all to cart (6) — <span class="t-num">€10,400</span></span></button>
+      </div>
+      <p class="note" id="cart-note" hidden>This is a demo — checkout is switched off.</p>
+      <p class="small t-label">made to order in porto · delivery quoted at checkout · 30-day returns</p>
+    </div>
+  </section>
+
+  <footer class="tour-footer">
+    <p class="demo">Demo site: names, places, prices and pictures are made up.</p>
+    <div class="wordmark-crop" aria-hidden="true"><span class="wordmark">ondo</span></div>
+  </footer>
+
+  <script type="module">
+    import { boot } from "../engine/tour.js";
+    import { colourway } from "./colourway.js";
+    import { cart } from "./cart.js";
+    import { loupe } from "./loupe.js";
+    import { endMask } from "./end-mask.js";
+    // the recolour pictures have a 1280 px phone copy: use it with the phone frame set (900 px or narrower)
+    const data = await (await fetch("tour.json")).json();
+    if (innerWidth <= 900) {
+      for (const sw of data.cards?.p01?.swatches ?? []) {
+        if (sw.recolour) for (const k of ["src", "mask"]) sw.recolour[k] = sw.recolour[k].replace(/\.webp$/, "-phone.webp");
+      }
+    }
+    await boot({ data, layers: [colourway, cart, loupe, endMask] });
+    // the first screen is painted: now fetch what only later screens need (the end's tiles, the loupe's fabrics)
+    for (const im of document.querySelectorAll("img[data-src]")) { im.src = im.dataset.src; im.removeAttribute("data-src"); }
+    loupe.warm?.(window.tour.ctx);
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "site": "page",
+  "meta": { "title": "WRITE the page title — the place it walks through", "description": "WRITE one sentence: who this is for and what the walk shows.", "lang": "en" },
+  "theme": {
+    "material": "paper",
+    "grain": 0.02,
+    "frame": { "kind": "crop" },
+    "label": { "brackets": false },
+    "rail": { "skin": "index", "case": "sentence", "hideOnTitle": true },
+    "ruler": { "style": "none" },
+    "walkbar": { "layout": "no-ruler", "hideOnTitle": true },
+    "caption": { "place": "bottom-left", "rule": true, "case": "sentence" },
+    "hotspot": { "icon": "dot", "leader": false, "plate": "pill", "plateOn": "always", "opens": "card", "halo": "off" },
+    "map": null,
+    "end": { "arrive": "sheet", "frame": "dim", "screens": 1.2, "pin": 0 },
+    "cursor": { "on": true, "verbs": { "hotspot": "Open" } }
+  },
+  "brand": { "name": "WRITE", "wordmark": "WRITE" },
+  "nav": {
+    "left": "wordmark",
+    "center": "rail",
+    "right": [{ "chip": "hide" }, { "button": "WRITE the ask →", "do": "end#ask", "primary": true }]
+  },
+  "title": {
+    "blocks": [
+      {
+        "id": "name", "lines": ["WRITE"], "class": "t-title",
+        "align": { "desktop": "left", "phone": "left" }, "valign": { "desktop": "bottom", "phone": "bottom" },
+        "space": { "desktop": "viewport", "phone": "viewport" },
+        "kicker": "WRITE what it is · where", "kickerAt": { "desktop": "above", "phone": "above" },
+        "box": { "desktop": [0.04, 0.5, 0.92, 0.3], "phone": [0.06, 0.52, 0.88, 0.2] },
+        "size": { "desktop": "min(15vw, 26vh)", "phone": "22vw" },
+        "exit": { "dx": 0, "dy": -56 }
+      },
+      {
+        "id": "statement", "lines": ["WRITE one line, with one *italic* word."], "class": "t-statement",
+        "box": { "desktop": [0.04, 0.86, 0.5, 0.05], "phone": [0.06, 0.8, 0.88, 0.08] },
+        "exit": { "dy": -24 }
+      },
+      {
+        "id": "hint", "lines": ["scroll — walk in"], "class": "t-hint",
+        "align": { "desktop": "right", "phone": "left" },
+        "box": { "desktop": [0.6, 0.875, 0.36, 0.03], "phone": [0.06, 0.92, 0.88, 0.03] },
+        "exit": { "dy": -24 }
+      }
+    ],
+    "gradients": [{ "edge": "bottom", "color": "#0E0E0C", "opacity": [0.55, 0], "extent": 0.6, "start": 0.55, "rest": 0.3 }],
+    "occluder": null,
+    "window": null,
+    "exit": { "mode": "drift", "screens": 0.3 }
+  },
+  "walk": ["one", "move-1", "two", "move-2", "three"],
+  "stops": {
+    "one": { "n": "01", "name": "WRITE", "frame": "move-1:first", "sharp": false, "focus": [0.5, 0.55], "screens": 0, "caption": null, "hotspots": [] },
+    "two": {
+      "n": "02", "name": "WRITE", "sharp": false, "focus": [0.5, 0.55], "screens": 0.45,
+      "caption": { "heading": "WRITE about five words.", "body": "WRITE one sentence about what you see here.", "label": "WRITE a small fact line" },
+      "hotspots": [{ "id": "h1", "at": [0.5, 0.6], "label": "WRITE", "code": "01", "card": "h1" }]
+    },
+    "three": {
+      "n": "03", "name": "WRITE", "sharp": false, "focus": [0.5, 0.55], "screens": 0.45,
+      "caption": { "heading": "WRITE about five words.", "body": "WRITE one sentence about what you see here.", "label": "WRITE a small fact line" },
+      "hotspots": []
+    }
+  },
+  "moves": {
+    "move-1": { "from": "one", "to": "two", "clips": ["frames/move-1"], "screens": 2.2, "rec": 7 },
+    "move-2": { "from": "two", "to": "three", "clips": ["frames/move-2"], "screens": 2.4, "rec": 7.5 }
+  },
+  "end": { "id": "end" },
+  "record": {
+    "fps": 30, "hold": 0.9, "speed": 1.1, "end": 3, "frames": "-rec", "endTo": null,
+    "beats": [{ "at": "two", "after": 0.35, "do": "open", "target": "hotspot:h1", "hold": 1.2 }]
+  },
+  "cards": {
+    "h1": { "type": "material", "code": "01", "name": "WRITE", "line": "WRITE one or two plain sentences.", "rows": [["WRITE", "WRITE"], ["WRITE", "WRITE"]] }
+  }
+}

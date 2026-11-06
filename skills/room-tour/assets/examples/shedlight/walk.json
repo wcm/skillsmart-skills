@@ -1,0 +1,62 @@
+{
+  "about": "Shedlight, a made-up warehouse gallery, shows Ines Moll's Half Light: two rooms under cool skylight. The rooms are generated with blank chroma-green canvases; the real works are laid onto them by the page, never repainted (references/gallery.md).",
+  "made_with": "The demo's pictures were made with GPT Image 2.5 and nano-banana edits, its moves with Kling v3 Pro, as this skill's tools do.",
+  "shots": {
+    "room1": {
+      "prompt": "Real architectural photograph of a contemporary art gallery in a converted warehouse: the first room, about 13 metres long and 9 metres wide, empty, before opening. The camera stands inside the room about two metres from its left-hand wall and looks diagonally across toward the far right-hand corner, which sits a little right of the centre of the picture. White-painted brick walls and smooth white plaster; a honed pale grey concrete floor with a matte finish, not glossy; a sawtooth roof with long north-light skylights and white steel trusses, giving soft, even, cool daylight; a few black track lights. Three framed panels hang in the room, each in a thin black-stained oak floater frame (3 cm face, a narrow shadow gap) with, inside it, a perfectly flat, uniform, matte chroma-key green (#00B140) surface with no texture, no reflection and no gradient, like a green screen: on the far wall, left of centre, a portrait panel (about 140 cm high and 110 cm wide) and, to its right, a large landscape panel (about 180 × 240 cm); on the right-hand wall, a portrait panel (about 160 × 120 cm). Near the right edge of the picture, further along the right-hand wall, the near side of a wide open doorway (3 metres wide, 3.2 metres high, a plain opening with no door) leads into a brighter, top-lit second room; through it, a small framed green panel (about 60 × 45 cm) hangs on that room's far wall. The panels hang with their bottom edges at least 75 cm above the floor; nothing stands in front of them; no benches, no plinths, no plants, nothing green except the panels. Full-frame camera, 24 mm lens, eye height 1.5 m, straight verticals, natural colour, exposed for the white walls with detail in them; clean, noise-free, crisp detail. A real photograph: no people, no text, no wall labels.",
+      "note": "every canvas a flat chroma green (#00B140) in a thin black frame"
+    },
+    "room1-side": {
+      "from": "room1",
+      "prompt": "The same gallery room photographed from a new camera position: the camera has walked about two and a half metres forward and to the right and turned forty-five degrees to the right, so it now stands square to the right-hand wall, about four and a half metres from it. The wide open doorway (3 m wide, 3.2 m high) is now in the centre of the picture, its lintel just inside the top edge. The portrait panel already seen on this wall (about 160 × 120 cm) is now at the left, near the edge, left of the doorway; right of the doorway hangs a second, smaller portrait panel (about 100 × 80 cm), not seen before, in the same thin black-stained oak frame with the same perfectly flat, uniform, matte chroma-key green (#00B140) inside, at the same height. Through the doorway, the brighter second room, about eleven metres deep: centred on its far wall, a very large framed green panel (about 240 cm high and 360 cm wide, its bottom edge 90 cm above the floor), with the small green panel already glimpsed (about 60 × 45 cm) to its left on the same wall; about three metres in front of the large panel, a long, low bench of solid pale oak; nearer, low on the right of the opening, a single rounded sculpture of pale cast plaster, about 70 cm high, standing directly on the floor. The panels on the far wall of the first room are no longer in view. Keep everything else identical: the same white brick and plaster, the same honed concrete floor, the same skylights and cool daylight, the same thin frames. Same 24 mm lens, same eye height (1.5 m), straight verticals. A real photograph: no people, no text."
+    },
+    "room2": {
+      "from": "room1-side",
+      "prompt": "The same view after walking about five metres straight forward through the middle of the doorway, without turning: the camera now stands just inside the second room, facing its far wall squarely. The second room is a square white gallery about 11 metres across, lit from above by a large square lantern skylight with a pale diffuser (out of view), giving soft, even daylight. Centred on the far wall, the very large framed green panel (about 240 × 360 cm, bottom edge 90 cm above the floor), in the same thin black-stained oak frame, its surface the same perfectly flat, uniform, matte chroma-key green (#00B140). On the same wall, to its left, the small framed green panel (about 60 × 45 cm), its centre at 1.55 m. About three metres in front of the large panel, a long, low bench of solid pale oak (about 240 cm long and 45 cm high, a plain plank top on two block legs), well below the panel's bottom edge. Nearer, on the right, about two and a half metres out from the right-hand wall, the low sculpture of pale cast plaster (about 70 cm high, one rounded, weighty form) standing directly on the floor; it overlaps neither panel. Honed pale grey concrete floor, white walls, no plants, nothing green except the panels. Same 24 mm lens, eye height 1.5 m, straight verticals; clean, noise-free, crisp detail. A real photograph: no people, no text."
+    },
+    "w01": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image: deep ultramarine blue over the whole canvas, with one thin cadmium-orange horizontal line about a fifth of the way up, like a horizon.",
+      "aspect": "3:2",
+      "note": "the works: flat, frontal pictures of the paintings themselves, at each canvas's own proportion (sizes on the labels are height × width)"
+    },
+    "w02": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image: a field of lemon yellow over a cool mid-grey lower third, the edge between them straight and ridged.",
+      "aspect": "2:3"
+    },
+    "w03": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image: cadmium-yellow glare across the whole canvas, crossed by one black horizontal bar a little below the middle.",
+      "aspect": "2:3"
+    },
+    "w04": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image: a large burnt-sienna block standing in a field of pale sand, its top edge at about two thirds of the height.",
+      "aspect": "3:4"
+    },
+    "w05": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image, the largest painting of the series: deep violet above, deepening to indigo below, one thin ember-orange line low across the whole width.",
+      "aspect": "16:9",
+      "note": "the canvas is 240 × 465 cm (height × width, about 1.95:1): make it at 16:9, then crop it to the canvas's proportion"
+    },
+    "w06": {
+      "prompt": "A contemporary abstract oil painting by one artist, from a series called Half Light, each canvas the light of one hour: strong saturated colour laid in two or three flat fields, crisp edges between fields, thick paint ridges along each edge, visible wide-brush texture, bare linen at the margins. Photographed for the catalogue: perfectly flat and straight on, the painted surface fills the whole image edge to edge, with no frame, no wall, no shadow, even soft lighting, accurate colour and fine detail of the paint and the weave. No text, no signature, no figures, no objects.\nThe image: near-black blue over the whole canvas, with one small square of lamp-yellow just above the centre.",
+      "aspect": "3:4"
+    }
+  },
+  "moves": {
+    "move-1": {
+      "start": "room1",
+      "end": "room1-side",
+      "duration": 7,
+      "prompt": "The camera walks slowly forward and to the right, about two and a half metres at eye level, while turning gently forty-five degrees to the right, until it stands square to the right-hand wall with the open doorway centred. The room, the frames, the flat green panels, the bench and the sculpture seen through the doorway stay perfectly still and unchanged; the daylight holds. Smooth, calm walking pace, no shake."
+    },
+    "move-2": {
+      "start": "room1-side",
+      "end": "room2",
+      "duration": 7,
+      "prompt": "The camera walks slowly straight forward at eye level, about five metres, through the middle of the open doorway into the top-lit second room, without turning, and comes to rest just inside it, facing the very large green panel with the oak bench in front of it. The walls, the frames, the panels, the bench and the sculpture stay solid and unchanged; the daylight holds. Smooth, calm walking pace, no shake."
+    }
+  },
+  "frames": {
+    "q": 64,
+    "key": true
+  }
+}

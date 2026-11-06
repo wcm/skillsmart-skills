@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teluk Senja · Twelve villas, one bay</title>
+<meta name="description" content="Teluk Senja, twelve villas on a private bay on a small island. Twelve villas, one bay, the sea at dusk.">
+<meta name="theme-color" content="#0A0F1E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0F1E'/%3E%3Cpath d='M4 21 C9 19 13 13 19 14 C23 15 25 19 28 21 V25 H4 Z' fill='%23F2EFE9'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<script>if (!/[?&]record/.test(location.search)) { const l = document.createElement("link"); l.rel = "preload"; l.as = "image"; l.href = innerWidth > 900 ? "frames/move-1/0001.webp" : "frames/move-1-phone/0001.webp"; document.head.append(l); }</script>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=zodiak@300,301,400,401&display=swap">
+<link rel="stylesheet" href="../engine/tour.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="tour" data-site="hotel">
+  <main class="tour-scroll">
+    <div class="tour-stage"></div>
+  </main>
+
+  <!-- the end (direction 7): the engine moves this section into the stage as the booking card (arrive: "card");
+       booking-line.js grows it out of the walk bar's ruled sentence -->
+  <section class="tour-end" id="end" aria-label="Book Villa 12">
+    <div class="bk">
+      <h2 class="bk-name">Villa 12 · <em>Karang</em></h2>
+      <p class="bk-sub t-label">64 m² · King bed · Outdoor rain shower · Private terrace</p>
+      <div class="bk-rows">
+        <div class="bk-row">
+          <span class="bk-k t-label">Check in</span>
+          <span class="bk-v t-num">Fri 12 Mar 2027</span>
+          <svg class="bk-chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 2 L7 5 L3 8"/></svg>
+        </div>
+        <button type="button" class="bk-row" data-row="out" data-verb="Change" aria-label="Check out: change the number of nights">
+          <span class="bk-k t-label">Check out</span>
+          <span class="bk-v t-num roll" data-out>Mon 15 Mar 2027</span>
+          <svg class="bk-chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 2 L7 5 L3 8"/></svg>
+        </button>
+        <button type="button" class="bk-row" data-row="guests" data-verb="Change" aria-label="Guests: change the number of adults">
+          <span class="bk-k t-label">Guests</span>
+          <span class="bk-v t-num roll" data-guests>2 adults</span>
+          <svg class="bk-chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 2 L7 5 L3 8"/></svg>
+        </button>
+      </div>
+      <p class="bk-price"><span class="bk-amt t-num">S$ 780</span> <span class="bk-unit">/ night</span></p>
+      <p class="bk-total t-label t-num" aria-live="polite"><span class="roll" data-nights>3 nights</span> · S$ <span class="roll" data-total>2,340</span> · breakfast included</p>
+      <p class="bk-tax t-label t-num">+ 10 % service, settled at the villa</p>
+      <a class="bk-button" id="book" href="#end" data-verb="Book">Book this villa</a>
+      <p class="bk-note" role="status" hidden>This is a demo — no booking is made.</p>
+      <p class="bk-cancel">Free cancellation until Fri 5 Mar.</p>
+    </div>
+  </section>
+
+  <footer class="tour-footer">
+    <div class="ft-inner">
+      <p class="ft-brand">Teluk Senja</p>
+      <div class="ft-cols">
+        <p class="ft-line t-label t-num">Teluk Senja · Twelve villas · One bay</p>
+        <p class="ft-text">Twelve villas on a private bay on a small island. Open all year.</p>
+        <p class="ft-text ft-quiet">This tour is made from four of our own photographs; the open door and the walk between them were added digitally.</p>
+        <p class="ft-text ft-quiet">Demo site: names, places, prices and pictures are made up.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { boot } from "../engine/tour.js";
+    import { bookingLine } from "./booking-line.js";
+    await boot({ data: "tour.json", layers: [bookingLine] });
+  </script>
+</body>
+</html>

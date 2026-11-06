@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WRITE the page title</title>
+<meta name="description" content="WRITE one sentence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500&display=swap">
+<link rel="stylesheet" href="../engine/tour.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="tour" data-site="page">
+  <main class="tour-scroll"><div class="tour-stage"></div></main>
+
+  <!-- the end: a sheet that slides over the walk (theme.end in tour.json); write what the visitor should do next -->
+  <section class="tour-end" id="end" aria-label="WRITE">
+    <div class="es">
+      <p class="es-kicker">WRITE a short kicker</p>
+      <h2 class="es-h">WRITE the <em>ask</em>.</h2>
+      <div class="es-row">
+        <p class="es-p">WRITE two plain sentences: what happens when they get in touch, and how soon.</p>
+        <a class="es-button" id="ask" href="#ask">WRITE the button →</a>
+      </div>
+      <dl class="es-facts">
+        <div><dt>WRITE</dt><dd>WRITE</dd></div>
+        <div><dt>WRITE</dt><dd>WRITE</dd></div>
+        <div><dt>WRITE</dt><dd>WRITE</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="tour-footer">
+    <p>WRITE the business · where</p>
+    <p>WRITE: say what is generated (the pictures and the walk are AI-made until real photographs replace them).</p>
+  </footer>
+
+  <script type="module">
+    import { boot } from "../engine/tour.js";
+    await boot({ data: "tour.json" });
+  </script>
+</body>
+</html>

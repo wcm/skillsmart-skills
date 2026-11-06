@@ -1,0 +1,91 @@
+{
+  "about": "ondo, a made-up furniture brand: one bold 70s room you can shop, a slow loop round it, warm afternoon light; every product is the same piece in its packshot and in the room, and the sofa takes the colour you pick.",
+  "made_with": "The demo's pictures were made with GPT Image 2.5 and nano-banana edits, its moves with Kling v3 Pro, as this skill's tools do.",
+  "shots": {
+    "p01-dune": {
+      "prompt": "A low modular sofa of four square modules side by side, about 320 cm wide, 105 cm deep and 64 cm high, upholstered in rust-coloured wide-wale cotton corduroy (#B4441F, 8 wales to the inch, the ridges running vertically), deep seats with rounded edges and plump rounded back cushions, on a recessed black plinth so it seems to float, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo.",
+      "note": "packshots first: the room is furnished from them, so the pieces match"
+    },
+    "p02-gong": {
+      "prompt": "A tall floor lamp: a slim polished chrome stem, about 3 cm thick, rising from a heavy round chrome base to a large polished chrome dome shade 48 cm across, its top at about 165 cm, the dome tilted slightly down, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo."
+    },
+    "p03-lido": {
+      "prompt": "A low lounge chair made of one thick sling of cognac-brown saddle leather (#8A4A24) slung on a single bent polished chrome tube in a cantilever shape, with a loose leather seat cushion, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo."
+    },
+    "p04-mesa": {
+      "prompt": "A low round coffee table made of one solid block of honed travertine, 90 cm across and 32 cm high: a thick top on a wide cylindrical pedestal, the stone's natural holes and veins visible, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo."
+    },
+    "p05-pill": {
+      "prompt": "Seen from above at a slight angle: a large rug in a soft rounded-rectangle shape, deep dense burgundy wool pile (#5C1A2A), 250 by 350 cm, plain, its pile catching the light, lying on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo."
+    },
+    "p06-stub": {
+      "prompt": "A small side table shaped like a fat cylinder, 40 cm across and 45 cm high, in deep burgundy high-gloss lacquer (#5C1A2A), softly reflecting the light, standing on a seamless warm-cream paper backdrop (#EFE3CE), shot from a three-quarter front view at about 0.8 m height, soft warm daylight from the right with a gentle shadow on the floor, true colours and materials; clean, noise-free, crisp detail. A real product photograph: no props, no text, no logo."
+    },
+    "room-empty": {
+      "prompt": "Real interior photograph of a large, bold 1970s-style living room in warm late-afternoon light, empty of furniture. The camera stands near the doorway at a seated eye height of 0.85 metres, facing the far wall squarely; the far wall fills the picture, and the window wall shows only as a sliver at the right edge. Smooth warm-cream plaster walls (#EFE1C8) with softly rounded corners and a low cream skirting; a honey oak herringbone floor; the low sun comes through a tall window on the right, with sheer cream curtains drawn back, and lays long warm patches across the floor. The far wall is completely plain and evenly lit: no art, no shelves, no sockets, no switches, no radiator. Full-frame camera, 28 mm lens, 0.85 m high, straight verticals, one-point perspective, natural colour, exposed for the wall with the sun patches just holding detail; clean, noise-free, crisp detail. A real photograph: no people, no text."
+    },
+    "room": {
+      "from": "room-empty",
+      "refs": [
+        "p01-dune",
+        "p02-gong",
+        "p03-lido",
+        "p04-mesa",
+        "p05-pill",
+        "p06-stub"
+      ],
+      "prompt": "Furnish the empty room in the first picture with exactly these pieces from the reference pictures, keeping their exact shapes, colours, materials and proportions, at true scale, lit by the room's own warm afternoon light with soft real shadows: the rust corduroy modular sofa (picture 2) against the far wall, centred a little left, about five metres from the camera, the top edge of its back crossing the picture at about 56 % of its height, so the plain cream wall fills the band above it from about 20 % to 56 %; the chrome dome floor lamp (picture 3) between the sofa's right end and the lounge chair, about 0.6 m from each, its stem crossing the plain wall and its dome high above the sofa, at about 1.65 m; the cognac leather lounge chair (picture 6) right of the lamp, angled toward the room, with the burgundy lacquer side table (picture 7) beside it; the burgundy rug (picture 5) on the floor in front of the sofa with the travertine coffee table (picture 4) on it. Nothing else: no plants, no art, no books, no extra cushions. The far wall above the furniture stays plain cream. Keep the camera (0.85 m high, facing the far wall squarely), the room and the light exactly as in the first picture. A real photograph, no people, no text."
+    },
+    "corner": {
+      "from": "room",
+      "prompt": "The same room photographed from a new camera position: the camera has glided about two metres to the right and turned about thirty-five degrees to the right, toward the reading corner by the window, at the same seated height of 0.85 metres. The cognac leather lounge chair, the chrome dome floor lamp and the burgundy lacquer side table now fill the middle of the picture, with the tall window and its sheer cream curtains behind them and the right end of the rust corduroy sofa at the left edge. The low sun comes in from the right side of the window at a raking angle, softened by the sheers, not toward the camera; exposure as in the first picture. Keep every piece exactly as in the reference pictures, the same cream walls, oak floor and warm afternoon light. Same 28 mm lens, straight verticals; clean, noise-free, crisp detail. A real photograph, no people, no text."
+    },
+    "sofa": {
+      "from": "room",
+      "prompt": "The same room as the first picture, photographed from a new camera position: the camera has moved about three metres forward and a little to the right, at the same seated height of 0.85 metres, and turned about ten degrees to the left, so it looks at the rust corduroy sofa from about two metres away, slightly from its right. The sofa fills the lower part of the picture, the top of its back a little below the middle, its wide corduroy wales clearly visible in the warm side light from the window; the plain cream wall fills the upper half; the edge of the burgundy rug in the foreground; the chrome lamp's stem at the right edge. Keep the sofa exactly as in the reference pictures, and the walls, floor and light as in the first two pictures. Same 28 mm lens, straight verticals; clean, noise-free, crisp detail. A real photograph, no people, no text."
+    },
+    "sofa-oat": {
+      "from": "sofa",
+      "prompt": "Change only the sofa's upholstery to the fabric in the second picture (oat wide-wale corduroy), keeping the sofa's exact shape, seams, folds, the direction of the ridges, the shadows and the light. Every other pixel of the picture stays exactly the same. A real photograph.",
+      "note": "the recolour pair: the same frame in another fabric; the page shows it inside the sofa's mask (node mask.mjs <id> cut … \"sofa\" sofa)"
+    },
+    "sofa-plum": {
+      "from": "sofa",
+      "prompt": "Change only the sofa's upholstery to the fabric in the second picture (plum cotton velvet), keeping the sofa's exact shape, seams, folds, the direction of the ridges, the shadows and the light. Every other pixel of the picture stays exactly the same. A real photograph."
+    },
+    "p01-dune-oat": {
+      "from": "p01-dune",
+      "prompt": "Change only the sofa's upholstery to the fabric in the second picture (oat wide-wale corduroy), keeping the sofa's exact shape, seams, folds, shadows and light. Every other pixel stays the same. A real product photograph."
+    },
+    "p01-dune-plum": {
+      "from": "p01-dune",
+      "prompt": "Change only the sofa's upholstery to the fabric in the second picture (plum velvet corduroy with wide vertical wales), keeping the sofa's exact shape, seams, folds, shadows and light. Every other pixel stays the same. A real product photograph."
+    },
+    "macro-rust": {
+      "prompt": "Macro photograph, straight on, of thick rust-coloured wide-wale cotton corduroy, #B4441F, 8 wales to the inch, the ridges running vertically filling the frame edge to edge, soft raking warm daylight showing every ridge and fibre, true colour. No text."
+    },
+    "macro-oat": {
+      "prompt": "Macro photograph, straight on, of oat-coloured wide-wale cotton corduroy, #D8C6A6, 8 wales to the inch, the ridges running vertically filling the frame edge to edge, soft raking warm daylight showing every ridge and fibre, true colour. No text."
+    },
+    "macro-plum": {
+      "prompt": "Macro photograph, straight on, of plum cotton velvet corduroy, #5A2232, wide wales, 8 wales to the inch, the ridges running vertically, their soft velvet pile catching the light, filling the frame edge to edge, soft raking warm daylight showing every ridge and fibre, true colour. No text."
+    }
+  },
+  "moves": {
+    "move-1": {
+      "start": "room",
+      "end": "corner",
+      "duration": 6,
+      "prompt": "A slow, smooth glide at a steady seated height of 0.85 metres: the camera dollies about two metres to the right while turning gently right toward the reading corner by the window. Every piece of furniture stays exactly the same, solid and still; the chrome lamp stays straight; the afternoon light holds. Calm, even pace, no shake."
+    },
+    "move-2": {
+      "start": "corner",
+      "end": "sofa",
+      "duration": 6,
+      "prompt": "A slow, smooth glide at a steady seated height of 0.85 metres: the camera moves forward and to the left, turning gently left back toward the rust corduroy sofa and coming closer until it fills the lower part of the picture. Every piece stays exactly the same, solid and still; the corduroy keeps its ridges; the afternoon light holds. Calm, even pace, no shake."
+    }
+  },
+  "frames": {
+    "q": 64
+  }
+}
