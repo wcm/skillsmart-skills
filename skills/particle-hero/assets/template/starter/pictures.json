@@ -1,0 +1,10 @@
+{
+  "background": "black",
+  "aspect": "1:1",
+  "style": "WRITE: one sentence of light and mood shared by every subject, e.g. soft rim light from behind, a gentle key light from the left.",
+  "pictures": [
+    { "id": "one", "prompt": "WRITE: the first subject, what it is, its pose or angle and what it's made of." },
+    { "id": "two", "prompt": "WRITE: the second subject." },
+    { "id": "three", "prompt": "WRITE: the third subject." }
+  ]
+}

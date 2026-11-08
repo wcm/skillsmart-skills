@@ -1,0 +1,24 @@
+{
+  "background": "black",
+  "aspect": "1:1",
+  "style": "Natural-history museum photography: soft rim light from behind outlines every hair and feather, a gentle key light from the left.",
+  "made": "These subjects were made with GPT Image 2.6 on fal.ai at 2048 px; pictures.mjs makes them with nano-banana-pro on your Skillsmart credits.",
+  "pictures": [
+    {
+      "id": "stag",
+      "prompt": "A majestic reindeer stag with enormous branching velvet-free antlers, three-quarter view facing left, head, neck, shoulders and chest, a shaggy pale cream winter mane. Soft rim light from behind outlines the antlers and fur, a gentle key light from the left. Natural-history museum photography."
+    },
+    {
+      "id": "owl",
+      "prompt": "A snowy owl in flight with its wings spread wide and slightly raised, body facing the camera, head turned a little to the left, white feathers with fine dark flecks, yellow eyes. Soft rim light from behind outlines every flight feather, a gentle key light from the left. Natural-history museum photography."
+    },
+    {
+      "id": "wolf",
+      "prompt": "An arctic wolf sitting and howling with its muzzle raised to the sky, side profile facing right, thick white winter fur with grey shading along the back. Soft rim light from behind outlines the fur, a gentle key light from the left. Natural-history museum photography."
+    },
+    {
+      "id": "horse",
+      "prompt": "A wild horse rearing up on its hind legs with its long mane and tail flying, side profile facing left, a pale grey dappled coat. Soft rim light from behind outlines the mane, a gentle key light from the left. Natural-history museum photography. The hooves and tail are inside the frame."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "background": "black",
+  "aspect": "1:1",
+  "style": "Editorial music photography lit by hot magenta and warm amber gel lights, deep shadows between.",
+  "made": "These subjects were made with GPT Image 2.6 on fal.ai at 2048 px; pictures.mjs makes them with nano-banana-pro on your Skillsmart credits.",
+  "pictures": [
+    {
+      "id": "singer",
+      "prompt": "Concert portrait of a young woman singer with long box braids, singing with her eyes closed and her head tilted back, holding a vintage chrome microphone close, head and shoulders. Lit by hot magenta gel light from the left and warm amber gel light from the right, deep shadows between, editorial music photography."
+    },
+    {
+      "id": "sax",
+      "prompt": "A saxophonist playing a gold tenor saxophone, side profile facing left, cheeks full, a short afro and a loose open shirt, from the waist up with the whole saxophone visible. Lit by hot magenta gel light from behind and warm amber gel light from the front, editorial music photography."
+    },
+    {
+      "id": "dj",
+      "prompt": "Portrait of a bearded DJ wearing large over-ear headphones, one hand pressing the headphone to his ear, looking up and to the right, a bomber jacket, head and shoulders. Lit by hot magenta gel light from the right and warm amber gel light from the left, editorial music photography."
+    },
+    {
+      "id": "drummer",
+      "prompt": "A drummer caught mid-hit with both drumsticks raised high above his head, long locs swinging, a sleeveless shirt, from the waist up with the edge of a cymbal in front. Lit by hot magenta gel light from the left and warm amber gel light from the right, editorial music photography."
+    }
+  ]
+}
