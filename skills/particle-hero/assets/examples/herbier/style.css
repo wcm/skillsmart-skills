@@ -1,0 +1,83 @@
+:root {
+  --ink: #2b1d18;
+  --soft: rgba(43, 29, 24, 0.58);
+  --line: rgba(43, 29, 24, 0.16);
+  --paper: #f1eadf;
+  --accent: #a3173f;
+}
+body[data-scent="1"] { --accent: #2f5a2a; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--paper); color: var(--ink); overflow: hidden; }
+body { font: 400 14px/1.5 "Jost", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  padding: 24px clamp(20px, 4vw, 60px);
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.top nav { display: flex; gap: 30px; color: var(--soft); }
+.top nav.right { justify-content: flex-end; }
+.top nav a:hover { color: var(--ink); }
+.mark { display: flex; flex-direction: column; align-items: center; font: 500 26px/1 "Cormorant Garamond", serif; letter-spacing: 0.32em; text-transform: uppercase; padding-left: 0.32em; }
+.mark span { margin-top: 7px; font: 400 10px "Jost", sans-serif; letter-spacing: 0.24em; color: var(--soft); padding-left: 0; }
+
+.intro {
+  position: fixed; z-index: 2; left: clamp(20px, 4.4vw, 64px); top: 50%; transform: translateY(-58%);
+  width: min(30vw, 430px); pointer-events: none;
+}
+.eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; transition: color 1s; }
+h1 { margin: 0; font: 400 clamp(46px, 5.4vw, 84px)/0.98 "Cormorant Garamond", serif; letter-spacing: -0.01em; }
+h1 em { font-style: italic; color: var(--accent); transition: color 1s; }
+.lede { margin-top: 26px; max-width: 30ch; font-size: 15px; line-height: 1.65; color: var(--soft); font-weight: 300; }
+
+.scents {
+  position: fixed; z-index: 2; right: clamp(20px, 4vw, 60px); top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 34px; width: 200px;
+}
+.scent { padding-top: 14px; border-top: 1px solid var(--line); opacity: 0.5; transition: opacity 0.6s; }
+.scent.on { opacity: 1; }
+.scent .no { font-size: 11px; letter-spacing: 0.18em; color: var(--soft); }
+.scent .name { font: italic 400 30px/1.1 "Cormorant Garamond", serif; margin: 4px 0 10px; }
+.steps { display: flex; align-items: center; gap: 8px; color: var(--soft); font-size: 11px; }
+.steps button {
+  background: none; border: 0; padding: 4px 0; cursor: pointer; color: var(--soft);
+  font: 400 11px "Jost", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid transparent;
+}
+.steps button.on { color: var(--ink); border-bottom-color: var(--accent); }
+.steps button:hover { color: var(--ink); }
+
+.caption {
+  position: fixed; z-index: 2; left: 58.5%; transform: translateX(-50%); bottom: 34px;
+  display: flex; align-items: center; gap: 22px; white-space: nowrap;
+}
+.caption .roman { font: italic 400 34px/1 "Cormorant Garamond", serif; color: var(--accent); transition: color 1s; }
+.caption .what { font: 500 19px/1.2 "Cormorant Garamond", serif; letter-spacing: 0.02em; }
+.caption .note { font-size: 12px; color: var(--soft); letter-spacing: 0.02em; }
+.btn {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 22px; margin-left: 10px;
+  border: 1px solid var(--ink); border-radius: 999px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 760px) {
+  .top { grid-template-columns: auto 1fr; padding: 18px 20px; }
+  .top nav.left { display: none; }
+  .mark { align-items: flex-start; font-size: 20px; }
+  .mark span { display: none; }
+  .top nav.right { gap: 16px; font-size: 11px; }
+  .steps button { font-size: 10px; letter-spacing: 0.06em; }
+  .intro { top: 84px; transform: none; width: auto; right: 20px; }
+  h1 { font-size: 40px; }
+  .lede { display: none; }
+  .eyebrow { margin-bottom: 10px; }
+  .scents { top: auto; bottom: 100px; transform: none; left: 20px; right: 20px; width: auto; flex-direction: row; gap: 16px; }
+  .scent { flex: 1; }
+  .scent .name { font-size: 22px; }
+  .caption { left: 20px; right: 20px; transform: none; bottom: 22px; white-space: normal; gap: 12px; }
+  .caption .note { font-size: 11px; }
+  .btn { display: none; }
+}

@@ -1,0 +1,24 @@
+{
+  "background": "white",
+  "aspect": "1:1",
+  "style": "Refined still life, soft daylight.",
+  "made": "These subjects were made with GPT Image 2.6 on fal.ai at 2048 px; pictures.mjs makes them with nano-banana-pro on your Skillsmart credits.",
+  "pictures": [
+    {
+      "id": "rose",
+      "prompt": "A single fresh garden rose in full bloom, deep raspberry pink petals, on a long stem with three leaves, standing upright in the centre as if floating, botanical still life."
+    },
+    {
+      "id": "rose-bottle",
+      "prompt": "A luxury perfume bottle, a thick square block of faceted glass filled with rose pink perfume, a tall polished brass cap, front view, standing upright in the centre, refined minimal product photography."
+    },
+    {
+      "id": "fig",
+      "prompt": "A fig branch standing upright in the centre with three large lobed green leaves, two ripe purple figs hanging from it and one fig cut in half showing its red interior, botanical still life."
+    },
+    {
+      "id": "fig-bottle",
+      "prompt": "A luxury perfume bottle, a tall rounded flask of heavy glass tinted deep bottle green, a carved dark walnut cap, front view, standing upright in the centre, refined minimal product photography."
+    }
+  ]
+}

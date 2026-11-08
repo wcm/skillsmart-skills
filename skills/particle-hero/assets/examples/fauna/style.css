@@ -1,0 +1,80 @@
+:root {
+  --bone: #efe5d4;
+  --dim: rgba(239, 229, 212, 0.55);
+  --faint: rgba(239, 229, 212, 0.18);
+  --ground: #060606;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--ground); color: var(--bone); overflow: hidden; }
+body { font: 400 14px/1.5 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+#dust { touch-action: none; }
+#hud { pointer-events: none; }
+
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+  display: flex; align-items: center; gap: 40px;
+  padding: 26px clamp(20px, 4vw, 56px);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.mark { font-weight: 500; }
+.mark span { color: var(--dim); font-weight: 300; }
+.top nav { display: flex; gap: 28px; margin-left: auto; color: var(--dim); }
+.top nav a:hover { color: var(--bone); }
+
+.btn {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 20px;
+  background: var(--bone); color: #0b0b0b; border-radius: 999px;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+}
+.btn.ghost { background: none; color: var(--bone); border: 1px solid var(--faint); height: 34px; }
+
+.intro {
+  position: fixed; z-index: 2; left: clamp(20px, 4vw, 56px); top: 50%; transform: translateY(-54%);
+  width: min(30vw, 440px);
+  pointer-events: none;
+}
+.intro a { pointer-events: auto; }
+.eyebrow { margin: 0 0 22px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+h1 {
+  margin: 0; font: 400 clamp(64px, 8.4vw, 132px)/0.86 "Instrument Serif", serif; letter-spacing: -0.02em;
+}
+h1 em { font-style: italic; padding-left: 0.5em; }
+.lede { margin: 28px 0 0; max-width: 32ch; font-size: 15px; line-height: 1.6; color: var(--dim); font-weight: 300; }
+.cta { display: flex; align-items: center; gap: 24px; margin-top: 30px; }
+.link { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+.link span { display: inline-block; transition: transform 0.3s; }
+.link:hover span { transform: translateX(4px); }
+
+.index {
+  position: fixed; z-index: 2; left: clamp(20px, 4vw, 56px); right: clamp(20px, 4vw, 56px); bottom: 28px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.now { display: grid; grid-template-columns: auto auto; column-gap: 16px; align-items: baseline; }
+.now .no { grid-row: span 2; font: 500 11px "JetBrains Mono", monospace; color: var(--dim); letter-spacing: 0.06em; }
+.now .name { font: 400 28px/1 "Instrument Serif", serif; }
+.now .latin { font: italic 400 15px "Instrument Serif", serif; color: var(--dim); }
+.specimens { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.specimens button {
+  position: relative; display: flex; align-items: baseline; gap: 10px; padding: 12px 18px 14px; min-width: 150px;
+  background: none; border: 0; border-top: 1px solid var(--faint); color: var(--dim); cursor: pointer;
+  font: 400 11px "Manrope", sans-serif; letter-spacing: 0.16em; text-transform: uppercase; text-align: left;
+}
+.specimens button span { font: 500 10px "JetBrains Mono", monospace; letter-spacing: 0.04em; }
+.specimens button i { position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--bone); transform-origin: left; transform: scaleX(0); }
+.specimens button.on { color: var(--bone); }
+.specimens button:hover { color: var(--bone); }
+
+@media (max-width: 760px) {
+  .top { padding: 18px 20px; gap: 16px; }
+  .top nav { display: none; }
+  .top .btn.ghost { margin-left: auto; }
+  .intro { top: 76px; transform: none; width: auto; right: 20px; }
+  h1 { font-size: 64px; }
+  .lede { font-size: 13px; margin-top: 16px; }
+  .cta { display: none; }
+  .eyebrow { margin-bottom: 12px; font-size: 10px; }
+  .index { bottom: 18px; flex-direction: column; align-items: stretch; }
+  .specimens button { min-width: 0; flex: 1; padding: 10px 6px; font-size: 10px; letter-spacing: 0.06em; gap: 4px; flex-direction: column; }
+}

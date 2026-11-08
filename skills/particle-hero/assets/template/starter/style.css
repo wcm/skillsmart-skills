@@ -1,0 +1,72 @@
+/* The page round the dust. Colours per look (body[data-look]); fonts, words and layout are the brand's own. */
+:root { --ground: #060606; --text: #efe5d4; --soft: rgba(239, 229, 212, 0.55); --line: rgba(239, 229, 212, 0.18); --accent: #efe5d4; --on-accent: #0b0b0b; }
+[data-look="ink"] { --ground: #f1eadf; --text: #2b1d18; --soft: rgba(43, 29, 24, 0.58); --line: rgba(43, 29, 24, 0.16); --accent: #a3173f; --on-accent: #fff; }
+[data-look="neon"] { --ground: #0b0611; --text: #f6ece6; --soft: rgba(246, 236, 230, 0.6); --line: rgba(246, 236, 230, 0.18); --accent: #ff2e93; --on-accent: #160812; }
+[data-look="print"] { --ground: #f3f2ee; --text: #1c1a18; --soft: rgba(28, 26, 24, 0.55); --line: rgba(28, 26, 24, 0.14); --accent: #ff5a1f; --on-accent: #fff; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--ground); color: var(--text); overflow: hidden; }
+body { font: 400 14px/1.5 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
+#dust { touch-action: none; }
+#hud { pointer-events: none; }
+
+/* the neon look: a giant title behind the dust (the engine's `transparent` lets it show through) */
+.behind {
+  position: fixed; z-index: 0; left: 0; right: 0; bottom: -0.06em; margin: 0; text-align: center;
+  font: 400 22vw/0.8 "Instrument Serif", serif; color: var(--accent); opacity: 0.9;
+}
+
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 3;
+  display: flex; align-items: center; gap: 40px; padding: 26px clamp(20px, 4vw, 56px);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.mark { font-weight: 500; }
+.top nav { display: flex; gap: 28px; margin-left: auto; color: var(--soft); }
+.top nav a:hover { color: var(--text); }
+
+.btn {
+  display: inline-flex; align-items: center; height: 42px; padding: 0 22px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+}
+.btn.ghost { background: none; color: var(--text); border: 1px solid var(--line); height: 34px; }
+
+.intro { position: fixed; z-index: 3; left: clamp(20px, 4vw, 56px); top: 50%; transform: translateY(-54%); width: min(30vw, 440px); pointer-events: none; }
+.intro a { pointer-events: auto; }
+.eyebrow { margin-bottom: 22px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--soft); }
+h1 { margin: 0; font: 400 clamp(60px, 8vw, 128px)/0.88 "Instrument Serif", serif; letter-spacing: -0.02em; }
+.lede { margin-top: 26px; max-width: 32ch; font-size: 15px; line-height: 1.6; color: var(--soft); font-weight: 300; }
+.cta { margin-top: 30px; }
+
+.index {
+  position: fixed; z-index: 3; left: clamp(20px, 4vw, 56px); right: clamp(20px, 4vw, 56px); bottom: 28px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.now { display: grid; grid-template-columns: auto auto; column-gap: 16px; align-items: baseline; }
+.now .no { grid-row: span 2; font: 500 11px "JetBrains Mono", monospace; color: var(--soft); }
+.now .name { font: 400 28px/1 "Instrument Serif", serif; }
+.now .line { font-size: 13px; color: var(--soft); }
+.pick { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.pick button {
+  position: relative; display: flex; align-items: baseline; gap: 10px; padding: 12px 18px 14px; min-width: 150px;
+  background: none; border: 0; border-top: 1px solid var(--line); color: var(--soft); cursor: pointer; text-align: left;
+  font: 400 11px "Manrope", sans-serif; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.pick button span { font: 500 10px "JetBrains Mono", monospace; }
+.pick button i { position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+.pick button.on, .pick button:hover { color: var(--text); }
+
+@media (max-width: 760px) {
+  .top { padding: 18px 20px; gap: 16px; }
+  .top nav { display: none; }
+  .top .btn.ghost { margin-left: auto; }
+  .intro { top: 76px; transform: none; width: auto; right: 20px; }
+  h1 { font-size: 56px; }
+  .lede { font-size: 13px; margin-top: 14px; }
+  .cta { display: none; }
+  .index { bottom: 18px; flex-direction: column; align-items: stretch; }
+  .pick button { min-width: 0; flex: 1; padding: 10px 6px; font-size: 10px; letter-spacing: 0.08em; gap: 4px; flex-direction: column; }
+}

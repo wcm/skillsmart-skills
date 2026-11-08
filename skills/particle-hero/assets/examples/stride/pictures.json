@@ -1,0 +1,24 @@
+{
+  "background": "white",
+  "aspect": "3:2",
+  "style": "Product photography in exact side profile, the shoe facing left.",
+  "made": "These subjects were made with GPT Image 2.6 on fal.ai at 2048 px; pictures.mjs makes them with nano-banana-pro on your Skillsmart credits.",
+  "pictures": [
+    {
+      "id": "runner",
+      "prompt": "A sleek running shoe in exact side profile facing left, a knit upper in a bold black and white zigzag pattern, a thick sculpted white foam midsole with a black rubber outsole, product photography."
+    },
+    {
+      "id": "court",
+      "prompt": "A high-top basketball sneaker in exact side profile facing left, black leather panels with white contrast stitching and a padded collar, a chunky white cupsole, product photography."
+    },
+    {
+      "id": "trail",
+      "prompt": "A rugged trail running shoe in exact side profile facing left, a dark charcoal ripstop mesh upper with a toggle lace, a black midsole and a deep aggressive lug outsole, product photography."
+    },
+    {
+      "id": "slip",
+      "prompt": "A minimalist slip-on sneaker in exact side profile facing left, a charcoal suede upper with an elastic side gore, a thick gum rubber sole, product photography."
+    }
+  ]
+}

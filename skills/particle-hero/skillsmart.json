@@ -1,0 +1,66 @@
+{
+  "slug": "particle-hero",
+  "name": "Particle Hero",
+  "tagline": "A hero made of half a million particles that gather into each of your subjects in turn and part like smoke under the cursor.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": ["particles", "particle animation", "particle effect", "point cloud", "morph", "morphing", "transition", "hero section", "interactive", "hover effect", "webgl", "3D", "product range", "product showcase", "sneakers", "perfume", "museum", "exhibition", "festival", "lineup", "landing page", "generative"],
+  "youSay": "/particle-hero A hero for our sneaker range where each model turns into the next",
+  "whatYouGet": [
+    "A hero where each subject (a product, an animal, a portrait, an object) is rebuilt from up to half a million grains with real depth, and the grains swarm or melt from one subject into the next",
+    "A hover that feels natural: the cursor carries the grains along like a hand through smoke and they drift home on their own",
+    "Four looks to start from: bone-white dust on black with trackers and wind, coloured ink on cream paper, neon dust with lights flashing on a beat, or a light one-colour print with callouts",
+    "The whole page with its own type and words, a list to pick a subject, one call to action and a phone layout, checked headless on desktop and phone, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Product ranges and collections (shoes, bottles, chairs, gadgets), museums and exhibitions, festivals and lineups, perfume, beauty and luxury brands",
+    "Heroes that should show several subjects in one striking, interactive moment"
+  ],
+  "notFor": [
+    "Pages that must show a product photo exactly: the subject is drawn in grains, not shown as a photo",
+    "Very old devices without WebGL2"
+  ],
+  "youBring": [
+    "What the page is for, three to five subjects and what visitors should do",
+    "Optional: your own product photos or portraits, and the brand's name, colours and tone"
+  ],
+  "needs": [
+    "Skillsmart credits: about 88 for a four-subject page",
+    "Node 18+",
+    "Python 3",
+    "Optional: Chrome or Edge, for the headless check"
+  ],
+  "generates": {
+    "models": [
+      "nano-banana-pro",
+      "birefnet-image"
+    ],
+    "estimate": "about 22 a subject: 20 for the picture, 2 for the cut-out (your own photo: 2)"
+  },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $0.16 a subject",
+    "domains": [
+      "fal.ai",
+      "fal.run",
+      "fal.media",
+      "queue.fal.run",
+      "rest.alpha.fal.ai",
+      "rest.fal.ai"
+    ]
+  },
+  "network": [
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "sharp; onnxruntime-web and playwright-core, installed once into a cache"
+    },
+    {
+      "host": "huggingface.co",
+      "purpose": "the depth model, Depth Anything V2 Small (27 MB, once)"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}
