@@ -1,0 +1,79 @@
+/* Lacquer: a modern Cantonese dining room by candlelight. The menu comes round like on a lazy susan. */
+:root {
+  --ink: #f2e4cb;
+  --muted: rgba(242, 228, 203, 0.66);
+  --gold: #cfa95f;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Figtree", system-ui, sans-serif;
+  --han: "Noto Serif SC", "Songti SC", serif;
+}
+body { font-family: var(--sans); color: var(--ink); background: #170d0b; --stage-cx: 64vw; --stage-cy: 50vh; --stage-h: 76vh; --page-h: 128vh; --arc: 24vh; }
+
+/* header */
+.bar { position: fixed; z-index: 30; top: 0; left: 0; right: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 22px 4vw; pointer-events: none; }
+.bar > * { pointer-events: auto; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font: 400 24px/1 var(--serif); color: var(--gold); text-decoration: none; letter-spacing: 0.01em; }
+.seal { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--gold); font: 600 19px/1 var(--han); }
+.nav { display: flex; gap: 34px; font: 500 14px/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.count { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 150px; font: 500 14px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; }
+.count b { font-weight: 600; color: var(--gold); }
+.back { grid-column: 3; grid-row: 1; justify-self: end; font: 500 14px/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+/* gallery: the round table seen from above, the dishes going round */
+.gallery { background: radial-gradient(90% 80% at 50% 58%, #2b1611, #120908 70%); }
+.table { position: absolute; left: 50%; top: 58%; width: 90vw; height: 70vh; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(60% 55% at 50% 38%, #521f19, #2a100c 58%, #170907 100%);
+  box-shadow: 0 0 0 1px rgba(207, 169, 95, 0.32), 0 40px 90px rgba(0, 0, 0, 0.65), inset 0 -18px 50px rgba(0, 0, 0, 0.55); }
+.table::before { content: ""; position: absolute; inset: 21% 25%; border-radius: 50%; border: 1px solid rgba(207, 169, 95, 0.28); background: radial-gradient(70% 60% at 50% 35%, rgba(255, 210, 160, 0.07), transparent 70%); }
+.table::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(170deg, rgba(255, 230, 200, 0.1), transparent 40%); }
+.heading { position: absolute; left: 50%; top: 57%; translate: -50% -50%; text-align: center; z-index: 50; pointer-events: none; }
+.kicker { font: 500 14px/1 var(--sans); letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin: 0 0 2.2vh; }
+.heading h1 { font: 400 clamp(72px, 8.6vw, 156px)/0.9 var(--serif); font-variation-settings: "opsz" 144; color: var(--gold); margin: 0; letter-spacing: -0.01em; }
+.lede { font: 400 17px/1.5 var(--sans); color: var(--muted); margin: 2vh 0 0; }
+.ring { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.ring li { display: contents; }
+.ring .item { position: absolute; left: 0; top: 0; width: 21vw; }
+.ring .item img { filter: brightness(calc(0.5 + var(--depth, 1) * 0.5)) drop-shadow(0 14px 16px rgba(0, 0, 0, 0.55)); transition: transform 0.5s; }
+.ring .item:hover img { transform: translateY(-1vh); }
+.dish { position: absolute; left: 50%; bottom: -1.6vh; translate: -50% 0; white-space: nowrap; font: 500 14px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); opacity: calc(var(--depth, 1) * 1.6 - 0.6); }
+
+/* pages: one deep lacquer colour per course, round lines with a gold rim */
+.page { --ink: #f2e4cb; padding-top: 30vh; }
+.page + .page::before, .page + .end::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--arc) * 2); border-radius: 50%; border: 3px solid var(--gold); opacity: 0.85; clip-path: inset(0 0 50% 0); pointer-events: none; z-index: 3; }
+.stage { z-index: 1; }
+.stage::before { content: ""; position: absolute; inset: 0; background: radial-gradient(34vw 40vh at var(--stage-cx) calc(var(--stage-cy) + 4vh), var(--glow), transparent 75%); }
+.han { position: absolute; left: 3.4vw; top: 50%; translate: 0 -50%; margin: 0; writing-mode: vertical-rl; font: 600 16vh/1 var(--han); letter-spacing: 0.08em; color: var(--gold); z-index: 2; pointer-events: none; user-select: none; }
+.words { margin-left: 14vw; width: min(28vw, 430px); }
+.words h2 { font: italic 300 clamp(56px, 5.6vw, 100px)/0.95 var(--serif); font-variation-settings: "opsz" 144; margin: 0 0 3vh; letter-spacing: -0.01em; }
+.desc { font: 400 18px/1.55 var(--sans); color: var(--muted); margin: 0 0 3vh; max-width: 32ch; }
+.pair { font: 400 16px/1.4 var(--sans); margin: 0 0 2.6vh; padding: 1.6vh 0; border-top: 1px solid rgba(207, 169, 95, 0.35); border-bottom: 1px solid rgba(207, 169, 95, 0.35); }
+.pair span { display: block; font: 500 14px/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1vh; }
+.price { font: 400 32px/1 var(--serif); color: var(--gold); margin: 0; }
+
+/* the lazy susan under every dish, and the dish's shadow on it */
+.stage .base { left: 4%; width: 92%; top: calc(var(--ground) * 100% - 50%); height: 56%; border-radius: 50%;
+  background: radial-gradient(60% 60% at 50% 34%, #5d231c, #2c100c 60%, #150806 100%);
+  box-shadow: 0 0 0 1.5px rgba(207, 169, 95, 0.5), 0 2.4vh 0 -0.2vh #0c0504, 0 3vh 5vh rgba(0, 0, 0, 0.6); }
+.stage .base::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(172deg, rgba(255, 225, 190, 0.16), transparent 34%, transparent 70%, rgba(255, 200, 150, 0.05)); }
+.stage .shadow { left: 15%; width: 70%; top: calc(var(--ground) * 100% - 42%); height: 44%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.25) 60%, transparent); filter: blur(10px); }
+
+/* the end: booking */
+.end { min-height: 100vh; padding: 34vh 6vw 12vh; text-align: center; background: radial-gradient(60% 60% at 50% 50%, #2b1611, #170d0b 70%); }
+.close h2 { font: 300 clamp(56px, 6.4vw, 116px)/1 var(--serif); font-variation-settings: "opsz" 144; margin: 0 0 4vh; color: var(--ink); }
+.close h2 em { font-style: italic; color: var(--gold); }
+.close p { font: 400 19px/1.5 var(--sans); color: var(--muted); margin: 0 auto 4.4vh; max-width: 40ch; }
+.book { font: 500 14px/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: #170d0b; background: var(--gold); padding: 18px 34px; }
+
+@media (max-width: 760px) {
+  body { --stage-cy: 26vh; --stage-h: 30vh; --arc: 12vh; }
+  .bar { grid-template-columns: 1fr auto; padding: 16px 20px; }
+  .nav, .count { display: none; }
+  .table { width: 120vw; height: 56vh; }
+  .ring .item { width: 30vw; }
+  .dish { display: none; }
+  .han { display: none; }
+  .heading h1 { font-size: 54px; }
+  .heading .kicker { font-size: 14px; letter-spacing: 0.2em; }
+  .words { margin: 0 20px; width: auto; }
+  .desc { display: none; }
+}

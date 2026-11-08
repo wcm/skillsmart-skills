@@ -1,0 +1,41 @@
+{
+  "notes": "Five sneakers floating side-on, toe left, in one drop. Floating things: float true, centred on the stage instead of standing on a ground line, fit by width. The shoes turn round their vertical axis in mid-air.",
+  "aspect": "16:9",
+  "shot": "Studio product photograph of one {subject}. Seen exactly side-on from its outer side, toe pointing to the left, floating in mid-air in the centre of the frame, level. The shoe spans about 55% of the frame width, with clear empty space all around it. Plain seamless light grey backdrop, soft even studio light, no shadow on the ground. Photorealistic, crisp material detail. No logos, no brand marks, no text.",
+  "turn": "Turntable shot. The floating shoe slowly rotates in mid-air around its vertical axis through one full 360-degree turn at a steady, even speed, always turning the same way, and ends exactly as it started, side-on with the toe pointing left. The camera is locked off: no camera movement, no zoom, no pan. The shoe keeps its exact shape, colours and details throughout. The plain backdrop and light stay the same.",
+  "cut": "heavy",
+  "stage": {
+    "w": 1200,
+    "h": 800,
+    "axis": 600,
+    "centre": 380,
+    "float": true,
+    "fit": "width",
+    "size": 1040
+  },
+  "count": 72,
+  "quality": 74,
+  "subjects": [
+    {
+      "id": "volt",
+      "prompt": "modern running sneaker in a volt colourway (vivid neon yellow-green): a translucent engineered-mesh upper, a white sculpted foam midsole, a black rubber outsole, black laces and a small black heel pull tab"
+    },
+    {
+      "id": "lime",
+      "prompt": "rugged trail running shoe in vivid lime green ripstop with a charcoal rubber toe cap, a chunky charcoal lugged outsole, lime laces and a black heel loop"
+    },
+    {
+      "id": "mint",
+      "prompt": "clean low-top leather court sneaker in soft mint green with a white rubber cupsole, mint laces, tonal stitching and a perforated toe"
+    },
+    {
+      "id": "aqua",
+      "prompt": "featherlight racing shoe in bright aqua translucent mesh with a tall white foam sole, a thin black carbon plate edge visible along the side of the sole, and thin white laces"
+    },
+    {
+      "id": "ice",
+      "prompt": "high-top basketball sneaker in icy pale blue leather with a white midsole, a translucent icy outsole, white laces and a padded ankle collar",
+      "scale": 0.96
+    }
+  ]
+}

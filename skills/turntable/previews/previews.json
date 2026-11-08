@@ -1,0 +1,48 @@
+{
+  "previews": [
+    {
+      "file": "01.mp4",
+      "kind": "video",
+      "poster": "01.webp",
+      "thumb": "01-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "In the Round — click a sculpture on its plinth; each scroll turns it all the way round into the next work, room by room",
+      "prompt": "/turntable A gallery's sculpture show where each work turns on its plinth, room by room",
+      "url": "https://demos.skillsmart.io/turntable/in-the-round/"
+    },
+    {
+      "file": "02.mp4",
+      "kind": "video",
+      "poster": "02.webp",
+      "thumb": "02-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Lacquer — six courses on a turning lacquer table; each scroll spins a dish into the next under a gold arc",
+      "prompt": "/turntable A tasting menu for a modern Cantonese restaurant, each dish turning on a lacquer table",
+      "url": "https://demos.skillsmart.io/turntable/lacquer/"
+    },
+    {
+      "file": "03.mp4",
+      "kind": "video",
+      "poster": "03.webp",
+      "thumb": "03-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "SIP CLUB — one model, five drink looks: she turns into the next outfit as its swatches and receipt fly in",
+      "prompt": "/turntable A summer drop for a drinks-inspired fashion label: one model in five looks, each turning into the next",
+      "url": "https://demos.skillsmart.io/turntable/sip-club/"
+    },
+    {
+      "file": "04.mp4",
+      "kind": "video",
+      "poster": "04.webp",
+      "thumb": "04-sm.mp4",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Torque — a sneaker drop in colour tiles; each scroll spins a pair into the next across a slanted line",
+      "prompt": "/turntable A drop page for five new sneakers, each in its own colour, spinning into the next",
+      "url": "https://demos.skillsmart.io/turntable/torque/"
+    }
+  ]
+}

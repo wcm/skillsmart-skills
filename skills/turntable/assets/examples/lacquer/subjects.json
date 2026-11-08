@@ -1,0 +1,50 @@
+{
+  "notes": "Six Cantonese dishes on a charcoal backdrop, seen from 35 degrees above so the food reads, fit by width. The cut-out kept the white plates of some dishes and lost others (the crab's bowl went missing, the fish's platter came out see-through): those were put back by finding the plate in the turn with SAM 3. With \"plate\" set, subjects.mjs does that for every dish by itself (the dumplings sit in a steamer basket, so they have none). The fish turned the other way from the rest, so it plays reversed.",
+  "aspect": "16:9",
+  "shot": "Fine-dining food photograph of {subject}. The dish is centred and seen from a three-quarter angle about 35 degrees above, filling about 55% of the frame width, with clear empty space all around it. Plain seamless deep charcoal backdrop, one warm spotlight from the upper left, soft falloff. Photorealistic, appetising, glossy, crisp detail. No table, no cutlery, no chopsticks, no props, no text.",
+  "turn": "Turntable shot. The dish slowly rotates in place, as if on a hidden turntable, through one full 360-degree turn at a steady, even speed, always turning the same way, and ends exactly as it started. The camera is locked off: no camera movement, no zoom, no pan. The food keeps its exact arrangement and the plate its exact shape throughout. The dark backdrop and warm light stay the same.",
+  "cut": "matting",
+  "plate": "plate",
+  "stage": {
+    "w": 1080,
+    "h": 810,
+    "axis": 540,
+    "ground": 621,
+    "fit": "width",
+    "size": 900
+  },
+  "count": 72,
+  "quality": 74,
+  "subjects": [
+    {
+      "id": "dumplings",
+      "prompt": "six xiao long bao soup dumplings in a round bamboo steamer basket lined with a pale cabbage leaf, delicate twisted pleats on top, thin slightly translucent skins glistening",
+      "scale": 0.86,
+      "plate": false
+    },
+    {
+      "id": "charsiu",
+      "prompt": "Cantonese char siu: thick slices of honey-lacquered barbecue pork fanned in a neat arc, deep red-brown caramelised edges and a glossy glaze, a few sesame seeds, on a round white porcelain plate with a thin gold rim"
+    },
+    {
+      "id": "duck",
+      "prompt": "Cantonese roast duck: crisp, glossy mahogany skin, chopped into neat pieces and reassembled on a round white porcelain plate with a thin gold rim, a small pool of dark plum sauce at one side"
+    },
+    {
+      "id": "crab",
+      "prompt": "Singapore chilli crab: a whole crab, shell glossy with thick red-orange chilli sauce, with silky ribbons of egg, a few coriander leaves and sliced red chilli, served in a wide shallow white porcelain bowl with a thin gold rim",
+      "plate": "bowl"
+    },
+    {
+      "id": "fish",
+      "prompt": "a whole steamed fish with fine shreds of ginger and spring onion piled on top, glistening light soy and sesame sauce, a few coriander sprigs, on a long oval white porcelain platter with a thin gold rim",
+      "scale": 1.04,
+      "reverse": true
+    },
+    {
+      "id": "tarts",
+      "prompt": "five Cantonese egg tarts with flaky golden pastry and glossy, wobbly yellow custard, arranged on a round white porcelain plate with a thin gold rim",
+      "scale": 0.96
+    }
+  ]
+}

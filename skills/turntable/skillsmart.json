@@ -1,0 +1,99 @@
+{
+  "slug": "turntable",
+  "name": "Turntable",
+  "tagline": "A site where each subject turns on the spot as you scroll: a gallery, then a page each, and every scroll one whole turn into the next.",
+  "category": "web",
+  "tier": "free",
+  "version": "1.0.0",
+  "tags": [
+    "360 product view",
+    "360 spin",
+    "product turntable",
+    "rotating product",
+    "scroll to spin",
+    "scroll animation",
+    "scroll-driven",
+    "snap scroll",
+    "product page",
+    "product showcase",
+    "collection",
+    "lookbook",
+    "fashion",
+    "sneakers",
+    "shoes",
+    "restaurant menu",
+    "food",
+    "art gallery",
+    "sculpture",
+    "exhibition",
+    "e-commerce",
+    "AI video",
+    "landing page"
+  ],
+  "youSay": "/turntable A page for our five new sneakers, each in its own colour",
+  "whatYouGet": [
+    "A gallery of your subjects, then a page for each: words on the left, the subject on the right, each page in a colour taken from its subject",
+    "Every scroll is one whole eased turn: the subject spins all the way round on the spot and turns into the next one exactly where the line between the two pages crosses it, so visitors see each one from every side",
+    "Real subjects: each one photographed, filmed turning a full 360° from that photo and cut out (sculpture, dishes with their plates, products, shoes, one model in several looks), or made from your own photos",
+    "The whole site with its own look and words, a page count, a way back to the gallery, an ending with one call to action and a phone layout, checked headless on desktop and phone, as a static site you can host anywhere"
+  ],
+  "goodFit": [
+    "Product launches and collections (shoes, bags, bottles, lamps, furniture), fashion lookbooks, restaurant menus and signature dishes, galleries, museums and exhibitions",
+    "Pages where seeing each thing from every side is the reason to buy, book or visit"
+  ],
+  "notFor": [
+    "Exact product records: each turn is generated from one photo, so the sides and back the photo doesn't show are imagined",
+    "Plain round things (a smooth vase, a can) whose turn can't be seen",
+    "Pages that must be very light: each subject is about 3 MB of frames"
+  ],
+  "youBring": [
+    "What the site is for, three to six subjects of one kind and what visitors should do",
+    "Optional: your own photos of the subjects, and the brand's name, colours and tone"
+  ],
+  "needs": [
+    "Skillsmart credits: about 138 a subject, about 690 for a five-subject page",
+    "Node 18+",
+    "Python 3",
+    "ffmpeg",
+    "Optional: Chrome or Edge, for the headless check"
+  ],
+  "generates": {
+    "models": [
+      "nano-banana-pro",
+      "h3-max-turbo",
+      "birefnet-video",
+      "sam-3-video",
+      "sam-3"
+    ],
+    "estimate": "about 138 a subject: photo 20, turn 110, cut-out 8 (a dish's plate 8 more)"
+  },
+  "byoKey": {
+    "service": "fal.ai",
+    "cost": "about $1 a subject",
+    "domains": [
+      "fal.ai",
+      "fal.run",
+      "fal.media",
+      "queue.fal.run",
+      "rest.alpha.fal.ai",
+      "rest.fal.ai"
+    ]
+  },
+  "network": [
+    {
+      "host": "registry.npmjs.org",
+      "purpose": "sharp for the tools; playwright-core for the headless check (installed once)"
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "purpose": "the starter's and the examples' fonts"
+    },
+    {
+      "host": "fonts.gstatic.com",
+      "purpose": "the font files"
+    }
+  ],
+  "testedIn": [
+    "Claude Code"
+  ]
+}

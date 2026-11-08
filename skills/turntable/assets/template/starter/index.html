@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WRITE the collection — WRITE the brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../engine/turntable.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- The gallery ([data-gallery]) holds one .item per subject; the detail ([data-detail]) one .page per subject in the
+     same order, then an optional .end. data-subject is the subject's id in tools/subjects/<id>.json (its frames are
+     frames/<id>/). [data-index] buttons fly back to the gallery; [data-now] shows the page number;
+     [data-detail-only] shows only on the pages. Each page's colour: --page, from its subject. -->
+<header class="bar">
+  <a class="brand" href="./">WRITE brand</a>
+  <span class="count" data-detail-only><b data-now>01</b> / 03</span>
+  <button class="back" data-index data-detail-only>See all</button>
+</header>
+
+<section class="gallery" data-gallery>
+  <div class="intro">
+    <p class="kicker">WRITE a short line above the title</p>
+    <h1>WRITE the <em>title</em></h1>
+    <p class="lede">WRITE one sentence: what these are. Pick one to see it all the way round.</p>
+  </div>
+  <ul class="row">
+    <li><button class="item" data-subject="one"><img alt="WRITE what it is"><span class="tag">WRITE name</span></button></li>
+    <li><button class="item" data-subject="two"><img alt="WRITE what it is"><span class="tag">WRITE name</span></button></li>
+    <li><button class="item" data-subject="three"><img alt="WRITE what it is"><span class="tag">WRITE name</span></button></li>
+  </ul>
+</section>
+
+<main class="detail" data-detail>
+  <article class="page" data-subject="one" style="--page:#e8e1d5; --deep:#dad0bf">
+    <span class="big" aria-hidden="true">01</span>
+    <div class="words">
+      <p class="kicker">01 · WRITE kind</p>
+      <h2>WRITE name</h2>
+      <p class="line">WRITE one or two short sentences about it.</p>
+      <dl><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd></dl>
+      <a class="cta" href="#end">WRITE the action <span>→</span></a>
+    </div>
+  </article>
+  <article class="page" data-subject="two" style="--page:#d9e1dc; --deep:#c7d3cb">
+    <span class="big" aria-hidden="true">02</span>
+    <div class="words">
+      <p class="kicker">02 · WRITE kind</p>
+      <h2>WRITE name</h2>
+      <p class="line">WRITE one or two short sentences about it.</p>
+      <dl><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd></dl>
+      <a class="cta" href="#end">WRITE the action <span>→</span></a>
+    </div>
+  </article>
+  <article class="page" data-subject="three" style="--page:#e6d9d6; --deep:#d9c6c1">
+    <span class="big" aria-hidden="true">03</span>
+    <div class="words">
+      <p class="kicker">03 · WRITE kind</p>
+      <h2>WRITE name</h2>
+      <p class="line">WRITE one or two short sentences about it.</p>
+      <dl><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd><dt>WRITE</dt><dd>WRITE</dd></dl>
+      <a class="cta" href="#end">WRITE the action <span>→</span></a>
+    </div>
+  </article>
+  <section class="end" id="end" style="--page:#1e1c1a; --ink:#f3efe8">
+    <div class="close">
+      <p class="kicker">WRITE</p>
+      <h2>WRITE the closing line</h2>
+      <p>WRITE the details: where, when, how much.</p>
+      <a class="cta" href="#end">WRITE the action <span>→</span></a>
+      <button class="cta quiet" data-index>See them all <span>↺</span></button>
+    </div>
+  </section>
+</main>
+
+<script type="module">
+  import { start } from "../engine/turntable.js";
+  // line: straight | arc | slash | wave | zigzag · flood: circle | rise | drop | tile · gallery: row | ring | lineup | tiles
+  start({ line: "straight", flood: "rise", gallery: "row", record: { subject: 0, pages: 2 } });
+</script>
+</body>
+</html>

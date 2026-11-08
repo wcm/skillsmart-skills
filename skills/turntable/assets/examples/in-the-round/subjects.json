@@ -1,0 +1,60 @@
+{
+  "notes": "Six sculptures for a gallery's spring show, each standing on the page's fluted plinth. Tall things: a 9:16 photo, fit by height, resting by the front view's lowest point and sunk a little into the plinth's top face. The torso's back first came out bare, so it has its own turn prompt that says what the back looks like. The plinth is a prop: node prop.mjs in-the-round pedestal (prompt below in props).",
+  "aspect": "9:16",
+  "shot": "Museum-quality studio photograph of a contemporary sculpture: {subject}. It stands upright on its own, centred in the frame, seen straight on at eye level, the whole sculpture occupying about 62% of the frame height, with generous empty space above and below and on both sides. Plain seamless light warm-grey studio backdrop and floor, soft diffuse skylight from above, a faint soft contact shadow under the base. Photorealistic, sharp detail of the surface. No plinth, no pedestal, no text, no other objects.",
+  "turn": "Turntable shot. The sculpture slowly rotates in place, as if on a hidden turntable, through one full 360-degree turn at a steady, even speed, always turning the same way, and ends exactly as it started. The camera is locked off: no camera movement, no zoom, no pan. The backdrop, floor and light stay exactly the same. The sculpture keeps its exact shape, size, surface and base throughout.",
+  "turns": {
+    "draped": "Turntable shot. The draped terracotta torso slowly rotates in place, as if on a hidden turntable, through one full 360-degree turn at a steady, even speed, always turning the same way, and ends exactly as it started. Seen from behind, the finely pleated drapery covers the whole back, from the shoulders all the way down to the base, with deep folds; no bare skin anywhere. The camera is locked off: no camera movement, no zoom, no pan. The backdrop, floor and light stay exactly the same. The sculpture keeps its exact shape, size and surface throughout."
+  },
+  "cut": "heavy",
+  "stage": {
+    "w": 900,
+    "h": 1200,
+    "axis": 450,
+    "ground": 1110,
+    "fit": "height",
+    "size": 940,
+    "groundFrom": "front",
+    "sink": 0.012
+  },
+  "count": 72,
+  "quality": 74,
+  "props": {
+    "pedestal": {
+      "prompt": "Studio photograph of a single tall cylindrical museum pedestal with fine vertical fluting all around, made of matte warm-white plaster with a very subtle mineral texture, and a flat, smooth, perfectly round top with a crisp edge. Seen straight on from just above the height of its top, so the top surface shows as a narrow ellipse. Soft diffuse skylight from above and slightly left: the top surface is the brightest, the fluting casts fine soft shadows, and the sides fall away gently into soft shade. The pedestal is centred, about 46% of the frame width, its top about 12% down from the top of the frame, and its body runs down past the bottom edge of the frame. Plain seamless light warm-grey backdrop. Photorealistic, refined, quiet luxury. Nothing on top of it, no text, no other objects.",
+      "keep": "pedestal",
+      "aspect": "9:16"
+    }
+  },
+  "subjects": [
+    {
+      "id": "vessel",
+      "prompt": "a tall hand-thrown porcelain vessel in a warm bone-white glaze, a slender body rising to a narrow neck that opens into a softly folded, pleated rim like a crumpled paper collar, a faint pale celadon pooling in the folds, a small foot",
+      "scale": 0.9
+    },
+    {
+      "id": "travertine",
+      "prompt": "a smooth knot carved from honey-coloured travertine stone, one thick rounded band looped through itself, the stone's natural pores and soft creamy bands visible, a flat base",
+      "scale": 0.86
+    },
+    {
+      "id": "torso",
+      "prompt": "a classical-style draped torso fragment in unglazed red-orange terracotta, from the shoulders to the hips, no head and no arms, the body wrapped in finely pleated drapery from the shoulders down, warm clay with fine surface wear, standing on a small flat square base",
+      "turn": "draped"
+    },
+    {
+      "id": "bronze",
+      "prompt": "an abstract twisted loop, like a wide ribbon folded into a Möbius band, standing upright on its own small flat base, rich blue-green verdigris patina worn back to warm polished bronze on the raised edges, fine casting texture",
+      "scale": 0.97
+    },
+    {
+      "id": "glass",
+      "prompt": "an abstract sculpture in thick, mostly opaque smoky blue-grey glass with a satin frosted surface and glossy edges, a tall swelling teardrop form with an oval opening through its centre, a flat polished base",
+      "scale": 0.94
+    },
+    {
+      "id": "basalt",
+      "prompt": "a tall column carved from black basalt that twists gently as it rises, crisp chiselled facets on one side and a smooth polished face on the other, a flat base"
+    }
+  ]
+}

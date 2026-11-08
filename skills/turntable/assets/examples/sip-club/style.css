@@ -1,0 +1,106 @@
+/* SIP CLUB: summer looks inspired by drinks. One model turns into the next outfit; behind her, that drink's receipt and
+   colour swatches fly in and swap with her at a torn-receipt line. She goes grey mid-turn and pops back into colour. */
+:root {
+  --ink: #1b1512;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+  --hand: "Caveat", cursive;
+  --paper-edge: polygon(0 6px, 3% 0, 6% 6px, 9% 0, 12% 6px, 15% 0, 18% 6px, 21% 0, 24% 6px, 27% 0, 30% 6px, 33% 0, 36% 6px, 39% 0, 42% 6px, 45% 0, 48% 6px, 51% 0, 54% 6px, 57% 0, 60% 6px, 63% 0, 66% 6px, 69% 0, 72% 6px, 75% 0, 78% 6px, 81% 0, 84% 6px, 87% 0, 90% 6px, 93% 0, 96% 6px, 100% 0,
+    100% calc(100% - 6px), 97% 100%, 94% calc(100% - 6px), 91% 100%, 88% calc(100% - 6px), 85% 100%, 82% calc(100% - 6px), 79% 100%, 76% calc(100% - 6px), 73% 100%, 70% calc(100% - 6px), 67% 100%, 64% calc(100% - 6px), 61% 100%, 58% calc(100% - 6px), 55% 100%, 52% calc(100% - 6px), 49% 100%, 46% calc(100% - 6px), 43% 100%, 40% calc(100% - 6px), 37% 100%, 34% calc(100% - 6px), 31% 100%, 28% calc(100% - 6px), 25% 100%, 22% calc(100% - 6px), 19% 100%, 16% calc(100% - 6px), 13% 100%, 10% calc(100% - 6px), 7% 100%, 4% calc(100% - 6px), 0 100%);
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+body { font-family: var(--display); color: var(--ink); background: #fbf8f3; --stage-cx: 63vw; --stage-cy: 50vh; --stage-h: 92vh; --page-h: 118vh; --wave: 1.8vh; }
+
+/* header */
+.bar { position: fixed; z-index: 30; top: 0; left: 0; right: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 3.5vw; pointer-events: none; }
+.bar > * { pointer-events: auto; }
+.brand { font: 800 26px/1 var(--display); letter-spacing: -0.03em; color: var(--ink); text-decoration: none; }
+.menu { font: 500 14px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
+.count { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 112px; font: 500 14px/1 var(--mono); text-transform: uppercase; }
+.count b { font-weight: 500; }
+.back { grid-column: 3; grid-row: 1; justify-self: end; font: 600 14px/1 var(--display); text-transform: uppercase; letter-spacing: 0.06em; background: var(--ink); color: #fff; border-radius: 999px; padding: 11px 18px; }
+
+/* gallery: the same girl in all five looks, each in front of her drink's colour */
+.gallery { background: linear-gradient(rgba(27, 21, 18, 0.045) 1px, transparent 1px) 0 0 / 100% 44px, linear-gradient(90deg, rgba(27, 21, 18, 0.045) 1px, transparent 1px) 0 0 / 44px 100%, #fbf8f3; }
+.intro { position: absolute; left: 0; right: 0; top: 8vh; text-align: center; z-index: 1; pointer-events: none; }
+.intro h1 { margin: 0; font: 800 14.5vw/0.8 var(--display); letter-spacing: -0.055em; color: var(--ink); }
+.note { position: absolute; right: 21vw; top: 9.6vw; margin: 0; font: 600 clamp(32px, 3.4vw, 56px)/1 var(--hand); color: #ff4f87; rotate: -7deg; }
+.sub { margin: 2.4vh 0 0; font: 500 14px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.lineup { position: absolute; left: 0; right: 0; bottom: 2vh; margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; align-items: flex-end; z-index: 2; }
+.lineup li { margin: 0 -2.2vw; }
+.item { position: relative; display: block; transition: transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.item img { position: relative; z-index: 1; height: 57vh; width: auto; }
+.chip { position: absolute; left: 50%; bottom: 7%; width: 56%; height: 60%; background: var(--c); border-radius: 16px; translate: -50% 0; rotate: var(--r); z-index: 0; transition: rotate 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); box-shadow: 0 10px 24px rgba(27, 21, 18, 0.12); }
+.item:hover { transform: translateY(-1.2vh); }
+.item:hover .chip { rotate: calc(var(--r) * 2.2); }
+.tag { position: absolute; left: 50%; bottom: 0.6vh; translate: -50% 0; z-index: 2; white-space: nowrap; font: 500 14px/1 var(--mono); background: #fff; border: 1.5px solid var(--ink); border-radius: 999px; padding: 7px 11px; }
+
+/* pages: a light tint of each drink */
+.page { --ink: #1b1512; padding-top: 22vh; background: var(--grain), var(--page); }
+.stage { z-index: 1; }
+.stage canvas { filter: grayscale(var(--grey, 0)) contrast(calc(1 + var(--grey, 0) * 0.08)); }
+.stage .shadow { left: 50%; width: 44%; height: 3.4%; top: calc(var(--ground) * 100% - 1.7%); transform: translateX(-50%) scale(calc(1 - var(--air, 0) * 3)); opacity: calc(1 - var(--air, 0) * 4); background: radial-gradient(closest-side, rgba(27, 21, 18, 0.34), rgba(27, 21, 18, 0.1) 60%, transparent); filter: blur(3px); }
+
+/* behind her: the drink's swatches and receipt, flying in as she arrives */
+.props { position: absolute; inset: 0; }
+.swatch { --rot: -14deg; position: absolute; width: 30%; aspect-ratio: 0.64; background: var(--c1); border-radius: 6px; box-shadow: 0 14px 30px rgba(27, 21, 18, 0.16);
+  display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
+  transform: translate(calc((1 - var(--arrive, 1)) * var(--fx, -40%)), calc((1 - var(--arrive, 1)) * var(--fy, 30%))) rotate(calc(var(--rot) + (1 - var(--arrive, 1)) * var(--spin, -30deg)));
+  opacity: calc(0.25 + var(--arrive, 1) * 0.75); }
+.swatch b, .swatch i { display: block; background: #fff; padding: 0 9%; font-style: normal; }
+.swatch b { font: 600 15px/1 var(--display); padding-top: 9%; }
+.swatch i { font: 500 14px/1 var(--mono); color: rgba(27, 21, 18, 0.6); padding-bottom: 10%; padding-top: 4%; }
+.swatch.s1 { left: 1%; top: 14%; }
+.swatch.s2 { --rot: 11deg; --fx: 40%; --fy: -20%; --spin: 40deg; left: 66%; top: 10%; background: var(--c2); }
+.swatch.s3 { --rot: -5deg; --fx: 30%; --fy: 40%; --spin: 25deg; left: 64%; top: 52%; background: var(--c3); }
+.receipt { position: absolute; left: 21%; top: 5%; width: 50%; padding: 6% 6% 7%; background: #fff; clip-path: var(--paper-edge); filter: drop-shadow(0 12px 18px rgba(27, 21, 18, 0.14));
+  font: 500 14px/1.5 var(--mono); color: var(--ink);
+  transform: translateY(calc((1 - var(--arrive, 1)) * 26%)) rotate(calc(4deg - (1 - var(--arrive, 1)) * 10deg)); opacity: calc(0.2 + var(--arrive, 1) * 0.8); }
+.receipt p { margin: 0; }
+.r-head { font: 800 30px/1 var(--display) !important; letter-spacing: -0.03em; text-align: center; margin-bottom: 4px !important; }
+.r-sub { text-align: center; color: rgba(27, 21, 18, 0.6); padding-bottom: 10px; margin-bottom: 10px !important; border-bottom: 2px dashed rgba(27, 21, 18, 0.25); }
+.r-line, .r-total { display: flex; justify-content: space-between; gap: 10px; }
+.r-mod { color: rgba(27, 21, 18, 0.6); padding-left: 1.4em; margin-bottom: 4px !important; }
+.r-total { font-weight: 500; padding-top: 10px; margin-top: 10px !important; border-top: 2px dashed rgba(27, 21, 18, 0.25); font-size: 17px; }
+.r-bar { height: 44px; margin: 14px 0 6px !important; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 13px); }
+.r-hand { font: 600 30px/1 var(--hand) !important; color: var(--ink2); text-align: center; rotate: -4deg; margin-top: 8px !important; }
+
+/* words: the look, ordered like a drink */
+.words { margin-left: 5.5vw; width: min(29vw, 410px); }
+.kicker { font: 500 14px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 2vh; }
+.words h2 { font: 800 clamp(52px, 5.4vw, 94px)/0.88 var(--display); letter-spacing: -0.045em; color: var(--ink2); margin: 0 0 2.2vh; }
+.vibe { font: 400 19px/1.35 var(--display); margin: 0 0 2.6vh; max-width: 26ch; }
+.pieces { list-style: none; margin: 0 0 2.6vh; padding: 0; }
+.pieces li { display: flex; align-items: baseline; padding: 0.7vh 0; font: 500 15px/1.3 var(--mono); }
+.pieces li::after { content: ""; order: 2; flex: 1; margin: 0 8px; border-bottom: 2px dotted rgba(27, 21, 18, 0.32); translate: 0 -4px; }
+.pieces li span { order: 1; }
+.pieces li b { order: 3; font-weight: 500; }
+.sizes { display: flex; gap: 8px; margin: 0 0 3vh; }
+.sizes span { min-width: 46px; height: 38px; display: grid; place-items: center; border: 1.5px solid var(--ink); border-radius: 999px; font: 500 14px/1 var(--mono); }
+.sizes .on { background: var(--ink); color: #fff; }
+.order { display: inline-block; background: var(--ink); color: #fff; font: 600 15px/1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; padding: 17px 30px; border-radius: 999px; text-decoration: none; cursor: pointer; transition: background 0.3s; }
+.order:hover { background: var(--ink2, #ff4f87); }
+
+/* the end: the bill */
+.end { min-height: 100vh; padding: 16vh 6vw 10vh; background: var(--grain), #fbf8f3; display: grid; place-items: center; }
+.bill { width: min(440px, 88vw); padding: 44px 40px 46px; background: #fff; clip-path: var(--paper-edge); filter: drop-shadow(0 18px 30px rgba(27, 21, 18, 0.14)); font: 500 15px/1.6 var(--mono); rotate: -2deg; }
+.bill p { margin: 0; }
+.bill .order { margin-top: 26px; width: 100%; text-align: center; }
+
+@media (max-width: 760px) {
+  body { --stage-cy: 28vh; --stage-h: 48vh; --wave: 1.2vh; }
+  .bar { grid-template-columns: 1fr auto; padding: 14px 18px; }
+  .menu, .count { display: none; }
+  .intro h1 { font-size: 21vw; }
+  .note { right: 7vw; top: 17vw; font-size: 30px; }
+  .sub { margin-top: 9vh; padding: 0 20px; }
+  .lineup li { margin: 0 -8vw; }
+  .item img { height: 50vh; }
+  .tag { display: none; }
+  .receipt { font-size: 14px; padding: 5%; }
+  .r-head { font-size: 20px !important; }
+  .swatch b, .swatch i { display: none; }
+  .words { margin: 0 16px; width: auto; background: color-mix(in oklab, var(--page), transparent 6%); padding: 14px 16px; border-radius: 16px; }
+  .words h2 { font-size: 44px; }
+  .vibe, .pieces { display: none; }
+}
