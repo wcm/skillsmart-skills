@@ -1,0 +1,15 @@
+{
+  "notes": "WRITE one line: what the page is for and what its subjects are.",
+  "aspect": "3:4",
+  "shot": "Studio product photograph of {subject}. It stands upright on its own, centred in the frame, seen straight on at eye level, the whole object about 60% of the frame height, with generous empty space above, below and on both sides. Plain seamless mid-grey studio backdrop and floor, soft even light from above, a faint soft contact shadow under it. Photorealistic, crisp material detail. No text, no logos, no other objects.",
+  "turn": "Turntable shot. The object slowly rotates in place, as if on a hidden turntable, through one full 360-degree turn at a steady, even speed, always turning the same way, and ends exactly as it started. The camera is locked off: no camera movement, no zoom, no pan. The backdrop, floor and light stay exactly the same. The object keeps its exact shape, size, colours and details throughout.",
+  "cut": "heavy",
+  "stage": { "w": 900, "h": 1200, "axis": 450, "ground": 1110, "fit": "height", "size": 900, "groundFrom": "front" },
+  "count": 72,
+  "quality": 76,
+  "subjects": [
+    { "id": "one", "prompt": "WRITE what it is: its shape, what it's made of, its colours" },
+    { "id": "two", "prompt": "WRITE what it is: its shape, what it's made of, its colours" },
+    { "id": "three", "prompt": "WRITE what it is: its shape, what it's made of, its colours" }
+  ]
+}

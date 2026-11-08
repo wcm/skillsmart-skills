@@ -1,0 +1,75 @@
+/* The starter's look: quiet and warm, a serif title, the subjects standing in a row on a soft floor. Make it the brand's
+   own: fonts, colours, the line between pages, the gallery's layout, what stands behind each subject. The engine's
+   variables: --stage-cx, --stage-cy (where the subject stands), --stage-h (how tall its stage is), --page-h (a page's
+   length); per page --page (its colour) and --ink (its text). */
+:root {
+  --ink: #23201d;
+  --muted: rgba(35, 32, 29, 0.62);
+  --paper: #f4f1ec;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Inter Tight", system-ui, sans-serif;
+}
+body { font-family: var(--sans); color: var(--ink); background: var(--paper); --stage-cx: 66vw; --stage-cy: 50vh; --stage-h: 78vh; --page-h: 130vh; }
+
+/* header */
+.bar { position: fixed; z-index: 30; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 24px; padding: 22px 4vw; pointer-events: none; }
+.bar > * { pointer-events: auto; }
+.brand { font: 600 22px/1 var(--serif); color: var(--ink); text-decoration: none; margin-right: auto; }
+.count, .back { font: 500 14px/1 var(--sans); letter-spacing: 0.06em; }
+.back { border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+/* gallery: the title on top, the subjects in a row on a soft floor */
+.gallery { background: radial-gradient(120% 70% at 50% 100%, #e9e3da, var(--paper) 70%); }
+.intro { position: absolute; left: 4vw; top: 13vh; z-index: 2; max-width: 56vw; pointer-events: none; }
+.kicker { font: 500 14px/1.4 var(--sans); text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 2vh; color: var(--muted); }
+.intro h1 { font: 400 clamp(64px, 9vw, 168px)/0.9 var(--serif); margin: 0; letter-spacing: -0.02em; }
+.intro h1 em { font-style: italic; }
+.lede { font: 400 18px/1.5 var(--sans); max-width: 36ch; margin: 3vh 0 0; color: var(--muted); }
+.row { position: absolute; left: 0; right: 0; bottom: 9vh; height: 50vh; margin: 0; padding: 0 8vw; list-style: none; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; }
+.row li { display: flex; justify-content: center; }
+/* the picture's ground line (the manifest's ground, as --ground) sits on the floor */
+.item { --tw: 15vw; display: flex; flex-direction: column; align-items: center; position: relative; }
+.item img { width: var(--tw); margin-bottom: calc(var(--tw) / var(--stage-ratio) * (var(--ground) - 1)); position: relative; z-index: 1; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.item:hover img { transform: translateY(-1.2vh); }
+.item::before { content: ""; position: absolute; left: 50%; bottom: -1.2vh; width: calc(var(--tw) * 0.7); height: 2.4vh; translate: -50% 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(40, 30, 20, 0.26), transparent); }
+.tag { position: absolute; top: calc(100% + 2.6vh); left: 50%; translate: -50% 0; font: 500 14px/1 var(--sans); letter-spacing: 0.04em; white-space: nowrap; color: var(--muted); transition: color 0.3s; }
+.item:hover .tag { color: var(--ink); }
+
+/* pages: one per subject, its colour from the subject, a big number behind it */
+.page { --ink: #23201d; padding-top: 24vh; }
+.stage { z-index: 1; }
+.big { position: absolute; right: 4vw; top: 50%; translate: 0 -50%; font: 400 30vw/0.8 var(--serif); color: var(--deep); letter-spacing: -0.04em; pointer-events: none; user-select: none; }
+.stage .shadow { left: 50%; width: 44%; height: 4%; top: calc(var(--ground) * 100% - 2%); translate: -50% 0; background: radial-gradient(closest-side, rgba(40, 30, 20, 0.3), transparent); filter: blur(4px); }
+.words { margin-left: 6vw; width: min(34vw, 480px); }
+.words h2 { font: 400 clamp(56px, 6.6vw, 116px)/0.92 var(--serif); margin: 0 0 2.4vh; letter-spacing: -0.02em; }
+.line { font: 400 18px/1.55 var(--sans); margin: 0 0 3vh; max-width: 34ch; }
+.words dl { display: grid; grid-template-columns: 7em 1fr; gap: 1.1vh 1em; margin: 0 0 3.4vh; padding: 2vh 0; border-top: 1px solid rgba(35, 32, 29, 0.18); border-bottom: 1px solid rgba(35, 32, 29, 0.18); }
+.words dt { font: 500 13px/1.5 var(--sans); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.words dd { margin: 0; font: 400 16px/1.5 var(--sans); }
+.cta { display: inline-flex; gap: 0.6em; font: 500 14px/1 var(--sans); text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 4px; cursor: pointer; }
+.cta span { transition: transform 0.3s; }
+.cta:hover span { transform: translateX(4px); }
+
+/* the end: the one thing to do next */
+.end { min-height: 100vh; padding: 30vh 6vw 12vh; }
+.close { position: relative; max-width: 660px; }
+.close h2 { font: 400 clamp(56px, 7vw, 124px)/0.92 var(--serif); margin: 0 0 4vh; letter-spacing: -0.02em; }
+.close p { font: 400 19px/1.5 var(--sans); margin: 0 0 4vh; }
+.close .cta { color: var(--ink); margin-right: 2.4em; }
+.close .quiet { opacity: 0.7; }
+
+/* phones: the engine puts the subject in the top half and the words at the bottom */
+@media (max-width: 760px) {
+  body { --stage-cy: 27vh; --stage-h: 42vh; }
+  .bar { padding: 16px 20px; }
+  .count { display: none; }
+  .intro { left: 20px; right: 20px; top: 11vh; max-width: none; }
+  .row { height: 40vh; padding: 0 3vw; bottom: 12vh; }
+  .item { --tw: 27vw; }
+  .tag { font-size: 13px; }
+  .big { font-size: 48vw; top: 30%; }
+  .words { margin: 0 20px; width: auto; background: color-mix(in oklab, var(--page), transparent 8%); padding: 20px; }
+  .words h2 { font-size: 52px; }
+  .line { display: none; }
+  .end { padding: 22vh 20px 10vh; }
+}

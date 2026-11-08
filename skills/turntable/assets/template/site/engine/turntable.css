@@ -1,0 +1,84 @@
+/* Turntable: the mechanics every demo shares. A demo's own style.css sets the look and these variables:
+   --stage-cx, --stage-cy  where the subject's box is centred      --stage-h  its height
+   --page-h                one page's length                       --slash / --arc  the size of a slanted or round line
+   Per page: --page (its colour), --ink (its text colour). The engine sets --q (the page's progress, 0 when centred),
+   --angle (the subject's turn), --fade and --rise (for the words) on each page, and --p on body. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+body { margin: 0; --stage-cx: 68vw; --stage-cy: 52vh; --stage-h: 84vh; --page-h: 135vh; --slash: 22vh; --arc: 26vh; --wave: 7vh; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+html.is-gallery { overflow: hidden; }
+
+/* the gallery: one screen, fixed above the pages until a subject is opened */
+.gallery { position: fixed; inset: 0; z-index: 5; overflow: hidden; }
+html.is-detail .gallery { visibility: hidden; }
+.gallery .item img { width: 100%; height: auto; aspect-ratio: var(--stage-ratio); }
+
+/* the pages: each clips its own fixed copy of the stage */
+/* overflow-x: clip keeps giant type that bleeds off the edge from making the page scroll sideways (clip, not hidden:
+   the words' sticky positioning and the fixed stages still work) */
+.detail { position: relative; z-index: 6; overflow-x: clip; }
+html.is-gallery .detail { visibility: hidden; }
+.page { position: relative; min-height: var(--page-h); background: var(--page); color: var(--ink); clip-path: inset(0); }
+.end { position: relative; background: var(--page); color: var(--ink); clip-path: inset(0); }
+
+.stage { position: fixed; inset: 0; pointer-events: none; }
+.stage-box {
+  position: absolute;
+  height: var(--stage-h);
+  width: calc(var(--stage-h) * var(--stage-ratio));
+  left: calc(var(--stage-cx) - var(--stage-h) * var(--stage-ratio) / 2);
+  top: calc(var(--stage-cy) - var(--stage-h) / 2);
+}
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stage .base, .stage .shadow, .stage .fore { position: absolute; pointer-events: none; }
+
+/* the words: centred beside the subject while their page is, arriving with a short rise */
+.words { position: sticky; top: calc(50vh - var(--wh, 0px) / 2); z-index: 2; opacity: var(--fade, 1); translate: 0 var(--rise, 0px); }
+
+/* lines between pages */
+[data-line="slash"] .page + .page, [data-line="slash"] .page + .end {
+  margin-top: calc(-1 * var(--slash));
+  clip-path: polygon(0 var(--slash), 100% 0, 100% 100%, 0 100%);
+}
+[data-line="arc"] .page + .page, [data-line="arc"] .page + .end {
+  margin-top: calc(-1 * var(--arc));
+  clip-path: inset(0 round 50% 50% 0 0 / var(--arc) var(--arc) 0 0);
+}
+
+[data-line="wave"] .page + .page, [data-line="wave"] .page + .end {
+  margin-top: calc(-1 * var(--wave));
+  clip-path: var(--wave-path);
+}
+
+/* snapping: the page moves only in whole turns, so the browser's own scrolling and bounce are off */
+html:has(body[data-snap="on"]).is-detail { overscroll-behavior: none; }
+[data-snap="on"] .grab { touch-action: none; }
+
+/* drag to turn: a grab area over the subject */
+.grab {
+  position: fixed; z-index: 20; cursor: grab; touch-action: pan-y;
+  height: calc(var(--stage-h) * 0.9);
+  width: calc(var(--stage-h) * var(--stage-ratio) * 0.8);
+  left: calc(var(--stage-cx) - var(--stage-h) * var(--stage-ratio) * 0.4);
+  top: calc(var(--stage-cy) - var(--stage-h) * 0.45);
+}
+html.is-gallery .grab, html.is-opening .grab { display: none; }
+body.is-dragging, body.is-dragging .grab { cursor: grabbing; }
+body.is-dragging { user-select: none; }
+
+.flyer { position: fixed; z-index: 40; transform-origin: 0 0; pointer-events: none; }
+
+/* the count and the way back only make sense on the pages */
+[data-detail-only] { opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+html.is-detail [data-detail-only] { opacity: 1; pointer-events: auto; }
+
+/* phones: the subject in the top half, the words pinned to the bottom while their page is on screen */
+@media (max-width: 760px) {
+  body { --stage-cx: 50vw; --stage-cy: 28vh; --stage-h: 46vh; --page-h: 120vh; }
+  .detail .page { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 3vh; }
+  .detail .words { position: sticky; top: auto; bottom: 3vh; }
+}

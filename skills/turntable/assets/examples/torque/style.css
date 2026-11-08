@@ -1,0 +1,82 @@
+/* Torque: a sneaker drop. Loud colour, every pair floating and spinning, a diagonal slash between pages. */
+:root {
+  --ink: #0d0d0d;
+  --wide: "Archivo", "Arial Black", sans-serif;
+  --mono: "Space Mono", ui-monospace, monospace;
+}
+body { font-family: var(--wide); color: var(--ink); background: #0d0d0d; --stage-cx: 64vw; --stage-cy: 51vh; --stage-h: 70vh; --page-h: 118vh; --slash: 20vh; }
+.wide { font-stretch: 125%; }
+
+/* header: light over the dark tile wall, dark over the pages */
+.bar { position: fixed; z-index: 30; top: 0; left: 0; right: 0; height: 72px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 28px; pointer-events: none; color: var(--ink); transition: color 0.4s; }
+html.is-gallery .bar { color: #f4f4f0; }
+.bar > * { pointer-events: auto; }
+.brand { font: italic 900 26px/1 var(--wide); font-stretch: 125%; letter-spacing: -0.02em; color: inherit; text-decoration: none; }
+.drop { font: 700 14px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.count { grid-column: 3; grid-row: 1; justify-self: end; margin-right: 136px; font: 700 14px/1 var(--mono); }
+.back { grid-column: 3; grid-row: 1; justify-self: end; font: 700 14px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; border: 2px solid currentColor; border-radius: 40px; padding: 9px 16px; }
+
+/* gallery: a wall of colour tiles */
+.gallery { background: #0d0d0d; }
+.tiles { position: absolute; inset: 72px 14px 14px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: 12px;
+  grid-template-areas: "intro intro hero hero" "lime mint hero hero" "aqua ice outro outro"; }
+.tile { position: relative; border-radius: 18px; overflow: hidden; background: var(--c, #1b1b1b); text-align: left; }
+.tile.item img { position: absolute; left: 4%; width: 92%; top: 50%; translate: 0 -46%; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tile.item:hover img { transform: rotate(-5deg) scale(1.04); }
+.hero { grid-area: hero; }
+.tile[data-subject="lime"] { grid-area: lime; }
+.tile[data-subject="mint"] { grid-area: mint; }
+.tile[data-subject="aqua"] { grid-area: aqua; }
+.tile[data-subject="ice"] { grid-area: ice; }
+.tile .name { position: absolute; left: 18px; bottom: 14px; font: italic 900 30px/0.9 var(--wide); font-stretch: 125%; letter-spacing: -0.02em; z-index: 2; }
+.hero .name { font-size: 76px; left: 26px; bottom: 22px; }
+.tile .price { position: absolute; right: 16px; top: 14px; font: 700 14px/1 var(--mono); z-index: 2; }
+.hero .price { font-size: 18px; right: 24px; top: 22px; }
+.intro { grid-area: intro; background: #f4f4f0; padding: 26px 30px; display: flex; flex-direction: column; justify-content: space-between; }
+.intro h1 { font: italic 900 clamp(40px, 4.6vw, 76px)/0.92 var(--wide); font-stretch: 125%; letter-spacing: -0.03em; margin: 0; }
+.intro h1 em { font-style: italic; color: #6a6a6a; }
+.mono { font: 700 14px/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; margin: 0; }
+.dim { color: #6a6a6a; }
+.outro { grid-area: outro; background: #1b1b1b; color: #f4f4f0; padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; }
+.outro .big { font: italic 900 clamp(36px, 4.2vw, 64px)/0.95 var(--wide); font-stretch: 125%; letter-spacing: -0.03em; margin: 0; }
+
+/* pages: one loud colour per pair, the name huge behind it */
+.page { --ink: #0d0d0d; padding-top: 30vh; }
+.stage { z-index: 1; }
+.model { position: absolute; left: 30vw; top: 53%; transform: translateY(-50%); font: italic 900 21vw/0.8 var(--wide); font-stretch: 125%; letter-spacing: -0.04em; color: var(--deep); white-space: nowrap; z-index: 0; pointer-events: none; user-select: none; }
+.words { margin-left: 5vw; width: min(29vw, 410px); }
+.words .mono { margin-bottom: 2vh; }
+.words h2 { font: italic 900 clamp(56px, 6vw, 104px)/0.9 var(--wide); font-stretch: 125%; letter-spacing: -0.03em; margin: 0 0 2vh; }
+.pitch { font: 500 18px/1.4 var(--wide); margin: 0 0 3vh; max-width: 26ch; }
+.spec { display: grid; grid-template-columns: repeat(3, auto); grid-auto-flow: column; grid-template-rows: auto auto; justify-content: start; column-gap: 28px; row-gap: 4px; margin: 0 0 3vh; padding: 2vh 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.spec dt { font: 700 14px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.spec dd { margin: 0; font: 800 24px/1.1 var(--wide); }
+.words .price { font: 700 34px/1 var(--mono); margin: 0 0 2.4vh; }
+.sizes { display: flex; gap: 8px; margin: 0 0 3vh; }
+.sizes span { width: 44px; height: 44px; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 50%; font: 700 14px/1 var(--mono); }
+.sizes .on { background: var(--ink); color: var(--page); }
+.bag { display: inline-block; background: var(--ink); color: #f4f4f0; font: 800 15px/1 var(--wide); font-stretch: 110%; letter-spacing: 0.06em; text-transform: uppercase; padding: 19px 34px; border-radius: 40px; text-decoration: none; cursor: pointer; }
+.bag.light { background: #f4f4f0; color: #0d0d0d; }
+
+/* the floating pair's shadow */
+.stage .shadow { left: 50%; width: 62%; height: 8%; top: calc(var(--ground) * 100% + 30%); transform: translateX(-50%); background: radial-gradient(closest-side, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.1) 60%, transparent); filter: blur(6px); }
+
+/* the end */
+.end { min-height: 100vh; padding: 34vh 6vw 12vh; }
+.close h2 { font: italic 900 18vw/0.82 var(--wide); font-stretch: 125%; letter-spacing: -0.04em; margin: 2vh 0 4vh; }
+.close p { font: 500 20px/1.4 var(--wide); margin: 0 0 4vh; }
+
+@media (max-width: 760px) {
+  body { --stage-cy: 26vh; --stage-h: 26vh; --slash: 12vh; }
+  .bar { grid-template-columns: 1fr auto; padding: 0 18px; }
+  .drop, .count { display: none; }
+  .tiles { inset: 72px 10px 10px; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1.4fr 1fr 1fr; grid-template-areas: "intro intro" "hero hero" "lime mint" "aqua ice"; gap: 8px; }
+  .outro { display: none; }
+  .intro { padding: 16px 18px; gap: 8px; }
+  .intro .dim { display: none; }
+  .hero .name { font-size: 44px; }
+  .tile .name { font-size: 22px; }
+  .model { font-size: 30vw; left: 0; top: 30%; }
+  .words { margin: 0 18px; width: auto; }
+  .pitch, .spec { display: none; }
+}

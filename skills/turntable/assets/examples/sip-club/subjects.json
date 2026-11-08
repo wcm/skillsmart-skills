@@ -1,0 +1,49 @@
+{
+  "notes": "One model in five drink-coloured looks. The first photo is written in full (shot is just {subject}); the other four are edits of it (from), so her face stays the same: each edit prompt says what changes and what must stay. She holds her pose frozen while a hidden turntable turns her; the jump is a bullet-time orbit with her frozen in the air, lifted off the ground on the page by air. People: fit frame, so a raised arm or a jump never shrinks anyone. The americano turned the other way and plays reversed.",
+  "aspect": "9:16",
+  "shot": "{subject}",
+  "turns": {
+    "hold": "The model holds this exact pose perfectly still, frozen like a statue, while the hidden turntable she stands on slowly rotates a full 360 degrees at a steady, even speed, always turning the same way, and ends exactly as it started. She does not move her arms, hands, legs, head or face at all, and keeps holding her drink exactly as it is. The camera is locked off: no camera movement, no zoom, no pan. The plain studio backdrop and light stay the same. Her face, hair and outfit stay exactly the same throughout.",
+    "jump": "Bullet-time frozen moment: time is completely stopped and the model hangs perfectly still in mid-air exactly as in the photo, her hair and clothes frozen. The view orbits a full 360 degrees around her at a steady, even speed, always the same way, and ends exactly where it started. She does not fall, land or move at all, and keeps holding her drink exactly as it is. The plain backdrop and the light stay the same. Her face, hair and outfit stay exactly the same throughout."
+  },
+  "cut": "matting",
+  "stage": {
+    "w": 760,
+    "h": 1340,
+    "axis": 380,
+    "ground": 1295,
+    "fit": "frame",
+    "size": 1358
+  },
+  "count": 72,
+  "quality": 74,
+  "subjects": [
+    {
+      "id": "strawberry",
+      "prompt": "Full-length studio fashion photograph for a playful summer streetwear brand: a young Korean woman in her early twenties with a fresh natural face and glossy black hair in two low pigtails tied with pink ribbons, wearing a pink-and-white gingham mini dress with puff sleeves, white frilly ankle socks and glossy red Mary Jane shoes, holding a clear plastic cup of iced pink strawberry milk with a straw. She sips from the straw with one foot kicked up behind her and her free hand giving a little wave, eyes smiling at the camera. Centred, the whole figure in frame from head to toe with generous empty space around her, the figure about 64% of the frame height. Plain seamless white-grey studio backdrop, bright even studio flash, crisp punchy colour, a soft shadow on the floor below her. Photorealistic K-fashion lookbook energy, natural skin texture, crisp fabric detail. The cup has no logo and no text. No text, no logos, no other people."
+    },
+    {
+      "id": "mango",
+      "prompt": "Change her outfit, hair styling and pose for a new look in the same lookbook. Keep the exact same young Korean woman: the same face, features, skin tone and build. She now wears a sporty sunshine-yellow sleeveless zip-up crop top and matching yellow track shorts with orange side stripes, a white visor, white sneakers and yellow socks, hair in a high ponytail, holding a clear plastic cup of thick orange mango smoothie with a wide straw. She is caught mid-jump, frozen in the air about forty centimetres above the floor, knees bent, the smoothie raised high in one hand and the other arm thrown out, laughing. Keep the same plain seamless white-grey studio backdrop, the same bright even studio flash and the same full-length framing: the whole figure in frame from head to toe with generous empty space around her, the figure about 64% of the frame height, centred, a soft shadow on the floor. Photorealistic, crisp fabric detail. The cup has no logo and no text. No text, no logos, no other people.",
+      "from": "strawberry",
+      "turn": "jump",
+      "air": 0.16
+    },
+    {
+      "id": "matcha",
+      "prompt": "Change her outfit, hair styling and pose for a new look in the same lookbook. Keep the exact same young Korean woman: the same face, features, skin tone and build. She now wears a cropped white polo shirt, a matcha-green pleated tennis skirt, white knee-high socks and brown penny loafers, hair half-up with a tortoiseshell claw clip, holding a clear plastic cup of iced matcha latte in green and cream layers with a straw. She winks and makes a peace sign beside her face with one hand while holding the matcha up with the other, one knee bent inward, playful. Keep the same plain seamless white-grey studio backdrop, the same bright even studio flash and the same full-length framing: the whole figure in frame from head to toe with generous empty space around her, the figure about 64% of the frame height, centred, a soft shadow on the floor. Photorealistic, crisp fabric detail. The cup has no logo and no text. No text, no logos, no other people.",
+      "from": "strawberry"
+    },
+    {
+      "id": "blue",
+      "prompt": "Change her outfit, hair styling and pose for a new look in the same lookbook. Keep the exact same young Korean woman: the same face, features, skin tone and build. She now wears a baby-blue ribbed halter top, wide light-wash denim cargo trousers and chunky silver sneakers, hair in two space buns, holding a clear plastic cup of bright electric-blue lemonade with ice and a lemon slice. She strikes a sharp K-pop dance pose: feet apart, hip popped to one side, one arm pointing straight up diagonally to the sky, the lemonade held out in the other hand, confident. Keep the same plain seamless white-grey studio backdrop, the same bright even studio flash and the same full-length framing: the whole figure in frame from head to toe with generous empty space around her, the figure about 64% of the frame height, centred, a soft shadow on the floor. Photorealistic, crisp fabric detail. The cup has no logo and no text. No text, no logos, no other people.",
+      "from": "strawberry"
+    },
+    {
+      "id": "americano",
+      "prompt": "Change her outfit, hair styling and pose for a new look in the same lookbook. Keep the exact same young Korean woman: the same face, features, skin tone and build. She now wears an espresso-brown satin slip midi dress, black strappy flat sandals, a thin silver chain necklace, black sunglasses pushed up on her head and a sleek low bun, holding a clear plastic cup of iced americano with ice. She is frozen mid-stride as if walking toward the camera, holding the iced coffee out toward the viewer, a cool, confident half smile. Keep the same plain seamless white-grey studio backdrop, the same bright even studio flash and the same full-length framing: the whole figure in frame from head to toe with generous empty space around her, the figure about 64% of the frame height, centred, a soft shadow on the floor. Photorealistic, crisp fabric detail. The cup has no logo and no text. No text, no logos, no other people.",
+      "from": "strawberry",
+      "reverse": true
+    }
+  ]
+}
