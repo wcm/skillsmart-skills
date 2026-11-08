@@ -61,7 +61,7 @@ The change should land on a timer the eye can follow:
 
 ## The hand
 
-The hand is gentle by default. It takes nearby grains along, spreads them a little, and lets them settle back in about a second. A still pointer parts them very slightly. Raise `hand.drag` and `hand.reach` for a bolder smear, or set `hand.strength: 0` for none. A drag-like wake reads as "real" far better than a swirl or a repulsion bubble, so don't add swirls. On the neon look the pointer also carries a warm light (`hot`).
+The hand is soft but loose. It takes nearby grains along, spreads them sideways and in depth, and lets them drift back over a second or two. A still pointer parts them very slightly. Raise `hand.drag` and `hand.reach` for a bolder smear, or set `hand.strength: 0` for none. A drag-like wake reads as "real" far better than a swirl or a repulsion bubble, so don't add swirls. On the neon look the pointer also carries a warm light (`hot`).
 
 ## The page round it
 

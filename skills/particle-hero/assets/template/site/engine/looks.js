@@ -18,7 +18,7 @@ export const looks = {
     travel: "swarm", kick: 0.7, air: 1.1, blur: 0.2, spread: 0.9, gather: 1.6,
     order: { dir: [0, 1, 0.2], jitter: 0.55 },
     vignette: 0.22, grain: 0.008, sway: 0.7, parallax: 0.7,
-    hand: { reach: 0.12, drag: 7, spread: 1.6, still: 0.04, depth: 0.4 },
+    hand: { reach: 0.135, drag: 8, spread: 2.2, still: 0.04, depth: 0.7 },
   },
   // neon dust on near-black with coloured lights in it, streaks, the pointer as a warm light; the page shows through,
   // so a title can stand behind the dust (Afterglow: a festival). Animate the lights with beatLamps() below.
@@ -33,7 +33,7 @@ export const looks = {
     ],
     hot: "#ffc871", hotPower: 0.75,
     streaks: true, grain: 0.02,
-    hand: { reach: 0.14, drag: 9, spread: 1.6, still: 0.05, depth: 0.8 },
+    hand: { reach: 0.16, drag: 10, spread: 2.3, still: 0.05, depth: 1.2 },
   },
   // a light one-colour print: fine orange dots on off-white that never pile darker than the ink; one subject melts into
   // the next along matched dots, a scan line sweeps the depth (Stride: sneakers)
@@ -46,7 +46,7 @@ export const looks = {
     travel: "melt", spread: 0.8, gather: 1.2, blur: 0.08,
     order: { dir: [1, 0, 0], jitter: 0.25 },
     vignette: 0.15, grain: 0.01, sway: 0.6, parallax: 0.8,
-    hand: { reach: 0.12, drag: 8, spread: 1.4, still: 0.05, depth: 0.5 },
+    hand: { reach: 0.135, drag: 9, spread: 2.0, still: 0.05, depth: 0.8 },
   },
 };
 

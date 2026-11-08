@@ -509,8 +509,8 @@ const DEFAULTS = {
   track: 0.35,              // in a swarm, how much grains keep to a schedule (a melt always does)
   order: null,              // { dir: [x, y, z], jitter }: the front a change crosses the picture along (default: near first)
   matchIters: 32,           // passes when pairing grains for a melt (more: shorter, cleaner moves; slower to work out)
-  spring: [14, 0.95, 34],    // at rest (how a push settles), damping ratio, while gathering
-  hand: { reach: 0.13, drag: 9, spread: 1.3, still: 0.06, depth: 0.6, strength: 1 },
+  spring: [10, 0.95, 34],    // at rest (how a push settles: lower is looser), damping ratio, while gathering
+  hand: { reach: 0.15, drag: 10, spread: 2.2, still: 0.06, depth: 1.0, strength: 1 },
   lamps: [],                // [{ color, x, y, z, power }] lights in the dust; set .power per frame from the page
   hot: null,                // the pointer as a light: a colour, or null
   hotPower: 0.6,

@@ -57,7 +57,7 @@ const api = await stage({
     order: { dir: [1, 0, 0], jitter: 0.25 },    // toe to heel
     vignette: 0.15, grain: 0.01,
     sway: 0.6, parallax: 0.8,
-    hand: { reach: 0.12, drag: 8, spread: 1.4, still: 0.05, depth: 0.5 },
+    hand: { reach: 0.135, drag: 9, spread: 2.0, still: 0.05, depth: 0.8 },
     frame: (w, h) => narrow()
       ? { cx: w * 0.5, cy: h * 0.55, s: w * 0.44 }
       : { cx: w * 0.6, cy: h * 0.52, s: Math.min(w * 0.25, h * 0.55) },

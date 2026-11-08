@@ -96,18 +96,18 @@ Defaults first. All of them can be changed at run time on `engine.o` (counts and
 | `ramp` | `0.6` | how early the pull home builds (1 early: the next picture shows sooner) |
 | `track` | `0.35` | in a swarm, how much grains keep to a schedule (a melt always does) |
 | `order` | `null` | `{ dir: [x, y, z], jitter }`: the front a change crosses the picture along (default near-first); `[0, 1, 0]` bottom up, `[1, 0, 0]` left to right; `jitter` 0..1 how much each grain ignores it |
-| `spring` | `[14, 0.95, 34]` | stiffness at rest (how fast a push settles), damping ratio, stiffness while gathering |
+| `spring` | `[10, 0.95, 34]` | stiffness at rest (how fast a push settles; lower is looser), damping ratio, stiffness while gathering |
 | `matchIters` | `32` | passes when pairing grains for a melt |
 
 **The hand** (`hand: { … }`)
 
 | Field | Default | What |
 |---|---|---|
-| `reach` | `0.13` | the hand's width, as a share of the screen's height |
-| `drag` | `9` | how strongly grains near the pointer's path are taken along with it |
-| `spread` | `1.3` | how much the wake spreads sideways |
+| `reach` | `0.15` | the hand's width, as a share of the screen's height |
+| `drag` | `10` | how strongly grains near the pointer's path are taken along with it |
+| `spread` | `2.2` | how much the wake spreads sideways (it loosens the grains) |
 | `still` | `0.06` | how much a still pointer parts the grains under it |
-| `depth` | `0.6` | how much grains scatter toward and away from you |
+| `depth` | `1.0` | how much grains scatter toward and away from you |
 | `strength` | `1` | all of it (0 turns the hand off) |
 
 **Air, light and camera**

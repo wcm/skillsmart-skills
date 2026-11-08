@@ -9,8 +9,8 @@
 | A melt looks like a gentle swarm | its pairing wasn't ready yet (a click in the first seconds after load); the next time it melts | expected; the pairings are worked out in the background, next-in-line first |
 | A melt looks patchy | the two shapes are too different (a shoe into a bottle) | use a swarm between different shapes (`move: { travel: "swarm" }` on that picture) |
 | The middle of a swarm is a shapeless blob for too long | the pull home builds late | `ramp` up (0.8–1), `blur` down, or `spring[2]` up (40) |
-| The hover feels weak | the hand is gentle by default | `hand.drag` 12–16, `hand.reach` 0.16–0.2; or `hand.still` 0.1 for a visible parting under a still pointer |
-| The hover feels busy | | `hand.drag` 5–7, `hand.spread` 0.8, `parallax` 0.5 |
+| The hover feels weak | | `hand.drag` 12–16, `hand.reach` 0.17–0.2; or `hand.still` 0.1 for a visible parting under a still pointer |
+| The hover feels busy or the grains too loose | | `hand.drag` 6–8, `hand.spread` 1–1.4, `spring[0]` 14 (they settle faster), `parallax` 0.5 |
 | Paper looks muddy or too dark | ink piles past its own colour | `inkCap: 3.22`, `exposure` 0.5–0.8 |
 | The title is covered | the subject's frame overlaps the title's band | move `frame`'s `cx`/`cy` or shrink `s`; on neon, put the title behind the dust (`transparent: true`) |
 | Grains look too coarse or too fine | | `size` 0.7–1.4, or `count` (a power of two) |

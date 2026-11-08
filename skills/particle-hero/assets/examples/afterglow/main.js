@@ -37,7 +37,7 @@ const api = await stage({
     hot: "#ffc871", hotPower: 0.75,
     streaks: true,
     grain: 0.02,
-    hand: { reach: 0.14, drag: 9, spread: 1.6, still: 0.05, depth: 0.8 },
+    hand: { reach: 0.16, drag: 10, spread: 2.3, still: 0.05, depth: 1.2 },
     frame: (w, h) => narrow()
       ? { cx: w * 0.5, cy: h * 0.46, s: Math.min(w * 0.46, h * 0.28) }
       : { cx: w * 0.5, cy: h * 0.43, s: Math.min(h * 0.37, w * 0.24) },

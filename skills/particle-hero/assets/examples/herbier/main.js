@@ -40,7 +40,7 @@ const api = await stage({
     order: { dir: [0, 1, 0.2], jitter: 0.55 },
     vignette: 0.22, grain: 0.008,
     sway: 0.7, parallax: 0.7,
-    hand: { reach: 0.12, drag: 7, spread: 1.6, still: 0.04, depth: 0.4 },
+    hand: { reach: 0.135, drag: 8, spread: 2.2, still: 0.04, depth: 0.7 },
     frame: (w, h) => narrow()
       ? { cx: w * 0.5, cy: h * 0.49, s: Math.min(w * 0.42, h * 0.235) }
       : { cx: w * 0.585, cy: h * 0.52, s: Math.min(h * 0.37, w * 0.24) },
