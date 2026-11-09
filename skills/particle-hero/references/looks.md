@@ -37,7 +37,7 @@ The user may say a page feels heavy (too dark, too dense, too much ink) or flat.
 - **Dark:**
   - `exposure` up for brighter, `mono` toward 1 for calmer;
   - `flightDim` up if a change burns to white;
-  - `relief` up (1–1.2) for more depth when it looks flat.
+  - `relief` up (to 1.3–1.5) for more depth when it looks flat.
 
 ## Changes
 
@@ -62,6 +62,14 @@ The change should land on a timer the eye can follow:
 ## The hand
 
 The hand is soft but loose. It takes nearby grains along, spreads them sideways and in depth, and lets them drift back over a second or two. A still pointer parts them very slightly. Raise `hand.drag` and `hand.reach` for a bolder smear, or set `hand.strength: 0` for none. A drag-like wake reads as "real" far better than a swirl or a repulsion bubble, so don't add swirls. On the neon look the pointer also carries a warm light (`hot`).
+
+## Depth and the tilt
+
+The subject is a point cloud with real depth, and it turns toward the pointer: move the mouse round it and it shows its sides like an object on a turntable, then eases back to the front when the mouse leaves. That turn is what makes it read as 3D, so keep it on.
+- **Depth per look:** `relief` 1.35 on dust, 1.0 on neon, 0.8 on print, 0.75 on ink. A subject with something far in front of it (a microphone before a face, a hand held out) opens a gap beside it as it turns. On dark the gap reads as shadow; if it's too big, lower `relief` for that picture.
+- **How far it turns:** `parallax` scales it. Use 1 for living things and nightlife, 0.7–0.8 for calm pages (perfume, products). `tilt.ease` is how long it takes to follow; keep it near 0.5 s so it feels connected but never jolts.
+- **Paper:** where the depth drops suddenly (between petals), the grains on the drop stay as a soft veil of colour (`steps` 0.25), because a hidden drop would show the paper as a white crack. On dark they fade and read as shadow (`steps` 1).
+- **Phones** have no hover: the subject turns toward a finger while it touches, and the camera's slow drift shows the depth the rest of the time.
 
 ## The page round it
 

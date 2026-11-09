@@ -7,14 +7,14 @@ export const looks = {
   dust: {
     background: "#060606",
     mono: 0.88, tint: "#f4e7d2",
-    exposure: 1.05, relief: 0.85,
+    exposure: 1.05, relief: 1.35,
     wind: { amount: 0.55, angle: 0.08, x: 0.3, y: 0 },
     travel: "swarm",
   },
   // coloured ink on cream paper; each subject evaporates into a mist of its colours, the next condenses (Herbier: perfume)
   ink: {
     ink: true, background: "#f1eadf",
-    exposure: 1.0, relief: 0.55,
+    exposure: 1.0, relief: 0.75,
     travel: "swarm", kick: 0.7, air: 1.1, blur: 0.2, spread: 0.9, gather: 1.6,
     order: { dir: [0, 1, 0.2], jitter: 0.55 },
     vignette: 0.22, grain: 0.008, sway: 0.7, parallax: 0.7,
@@ -24,7 +24,7 @@ export const looks = {
   // so a title can stand behind the dust (Afterglow: a festival). Animate the lights with beatLamps() below.
   neon: {
     transparent: true, background: "#0b0611",
-    saturation: 1.18, exposure: 1.2, relief: 0.75,
+    saturation: 1.18, exposure: 1.2, relief: 1.0,
     travel: "swarm", kick: 2.6, spread: 0.45, gather: 1.2, blur: 0.14, flightDim: 0.62,
     lamps: [
       { color: "#ff2e93", x: 0, y: 0, z: 0, power: 0, core: 0.55 },
@@ -42,7 +42,7 @@ export const looks = {
     mono: 1, inkColor: "#ff5a1f", inkCap: 3.22,
     levels: { lo: 0.02, hi: 0.98, gamma: 1.9 },
     disc: true, count: small ? 1 << 17 : 1 << 18, size: 0.8,
-    exposure: 0.55, relief: 0.5, scan: true,
+    exposure: 0.55, relief: 0.8, scan: true,
     travel: "melt", spread: 0.8, gather: 1.2, blur: 0.08,
     order: { dir: [1, 0, 0], jitter: 0.25 },
     vignette: 0.15, grain: 0.01, sway: 0.6, parallax: 0.8,

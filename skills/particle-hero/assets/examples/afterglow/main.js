@@ -31,7 +31,7 @@ const api = await stage({
     background: "#0b0611",
     saturation: 1.18,
     exposure: 1.2,
-    relief: 0.75,
+    relief: 1.0,
     kick: 2.6, spread: 0.45, gather: 1.2, blur: 0.14, flightDim: 0.62,
     lamps,
     hot: "#ffc871", hotPower: 0.75,

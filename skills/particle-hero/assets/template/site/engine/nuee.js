@@ -9,7 +9,6 @@
 // Two ways to show them: light on a dark ground (grains add light), or ink on paper (grains add ink, and the
 // paper shows through what's left, so colours mix like real ink).
 
-const TAN = Math.tan((17 * Math.PI) / 180); // half the vertical field of view
 
 // ---------------------------------------------------------------------------------------------------------------
 // shaders
@@ -119,7 +118,7 @@ const PTS_VS = HEAD + `
 uniform sampler2D uP, uV, uC;
 uniform uint uWMask, uShift, uStride;
 uniform mat4 uVP;
-uniform float uTime, uDist, uSize, uMinPx, uGain, uAspect, uBreath, uPass, uTail, uInk, uMono, uSat, uFlightDim;
+uniform float uTime, uDist, uSize, uMinPx, uGain, uAspect, uBreath, uPass, uTail, uInk, uMono, uSat, uFlightDim, uTurn;
 uniform vec3 uTint, uInkAbs;
 uniform vec4 uLine;                        // the wind's edge: a point on it and the normal toward the side that blows away
 uniform vec3 uWind;                        // which way and how hard
@@ -180,6 +179,7 @@ void main() {
 
   float sz = uSize * (0.6 + 0.9 * r3) * uDist / max(cp.w, 0.05) * (1.0 - 0.45 * gone) * (1.0 + 0.5 * min(1.0, lit) + 0.8 * band);
   float fade = min(1.0, sz / uMinPx), base = uGain * fade * fade * alive * home;
+  base *= mix(1.0, C.a, uTurn);   // a grain on a depth step (C.a near 0) fades as the subject turns away from the front
   float g = dot(col, vec3(0.2126, 0.7152, 0.0722));
   vec3 c;
   if (uInk < 0.5) {             // light on dark: col is the light a grain gives
@@ -373,6 +373,16 @@ export function buildForm(img, depthImg, { N, R = 1024, ink = false, relief = 0.
   const lo = samples.length ? samples[Math.floor(samples.length * 0.02)] : 0;
   const hi = samples.length ? samples[Math.floor(samples.length * 0.98)] : 255;
   for (let i = 0; i < RR; i++) near[i] = clamp((dep[4 * i] - lo) / Math.max(1, hi - lo), 0, 1);
+  // how steep the depth is, in the picture's own units: a sudden step (a muzzle in front of the neck, the subject's
+  // outline against what was behind it) is the depth map's guess, not a surface. Its grains fill the step as a veil that
+  // shows when the subject turns, so they fade as it turns (kept in each grain's colour alpha: 1 solid, 0 a step)
+  const steep = new Float32Array(RR), kz = (relief * R) / 8;
+  for (let y = 2; y < R - 2; y++) for (let x = 2; x < R - 2; x++) {
+    const i = y * R + x;
+    if (alpha[i] < 0.03) continue;
+    const sl = Math.hypot(near[i + 2] - near[i - 2], near[i + 2 * R] - near[i - 2 * R]) * kz;
+    steep[i] = sl <= 6 ? 0 : sl >= 16 ? 1 : ((sl - 6) / 10) ** 2 * (3 - 2 * ((sl - 6) / 10));
+  }
   // levels: stretch the subject's own tones from its lightest to its darkest, then bend the middle (gamma > 1 keeps
   // mid-tones light), so a picture that is all dark (black leather) still shows its seams and highlights
   if (levels) {
@@ -411,9 +421,16 @@ export function buildForm(img, depthImg, { N, R = 1024, ink = false, relief = 0.
   let next = rand() * step, acc = 0, n = 0, last = 0;
   const emit = (i) => {
     const x = i % R, y = (i / R) | 0, o = 4 * n;
-    pos[o] = ((x + rand()) / R) * 2 - 1;
-    pos[o + 1] = 1 - ((y + rand()) / R) * 2;
-    pos[o + 2] = (near[i] - 0.5 + 0.014 * (rand() - 0.5)) * relief;
+    const fx = x + rand(), fy = y + rand();
+    pos[o] = (fx / R) * 2 - 1;
+    pos[o + 1] = 1 - (fy / R) * 2;
+    // the depth at the grain's own point, blended from the pixels round it (only the subject's), so a steep drop is a
+    // ramp of grains rather than steps that part into lines when the subject turns
+    const zx = clamp(fx - 0.5, 0, R - 2.001), zy = clamp(fy - 0.5, 0, R - 2.001), x0 = zx | 0, y0 = zy | 0, tx = zx - x0, ty = zy - y0, j = y0 * R + x0;
+    const w00 = (1 - tx) * (1 - ty) * alpha[j], w10 = tx * (1 - ty) * alpha[j + 1], w01 = (1 - tx) * ty * alpha[j + R], w11 = tx * ty * alpha[j + R + 1];
+    const ws = w00 + w10 + w01 + w11;
+    const nz = ws > 1e-3 ? (w00 * near[j] + w10 * near[j + 1] + w01 * near[j + R] + w11 * near[j + R + 1]) / ws : near[i];
+    pos[o + 2] = (nz - 0.5 + 0.014 * (rand() - 0.5)) * relief;
     pos[o + 3] = 1;
     const a = alpha[i];
     let r = rgba[4 * i] / 255, gg = rgba[4 * i + 1] / 255, b = rgba[4 * i + 2] / 255;
@@ -430,7 +447,7 @@ export function buildForm(img, depthImg, { N, R = 1024, ink = false, relief = 0.
       const boost = 1 + 0.85 * (Math.min(1 / (0.1 + 0.9 * t), 1 / m) - 1);
       col[o] = Math.min(255, 255 * r * boost); col[o + 1] = Math.min(255, 255 * gg * boost); col[o + 2] = Math.min(255, 255 * b * boost);
     }
-    col[o + 3] = 255;
+    col[o + 3] = Math.round(255 * (1 - steep[i]));
     n++;
   };
   for (let d = 0; d < RR && n < N; d++) {
@@ -499,11 +516,15 @@ const DEFAULTS = {
   flightDim: 0.35,          // grains in flight give less light (a dense cloud would otherwise burn to white)
   size: 1,                  // grain size
   disc: false,              // hard round dots (print) instead of soft grains
-  relief: 0.8,
+  relief: 1.1,               // how deep the subject is, against its height of 2 (from the depth map)
   wind: { amount: 0, angle: 0, x: 0, y: 0 },   // the drift: how hard, which way it blows (radians), where the edge is
   breath: 0.5,
   sway: 1,                  // the camera's own slow drift
-  parallax: 1,              // how much the camera follows the pointer
+  parallax: 1,              // how much the camera turns toward the pointer (0: not at all)
+  tilt: { yaw: 0.38, pitch: 0.22, ease: 0.5 },   // that turn at the screen's edge (radians, from the subject's centre), and how long it takes to follow (s)
+  lens: 22,                 // half the vertical field of view (degrees): wider shows more perspective, the near grains bigger
+  steps: null,              // how much grains on a sudden depth step fade as the subject turns: 1 hides them (on dark they read as
+                            // shadow), 0 keeps them as a veil of colour (on paper a hidden step shows as a white crack). null: 1 on dark, 0.25 on paper
   travel: "swarm",          // swarm | melt
   spread: 0.55, gather: 1.3, kick: 2.0, blur: 0.12, air: 0.7, drag: 1.6, ramp: 0.6,
   track: 0.35,              // in a swarm, how much grains keep to a schedule (a melt always does)
@@ -526,7 +547,7 @@ const DEFAULTS = {
 
 export class Nuee {
   constructor(canvas, options = {}) {
-    this.o = { ...DEFAULTS, ...options, hand: { ...DEFAULTS.hand, ...(options.hand || {}) }, wind: { ...DEFAULTS.wind, ...(options.wind || {}) } };
+    this.o = { ...DEFAULTS, ...options, hand: { ...DEFAULTS.hand, ...(options.hand || {}) }, tilt: { ...DEFAULTS.tilt, ...(options.tilt || {}) }, wind: { ...DEFAULTS.wind, ...(options.wind || {}) } };
     this.canvas = canvas;
     const gl = (this.gl = canvas.getContext("webgl2", { antialias: false, alpha: !!this.o.transparent, premultipliedAlpha: true, powerPreference: "high-performance", preserveDrawingBuffer: !!this.o.fixedDt }));
     if (!gl) throw new Error("WebGL2 is not available");
@@ -563,6 +584,8 @@ export class Nuee {
     this.reset = true;
     this.ptr = { x: 0, y: 0, px: 0, py: 0, vx: 0, vy: 0, on: 0, inside: false, seen: false, lastMove: -1 };
     this.cam = { yaw: 0, pitch: 0, tyaw: 0, tpitch: 0 };
+    this.TAN = Math.tan((this.o.lens * Math.PI) / 180);
+    this.o.steps ??= this.o.ink ? 0.25 : 1;
     this.lampState = this.o.lamps.map((l) => ({ ...l, power: l.power ?? 0 }));
     this.hotPower = 0;
     this.listeners = [];
@@ -582,6 +605,7 @@ export class Nuee {
     };
     addEventListener("pointermove", set, { passive: true });
     addEventListener("pointerdown", set, { passive: true });
+    addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") this.ptr.inside = false; }, { passive: true });
     document.addEventListener("pointerleave", () => { this.ptr.inside = false; });
     addEventListener("blur", () => { this.ptr.inside = false; });
   }
@@ -704,8 +728,8 @@ export class Nuee {
   _camera() {
     const W = this.cssW, H = this.cssH;
     const f = this.o.frame(W, H);
-    const D = H / (2 * f.s * TAN);
-    const t = this.time, sw = this.o.sway;
+    const TAN = this.TAN, D = H / (2 * f.s * TAN);
+    const t = this.time, sw = this.o.sway * (1 - 0.6 * this.ptr.on);   // the drift calms while a hand is on the page
     const yaw = this.cam.yaw + 0.16 * sw * Math.sin(0.23 * t);
     const pitch = this.cam.pitch + 0.05 * sw * Math.sin(0.17 * t + 1);
     const cy = Math.cos(pitch), sy = Math.sin(pitch);
@@ -771,10 +795,17 @@ export class Nuee {
     p.vx += (clamp(vx, -12, 12) - p.vx) * kS;
     p.vy += (clamp(vy, -12, 12) - p.vy) * kS;
     p.on += ((p.inside && p.seen ? 1 : 0) - p.on) * (1 - Math.exp(-dt / 0.25));
-    // the camera turns a little toward the pointer
-    const kc = 1 - Math.exp(-dt / 1.2);
-    this.cam.yaw += ((p.inside ? p.x : 0) * 0.22 * o.parallax - this.cam.yaw) * kc;
-    this.cam.pitch += ((p.inside ? -p.y : 0) * 0.12 * o.parallax - this.cam.pitch) * kc;
+    // the subject turns toward the pointer (the camera swings the other way), so it shows its depth: measured from its own centre,
+    // easing off toward the screen's edge, followed in two soft stages (no jolt when the pointer starts moving), and
+    // back to the front, more slowly, when the pointer leaves
+    const f = o.frame(this.cssW, this.cssH), tl = o.tilt, c = this.cam;
+    const tx = p.inside ? Math.tanh((p.x - ((f.cx / this.cssW) * 2 - 1)) * 1.3) : 0;
+    const ty = p.inside ? Math.tanh((p.y - (1 - (f.cy / this.cssH) * 2)) * 1.3) : 0;
+    const kc = 1 - Math.exp(-dt / (Math.max(0.05, tl.ease) * (p.inside ? 0.5 : 1.2)));
+    c.tyaw += (-tx * tl.yaw * o.parallax - c.tyaw) * kc;     // the subject turns to face the pointer
+    c.tpitch += (-ty * tl.pitch * o.parallax - c.tpitch) * kc;
+    c.yaw += (c.tyaw - c.yaw) * kc;
+    c.pitch += (c.tpitch - c.pitch) * kc;
     const moving = clamp(Math.hypot(p.vx, p.vy) * 1.5, 0, 1);
     this.hotPower += ((p.inside ? 0.45 + 0.55 * moving : 0) - this.hotPower) * (1 - Math.exp(-dt / 0.3));
     const cam = this._camera();
@@ -850,6 +881,8 @@ export class Nuee {
     const gain = clamp(0.62 / (cover + 0.12), 0.06, 1);
     gl.uniform1f(u.uTime, this.time);
     gl.uniform1f(u.uDist, cam.D);
+    const turn = Math.acos(clamp(cam.eye[2] / cam.D, -1, 1));
+    gl.uniform1f(u.uTurn, clamp((turn - 0.02) / 0.2, 0, 1) * o.steps);
     gl.uniform1f(u.uSize, size);
     gl.uniform1f(u.uMinPx, 1);
     gl.uniform1f(u.uGain, gain);
@@ -872,7 +905,7 @@ export class Nuee {
       lamps.set([l.x, l.y, l.z, l.power], 4 * k);
       lcol.set(hex(l.color), 3 * k);
       const s = this.project(l.x, l.y, l.z);
-      if (s && l.power > 0.004) { cores.set([(s.x / this.cssW) * 2 - 1, 1 - (s.y / this.cssH) * 2, l.power * (l.core ?? 1), 0.3 / (s.w * TAN)], 4 * k); ccol.set(hex(l.color), 3 * k); }
+      if (s && l.power > 0.004) { cores.set([(s.x / this.cssW) * 2 - 1, 1 - (s.y / this.cssH) * 2, l.power * (l.core ?? 1), 0.3 / (s.w * this.TAN)], 4 * k); ccol.set(hex(l.color), 3 * k); }
     });
     gl.uniform4fv(u.uLamp, lamps);
     gl.uniform3fv(u.uLampCol, lcol);

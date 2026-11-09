@@ -17,13 +17,14 @@ A page imports `stage` and passes its pictures and options. Everything below is 
    - a little floor everywhere on the subject;
    - how near it is (from the depth map).
 
-   Grains are dealt by that weight along a Hilbert curve, so neighbouring grains sit near each other. Their homes are `x, y` in −1..1 (the picture fits a −1..1 square by its longer side) and `z` from the depth.
+   Grains are dealt by that weight along a Hilbert curve, so neighbouring grains sit near each other. Their homes are `x, y` in −1..1 (the picture fits a −1..1 square by its longer side) and `z` from the depth, read at each grain's own point so steep drops are smooth ramps. Where the depth falls away suddenly (a muzzle in front of the neck), the grains are marked as a step, so they can fade when the subject turns.
 2. **A simulation.** Every grain has a position, a velocity and a colour, in float textures on the GPU. Each frame it is pulled toward its home by a spring and pushed by the pointer. In a change it lets go, is thrown, drifts, and is pulled into its home in the next picture. Because grains have momentum, a push settles back on its own, and a change can start again at any moment.
 3. **Drawing.** Grains add up in a buffer:
    - On dark, they add light and the total is tone-mapped over the ground.
    - On paper, they add ink, and the paper shows through what's left (`paper × exp(−ink)`), so colours mix like ink.
 
    Breathing, the wind, the lights, the scan line and the streaks are worked out per frame while drawing.
+4. **Depth and the tilt.** The camera looks at the subject through a lens wide enough that near grains are bigger. The subject turns toward the pointer, measured from its own centre, so moving the mouse round it shows its depth like a real object. The turn follows in two soft stages and eases back to the front when the pointer leaves (or a finger lifts on a phone). Near grains are brighter (or carry more ink) than far ones.
 
 ## `stage({ … })` (stage.js)
 
@@ -78,7 +79,7 @@ Defaults first. All of them can be changed at run time on `engine.o` (counts and
 | `count` | `0` | grains, a power of two; 0 picks 524,288 on a desktop and 131,072 on a phone |
 | `size` | `1` | grain size (sizes and brightness adapt to the count and the picture's size on screen) |
 | `disc` | `false` | hard round dots (print) instead of soft grains |
-| `relief` | `0.8` | how deep the depth map pushes the picture (0 flat) |
+| `relief` | `1.1` | how deep the subject is, against its height of 2 (0 flat). The looks use 0.75–1.35; deeper reads more 3D when it turns, but a subject with things far in front of it (a microphone) opens gaps beside them |
 | `levels` | `null` | `{ lo, hi, gamma }`: stretch each picture's own tones before dealing grains; `gamma` > 1 keeps mid-tones light (dark products keep their seams) |
 | `flightDim` | `0.35` | grains in flight give less light, so a dense cloud doesn't burn to white |
 
@@ -120,8 +121,11 @@ Defaults first. All of them can be changed at run time on `engine.o` (counts and
 | `hot`, `hotPower` | `null`, `0.6` | the pointer as a light of this colour |
 | `streaks` | `false` | grains in motion leave short streaks |
 | `scan` | `false` | a plane sweeping through the depth makes the grains it passes bigger and brighter |
-| `sway` | `1` | the camera's own slow drift |
-| `parallax` | `1` | how much the camera turns toward the pointer |
+| `sway` | `1` | the camera's own slow drift (it calms while a pointer is on the page) |
+| `parallax` | `1` | how much the subject turns toward the pointer (0 not at all); calm pages use 0.7–0.8 |
+| `tilt` | `{ yaw: 0.38, pitch: 0.22, ease: 0.5 }` | that turn: side to side and up and down in radians when the pointer is far from the subject, and how long it takes to follow (seconds) |
+| `lens` | `22` | half the vertical field of view in degrees: wider shows more perspective, so the near parts grow as they turn toward you |
+| `steps` | `null` | how much grains on a sudden depth step fade as the subject turns: 1 hides them (on dark they read as shadow), 0 keeps them as a veil of colour (on paper a hidden step shows as a white crack). `null`: 1 on dark, 0.25 on paper |
 | `frame` | centre | `(w, h) → { cx, cy, s }`: where the picture sits, its centre and half its height in CSS px. Keep the title's band clear |
 | `fixedDt` | `0` | a fixed time step (set by `?rec`) |
 

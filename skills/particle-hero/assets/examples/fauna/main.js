@@ -25,7 +25,7 @@ const api = await stage({
     mono: 0.88,
     tint: "#f4e7d2",
     exposure: 1.05,
-    relief: 0.85,
+    relief: 1.35,
     wind: { amount: 0.55, angle: 0.08, x: 0.3, y: 0 },
     frame: (w, h) => narrow()
       ? { cx: w * 0.5, cy: h * 0.6, s: Math.min(w * 0.42, h * 0.27) }

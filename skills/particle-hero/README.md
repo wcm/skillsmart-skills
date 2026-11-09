@@ -1,10 +1,11 @@
 # Particle Hero — a Skillsmart skill
 
 Build a **landing-page hero made of half a million particles**. Each of your subjects is rebuilt in glowing dust or
-ink: a product, an animal, a portrait, an object. The grains swarm or melt from one subject into the next, and they
-part like smoke under the cursor.
+ink: a product, an animal, a portrait, an object. The grains swarm or melt from one subject into the next, they
+part like smoke under the cursor, and the whole subject turns toward it in 3D.
 
 - **A hover that feels real.** The grains have momentum: a hand through them leaves a soft wake that settles back by itself.
+- **A real 3D point cloud.** Each subject has depth and turns toward the cursor, so moving the mouse round it shows its sides like an object you can look round.
 - **Changes you can follow.** A swarm throws the grains out and the next subject comes into focus out of the cloud. A melt pairs every grain with a near one in the next subject, so one sneaker reshapes into the next.
 - **Four looks on one engine:**
   - bone-white dust on black, with trackers and wind;
