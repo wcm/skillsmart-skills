@@ -50,7 +50,7 @@ const api = await stage({
     count: innerWidth < 760 ? 1 << 17 : 1 << 18,
     size: 0.8,
     exposure: 0.55,
-    relief: 0.5,
+    relief: 0.8,
     scan: true,
     travel: "melt",
     spread: 0.8, gather: 1.2, blur: 0.08,

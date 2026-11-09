@@ -1,12 +1,12 @@
 ---
 name: particle-hero
-description: Build a landing-page hero made of half a million particles — each subject (a product, an animal, a portrait, an object) is rebuilt in glowing dust or ink, the grains swarm or melt from one subject into the next, and they part like smoke under the cursor. Four looks (dust on black with trackers, ink on paper, neon with lights on the beat, a light one-colour print with callouts). Subjects are generated through Skillsmart credits, depth made locally. Use for a particle hero, particle animation, point-cloud or morphing hero, product range, collection, lineup or exhibition page.
+description: Build a landing-page hero made of half a million particles — each subject (a product, an animal, a portrait, an object) is rebuilt in glowing dust or ink, the grains swarm or melt from one subject into the next, and they part like smoke under the cursor while the whole subject turns toward it in 3D. Four looks (dust on black with trackers, ink on paper, neon with lights on the beat, a light one-colour print with callouts). Subjects are generated through Skillsmart credits, depth made locally. Use for a particle hero, particle animation, point-cloud or morphing hero, product range, collection, lineup or exhibition page.
 ---
 
 # Particle Hero
 
 A hero whose subjects are made of dust. Each subject is turned into hundreds of thousands of grains:
-- **Where they go.** Grains pack where the picture is bright (or, on paper, dark) and along its edges. A depth map pushes them back, so the subject has relief and turns slightly toward the pointer.
+- **Where they go.** Grains pack where the picture is bright (or, on paper, dark) and along its edges. A depth map gives them real depth, and the subject turns toward the pointer, so it reads as a 3D point cloud you can look round.
 - **Changing subject.** The grains are thrown out and gather into the next subject. A **swarm** goes through a cloud; a **melt** reshapes one shape into the next.
 - **The hand.** The cursor carries nearby grains along, like a hand through smoke, and they drift home on their own.
 - **The page.** Round it sit a title that reads first, a list to pick a subject, a line of words for each, and one call to action.
@@ -24,6 +24,7 @@ Why it is built this way. Each point was learned the hard way, so keep it:
 - **The next subject comes into focus.** Arriving grains land slightly out of focus, so the next subject appears first as a soft cloud of its own colours, then sharpens. A long shapeless cloud in the middle loses people: the pull home builds early.
 - **Melts need matched grains.** Pairing grains by a space-filling curve looks blocky (rectangles, cracks). The engine pairs each grain with a near one in the next subject, worked out in the background. A melt only works between shapes of the same kind and pose; between different shapes use a swarm.
 - **One ink never piles darker than itself.** On paper, `inkCap` keeps a one-colour print light. `levels` stretches each subject's own tones, so a black shoe keeps its seams instead of flattening into a blob.
+- **Depth you can look round.** The subject turns toward the pointer, measured from its own centre, through a lens wide enough that near parts grow as they come round. That is what sells it as 3D, so keep `relief` at the look's value and the turn on. Sudden depth steps (a muzzle in front of a neck) would part into lines or veils as it turns, so each grain reads depth at its own point, and grains on a step fade on dark (on paper they stay, or the paper shows through as cracks).
 - **The title reads first.** It gets its own band, and the subject sits beside it (`frame`). On the neon look the title can stand **behind** the dust instead.
 - **Contrast inside the subject.** On black, light subjects with rim light read best. On white, dark products print best. Portraits cut off at the waist fade out (`fade`) instead of ending on a line.
 

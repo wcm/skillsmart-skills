@@ -28,12 +28,12 @@ const narrow = () => innerWidth < 760;
 
 const api = await stage({
   canvas: $("dust"),
-  pictures: forms.map((f) => ({ src: `img/${f.id}.webp`, depth: `img/${f.id}-depth.png`, relief: 0.55 })),
+  pictures: forms.map((f) => ({ src: `img/${f.id}.webp`, depth: `img/${f.id}-depth.png`, relief: 0.75 })),
   options: {
     ink: true,
     background: "#f1eadf",
     exposure: 1.0,
-    relief: 0.55,
+    relief: 0.75,
     // the plant evaporates into a mist of its own colours, from the stem up, and the perfume condenses out of it
     travel: "swarm",
     kick: 0.7, air: 1.1, blur: 0.2, spread: 0.9, gather: 1.6,
